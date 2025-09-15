@@ -1187,14 +1187,21 @@ class scPrint(L.LightningModule, PyTorchModelHubMixin):
         if self.lr_reduce_monitor is None:
             print("no lr reduce factor")
             return [optimizer]
-        #lr_scheduler = optim.lr_scheduler.CosineAnnealingWarmRestarts(
+
+        class StepwiseCAWR(optim.lr_scheduler.CosineAnnealingWarmRestarts):
+            # Ensure Lightning can't reset the cycle by passing an epoch
+            def step(self, epoch=None):
+                # Always advance by one optimizer step
+                return super().step()
+        
+        #lr_scheduler = StepwiseCAWR(
         #    optimizer,
         #    T_0=20000,
         #    T_mult=2,
         #    eta_min=1e-8,
         #)
         #interval = "step"
-        #frequency = 10
+        #frequency = 1
         #lr_scheduler = optim.lr_scheduler.ExponentialLR(
         #    optimizer,
         #    gamma=0.85,
@@ -1206,7 +1213,7 @@ class scPrint(L.LightningModule, PyTorchModelHubMixin):
             factor=self.lr_reduce_factor,
         )
         interval = "epoch"
-        frequency=10
+        frequency=1
         lr_dict = {
             "scheduler": lr_scheduler,
             # The unit of the scheduler's step size, could also be 'step'.
@@ -2209,13 +2216,6 @@ class scPrint(L.LightningModule, PyTorchModelHubMixin):
         """
         log_adata will log an adata from predictions.
         It will log to tensorboard and wandb if available
-
-        see @utils.log_adata
-        """
-        try:
-            mdir = self.logger.save_dir if self.logger.save_dir is not None else "/tmp"
-        except:
-            mdir = "data/"
         if not os.path.exists(mdir):
             os.makedirs(mdir)
         adata, fig = utils.make_adata(

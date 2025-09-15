@@ -16,7 +16,7 @@ trainer:
     - class_path: lightning.pytorch.loggers.WandbLogger
       init_args:
         project: ${project}
-        save_dir: /pasteur/zeus/projets/p02/ml4ig_hot/Users/jkalfon/ #/lustre/fswork/projects/rech/xeg/uat95fg/  #/data/log/
+        save_dir: /lustre/fswork/projects/rech/xeg/uat95fg/ #/pasteur/zeus/projets/p02/ml4ig_hot/Users/jkalfon/ #/lustre/fswork/projects/rech/xeg/uat95fg/  #/data/log/
         offline: True
   callbacks:
     #- class_path: lightning.pytorch.callbacks.StochasticWeightAveraging
@@ -28,9 +28,9 @@ trainer:
         save_top_k: 5
         save_last: True
 scprint_training:
-  # run_full_forward: True
+  run_full_forward: False
   noise: [0.7]
-  # mask_ratio: ["TF"]
+  #mask_ratio: [0.3]
   do_generate: True
   test_every: 5
   zinb_and_mse: True
@@ -38,7 +38,7 @@ scprint_training:
   cce_scale: 0.2
   class_embd_diss_scale: 0.3
   ecs_scale: 0.2
-  vae_kl_scale: 0.001
+  vae_kl_scale: 0.1
 scprint_early_stopping:
   patience: 6
 model:
@@ -89,7 +89,7 @@ data:
   prefetch_factor: 3
   metacell_mode: 0.1
   weight_scaler: 300
-  n_samples_per_epoch: 1300000 # {data.batch_size*trainer.limit_train_batches}
+  n_samples_per_epoch: 700000 # {data.batch_size*trainer.limit_train_batches}
   validation_split: 0.05
   test_split: 0.02
   batch_size: 32
