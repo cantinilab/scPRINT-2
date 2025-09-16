@@ -38,7 +38,7 @@ scprint_training:
   cce_scale: 0.2
   class_embd_diss_scale: 0.3
   ecs_scale: 0.2
-  vae_kl_scale: 0.1
+  vae_kl_scale: 0.001
 scprint_early_stopping:
   patience: 6
 model:

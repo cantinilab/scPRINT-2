@@ -51,12 +51,12 @@ class scPrint(L.LightningModule, PyTorchModelHubMixin):
         finetune_gene_emb: bool = False,
         freeze_embeddings: bool = True,
         gene_pos_file: Optional[str] = None,
-        normalization: str = "sum",
+        normalization: str = "sum", # log, sum, raw
         attn_bias: str = "none",
         expr_encoder_layers: int = 3,
         attention: str = "normal",  # "performer", "legacy-flash", "normal", "criss-cross", "hyper", "adasplash"
         expr_emb_style: str = "continuous",  # "binned", "continuous", "metacell"
-        n_input_bins: int = 60,
+        n_input_bins: int = 0,
         mvc_decoder: Optional[
             str
         ] = None,  # "inner product", "concat query", "sum query"
@@ -277,8 +277,8 @@ class scPrint(L.LightningModule, PyTorchModelHubMixin):
             )
         elif expr_emb_style == "binned":
             assert n_input_bins > 0
-            assert normalization == "no", "shouldn't use normalization"
-            expr_encoder = encoders.CategoryValueEncoder(n_input_bins, expr_d_model)
+            assert normalization == "raw", "shouldn't use normalization"
+            self.expr_encoder = encoders.CategoryValueEncoder(n_input_bins, expr_d_model)
         elif expr_emb_style == "metacell":
             expr_encoder = encoders.EasyExprGNN(
                 self_dim=expr_d_model * 2, output_dim=expr_d_model, shared_layers=expr_encoder_layers, dropout=dropout
@@ -618,11 +618,11 @@ class scPrint(L.LightningModule, PyTorchModelHubMixin):
         if (
             self.label_decoders != checkpoints["hyper_parameters"]["label_decoders"]
             or self.labels_hierarchy
-            != checkpoints["hyper_parameters"]["labels_hierarchy"]
+            != checkpoints["hyper_parameters"].get("labels_hierarchy", {})
         ):
             print("label decoders have changed, be careful")
             self.label_decoders = checkpoints["hyper_parameters"]["label_decoders"]
-            self.labels_hierarchy = checkpoints["hyper_parameters"]["labels_hierarchy"]
+            self.labels_hierarchy = checkpoints["hyper_parameters"].get("labels_hierarchy", {})
             for k, v in self.labels_hierarchy.items():
                 tens = torch.zeros((len(v), self.label_counts[k]))
                 for k2, v2 in v.items():
@@ -1187,21 +1187,14 @@ class scPrint(L.LightningModule, PyTorchModelHubMixin):
         if self.lr_reduce_monitor is None:
             print("no lr reduce factor")
             return [optimizer]
-
-        class StepwiseCAWR(optim.lr_scheduler.CosineAnnealingWarmRestarts):
-            # Ensure Lightning can't reset the cycle by passing an epoch
-            def step(self, epoch=None):
-                # Always advance by one optimizer step
-                return super().step()
-        
-        #lr_scheduler = StepwiseCAWR(
+        #lr_scheduler = optim.lr_scheduler.CosineAnnealingWarmRestarts(
         #    optimizer,
         #    T_0=20000,
         #    T_mult=2,
         #    eta_min=1e-8,
         #)
         #interval = "step"
-        #frequency = 1
+        #frequency = 10
         #lr_scheduler = optim.lr_scheduler.ExponentialLR(
         #    optimizer,
         #    gamma=0.85,
@@ -1214,6 +1207,13 @@ class scPrint(L.LightningModule, PyTorchModelHubMixin):
         )
         interval = "epoch"
         frequency=1
+        # lr_scheduler = StepwiseCAWRWithWD(
+        #     optimizer,
+        #     T_0=20_000,
+        #     T_mult=2,
+        #     eta_min=1e-8,
+        #     wd_decay=0.9
+        # )
         lr_dict = {
             "scheduler": lr_scheduler,
             # The unit of the scheduler's step size, could also be 'step'.
@@ -2216,6 +2216,13 @@ class scPrint(L.LightningModule, PyTorchModelHubMixin):
         """
         log_adata will log an adata from predictions.
         It will log to tensorboard and wandb if available
+
+        see @utils.log_adata
+        """
+        try:
+            mdir = self.logger.save_dir if self.logger.save_dir is not None else "/tmp"
+        except:
+            mdir = "data/"
         if not os.path.exists(mdir):
             os.makedirs(mdir)
         adata, fig = utils.make_adata(
@@ -2268,3 +2275,4 @@ class scPrint(L.LightningModule, PyTorchModelHubMixin):
             for names in self.organisms:
                 genes.extend(self._genes[names])
             return genes
+
