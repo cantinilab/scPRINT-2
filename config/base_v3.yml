@@ -1,7 +1,8 @@
 project: scprint_v2
 seed_everything: 42
 set_float32_matmul_precision: True
-wandblog: parameters
+# for latest versions of wandb, logging stuff creates an impossibility to sync... ffs
+# wandblog: parameters
 trainer:
   precision: 16-mixed
   strategy: ddp_find_unused_parameters_true
