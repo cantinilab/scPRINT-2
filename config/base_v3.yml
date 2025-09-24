@@ -31,8 +31,8 @@ trainer:
         save_last: True
 scprint_training:
   run_full_forward: False
-  noise: [0.7]
-  #mask_ratio: [0.3]
+  noise: [0.8]
+  mask_ratio: ["TF"]
   do_generate: True
   test_every: 5
   zinb_and_mse: True
@@ -63,9 +63,9 @@ model:
   num_heads_kv_cell: 4
   fused_dropout_add_ln: False
   fused_mlp: False
-  layers_cls: [256, 128]
+  layers_cls: [128]
   fused_bias_fc: False
-  drop_path_rate: 0
+  drop_path_rate: 0.0
   freeze_embeddings: True
   finetune_gene_emb: True
   normalization: log
@@ -85,7 +85,7 @@ model:
 data:
   collection_name: scPRINT-V2 (all+tahoe+scbase) filtered #scPRINT-V2 (good quality) # scPRINT-V2 (some)
   how: random expr
-  max_len: 2600
+  max_len: 3200
   pin_memory: True
   # persistent_workers: True
   prefetch_factor: 3
