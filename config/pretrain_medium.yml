@@ -1,13 +1,10 @@
-trainer:
-  strategy: ddp
 model:
   nhead: 8
   num_heads_kv: 4
   nlayers: 16 #used to be 12
   d_model: 512
-  dropout: 0.1
-  d_model_cell: 256
-  nhead_cell: 4
+  d_model_cell: 512
+  nhead_cell: 8
   nlayers_cell: 6
 data:
   n_samples_per_epoch: 400000

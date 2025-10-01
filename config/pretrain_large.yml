@@ -1,19 +1,19 @@
 trainer:
-  strategy: ddp_find_unused_parameters_true
-  gradient_clip_val: 2
+  gradient_clip_val: 10
 model:
   nhead: 16
   num_heads_kv: 4
-  lr: 0.00005
-  nlayers: 30
+  lr: 0.0001
+  nlayers: 32
   d_model: 1024
-  dropout: 0.1
-  d_model_cell: 256
-  nlayers_cell: 6
+  d_model_cell: 512
   nhead_cell: 8
-data:
-  batch_size: 16
+  nlayers_cell: 10
+data: #model is 400M params
+  batch_size: 6
+  max_len: 3000
+  n_samples_per_epoch: 300000
+scprint_training:
   test_every: 10
-  max_len: 2600
+  weight_decay: 0.1
   warmup_duration: 4000
-# model is 400M params
