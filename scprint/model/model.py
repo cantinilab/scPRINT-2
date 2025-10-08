@@ -84,6 +84,21 @@ class scPrint(L.LightningModule, PyTorchModelHubMixin):
         transformer=None,
         gene_pos_enc=None,
         drop_path_rate=0.0,
+        # unused args from older versions kept for loading old models
+        max_cont_len=None,
+        residual_in_fp32=None,
+        checkpointing=None,
+        fused_dropout_add_ln=None,
+        strict_loading=None,
+        optim=None,
+        weight_decay=None,
+        prenorm=None,
+        domain_spec_batchnorm=None,
+        use_flash_attn=None,
+        cell_emb_style=None,
+        num_batch_labels=None,
+        fused_mlp=None,
+        fused_bias_fc=None,
         **attention_kwargs,
     ):
         """
@@ -280,7 +295,6 @@ class scPrint(L.LightningModule, PyTorchModelHubMixin):
             )
         else:
             self.gene_encoder = gene_encoder
-            
         # Positional Encoding
         if gene_pos_file is not None:
             # redoing it just in case some were dropped with embbeding file step
@@ -320,7 +334,6 @@ class scPrint(L.LightningModule, PyTorchModelHubMixin):
             )
         else:
             self.expr_encoder = expr_encoder
-        self.gene_encoder = gene_encoder
 
         # Class Encoder
         # always have [base_cell_emb, time_embedding, depth_embedding] + any other class info
@@ -499,6 +512,9 @@ class scPrint(L.LightningModule, PyTorchModelHubMixin):
             torch.nn.init.constant_(dec.out_layer.bias, -0.13)
         self.expr_encoder._init_weights()
 
+        # self.hparams.drop(gene_pos_file)
+        # self.hparams.drop(precpt_gene_emb)
+
     def add_organism(
         self, organism: str, genes: pd.Index, emb: pd.DataFrame, locs=None
     ):
@@ -646,6 +662,14 @@ class scPrint(L.LightningModule, PyTorchModelHubMixin):
 
         else:
             print("no classes in the checkpoint, be careful")
+            
+        if checkpoints["state_dict"].get("pos_encoder.pe") is not None:
+            if self.pos_encoder is None:
+                self.pos_encoder = encoders.PositionalEncoding(
+                    self.d_model,
+                    gene_pos_enc=[0,1,2]
+                )
+            self.pos_encoder.pe = checkpoints["state_dict"]["pos_encoder.pe"]
 
         if self.label_decoders != checkpoints["hyper_parameters"][
             "label_decoders"
@@ -693,6 +717,9 @@ class scPrint(L.LightningModule, PyTorchModelHubMixin):
             }
         if "precpt_gene_emb" in checkpoints["hyper_parameters"]:
             checkpoints["hyper_parameters"].pop("precpt_gene_emb")
+
+        if "gene_pos_file" in checkpoints["hyper_parameters"]:
+            checkpoints["hyper_parameters"].pop("gene_pos_file")
 
         if "transformer" in checkpoints["hyper_parameters"]:
             checkpoints["hyper_parameters"]["attention"] = checkpoints[
