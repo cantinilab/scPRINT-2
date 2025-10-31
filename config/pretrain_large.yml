@@ -3,14 +3,13 @@ trainer:
 model:
   nhead: 20
   num_heads_kv: 5
-  lr: 0.00005
+  lr: 0.0001
   nlayers: 30
   d_model: 1280
   dropout: 0.1
   d_model_cell: 512
   nlayers_cell: 6
   nhead_cell: 8
-  nlayers_cell: 10
 data: #model is 500M params
   batch_size: 6
   max_len: 3000
@@ -18,5 +17,4 @@ data: #model is 500M params
 scprint_training:
   test_every: 10
   weight_decay: 0.1
-  max_len: 3000
   warmup_duration: 4000
