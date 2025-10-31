@@ -10,7 +10,7 @@ trainer:
   gradient_clip_val: 40
   log_every_n_steps: 100
   limit_train_batches: 20000
-  limit_val_batches: 10000
+  limit_val_batches: 20000
   gradient_clip_algorithm: norm
   limit_test_batches: 1 # we don't perform tests this way
   accumulate_grad_batches: 1
@@ -31,32 +31,32 @@ trainer:
         save_last: True
 scprint_training:
   run_full_forward: False
-  noise: [0.8]
   mask_ratio: ["TF"]
+  noise: [0.8, 1.0]
   do_generate: True
-  test_every: 5
+  test_every: 10
   zinb_and_mse: True
   var_context_length: True
   cce_scale: 0.2
   class_embd_diss_scale: 0.3
   ecs_scale: 0.2
-  vae_kl_scale: 0.001
+  vae_kl_scale: 0.0002
 scprint_early_stopping:
   patience: 6
 model:
-  dropout: 0.1
+  dropout: 0.02
   nhead: 4
   precpt_gene_emb: ./data/main/gene_embs/
   gene_pos_file: ./data/main/gene_locs/all_locs.parquet
   num_heads_kv: 4
   nlayers: 8
   d_model: 256
-  expr_encoder_layers: 3
-  expr_emb_style: continuous
+  expr_encoder_layers: 1 #3
+  expr_emb_style: metacell #continuous
   attention: normal
   residual_in_fp32: True
   checkpointing: True
-  layers_cls: []
+  layers_cls: [256]
   cell_specific_blocks: True
   d_model_cell: 256
   nhead_cell: 4
@@ -71,17 +71,17 @@ model:
   normalization: log
   pred_embedding:
     - cell_type_ontology_term_id
-  #compress_class_dim: #{'cell_type_ontology_term_id':64,'tissue_ontology_term_id':32,'disease_ontology_term_id':16,'age_group':8,'assay_ontology_term_id':8,'self_reported_ethnicity_ontology_term_id':8,'sex_ontology_term_id':2,'organism_ontology_term_id':8,'cell_culture':2}
-  #  cell_type_ontology_term_id: 64
-  #  tissue_ontology_term_id: 32
-  #  disease_ontology_term_id: 16
-  #  age_group: 8
-  #  assay_ontology_term_id: 8
-  #  self_reported_ethnicity_ontology_term_id: 8
-  #  sex_ontology_term_id: 2
-  #  organism_ontology_term_id: 8
-  #  cell_culture: 2
-  #  # total: 148
+  compress_class_dim: #{'cell_type_ontology_term_id':64,'tissue_ontology_term_id':32,'disease_ontology_term_id':16,'age_group':8,'assay_ontology_term_id':8,'self_reported_ethnicity_ontology_term_id':8,'sex_ontology_term_id':2,'organism_ontology_term_id':8,'cell_culture':2}
+    cell_type_ontology_term_id: 64
+    tissue_ontology_term_id: 32
+    disease_ontology_term_id: 32
+    age_group: 8
+    assay_ontology_term_id: 12
+    self_reported_ethnicity_ontology_term_id: 8
+    sex_ontology_term_id: 2
+    organism_ontology_term_id: 8
+    cell_culture: 2
+    # total: 168
 data:
   collection_name: scPRINT-V2 (all+tahoe+scbase) filtered #scPRINT-V2 (good quality) # scPRINT-V2 (some)
   how: random expr
@@ -89,13 +89,14 @@ data:
   pin_memory: True
   # persistent_workers: True
   prefetch_factor: 3
-  n_samples_per_epoch: 700000 # {data.batch_size*trainer.limit_train_batches}
-  metacell_mode: 0.2
-  weight_scaler: 200
+  metacell_mode: 0
+  get_knn_cells: True
+  weight_scaler: 1000
+  n_samples_per_epoch: 1300000 # {data.batch_size*trainer.limit_train_batches}
   validation_split: 0.05
   test_split: 0.02
-  batch_size: 32
-  num_workers: 10
+  batch_size: 30
+  num_workers: 16
   hierarchical_clss:
     - cell_type_ontology_term_id
     - tissue_ontology_term_id
