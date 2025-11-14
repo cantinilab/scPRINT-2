@@ -222,7 +222,6 @@ class Denoiser:
             pred_adata.append(sc.read_h5ad(file))
             os.remove(file)
         pred_adata = concat(pred_adata)
-
         if model.transformer.attn_type == "hyper":
             # seq len must be a multiple of 128
             num = (1 if model.use_metacell_token else 0) + (
@@ -240,10 +239,6 @@ class Denoiser:
             reco = np.array(pred_adata.layers["scprint_mu"].data).reshape(
                 pred_adata.shape[0], -1
             )
-            # reco = reco * F.sigmoid(
-            #    torch.Tensor(np.array(pred_adata.layers["scprint_pi"].data).reshape(pred_adata.shape[0], -1)) < 0.5
-            # ).numpy()
-
             adata = (
                 adata[random_indices, adata.var.index.isin(pred_adata.var.index)]
                 if random_indices is not None

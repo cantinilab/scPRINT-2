@@ -13,7 +13,7 @@ if [ -n "$2" ]; then
     git checkout "$2" || { echo "Failed to checkout commit $2"; exit 1; }
 fi
 
-module load cuda/12.2
+module load cuda/12.2.0
 export TRITON_CACHE_DIR=$TMPDIR/triton_cache
 mkdir -p $TRITON_CACHE_DIR
 eval "srun $1"

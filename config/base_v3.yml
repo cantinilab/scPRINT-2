@@ -1,5 +1,5 @@
 project: scprint_v2
-seed_everything: 50
+seed_everything: 42
 set_float32_matmul_precision: True
 # for latest versions of wandb, logging stuff creates an impossibility to sync... ffs
 # wandblog: parameters
@@ -30,8 +30,8 @@ trainer:
         save_top_k: 5
         save_last: True
 scprint_training:
-  run_full_forward: False
-  mask_ratio: ["TF"]
+  run_full_forward: True
+  mask_ratio: []
   noise: [0.8, 1.0]
   do_generate: True
   test_every: 10
@@ -96,6 +96,7 @@ data:
   validation_split: 0.05
   test_split: 0.02
   batch_size: 30
+  curiculum: 20
   num_workers: 16
   hierarchical_clss:
     - cell_type_ontology_term_id

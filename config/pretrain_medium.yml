@@ -1,7 +1,7 @@
 model:
   nhead: 8
   num_heads_kv: 4
-  nlayers: 16 #used to be 12
+  nlayers: 12 #used to be 12
   d_model: 512
   d_model_cell: 512
   nhead_cell: 8
@@ -14,4 +14,4 @@ scprint_training:
   test_every: 10
   weight_decay: 0.1
   warmup_duration: 2000
-  lr_reduce_factor: 0.3
+  lr_reduce_factor: 0.5
