@@ -51,9 +51,6 @@ class MyCLI(LightningCLI):
         parser.link_arguments(
             "data.n_bins", "model.n_input_bins", apply_on="instantiate"
         )
-        parser.link_arguments(
-            "data.metacell_mode", "model.use_metacell_token", apply_on="instantiate"
-        )
         parser.link_arguments("data.classes", "model.classes", apply_on="instantiate")
         parser.link_arguments(
             "data.organisms", "model.organisms", apply_on="instantiate"
@@ -297,6 +294,13 @@ class MyCLI(LightningCLI):
             os.environ["PL_TRAINER_STRATEGY_TIMEOUT"] = str(TIMEOUT)
 
             print(f"setting global pytorch distributed timeout to {TIMEOUT}s")
+
+    def after_instantiate_classes(self):
+        try:
+            self.model.name = self.trainer._loggers[0].version
+        except:
+            print("not on wandb, could not set name")
+        self.datamodule.set_valid_genes_collator(self.model.genes)
 
     def instantiate_trainer(self, **kwargs) -> Trainer:
         """Override to customize trainer instantiation"""
