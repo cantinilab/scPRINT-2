@@ -830,15 +830,15 @@ class scPrint(L.LightningModule, PyTorchModelHubMixin):
             self.pos_encoder.pe = self.pos_encoder.pe[tokeep]
 
     def _encoder(
-        self,
-        gene_pos: Tensor,
-        expression: Optional[Tensor] = None,
-        neighbors: Optional[Tensor] = None,
-        neighbors_info: Optional[Tensor] = None,
-        mask: Optional[Tensor] = None,
-        cell_embs: Optional[Tensor] = None,  # (minibatch, n_labels, embsize)
-        metacell_token: Optional[Tensor] = None,  # (minibatch, 1)
-    ):
+            self,
+            gene_pos: Tensor,
+            expression: Optional[Tensor] = None,
+            neighbors: Optional[Tensor] = None,
+            neighbors_info: Optional[Tensor] = None,
+            mask: Optional[Tensor] = None,
+            cell_embs: Optional[Tensor] = None,  # (minibatch, n_labels, embsize)
+            metacell_token: Optional[Tensor] = None,  # (minibatch, 1)
+            ):
         """
         _encode given inputs to the model encode into embeddings.
 
