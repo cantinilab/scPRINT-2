@@ -95,7 +95,7 @@
     </li>
     </ul>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../embedder/">embedders</a>
+                  <li class="toctree-l1"><a class="" href="../tokenizers.md">tokenizers</a>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../utils/">utils</a>
                   </li>
@@ -148,6 +148,8 @@
 
 
 
+
+
 <p><span class="doc-section-title">Classes:</span></p>
     <table>
       <thead>
@@ -183,6 +185,7 @@
 
 
 
+
 <div class="doc doc-object doc-class">
 
 
@@ -199,7 +202,9 @@
               Bases: <code><span title="lightning.pytorch.cli.SaveConfigCallback">SaveConfigCallback</span></code></p>
 
 
+
         <p>MySaveConfig is a subclass of SaveConfigCallback to parametrize the wandb logger further in cli mode</p>
+
 
 
 
@@ -226,9 +231,11 @@
 
 
 
+
   </div>
 
     </div>
+
 
 </div>
 
@@ -252,6 +259,8 @@
 </h2>
 
     <div class="doc doc-contents first">
+
+
 
 
 
@@ -295,6 +304,7 @@
 
 
 
+
 <div class="doc doc-object doc-class">
 
 
@@ -311,9 +321,11 @@
               Bases: <code><span title="lightning.pytorch.cli.LightningCLI">LightningCLI</span></code></p>
 
 
+
         <p>MyCLI is a subclass of LightningCLI to add some missing params and create bindings between params of the model and the data.</p>
 <p>Used to allow calling denoise / embed / gninfer from the command line.
 Also to add more parameters and link parameters between the scdataloader and the scPRINT model.</p>
+
 
 
 
@@ -359,6 +371,7 @@ Also to add more parameters and link parameters between the scdataloader and the
 
 
 
+
 <div class="doc doc-object doc-function">
 
 
@@ -373,38 +386,40 @@ Also to add more parameters and link parameters between the scdataloader and the
         <p>Override to customize trainer instantiation</p>
 
 
-            <details class="quote">
+            <details class="mkdocstrings-source">
               <summary>Source code in <code>scprint/cli.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">286</span>
-<span class="normal">287</span>
-<span class="normal">288</span>
-<span class="normal">289</span>
-<span class="normal">290</span>
-<span class="normal">291</span>
-<span class="normal">292</span>
-<span class="normal">293</span>
-<span class="normal">294</span>
-<span class="normal">295</span>
-<span class="normal">296</span>
-<span class="normal">297</span>
-<span class="normal">298</span>
-<span class="normal">299</span>
-<span class="normal">300</span>
-<span class="normal">301</span>
-<span class="normal">302</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">instantiate_trainer</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Trainer</span><span class="p">:</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">305</span>
+<span class="normal">306</span>
+<span class="normal">307</span>
+<span class="normal">308</span>
+<span class="normal">309</span>
+<span class="normal">310</span>
+<span class="normal">311</span>
+<span class="normal">312</span>
+<span class="normal">313</span>
+<span class="normal">314</span>
+<span class="normal">315</span>
+<span class="normal">316</span>
+<span class="normal">317</span>
+<span class="normal">318</span>
+<span class="normal">319</span>
+<span class="normal">320</span>
+<span class="normal">321</span>
+<span class="normal">322</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">instantiate_trainer</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Trainer</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Override to customize trainer instantiation&quot;&quot;&quot;</span>
     <span class="c1"># Modify strategy if it&#39;s DDP</span>
     <span class="n">trainer</span> <span class="o">=</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">instantiate_trainer</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
     <span class="k">if</span> <span class="s2">&quot;fit&quot;</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="s2">&quot;fit&quot;</span><span class="p">][</span><span class="s2">&quot;trainer&quot;</span><span class="p">][</span><span class="s2">&quot;strategy&quot;</span><span class="p">]</span> <span class="ow">in</span> <span class="p">[</span>
         <span class="s2">&quot;ddp&quot;</span><span class="p">,</span>
         <span class="s2">&quot;ddp_find_unused_parameters_true&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;fsdp&quot;</span><span class="p">,</span>
     <span class="p">]:</span>
         <span class="c1"># Create DDPStrategy with custom timeout</span>
         <span class="kn">from</span><span class="w"> </span><span class="nn">datetime</span><span class="w"> </span><span class="kn">import</span> <span class="n">timedelta</span>
 
         <span class="c1"># Update the config</span>
         <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;updating the config&quot;</span><span class="p">)</span>
-        <span class="n">trainer</span><span class="o">.</span><span class="n">strategy</span><span class="o">.</span><span class="n">_timeout</span> <span class="o">=</span> <span class="n">timedelta</span><span class="p">(</span><span class="n">seconds</span><span class="o">=</span><span class="mi">7000</span><span class="p">)</span>  <span class="c1"># 2hours in second</span>
+        <span class="n">trainer</span><span class="o">.</span><span class="n">strategy</span><span class="o">.</span><span class="n">_timeout</span> <span class="o">=</span> <span class="n">timedelta</span><span class="p">(</span><span class="n">seconds</span><span class="o">=</span><span class="n">TIMEOUT</span><span class="p">)</span>  <span class="c1"># 9 hours in seconds</span>
         <span class="n">trainer</span><span class="o">.</span><span class="n">strategy</span><span class="o">.</span><span class="n">setup_distributed</span><span class="p">()</span>
     <span class="c1"># Call parent method to create trainer</span>
     <span class="k">return</span> <span class="n">trainer</span>
@@ -419,6 +434,7 @@ Also to add more parameters and link parameters between the scdataloader and the
   </div>
 
     </div>
+
 
 </div>
 
@@ -442,6 +458,8 @@ Also to add more parameters and link parameters between the scdataloader and the
 </h2>
 
     <div class="doc doc-contents first">
+
+
 
 
 
@@ -485,6 +503,7 @@ Also to add more parameters and link parameters between the scdataloader and the
 
 
 
+
 <div class="doc doc-object doc-class">
 
 
@@ -498,6 +517,7 @@ Also to add more parameters and link parameters between the scdataloader and the
     <div class="doc doc-contents ">
             <p class="doc doc-class-bases">
               Bases: <code><span title="lightning.pytorch.callbacks.Callback">Callback</span></code></p>
+
 
 
         <p>TrainingMode a callback to set the training specific info to the model.</p>
@@ -516,16 +536,6 @@ but at the same time it has training specific methods... so we have to do this.<
       <td class="field-body">
         <ul class="first simple">
             <li>
-              <b><code>do_denoise</code></b>
-                  (<code><span title="bool">bool</span></code>, default:
-                      <code>True</code>
-)
-              –
-              <div class="doc-md-description">
-                <p>Whether to apply denoising during training. Defaults to True.</p>
-              </div>
-            </li>
-            <li>
               <b><code>noise</code></b>
                   (<code><span title="typing.List">List</span>[<span title="float">float</span>]</code>, default:
                       <code>[0.6]</code>
@@ -536,19 +546,9 @@ but at the same time it has training specific methods... so we have to do this.<
               </div>
             </li>
             <li>
-              <b><code>do_cce</code></b>
-                  (<code><span title="bool">bool</span></code>, default:
-                      <code>False</code>
-)
-              –
-              <div class="doc-md-description">
-                <p>Whether to apply the Contrastive Cell Embedding from scGPT during training. Defaults to False.</p>
-              </div>
-            </li>
-            <li>
               <b><code>cce_temp</code></b>
                   (<code><span title="float">float</span></code>, default:
-                      <code>0.2</code>
+                      <code>0.3</code>
 )
               –
               <div class="doc-md-description">
@@ -558,21 +558,11 @@ but at the same time it has training specific methods... so we have to do this.<
             <li>
               <b><code>cce_scale</code></b>
                   (<code><span title="float">float</span></code>, default:
-                      <code>0.1</code>
+                      <code>0.2</code>
 )
               –
               <div class="doc-md-description">
                 <p>Scaling factor for CCE loss. Defaults to 0.002.</p>
-              </div>
-            </li>
-            <li>
-              <b><code>do_ecs</code></b>
-                  (<code><span title="bool">bool</span></code>, default:
-                      <code>False</code>
-)
-              –
-              <div class="doc-md-description">
-                <p>Whether to apply the Elastic Cell Similarity loss from scGPT during training. Defaults to False.</p>
               </div>
             </li>
             <li>
@@ -588,7 +578,7 @@ but at the same time it has training specific methods... so we have to do this.<
             <li>
               <b><code>ecs_scale</code></b>
                   (<code><span title="float">float</span></code>, default:
-                      <code>0.1</code>
+                      <code>0.2</code>
 )
               –
               <div class="doc-md-description">
@@ -596,19 +586,9 @@ but at the same time it has training specific methods... so we have to do this.<
               </div>
             </li>
             <li>
-              <b><code>do_mvc</code></b>
-                  (<code><span title="bool">bool</span></code>, default:
-                      <code>False</code>
-)
-              –
-              <div class="doc-md-description">
-                <p>Whether to do the cell embedding generation with the scGPT's MVC loss. Defaults to False.</p>
-              </div>
-            </li>
-            <li>
               <b><code>mvc_scale</code></b>
                   (<code><span title="float">float</span></code>, default:
-                      <code>1.0</code>
+                      <code>0.0</code>
 )
               –
               <div class="doc-md-description">
@@ -617,9 +597,7 @@ but at the same time it has training specific methods... so we have to do this.<
             </li>
             <li>
               <b><code>do_adv_cls</code></b>
-                  (<code><span title="bool">bool</span></code>, default:
-                      <code>False</code>
-)
+                  (<code><span title="bool">bool</span></code>)
               –
               <div class="doc-md-description">
                 <p>Whether to apply adversarial classification during training. Defaults to False.</p>
@@ -678,7 +656,7 @@ but at the same time it has training specific methods... so we have to do this.<
             <li>
               <b><code>adv_class_scale</code></b>
                   (<code><span title="float">float</span></code>, default:
-                      <code>0.1</code>
+                      <code>1.0</code>
 )
               –
               <div class="doc-md-description">
@@ -713,26 +691,6 @@ but at the same time it has training specific methods... so we have to do this.<
               –
               <div class="doc-md-description">
                 <p>Quantity to be monitored for learning rate reduction. Defaults to "val_loss".</p>
-              </div>
-            </li>
-            <li>
-              <b><code>do_cls</code></b>
-                  (<code><span title="bool">bool</span></code>, default:
-                      <code>True</code>
-)
-              –
-              <div class="doc-md-description">
-                <p>Whether to perform classification during training. Defaults to True.</p>
-              </div>
-            </li>
-            <li>
-              <b><code>do_adv_batch</code></b>
-                  (<code><span title="bool">bool</span></code>, default:
-                      <code>False</code>
-)
-              –
-              <div class="doc-md-description">
-                <p>Whether to apply adversarial batch training. Defaults to False.</p>
               </div>
             </li>
             <li>
@@ -788,7 +746,7 @@ but at the same time it has training specific methods... so we have to do this.<
             <li>
               <b><code>test_every</code></b>
                   (<code><span title="int">int</span></code>, default:
-                      <code>20</code>
+                      <code>5</code>
 )
               –
               <div class="doc-md-description">
@@ -798,7 +756,7 @@ but at the same time it has training specific methods... so we have to do this.<
             <li>
               <b><code>class_embd_diss_scale</code></b>
                   (<code><span title="float">float</span></code>, default:
-                      <code>0.1</code>
+                      <code>0.3</code>
 )
               –
               <div class="doc-md-description">
@@ -845,11 +803,52 @@ but at the same time it has training specific methods... so we have to do this.<
                 <p>Set the global step for the model. Defaults to None.</p>
               </div>
             </li>
+            <li>
+              <b><code>vae_kl_scale</code></b>
+                  (<code><span title="float">float</span></code>, default:
+                      <code>0.001</code>
+)
+              –
+              <div class="doc-md-description">
+                <p>Scaling factor for the VAE KL loss. Defaults to 0.3.</p>
+              </div>
+            </li>
+            <li>
+              <b><code>randsamp</code></b>
+                  (<code><span title="bool">bool</span></code>, default:
+                      <code>True</code>
+)
+              –
+              <div class="doc-md-description">
+                <p>Whether to use random sampling for the noise amount at each training step. Defaults to True.</p>
+              </div>
+            </li>
+            <li>
+              <b><code>vae_kl_warmup_steps</code></b>
+                  (<code><span title="int">int</span></code>, default:
+                      <code>80000</code>
+)
+              –
+              <div class="doc-md-description">
+                <p>Number of warmup steps for the VAE KL loss. Defaults to 20_000.</p>
+              </div>
+            </li>
+            <li>
+              <b><code>mask_zeros</code></b>
+                  (<code><span title="bool">bool</span></code>, default:
+                      <code>False</code>
+)
+              –
+              <div class="doc-md-description">
+                <p>Whether to mask zeros in the expression matrix. Defaults to False.</p>
+              </div>
+            </li>
         </ul>
       </td>
     </tr>
   </tbody>
 </table>
+
 
 
 
@@ -966,42 +965,27 @@ but at the same time it has training specific methods... so we have to do this.<
 <span class="normal">108</span>
 <span class="normal">109</span>
 <span class="normal">110</span>
-<span class="normal">111</span>
-<span class="normal">112</span>
-<span class="normal">113</span>
-<span class="normal">114</span>
-<span class="normal">115</span>
-<span class="normal">116</span>
-<span class="normal">117</span>
-<span class="normal">118</span>
-<span class="normal">119</span>
-<span class="normal">120</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
+<span class="normal">111</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
     <span class="bp">self</span><span class="p">,</span>
-    <span class="n">do_denoise</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
     <span class="n">noise</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.6</span><span class="p">],</span>
-    <span class="n">do_cce</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
-    <span class="n">cce_temp</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.2</span><span class="p">,</span>  <span class="c1"># .6</span>
-    <span class="n">cce_scale</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.1</span><span class="p">,</span>  <span class="c1"># .01</span>
-    <span class="n">do_ecs</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+    <span class="n">cce_temp</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.3</span><span class="p">,</span>  <span class="c1"># .6</span>
+    <span class="n">cce_scale</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.2</span><span class="p">,</span>  <span class="c1"># .01</span>
     <span class="n">ecs_threshold</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.4</span><span class="p">,</span>
-    <span class="n">class_embd_diss_scale</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.1</span><span class="p">,</span>
-    <span class="n">ecs_scale</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.1</span><span class="p">,</span>  <span class="c1"># .1</span>
-    <span class="n">do_mvc</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
-    <span class="n">mvc_scale</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">1.0</span><span class="p">,</span>
-    <span class="n">do_adv_cls</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+    <span class="n">class_embd_diss_scale</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.3</span><span class="p">,</span>
+    <span class="n">ecs_scale</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.2</span><span class="p">,</span>  <span class="c1"># .1</span>
+    <span class="n">mvc_scale</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">,</span>
     <span class="n">do_next_tp</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
     <span class="n">do_generate</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
     <span class="n">class_scale</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
     <span class="n">mask_ratio</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">float</span> <span class="o">|</span> <span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="p">[],</span>  <span class="c1"># 0.3</span>
-    <span class="n">test_every</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">20</span><span class="p">,</span>
+    <span class="n">test_every</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">5</span><span class="p">,</span>
+    <span class="n">randsamp</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
     <span class="n">warmup_duration</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">500</span><span class="p">,</span>
     <span class="n">fused_adam</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
-    <span class="n">adv_class_scale</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.1</span><span class="p">,</span>
+    <span class="n">adv_class_scale</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">1.0</span><span class="p">,</span>
     <span class="n">lr_reduce_patience</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">2</span><span class="p">,</span>
     <span class="n">lr_reduce_factor</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.6</span><span class="p">,</span>
     <span class="n">lr_reduce_monitor</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;val_loss&quot;</span><span class="p">,</span>
-    <span class="n">do_cls</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
-    <span class="n">do_adv_batch</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
     <span class="n">run_full_forward</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
     <span class="n">lr</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.0001</span><span class="p">,</span>
     <span class="n">dropout</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.1</span><span class="p">,</span>
@@ -1009,8 +993,11 @@ but at the same time it has training specific methods... so we have to do this.<
     <span class="n">weight_decay</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.01</span><span class="p">,</span>
     <span class="n">zinb_and_mse</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
     <span class="n">var_context_length</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
-    <span class="n">name</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span>
+    <span class="n">vae_kl_warmup_steps</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">80_000</span><span class="p">,</span>
+    <span class="n">vae_kl_scale</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.001</span><span class="p">,</span>
+    <span class="n">name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
     <span class="n">set_step</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">mask_zeros</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
 <span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    TrainingMode a callback to set the training specific info to the model.</span>
@@ -1019,15 +1006,11 @@ but at the same time it has training specific methods... so we have to do this.<
 <span class="sd">    but at the same time it has training specific methods... so we have to do this.</span>
 
 <span class="sd">    Args:</span>
-<span class="sd">        do_denoise (bool): Whether to apply denoising during training. Defaults to True.</span>
 <span class="sd">        noise (List[float]): List of noise levels to apply if denoising is enabled. Defaults to [0.6], meaning only one forward path with 60% of the counts being dropped will happen.</span>
-<span class="sd">        do_cce (bool): Whether to apply the Contrastive Cell Embedding from scGPT during training. Defaults to False.</span>
 <span class="sd">        cce_temp (float): Similarity threshold for CCE. Defaults to 0.5.</span>
 <span class="sd">        cce_scale (float): Scaling factor for CCE loss. Defaults to 0.002.</span>
-<span class="sd">        do_ecs (bool): Whether to apply the Elastic Cell Similarity loss from scGPT during training. Defaults to False.</span>
 <span class="sd">        ecs_threshold (float): Threshold for ECS. Defaults to 0.3.</span>
 <span class="sd">        ecs_scale (float): Scaling factor for ECS loss. Defaults to 0.05.</span>
-<span class="sd">        do_mvc (bool): Whether to do the cell embedding generation with the scGPT&#39;s MVC loss. Defaults to False.</span>
 <span class="sd">        mvc_scale (float): Scaling factor for MVC loss. Defaults to 1.0.</span>
 <span class="sd">        do_adv_cls (bool): Whether to apply adversarial classification during training. Defaults to False.</span>
 <span class="sd">        do_generate (bool): Whether to do the bottleneck learning task. Defaults to True.</span>
@@ -1039,8 +1022,6 @@ but at the same time it has training specific methods... so we have to do this.<
 <span class="sd">        lr_reduce_patience (int): Number of epochs with no improvement after which learning rate will be reduced. Defaults to 1.</span>
 <span class="sd">        lr_reduce_factor (float): Factor by which the learning rate will be reduced. Defaults to 0.6.</span>
 <span class="sd">        lr_reduce_monitor (str): Quantity to be monitored for learning rate reduction. Defaults to &quot;val_loss&quot;.</span>
-<span class="sd">        do_cls (bool): Whether to perform classification during training. Defaults to True.</span>
-<span class="sd">        do_adv_batch (bool): Whether to apply adversarial batch training. Defaults to False.</span>
 <span class="sd">        run_full_forward (bool): Whether to run a second forward pass without masking or denoising for the bottleneck learning / MVC case. Defaults to False.</span>
 <span class="sd">        lr (float): Initial learning rate. Defaults to 0.001.</span>
 <span class="sd">        optim (str): Optimizer to use during training. Defaults to &quot;adamW&quot;.</span>
@@ -1052,18 +1033,18 @@ but at the same time it has training specific methods... so we have to do this.<
 <span class="sd">        var_context_length (bool): Whether to use variable context length. Defaults to False.</span>
 <span class="sd">        dropout (float): Dropout rate for the model. Defaults to 0.1.</span>
 <span class="sd">        set_step (int, optional): Set the global step for the model. Defaults to None.</span>
+<span class="sd">        vae_kl_scale (float): Scaling factor for the VAE KL loss. Defaults to 0.3.</span>
+<span class="sd">        randsamp (bool): Whether to use random sampling for the noise amount at each training step. Defaults to True.</span>
+<span class="sd">        vae_kl_warmup_steps (int): Number of warmup steps for the VAE KL loss. Defaults to 20_000.</span>
+<span class="sd">        mask_zeros (bool): Whether to mask zeros in the expression matrix. Defaults to False.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
-    <span class="bp">self</span><span class="o">.</span><span class="n">do_denoise</span> <span class="o">=</span> <span class="n">do_denoise</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">noise</span> <span class="o">=</span> <span class="n">noise</span>
-    <span class="bp">self</span><span class="o">.</span><span class="n">do_cce</span> <span class="o">=</span> <span class="n">do_cce</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">cce_temp</span> <span class="o">=</span> <span class="n">cce_temp</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">cce_scale</span> <span class="o">=</span> <span class="n">cce_scale</span>
-    <span class="bp">self</span><span class="o">.</span><span class="n">do_ecs</span> <span class="o">=</span> <span class="n">do_ecs</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">ecs_threshold</span> <span class="o">=</span> <span class="n">ecs_threshold</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">ecs_scale</span> <span class="o">=</span> <span class="n">ecs_scale</span>
-    <span class="bp">self</span><span class="o">.</span><span class="n">do_mvc</span> <span class="o">=</span> <span class="n">do_mvc</span>
-    <span class="bp">self</span><span class="o">.</span><span class="n">do_adv_cls</span> <span class="o">=</span> <span class="n">do_adv_cls</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">vae_kl_scale</span> <span class="o">=</span> <span class="n">vae_kl_scale</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">do_next_tp</span> <span class="o">=</span> <span class="n">do_next_tp</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">do_generate</span> <span class="o">=</span> <span class="n">do_generate</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">class_scale</span> <span class="o">=</span> <span class="n">class_scale</span>
@@ -1071,7 +1052,6 @@ but at the same time it has training specific methods... so we have to do this.<
     <span class="bp">self</span><span class="o">.</span><span class="n">warmup_duration</span> <span class="o">=</span> <span class="n">warmup_duration</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">fused_adam</span> <span class="o">=</span> <span class="n">fused_adam</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">mvc_scale</span> <span class="o">=</span> <span class="n">mvc_scale</span>
-    <span class="bp">self</span><span class="o">.</span><span class="n">do_cls</span> <span class="o">=</span> <span class="n">do_cls</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">adv_class_scale</span> <span class="o">=</span> <span class="n">adv_class_scale</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">lr_reduce_patience</span> <span class="o">=</span> <span class="n">lr_reduce_patience</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">lr_reduce_factor</span> <span class="o">=</span> <span class="n">lr_reduce_factor</span>
@@ -1079,8 +1059,6 @@ but at the same time it has training specific methods... so we have to do this.<
     <span class="bp">self</span><span class="o">.</span><span class="n">lr</span> <span class="o">=</span> <span class="n">lr</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">optim</span> <span class="o">=</span> <span class="n">optim</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">weight_decay</span> <span class="o">=</span> <span class="n">weight_decay</span>
-    <span class="bp">self</span><span class="o">.</span><span class="n">do_cls</span> <span class="o">=</span> <span class="n">do_cls</span>
-    <span class="bp">self</span><span class="o">.</span><span class="n">do_adv_batch</span> <span class="o">=</span> <span class="n">do_adv_batch</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">run_full_forward</span> <span class="o">=</span> <span class="n">run_full_forward</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">test_every</span> <span class="o">=</span> <span class="n">test_every</span>
@@ -1089,6 +1067,9 @@ but at the same time it has training specific methods... so we have to do this.<
     <span class="bp">self</span><span class="o">.</span><span class="n">var_context_length</span> <span class="o">=</span> <span class="n">var_context_length</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">dropout</span> <span class="o">=</span> <span class="n">dropout</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">set_step</span> <span class="o">=</span> <span class="n">set_step</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">randsamp</span> <span class="o">=</span> <span class="n">randsamp</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">mask_zeros</span> <span class="o">=</span> <span class="n">mask_zeros</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">vae_kl_warmup_steps</span> <span class="o">=</span> <span class="n">vae_kl_warmup_steps</span>
 </code></pre></div></td></tr></table></div>
                   </details>
 
@@ -1106,9 +1087,11 @@ but at the same time it has training specific methods... so we have to do this.<
 
 
 
+
   </div>
 
     </div>
+
 
 </div>
 
@@ -1125,7 +1108,7 @@ but at the same time it has training specific methods... so we have to do this.<
           </div><footer>
     <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
         <a href="../tasks/" class="btn btn-neutral float-left" title="tasks"><span class="icon icon-circle-arrow-left"></span> Previous</a>
-        <a href="../embedder/" class="btn btn-neutral float-right" title="embedders">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../utils/" class="btn btn-neutral float-right" title="utils">Next <span class="icon icon-circle-arrow-right"></span></a>
     </div>
 
   <hr/>
@@ -1151,7 +1134,7 @@ but at the same time it has training specific methods... so we have to do this.<
       <span><a href="../tasks/" style="color: #fcfcfc">&laquo; Previous</a></span>
     
     
-      <span><a href="../embedder/" style="color: #fcfcfc">Next &raquo;</a></span>
+      <span><a href="../utils/" style="color: #fcfcfc">Next &raquo;</a></span>
     
   </span>
 </div>

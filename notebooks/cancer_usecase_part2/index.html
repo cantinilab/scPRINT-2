@@ -73,7 +73,7 @@
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../../cli/">cli</a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../../embedder/">embedders</a>
+                  <li class="toctree-l1"><a class="" href="../../tokenizers.md">tokenizers</a>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../../utils/">utils</a>
                   </li>
@@ -601,7 +601,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <span class="kn">from</span><span class="w"> </span><span class="nn">gseapy</span><span class="w"> </span><span class="kn">import</span> <span class="n">dotplot</span>
 
 <span class="o">%</span><span class="n">load_ext</span> <span class="n">autoreload</span>
-<span class="o">%</span><span class="n">autoreload</span> <span class="mi">2</span> 
+<span class="o">%</span><span class="n">autoreload</span> <span class="mi">2</span>
 </pre></div>
 <div class="clipboard-copy-txt" id="cell-1">from bengrn import BenGRN
 import scanpy as sc
@@ -739,7 +739,7 @@ File <span class="ansi-green-fg">h5py/h5f.pyx:102</span>, in <span class="ansi-c
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [2]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="CodeMirror cm-s-jupyter">
 <div class="zeroclipboard-container">
 <clipboard-copy ,="" aria-label="Copy to Clipboard" for="cell-3">
@@ -755,32 +755,38 @@ File <span class="ansi-green-fg">h5py/h5f.pyx:102</span>, in <span class="ansi-c
 <div class="highlight-ipynb hl-python"><pre><span></span><span class="c1"># load the generated gene networks from the previous notebook</span>
 <span class="n">grn</span> <span class="o">=</span> <span class="n">read_h5ad</span><span class="p">(</span><span class="s2">"../../data/prostate_fibro_grn.h5ad"</span><span class="p">)</span>
 <span class="n">grn_c</span> <span class="o">=</span> <span class="n">read_h5ad</span><span class="p">(</span><span class="s2">"../../data/prostate_cancer_fibro_grn.h5ad"</span><span class="p">)</span>
-<span class="c1">#remove duplicates</span>
+<span class="c1"># remove duplicates</span>
 <span class="n">grn</span><span class="o">.</span><span class="n">var</span><span class="o">.</span><span class="n">symbol</span> <span class="o">=</span> <span class="n">make_index_unique</span><span class="p">(</span><span class="n">grn</span><span class="o">.</span><span class="n">var</span><span class="o">.</span><span class="n">symbol</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">))</span>
 <span class="n">grn_c</span><span class="o">.</span><span class="n">var</span><span class="o">.</span><span class="n">symbol</span> <span class="o">=</span> <span class="n">make_index_unique</span><span class="p">(</span><span class="n">grn_c</span><span class="o">.</span><span class="n">var</span><span class="o">.</span><span class="n">symbol</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">))</span>
 
 <span class="c1"># convert gene ids to symbols</span>
-<span class="n">grn</span><span class="o">.</span><span class="n">var</span><span class="p">[</span><span class="s1">'ensembl_id'</span><span class="p">]</span> <span class="o">=</span> <span class="n">grn</span><span class="o">.</span><span class="n">var</span><span class="o">.</span><span class="n">index</span>
+<span class="n">grn</span><span class="o">.</span><span class="n">var</span><span class="p">[</span><span class="s2">"ensembl_id"</span><span class="p">]</span> <span class="o">=</span> <span class="n">grn</span><span class="o">.</span><span class="n">var</span><span class="o">.</span><span class="n">index</span>
 <span class="n">grn</span><span class="o">.</span><span class="n">var</span><span class="o">.</span><span class="n">index</span> <span class="o">=</span> <span class="n">grn</span><span class="o">.</span><span class="n">var</span><span class="o">.</span><span class="n">symbol</span>
-<span class="n">grn_c</span><span class="o">.</span><span class="n">var</span><span class="p">[</span><span class="s1">'ensembl_id'</span><span class="p">]</span> <span class="o">=</span> <span class="n">grn_c</span><span class="o">.</span><span class="n">var</span><span class="o">.</span><span class="n">index</span>
+<span class="n">grn_c</span><span class="o">.</span><span class="n">var</span><span class="p">[</span><span class="s2">"ensembl_id"</span><span class="p">]</span> <span class="o">=</span> <span class="n">grn_c</span><span class="o">.</span><span class="n">var</span><span class="o">.</span><span class="n">index</span>
 <span class="n">grn_c</span><span class="o">.</span><span class="n">var</span><span class="o">.</span><span class="n">index</span> <span class="o">=</span> <span class="n">grn_c</span><span class="o">.</span><span class="n">var</span><span class="o">.</span><span class="n">symbol</span>
 
-<span class="n">grn</span><span class="o">.</span><span class="n">obs</span><span class="o">.</span><span class="n">cleaned_pred_disease_ontology_term_id</span><span class="o">.</span><span class="n">value_counts</span><span class="p">(),</span><span class="n">grn_c</span><span class="o">.</span><span class="n">obs</span><span class="o">.</span><span class="n">cleaned_pred_disease_ontology_term_id</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
+<span class="p">(</span>
+    <span class="n">grn</span><span class="o">.</span><span class="n">obs</span><span class="o">.</span><span class="n">cleaned_pred_disease_ontology_term_id</span><span class="o">.</span><span class="n">value_counts</span><span class="p">(),</span>
+    <span class="n">grn_c</span><span class="o">.</span><span class="n">obs</span><span class="o">.</span><span class="n">cleaned_pred_disease_ontology_term_id</span><span class="o">.</span><span class="n">value_counts</span><span class="p">(),</span>
+<span class="p">)</span>
 </pre></div>
 <div class="clipboard-copy-txt" id="cell-3"># load the generated gene networks from the previous notebook
 grn = read_h5ad("../../data/prostate_fibro_grn.h5ad")
 grn_c = read_h5ad("../../data/prostate_cancer_fibro_grn.h5ad")
-#remove duplicates
+# remove duplicates
 grn.var.symbol = make_index_unique(grn.var.symbol.astype(str))
 grn_c.var.symbol = make_index_unique(grn_c.var.symbol.astype(str))
 
 # convert gene ids to symbols
-grn.var['ensembl_id'] = grn.var.index
+grn.var["ensembl_id"] = grn.var.index
 grn.var.index = grn.var.symbol
-grn_c.var['ensembl_id'] = grn_c.var.index
+grn_c.var["ensembl_id"] = grn_c.var.index
 grn_c.var.index = grn_c.var.symbol
 
-grn.obs.cleaned_pred_disease_ontology_term_id.value_counts(),grn_c.obs.cleaned_pred_disease_ontology_term_id.value_counts()</div>
+(
+    grn.obs.cleaned_pred_disease_ontology_term_id.value_counts(),
+    grn_c.obs.cleaned_pred_disease_ontology_term_id.value_counts(),
+)</div>
 </div>
 </div>
 </div>
@@ -790,7 +796,7 @@ grn.obs.cleaned_pred_disease_ontology_term_id.value_counts(),grn_c.obs.cleaned_p
 </div>
 <div class="jp-OutputArea jp-Cell-outputArea">
 <div class="jp-OutputArea-child jp-OutputArea-executeResult">
-<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[2]:</div>
+<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[ ]:</div>
 <div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain" tabindex="0">
 <pre>(cleaned_pred_disease_ontology_term_id
  normal    300
@@ -864,7 +870,7 @@ len(common)</div>
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [8]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="CodeMirror cm-s-jupyter">
 <div class="zeroclipboard-container">
 <clipboard-copy ,="" aria-label="Copy to Clipboard" for="cell-5">
@@ -891,7 +897,7 @@ grn.grn.sum(0).sort_values(ascending=False).head(20)</div>
 </div>
 <div class="jp-OutputArea jp-Cell-outputArea">
 <div class="jp-OutputArea-child jp-OutputArea-executeResult">
-<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[8]:</div>
+<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[ ]:</div>
 <div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain" tabindex="0">
 <pre>symbol
 S100A6            58.131020
@@ -1112,7 +1118,7 @@ dtype: float32</pre>
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [12]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="CodeMirror cm-s-jupyter">
 <div class="zeroclipboard-container">
 <clipboard-copy ,="" aria-label="Copy to Clipboard" for="cell-9">
@@ -1125,13 +1131,19 @@ dtype: float32</pre>
 </div>
 </clipboard-copy>
 </div>
-<div class="highlight-ipynb hl-python"><pre><span></span><span class="c1"># top differential hubs</span>
+<div class="highlight-ipynb hl-python"><pre><span></span><span class="c1"># top differential hubs hubs in cancer - hubs in normal that exist in both cancer and normals</span>
 <span class="n">TOP</span> <span class="o">=</span> <span class="mi">10</span>
-<span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">grn_c</span><span class="o">.</span><span class="n">grn</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="n">TOP</span><span class="p">)</span><span class="o">.</span><span class="n">index</span><span class="p">)</span> <span class="o">-</span> <span class="nb">set</span><span class="p">(</span><span class="n">grn</span><span class="o">.</span><span class="n">grn</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="n">TOP</span><span class="p">)</span><span class="o">.</span><span class="n">index</span><span class="p">))</span> <span class="o">&amp;</span> <span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">grn_c</span><span class="o">.</span><span class="n">var</span><span class="o">.</span><span class="n">symbol</span><span class="p">)</span> <span class="o">&amp;</span> <span class="nb">set</span><span class="p">(</span><span class="n">grn</span><span class="o">.</span><span class="n">var</span><span class="o">.</span><span class="n">symbol</span><span class="p">))</span>
+<span class="p">(</span>
+    <span class="nb">set</span><span class="p">(</span><span class="n">grn_c</span><span class="o">.</span><span class="n">grn</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="n">TOP</span><span class="p">)</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
+    <span class="o">-</span> <span class="nb">set</span><span class="p">(</span><span class="n">grn</span><span class="o">.</span><span class="n">grn</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="n">TOP</span><span class="p">)</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
+<span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">grn_c</span><span class="o">.</span><span class="n">var</span><span class="o">.</span><span class="n">symbol</span><span class="p">)</span> <span class="o">&amp;</span> <span class="nb">set</span><span class="p">(</span><span class="n">grn</span><span class="o">.</span><span class="n">var</span><span class="o">.</span><span class="n">symbol</span><span class="p">))</span>
 </pre></div>
-<div class="clipboard-copy-txt" id="cell-9"># top differential hubs
+<div class="clipboard-copy-txt" id="cell-9"># top differential hubs hubs in cancer - hubs in normal that exist in both cancer and normals
 TOP = 10
-(set(grn_c.grn.sum(0).sort_values(ascending=False).head(TOP).index) - set(grn.grn.sum(0).sort_values(ascending=False).head(TOP).index)) &amp; (set(grn_c.var.symbol) &amp; set(grn.var.symbol))</div>
+(
+    set(grn_c.grn.sum(0).sort_values(ascending=False).head(TOP).index)
+    - set(grn.grn.sum(0).sort_values(ascending=False).head(TOP).index)
+) &amp; (set(grn_c.var.symbol) &amp; set(grn.var.symbol))</div>
 </div>
 </div>
 </div>
@@ -1141,7 +1153,7 @@ TOP = 10
 </div>
 <div class="jp-OutputArea jp-Cell-outputArea">
 <div class="jp-OutputArea-child jp-OutputArea-executeResult">
-<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[12]:</div>
+<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[ ]:</div>
 <div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain" tabindex="0">
 <pre>{'HLA-A', 'HSPA1A', 'MT2A', 'SPOCK3'}</pre>
 </div>
@@ -1155,7 +1167,7 @@ TOP = 10
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [13]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="CodeMirror cm-s-jupyter">
 <div class="zeroclipboard-container">
 <clipboard-copy ,="" aria-label="Copy to Clipboard" for="cell-10">
@@ -1169,10 +1181,16 @@ TOP = 10
 </clipboard-copy>
 </div>
 <div class="highlight-ipynb hl-python"><pre><span></span><span class="n">TOP</span> <span class="o">=</span> <span class="mi">20</span>
-<span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">grn_c</span><span class="o">.</span><span class="n">grn</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="n">TOP</span><span class="p">)</span><span class="o">.</span><span class="n">index</span><span class="p">)</span> <span class="o">-</span> <span class="nb">set</span><span class="p">(</span><span class="n">grn</span><span class="o">.</span><span class="n">grn</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="n">TOP</span><span class="p">)</span><span class="o">.</span><span class="n">index</span><span class="p">))</span> <span class="o">&amp;</span> <span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">grn_c</span><span class="o">.</span><span class="n">var</span><span class="o">.</span><span class="n">symbol</span><span class="p">)</span> <span class="o">&amp;</span> <span class="nb">set</span><span class="p">(</span><span class="n">grn</span><span class="o">.</span><span class="n">var</span><span class="o">.</span><span class="n">symbol</span><span class="p">))</span>
+<span class="p">(</span>
+    <span class="nb">set</span><span class="p">(</span><span class="n">grn_c</span><span class="o">.</span><span class="n">grn</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="n">TOP</span><span class="p">)</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
+    <span class="o">-</span> <span class="nb">set</span><span class="p">(</span><span class="n">grn</span><span class="o">.</span><span class="n">grn</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="n">TOP</span><span class="p">)</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
+<span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">grn_c</span><span class="o">.</span><span class="n">var</span><span class="o">.</span><span class="n">symbol</span><span class="p">)</span> <span class="o">&amp;</span> <span class="nb">set</span><span class="p">(</span><span class="n">grn</span><span class="o">.</span><span class="n">var</span><span class="o">.</span><span class="n">symbol</span><span class="p">))</span>
 </pre></div>
 <div class="clipboard-copy-txt" id="cell-10">TOP = 20
-(set(grn_c.grn.sum(0).sort_values(ascending=False).head(TOP).index) - set(grn.grn.sum(0).sort_values(ascending=False).head(TOP).index)) &amp; (set(grn_c.var.symbol) &amp; set(grn.var.symbol))</div>
+(
+    set(grn_c.grn.sum(0).sort_values(ascending=False).head(TOP).index)
+    - set(grn.grn.sum(0).sort_values(ascending=False).head(TOP).index)
+) &amp; (set(grn_c.var.symbol) &amp; set(grn.var.symbol))</div>
 </div>
 </div>
 </div>
@@ -1182,7 +1200,7 @@ TOP = 10
 </div>
 <div class="jp-OutputArea jp-Cell-outputArea">
 <div class="jp-OutputArea-child jp-OutputArea-executeResult">
-<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[13]:</div>
+<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[ ]:</div>
 <div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain" tabindex="0">
 <pre>{'ATP6V0C', 'DEFA1', 'EIF4A1', 'HLA-A', 'HSPA1A', 'LUM', 'SPOCK3', 'nan-99'}</pre>
 </div>
@@ -1196,7 +1214,7 @@ TOP = 10
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [14]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="CodeMirror cm-s-jupyter">
 <div class="zeroclipboard-container">
 <clipboard-copy ,="" aria-label="Copy to Clipboard" for="cell-11">
@@ -1210,10 +1228,16 @@ TOP = 10
 </clipboard-copy>
 </div>
 <div class="highlight-ipynb hl-python"><pre><span></span><span class="n">TOP</span> <span class="o">=</span> <span class="mi">50</span>
-<span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">grn_c</span><span class="o">.</span><span class="n">grn</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="n">TOP</span><span class="p">)</span><span class="o">.</span><span class="n">index</span><span class="p">)</span> <span class="o">-</span> <span class="nb">set</span><span class="p">(</span><span class="n">grn</span><span class="o">.</span><span class="n">grn</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="n">TOP</span><span class="p">)</span><span class="o">.</span><span class="n">index</span><span class="p">))</span> <span class="o">&amp;</span> <span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">grn_c</span><span class="o">.</span><span class="n">var</span><span class="o">.</span><span class="n">symbol</span><span class="p">)</span> <span class="o">&amp;</span> <span class="nb">set</span><span class="p">(</span><span class="n">grn</span><span class="o">.</span><span class="n">var</span><span class="o">.</span><span class="n">symbol</span><span class="p">))</span>
+<span class="p">(</span>
+    <span class="nb">set</span><span class="p">(</span><span class="n">grn_c</span><span class="o">.</span><span class="n">grn</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="n">TOP</span><span class="p">)</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
+    <span class="o">-</span> <span class="nb">set</span><span class="p">(</span><span class="n">grn</span><span class="o">.</span><span class="n">grn</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="n">TOP</span><span class="p">)</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
+<span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">grn_c</span><span class="o">.</span><span class="n">var</span><span class="o">.</span><span class="n">symbol</span><span class="p">)</span> <span class="o">&amp;</span> <span class="nb">set</span><span class="p">(</span><span class="n">grn</span><span class="o">.</span><span class="n">var</span><span class="o">.</span><span class="n">symbol</span><span class="p">))</span>
 </pre></div>
 <div class="clipboard-copy-txt" id="cell-11">TOP = 50
-(set(grn_c.grn.sum(0).sort_values(ascending=False).head(TOP).index) - set(grn.grn.sum(0).sort_values(ascending=False).head(TOP).index)) &amp; (set(grn_c.var.symbol) &amp; set(grn.var.symbol))</div>
+(
+    set(grn_c.grn.sum(0).sort_values(ascending=False).head(TOP).index)
+    - set(grn.grn.sum(0).sort_values(ascending=False).head(TOP).index)
+) &amp; (set(grn_c.var.symbol) &amp; set(grn.var.symbol))</div>
 </div>
 </div>
 </div>
@@ -1223,7 +1247,7 @@ TOP = 10
 </div>
 <div class="jp-OutputArea jp-Cell-outputArea">
 <div class="jp-OutputArea-child jp-OutputArea-executeResult">
-<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[14]:</div>
+<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[ ]:</div>
 <div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain" tabindex="0">
 <pre>{'CD99',
  'CPE',
@@ -1482,7 +1506,7 @@ Name: centrality, dtype: float64</pre>
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [13]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="CodeMirror cm-s-jupyter">
 <div class="zeroclipboard-container">
 <clipboard-copy ,="" aria-label="Copy to Clipboard" for="cell-16">
@@ -1496,10 +1520,18 @@ Name: centrality, dtype: float64</pre>
 </clipboard-copy>
 </div>
 <div class="highlight-ipynb hl-python"><pre><span></span><span class="n">TOP</span> <span class="o">=</span> <span class="mi">10</span>
-<span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">grn_c</span><span class="o">.</span><span class="n">var</span><span class="o">.</span><span class="n">centrality</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="n">TOP</span><span class="p">)</span><span class="o">.</span><span class="n">index</span><span class="p">)</span> <span class="o">-</span> <span class="nb">set</span><span class="p">(</span><span class="n">grn</span><span class="o">.</span><span class="n">var</span><span class="o">.</span><span class="n">centrality</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="n">TOP</span><span class="p">)</span><span class="o">.</span><span class="n">index</span><span class="p">))</span> <span class="o">&amp;</span> <span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">grn_c</span><span class="o">.</span><span class="n">var</span><span class="o">.</span><span class="n">symbol</span><span class="p">)</span> <span class="o">&amp;</span> <span class="nb">set</span><span class="p">(</span><span class="n">grn</span><span class="o">.</span><span class="n">var</span><span class="o">.</span><span class="n">symbol</span><span class="p">))</span>
+<span class="c1"># top differential central genes in cancer - central genes in normal that exist in both cancer and normals</span>
+<span class="p">(</span>
+    <span class="nb">set</span><span class="p">(</span><span class="n">grn_c</span><span class="o">.</span><span class="n">var</span><span class="o">.</span><span class="n">centrality</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="n">TOP</span><span class="p">)</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
+    <span class="o">-</span> <span class="nb">set</span><span class="p">(</span><span class="n">grn</span><span class="o">.</span><span class="n">var</span><span class="o">.</span><span class="n">centrality</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="n">TOP</span><span class="p">)</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
+<span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">grn_c</span><span class="o">.</span><span class="n">var</span><span class="o">.</span><span class="n">symbol</span><span class="p">)</span> <span class="o">&amp;</span> <span class="nb">set</span><span class="p">(</span><span class="n">grn</span><span class="o">.</span><span class="n">var</span><span class="o">.</span><span class="n">symbol</span><span class="p">))</span>
 </pre></div>
 <div class="clipboard-copy-txt" id="cell-16">TOP = 10
-(set(grn_c.var.centrality.sort_values(ascending=False).head(TOP).index) - set(grn.var.centrality.sort_values(ascending=False).head(TOP).index)) &amp; (set(grn_c.var.symbol) &amp; set(grn.var.symbol))</div>
+# top differential central genes in cancer - central genes in normal that exist in both cancer and normals
+(
+    set(grn_c.var.centrality.sort_values(ascending=False).head(TOP).index)
+    - set(grn.var.centrality.sort_values(ascending=False).head(TOP).index)
+) &amp; (set(grn_c.var.symbol) &amp; set(grn.var.symbol))</div>
 </div>
 </div>
 </div>
@@ -1509,7 +1541,7 @@ Name: centrality, dtype: float64</pre>
 </div>
 <div class="jp-OutputArea jp-Cell-outputArea">
 <div class="jp-OutputArea-child jp-OutputArea-executeResult">
-<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[13]:</div>
+<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[ ]:</div>
 <div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain" tabindex="0">
 <pre>{'ATP6V0C', 'CD99', 'HLA-A', 'HSPA1A', 'LUM'}</pre>
 </div>
@@ -1523,7 +1555,7 @@ Name: centrality, dtype: float64</pre>
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [12]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="CodeMirror cm-s-jupyter">
 <div class="zeroclipboard-container">
 <clipboard-copy ,="" aria-label="Copy to Clipboard" for="cell-17">
@@ -1537,10 +1569,16 @@ Name: centrality, dtype: float64</pre>
 </clipboard-copy>
 </div>
 <div class="highlight-ipynb hl-python"><pre><span></span><span class="n">TOP</span> <span class="o">=</span> <span class="mi">20</span>
-<span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">grn_c</span><span class="o">.</span><span class="n">var</span><span class="o">.</span><span class="n">centrality</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="n">TOP</span><span class="p">)</span><span class="o">.</span><span class="n">index</span><span class="p">)</span> <span class="o">-</span> <span class="nb">set</span><span class="p">(</span><span class="n">grn</span><span class="o">.</span><span class="n">var</span><span class="o">.</span><span class="n">centrality</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="n">TOP</span><span class="p">)</span><span class="o">.</span><span class="n">index</span><span class="p">))</span> <span class="o">&amp;</span> <span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">grn_c</span><span class="o">.</span><span class="n">var</span><span class="o">.</span><span class="n">symbol</span><span class="p">)</span> <span class="o">&amp;</span> <span class="nb">set</span><span class="p">(</span><span class="n">grn</span><span class="o">.</span><span class="n">var</span><span class="o">.</span><span class="n">symbol</span><span class="p">))</span>
+<span class="p">(</span>
+    <span class="nb">set</span><span class="p">(</span><span class="n">grn_c</span><span class="o">.</span><span class="n">var</span><span class="o">.</span><span class="n">centrality</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="n">TOP</span><span class="p">)</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
+    <span class="o">-</span> <span class="nb">set</span><span class="p">(</span><span class="n">grn</span><span class="o">.</span><span class="n">var</span><span class="o">.</span><span class="n">centrality</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="n">TOP</span><span class="p">)</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
+<span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">grn_c</span><span class="o">.</span><span class="n">var</span><span class="o">.</span><span class="n">symbol</span><span class="p">)</span> <span class="o">&amp;</span> <span class="nb">set</span><span class="p">(</span><span class="n">grn</span><span class="o">.</span><span class="n">var</span><span class="o">.</span><span class="n">symbol</span><span class="p">))</span>
 </pre></div>
 <div class="clipboard-copy-txt" id="cell-17">TOP = 20
-(set(grn_c.var.centrality.sort_values(ascending=False).head(TOP).index) - set(grn.var.centrality.sort_values(ascending=False).head(TOP).index)) &amp; (set(grn_c.var.symbol) &amp; set(grn.var.symbol))</div>
+(
+    set(grn_c.var.centrality.sort_values(ascending=False).head(TOP).index)
+    - set(grn.var.centrality.sort_values(ascending=False).head(TOP).index)
+) &amp; (set(grn_c.var.symbol) &amp; set(grn.var.symbol))</div>
 </div>
 </div>
 </div>
@@ -1550,7 +1588,7 @@ Name: centrality, dtype: float64</pre>
 </div>
 <div class="jp-OutputArea jp-Cell-outputArea">
 <div class="jp-OutputArea-child jp-OutputArea-executeResult">
-<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[12]:</div>
+<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[ ]:</div>
 <div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain" tabindex="0">
 <pre>{'ATP6V0C',
  'CD99',
@@ -1572,7 +1610,7 @@ Name: centrality, dtype: float64</pre>
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [11]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="CodeMirror cm-s-jupyter">
 <div class="zeroclipboard-container">
 <clipboard-copy ,="" aria-label="Copy to Clipboard" for="cell-18">
@@ -1586,10 +1624,16 @@ Name: centrality, dtype: float64</pre>
 </clipboard-copy>
 </div>
 <div class="highlight-ipynb hl-python"><pre><span></span><span class="n">TOP</span> <span class="o">=</span> <span class="mi">50</span>
-<span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">grn_c</span><span class="o">.</span><span class="n">var</span><span class="o">.</span><span class="n">centrality</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="n">TOP</span><span class="p">)</span><span class="o">.</span><span class="n">index</span><span class="p">)</span> <span class="o">-</span> <span class="nb">set</span><span class="p">(</span><span class="n">grn</span><span class="o">.</span><span class="n">var</span><span class="o">.</span><span class="n">centrality</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="n">TOP</span><span class="p">)</span><span class="o">.</span><span class="n">index</span><span class="p">))</span> <span class="o">&amp;</span> <span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">grn_c</span><span class="o">.</span><span class="n">var</span><span class="o">.</span><span class="n">symbol</span><span class="p">)</span> <span class="o">&amp;</span> <span class="nb">set</span><span class="p">(</span><span class="n">grn</span><span class="o">.</span><span class="n">var</span><span class="o">.</span><span class="n">symbol</span><span class="p">))</span>
+<span class="p">(</span>
+    <span class="nb">set</span><span class="p">(</span><span class="n">grn_c</span><span class="o">.</span><span class="n">var</span><span class="o">.</span><span class="n">centrality</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="n">TOP</span><span class="p">)</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
+    <span class="o">-</span> <span class="nb">set</span><span class="p">(</span><span class="n">grn</span><span class="o">.</span><span class="n">var</span><span class="o">.</span><span class="n">centrality</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="n">TOP</span><span class="p">)</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
+<span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">grn_c</span><span class="o">.</span><span class="n">var</span><span class="o">.</span><span class="n">symbol</span><span class="p">)</span> <span class="o">&amp;</span> <span class="nb">set</span><span class="p">(</span><span class="n">grn</span><span class="o">.</span><span class="n">var</span><span class="o">.</span><span class="n">symbol</span><span class="p">))</span>
 </pre></div>
 <div class="clipboard-copy-txt" id="cell-18">TOP = 50
-(set(grn_c.var.centrality.sort_values(ascending=False).head(TOP).index) - set(grn.var.centrality.sort_values(ascending=False).head(TOP).index)) &amp; (set(grn_c.var.symbol) &amp; set(grn.var.symbol))</div>
+(
+    set(grn_c.var.centrality.sort_values(ascending=False).head(TOP).index)
+    - set(grn.var.centrality.sort_values(ascending=False).head(TOP).index)
+) &amp; (set(grn_c.var.symbol) &amp; set(grn.var.symbol))</div>
 </div>
 </div>
 </div>
@@ -1599,7 +1643,7 @@ Name: centrality, dtype: float64</pre>
 </div>
 <div class="jp-OutputArea jp-Cell-outputArea">
 <div class="jp-OutputArea-child jp-OutputArea-executeResult">
-<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[11]:</div>
+<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[ ]:</div>
 <div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain" tabindex="0">
 <pre>{'C1R',
  'CD99',
@@ -1806,7 +1850,7 @@ Top central genes: []
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [17]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="CodeMirror cm-s-jupyter">
 <div class="zeroclipboard-container">
 <clipboard-copy ,="" aria-label="Copy to Clipboard" for="cell-22">
@@ -1819,9 +1863,13 @@ Top central genes: []
 </div>
 </clipboard-copy>
 </div>
-<div class="highlight-ipynb hl-python"><pre><span></span><span class="n">grn_c</span> <span class="o">=</span> <span class="n">grnutils</span><span class="o">.</span><span class="n">compute_cluster</span><span class="p">(</span><span class="n">grn_c</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">,</span> <span class="n">use</span><span class="o">=</span><span class="s2">"leiden"</span><span class="p">,</span> <span class="n">n_iterations</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">max_comm_size</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+<div class="highlight-ipynb hl-python"><pre><span></span><span class="n">grn_c</span> <span class="o">=</span> <span class="n">grnutils</span><span class="o">.</span><span class="n">compute_cluster</span><span class="p">(</span>
+    <span class="n">grn_c</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">,</span> <span class="n">use</span><span class="o">=</span><span class="s2">"leiden"</span><span class="p">,</span> <span class="n">n_iterations</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">max_comm_size</span><span class="o">=</span><span class="mi">100</span>
+<span class="p">)</span>
 </pre></div>
-<div class="clipboard-copy-txt" id="cell-22">grn_c = grnutils.compute_cluster(grn_c, 1.5, use="leiden", n_iterations=10, max_comm_size=100)</div>
+<div class="clipboard-copy-txt" id="cell-22">grn_c = grnutils.compute_cluster(
+    grn_c, 1.5, use="leiden", n_iterations=10, max_comm_size=100
+)</div>
 </div>
 </div>
 </div>
@@ -1873,7 +1921,7 @@ grn_c = grnutils.compute_cluster(grn_c, 1.5)</div>
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [30]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="CodeMirror cm-s-jupyter">
 <div class="zeroclipboard-container">
 <clipboard-copy ,="" aria-label="Copy to Clipboard" for="cell-24">
@@ -1887,10 +1935,10 @@ grn_c = grnutils.compute_cluster(grn_c, 1.5)</div>
 </clipboard-copy>
 </div>
 <div class="highlight-ipynb hl-python"><pre><span></span><span class="c1"># our communities</span>
-<span class="n">grn</span><span class="o">.</span><span class="n">var</span><span class="p">[</span><span class="s1">'cluster_1.5'</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+<span class="n">grn</span><span class="o">.</span><span class="n">var</span><span class="p">[</span><span class="s2">"cluster_1.5"</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
 </pre></div>
 <div class="clipboard-copy-txt" id="cell-24"># our communities
-grn.var['cluster_1.5'].value_counts().head(10)</div>
+grn.var["cluster_1.5"].value_counts().head(10)</div>
 </div>
 </div>
 </div>
@@ -1900,7 +1948,7 @@ grn.var['cluster_1.5'].value_counts().head(10)</div>
 </div>
 <div class="jp-OutputArea jp-Cell-outputArea">
 <div class="jp-OutputArea-child jp-OutputArea-executeResult">
-<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[30]:</div>
+<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[ ]:</div>
 <div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain" tabindex="0">
 <pre>cluster_1.5
 0     1620
@@ -1925,7 +1973,7 @@ Name: count, dtype: int64</pre>
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [31]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="CodeMirror cm-s-jupyter">
 <div class="zeroclipboard-container">
 <clipboard-copy ,="" aria-label="Copy to Clipboard" for="cell-25">
@@ -1938,9 +1986,17 @@ Name: count, dtype: int64</pre>
 </div>
 </clipboard-copy>
 </div>
-<div class="highlight-ipynb hl-python"><pre><span></span><span class="n">G</span> <span class="o">=</span> <span class="n">grn_c</span><span class="o">.</span><span class="n">plot_subgraph</span><span class="p">(</span><span class="n">grn_c</span><span class="o">.</span><span class="n">var</span><span class="p">[</span><span class="n">grn_c</span><span class="o">.</span><span class="n">var</span><span class="p">[</span><span class="s1">'cluster_1.5'</span><span class="p">]</span><span class="o">==</span><span class="s1">'4'</span><span class="p">]</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">tolist</span><span class="p">(),</span> <span class="n">only</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span> <span class="n">interactive</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="c1">#</span>
+<div class="highlight-ipynb hl-python"><pre><span></span><span class="n">G</span> <span class="o">=</span> <span class="n">grn_c</span><span class="o">.</span><span class="n">plot_subgraph</span><span class="p">(</span>
+    <span class="n">grn_c</span><span class="o">.</span><span class="n">var</span><span class="p">[</span><span class="n">grn_c</span><span class="o">.</span><span class="n">var</span><span class="p">[</span><span class="s2">"cluster_1.5"</span><span class="p">]</span> <span class="o">==</span> <span class="s2">"4"</span><span class="p">]</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">tolist</span><span class="p">(),</span>
+    <span class="n">only</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span>
+    <span class="n">interactive</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+<span class="p">)</span>  <span class="c1">#</span>
 </pre></div>
-<div class="clipboard-copy-txt" id="cell-25">G = grn_c.plot_subgraph(grn_c.var[grn_c.var['cluster_1.5']=='4'].index.tolist(), only=200, interactive=False)#
+<div class="clipboard-copy-txt" id="cell-25">G = grn_c.plot_subgraph(
+    grn_c.var[grn_c.var["cluster_1.5"] == "4"].index.tolist(),
+    only=200,
+    interactive=False,
+)  #
 </div>
 </div>
 </div>
@@ -1986,7 +2042,7 @@ Name: count, dtype: int64</pre>
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [26]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="CodeMirror cm-s-jupyter">
 <div class="zeroclipboard-container">
 <clipboard-copy ,="" aria-label="Copy to Clipboard" for="cell-26">
@@ -2002,15 +2058,15 @@ Name: count, dtype: int64</pre>
 <div class="highlight-ipynb hl-python"><pre><span></span><span class="c1"># if you want to draw better looking networks</span>
 <span class="n">pnet</span> <span class="o">=</span> <span class="n">pnx</span><span class="o">.</span><span class="n">Network</span><span class="p">(</span><span class="n">notebook</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">cdn_resources</span><span class="o">=</span><span class="s2">"remote"</span><span class="p">,</span> <span class="n">directed</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="n">pnet</span><span class="o">.</span><span class="n">from_nx</span><span class="p">(</span><span class="n">G</span><span class="p">)</span>
-<span class="c1">#first_node = list(G.nodes)[-1]</span>
-<span class="c1">#pnet.get_node(first_node)['color'] = "red"</span>
+<span class="c1"># first_node = list(G.nodes)[-1]</span>
+<span class="c1"># pnet.get_node(first_node)['color'] = "red"</span>
 <span class="n">pnet</span><span class="o">.</span><span class="n">save_graph</span><span class="p">(</span><span class="s2">"../figures/pyvis/grn_c_4.html"</span><span class="p">)</span>
 </pre></div>
 <div class="clipboard-copy-txt" id="cell-26"># if you want to draw better looking networks
 pnet = pnx.Network(notebook=True, cdn_resources="remote", directed=True)
 pnet.from_nx(G)
-#first_node = list(G.nodes)[-1]
-#pnet.get_node(first_node)['color'] = "red"
+# first_node = list(G.nodes)[-1]
+# pnet.get_node(first_node)['color'] = "red"
 pnet.save_graph("../figures/pyvis/grn_c_4.html")</div>
 </div>
 </div>
@@ -2023,7 +2079,7 @@ pnet.save_graph("../figures/pyvis/grn_c_4.html")</div>
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [32]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="CodeMirror cm-s-jupyter">
 <div class="zeroclipboard-container">
 <clipboard-copy ,="" aria-label="Copy to Clipboard" for="cell-27">
@@ -2038,23 +2094,47 @@ pnet.save_graph("../figures/pyvis/grn_c_4.html")</div>
 </div>
 <div class="highlight-ipynb hl-python"><pre><span></span><span class="c1"># Assuming 'node_names' contains the list of gene names.</span>
 <span class="c1"># Note: it seems with enrichr, one can only use one gene set at a time, choose accordingly</span>
-<span class="n">enr</span> <span class="o">=</span> <span class="n">gp</span><span class="o">.</span><span class="n">enrichr</span><span class="p">(</span><span class="n">gene_list</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="n">G</span><span class="o">.</span><span class="n">nodes</span><span class="p">),</span>
-                 <span class="n">gene_sets</span><span class="o">=</span><span class="p">[</span><span class="s1">'KEGG_2021_Human'</span><span class="p">,</span> <span class="s1">'MSigDB_Hallmark_2020'</span><span class="p">,</span> <span class="s1">'Reactome_2022'</span><span class="p">,</span> <span class="s1">'Tabula_Sapiens'</span><span class="p">,</span> <span class="s1">'WikiPathway_2023_Human'</span><span class="p">,</span> <span class="s1">'TF_Perturbations_Followed_by_Expression'</span><span class="p">,</span> <span class="s1">'Reactome'</span><span class="p">,</span> <span class="s1">'PPI_Hub_Proteins'</span><span class="p">,</span> <span class="s1">'OMIM_Disease'</span><span class="p">,</span> <span class="s1">'GO_Molecular_Function_2023'</span><span class="p">],</span>
-                 <span class="n">organism</span><span class="o">=</span><span class="s1">'Human'</span><span class="p">,</span> <span class="c1"># change accordingly</span>
-                 <span class="c1">#description='pathway',</span>
-                 <span class="c1">#cutoff=0.08, # test dataset, use lower value for real case  </span>
-                 <span class="n">background</span><span class="o">=</span><span class="n">grn_c</span><span class="o">.</span><span class="n">var</span><span class="o">.</span><span class="n">symbol</span><span class="o">.</span><span class="n">tolist</span><span class="p">(),</span>
+<span class="n">enr</span> <span class="o">=</span> <span class="n">gp</span><span class="o">.</span><span class="n">enrichr</span><span class="p">(</span>
+    <span class="n">gene_list</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="n">G</span><span class="o">.</span><span class="n">nodes</span><span class="p">),</span>
+    <span class="n">gene_sets</span><span class="o">=</span><span class="p">[</span>
+        <span class="s2">"KEGG_2021_Human"</span><span class="p">,</span>
+        <span class="s2">"MSigDB_Hallmark_2020"</span><span class="p">,</span>
+        <span class="s2">"Reactome_2022"</span><span class="p">,</span>
+        <span class="s2">"Tabula_Sapiens"</span><span class="p">,</span>
+        <span class="s2">"WikiPathway_2023_Human"</span><span class="p">,</span>
+        <span class="s2">"TF_Perturbations_Followed_by_Expression"</span><span class="p">,</span>
+        <span class="s2">"Reactome"</span><span class="p">,</span>
+        <span class="s2">"PPI_Hub_Proteins"</span><span class="p">,</span>
+        <span class="s2">"OMIM_Disease"</span><span class="p">,</span>
+        <span class="s2">"GO_Molecular_Function_2023"</span><span class="p">,</span>
+    <span class="p">],</span>
+    <span class="n">organism</span><span class="o">=</span><span class="s2">"Human"</span><span class="p">,</span>  <span class="c1"># change accordingly</span>
+    <span class="c1"># description='pathway',</span>
+    <span class="c1"># cutoff=0.08, # test dataset, use lower value for real case</span>
+    <span class="n">background</span><span class="o">=</span><span class="n">grn_c</span><span class="o">.</span><span class="n">var</span><span class="o">.</span><span class="n">symbol</span><span class="o">.</span><span class="n">tolist</span><span class="p">(),</span>
 <span class="p">)</span>
 <span class="n">enr</span><span class="o">.</span><span class="n">res2d</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span>
 </pre></div>
 <div class="clipboard-copy-txt" id="cell-27"># Assuming 'node_names' contains the list of gene names.
 # Note: it seems with enrichr, one can only use one gene set at a time, choose accordingly
-enr = gp.enrichr(gene_list=list(G.nodes),
-                 gene_sets=['KEGG_2021_Human', 'MSigDB_Hallmark_2020', 'Reactome_2022', 'Tabula_Sapiens', 'WikiPathway_2023_Human', 'TF_Perturbations_Followed_by_Expression', 'Reactome', 'PPI_Hub_Proteins', 'OMIM_Disease', 'GO_Molecular_Function_2023'],
-                 organism='Human', # change accordingly
-                 #description='pathway',
-                 #cutoff=0.08, # test dataset, use lower value for real case  
-                 background=grn_c.var.symbol.tolist(),
+enr = gp.enrichr(
+    gene_list=list(G.nodes),
+    gene_sets=[
+        "KEGG_2021_Human",
+        "MSigDB_Hallmark_2020",
+        "Reactome_2022",
+        "Tabula_Sapiens",
+        "WikiPathway_2023_Human",
+        "TF_Perturbations_Followed_by_Expression",
+        "Reactome",
+        "PPI_Hub_Proteins",
+        "OMIM_Disease",
+        "GO_Molecular_Function_2023",
+    ],
+    organism="Human",  # change accordingly
+    # description='pathway',
+    # cutoff=0.08, # test dataset, use lower value for real case
+    background=grn_c.var.symbol.tolist(),
 )
 enr.res2d.head(20)</div>
 </div>
@@ -2073,7 +2153,7 @@ enr.res2d.head(20)</div>
 </div>
 </div>
 <div class="jp-OutputArea-child jp-OutputArea-executeResult">
-<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[32]:</div>
+<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[ ]:</div>
 <div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/html" tabindex="0">
 <div>
 <style scoped="">
@@ -2359,7 +2439,7 @@ enr.res2d.head(20)</div>
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [33]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="CodeMirror cm-s-jupyter">
 <div class="zeroclipboard-container">
 <clipboard-copy ,="" aria-label="Copy to Clipboard" for="cell-28">
@@ -2373,24 +2453,30 @@ enr.res2d.head(20)</div>
 </clipboard-copy>
 </div>
 <div class="highlight-ipynb hl-python"><pre><span></span><span class="c1"># we make a plot of the enrichment</span>
-<span class="n">enr</span><span class="o">.</span><span class="n">res2d</span><span class="o">.</span><span class="n">Term</span> <span class="o">=</span> <span class="n">enr</span><span class="o">.</span><span class="n">res2d</span><span class="o">.</span><span class="n">Term</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">"("</span><span class="p">)</span><span class="o">.</span><span class="n">str</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">','</span><span class="p">)</span><span class="o">.</span><span class="n">str</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-<span class="n">ax</span> <span class="o">=</span> <span class="n">dotplot</span><span class="p">(</span><span class="n">enr</span><span class="o">.</span><span class="n">res2d</span><span class="o">.</span><span class="n">replace</span><span class="p">([</span><span class="n">np</span><span class="o">.</span><span class="n">inf</span><span class="p">,</span> <span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">inf</span><span class="p">],</span> <span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">dropna</span><span class="p">(),</span>
-             <span class="n">column</span><span class="o">=</span><span class="s2">"Adjusted P-value"</span><span class="p">,</span>
-             <span class="c1">#title='normal fibro PAGE4',</span>
-             <span class="n">cmap</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">viridis</span><span class="p">,</span>
-             <span class="n">size</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="c1"># adjust dot size</span>
-             <span class="n">top_term</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span>
-             <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="mi">10</span><span class="p">),</span> <span class="n">cutoff</span><span class="o">=</span><span class="mf">0.25</span><span class="p">)</span>
+<span class="n">enr</span><span class="o">.</span><span class="n">res2d</span><span class="o">.</span><span class="n">Term</span> <span class="o">=</span> <span class="n">enr</span><span class="o">.</span><span class="n">res2d</span><span class="o">.</span><span class="n">Term</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">"("</span><span class="p">)</span><span class="o">.</span><span class="n">str</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">","</span><span class="p">)</span><span class="o">.</span><span class="n">str</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">dotplot</span><span class="p">(</span>
+    <span class="n">enr</span><span class="o">.</span><span class="n">res2d</span><span class="o">.</span><span class="n">replace</span><span class="p">([</span><span class="n">np</span><span class="o">.</span><span class="n">inf</span><span class="p">,</span> <span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">inf</span><span class="p">],</span> <span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">dropna</span><span class="p">(),</span>
+    <span class="n">column</span><span class="o">=</span><span class="s2">"Adjusted P-value"</span><span class="p">,</span>
+    <span class="c1"># title='normal fibro PAGE4',</span>
+    <span class="n">cmap</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">viridis</span><span class="p">,</span>
+    <span class="n">size</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span>  <span class="c1"># adjust dot size</span>
+    <span class="n">top_term</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span>
+    <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">10</span><span class="p">),</span>
+    <span class="n">cutoff</span><span class="o">=</span><span class="mf">0.25</span><span class="p">,</span>
+<span class="p">)</span>
 </pre></div>
 <div class="clipboard-copy-txt" id="cell-28"># we make a plot of the enrichment
-enr.res2d.Term = enr.res2d.Term.str.split("(").str[0].str.split(',').str[0]
-ax = dotplot(enr.res2d.replace([np.inf, -np.inf], 0).dropna(),
-             column="Adjusted P-value",
-             #title='normal fibro PAGE4',
-             cmap=plt.cm.viridis,
-             size=4, # adjust dot size
-             top_term=20,
-             figsize=(4,10), cutoff=0.25)</div>
+enr.res2d.Term = enr.res2d.Term.str.split("(").str[0].str.split(",").str[0]
+ax = dotplot(
+    enr.res2d.replace([np.inf, -np.inf], 0).dropna(),
+    column="Adjusted P-value",
+    # title='normal fibro PAGE4',
+    cmap=plt.cm.viridis,
+    size=4,  # adjust dot size
+    top_term=20,
+    figsize=(4, 10),
+    cutoff=0.25,
+)</div>
 </div>
 </div>
 </div>
@@ -2429,7 +2515,7 @@ For example, when doing 'df[col].method(value, inplace=True)', try using 'df.met
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [34]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="CodeMirror cm-s-jupyter">
 <div class="zeroclipboard-container">
 <clipboard-copy ,="" aria-label="Copy to Clipboard" for="cell-29">
@@ -2442,9 +2528,17 @@ For example, when doing 'df[col].method(value, inplace=True)', try using 'df.met
 </div>
 </clipboard-copy>
 </div>
-<div class="highlight-ipynb hl-python"><pre><span></span><span class="n">G</span> <span class="o">=</span> <span class="n">grn_c</span><span class="o">.</span><span class="n">plot_subgraph</span><span class="p">(</span><span class="n">grn_c</span><span class="o">.</span><span class="n">var</span><span class="p">[</span><span class="n">grn_c</span><span class="o">.</span><span class="n">var</span><span class="p">[</span><span class="s1">'cluster_1.5'</span><span class="p">]</span><span class="o">==</span><span class="s1">'5'</span><span class="p">]</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">tolist</span><span class="p">(),</span> <span class="n">only</span><span class="o">=</span><span class="mi">80</span><span class="p">,</span> <span class="n">interactive</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="c1">#</span>
+<div class="highlight-ipynb hl-python"><pre><span></span><span class="n">G</span> <span class="o">=</span> <span class="n">grn_c</span><span class="o">.</span><span class="n">plot_subgraph</span><span class="p">(</span>
+    <span class="n">grn_c</span><span class="o">.</span><span class="n">var</span><span class="p">[</span><span class="n">grn_c</span><span class="o">.</span><span class="n">var</span><span class="p">[</span><span class="s2">"cluster_1.5"</span><span class="p">]</span> <span class="o">==</span> <span class="s2">"5"</span><span class="p">]</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">tolist</span><span class="p">(),</span>
+    <span class="n">only</span><span class="o">=</span><span class="mi">80</span><span class="p">,</span>
+    <span class="n">interactive</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+<span class="p">)</span>  <span class="c1">#</span>
 </pre></div>
-<div class="clipboard-copy-txt" id="cell-29">G = grn_c.plot_subgraph(grn_c.var[grn_c.var['cluster_1.5']=='5'].index.tolist(), only=80, interactive=False)#
+<div class="clipboard-copy-txt" id="cell-29">G = grn_c.plot_subgraph(
+    grn_c.var[grn_c.var["cluster_1.5"] == "5"].index.tolist(),
+    only=80,
+    interactive=False,
+)  #
 </div>
 </div>
 </div>
@@ -2481,7 +2575,7 @@ For example, when doing 'df[col].method(value, inplace=True)', try using 'df.met
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [87]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="CodeMirror cm-s-jupyter">
 <div class="zeroclipboard-container">
 <clipboard-copy ,="" aria-label="Copy to Clipboard" for="cell-30">
@@ -2496,14 +2590,14 @@ For example, when doing 'df[col].method(value, inplace=True)', try using 'df.met
 </div>
 <div class="highlight-ipynb hl-python"><pre><span></span><span class="n">pnet</span> <span class="o">=</span> <span class="n">pnx</span><span class="o">.</span><span class="n">Network</span><span class="p">(</span><span class="n">notebook</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">cdn_resources</span><span class="o">=</span><span class="s2">"remote"</span><span class="p">,</span> <span class="n">directed</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="n">pnet</span><span class="o">.</span><span class="n">from_nx</span><span class="p">(</span><span class="n">G</span><span class="p">)</span>
-<span class="c1">#first_node = list(G.nodes)[-1]</span>
-<span class="c1">#pnet.get_node(first_node)['color'] = "red"</span>
+<span class="c1"># first_node = list(G.nodes)[-1]</span>
+<span class="c1"># pnet.get_node(first_node)['color'] = "red"</span>
 <span class="n">pnet</span><span class="o">.</span><span class="n">save_graph</span><span class="p">(</span><span class="s2">"../figures/pyvis/grn_c_5.html"</span><span class="p">)</span>
 </pre></div>
 <div class="clipboard-copy-txt" id="cell-30">pnet = pnx.Network(notebook=True, cdn_resources="remote", directed=True)
 pnet.from_nx(G)
-#first_node = list(G.nodes)[-1]
-#pnet.get_node(first_node)['color'] = "red"
+# first_node = list(G.nodes)[-1]
+# pnet.get_node(first_node)['color'] = "red"
 pnet.save_graph("../figures/pyvis/grn_c_5.html")</div>
 </div>
 </div>
@@ -2516,7 +2610,7 @@ pnet.save_graph("../figures/pyvis/grn_c_5.html")</div>
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [44]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="CodeMirror cm-s-jupyter">
 <div class="zeroclipboard-container">
 <clipboard-copy ,="" aria-label="Copy to Clipboard" for="cell-31">
@@ -2529,9 +2623,9 @@ pnet.save_graph("../figures/pyvis/grn_c_5.html")</div>
 </div>
 </clipboard-copy>
 </div>
-<div class="highlight-ipynb hl-python"><pre><span></span><span class="n">grn_c</span><span class="o">.</span><span class="n">var</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s1">'nan-82'</span><span class="p">]</span> <span class="c1"># par of the Glycoside Hydrolase Family</span>
+<div class="highlight-ipynb hl-python"><pre><span></span><span class="n">grn_c</span><span class="o">.</span><span class="n">var</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s2">"nan-82"</span><span class="p">]</span>  <span class="c1"># par of the Glycoside Hydrolase Family</span>
 </pre></div>
-<div class="clipboard-copy-txt" id="cell-31">grn_c.var.loc['nan-82'] # par of the Glycoside Hydrolase Family</div>
+<div class="clipboard-copy-txt" id="cell-31">grn_c.var.loc["nan-82"]  # par of the Glycoside Hydrolase Family</div>
 </div>
 </div>
 </div>
@@ -2541,7 +2635,7 @@ pnet.save_graph("../figures/pyvis/grn_c_5.html")</div>
 </div>
 <div class="jp-OutputArea jp-Cell-outputArea">
 <div class="jp-OutputArea-child jp-OutputArea-executeResult">
-<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[44]:</div>
+<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[ ]:</div>
 <div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain" tabindex="0">
 <pre>uid                    4giyQrh7tkXI
 symbol                       nan-82
@@ -2572,7 +2666,7 @@ Name: nan-82, dtype: object</pre>
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [35]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="CodeMirror cm-s-jupyter">
 <div class="zeroclipboard-container">
 <clipboard-copy ,="" aria-label="Copy to Clipboard" for="cell-32">
@@ -2585,21 +2679,45 @@ Name: nan-82, dtype: object</pre>
 </div>
 </clipboard-copy>
 </div>
-<div class="highlight-ipynb hl-python"><pre><span></span><span class="n">enr</span> <span class="o">=</span> <span class="n">gp</span><span class="o">.</span><span class="n">enrichr</span><span class="p">(</span><span class="n">gene_list</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="n">G</span><span class="o">.</span><span class="n">nodes</span><span class="p">),</span>
-                 <span class="n">gene_sets</span><span class="o">=</span><span class="p">[</span><span class="s1">'KEGG_2021_Human'</span><span class="p">,</span> <span class="s1">'MSigDB_Hallmark_2020'</span><span class="p">,</span> <span class="s1">'Reactome_2022'</span><span class="p">,</span> <span class="s1">'Tabula_Sapiens'</span><span class="p">,</span> <span class="s1">'WikiPathway_2023_Human'</span><span class="p">,</span> <span class="s1">'TF_Perturbations_Followed_by_Expression'</span><span class="p">,</span> <span class="s1">'Reactome'</span><span class="p">,</span> <span class="s1">'PPI_Hub_Proteins'</span><span class="p">,</span> <span class="s1">'OMIM_Disease'</span><span class="p">,</span> <span class="s1">'GO_Molecular_Function_2023'</span><span class="p">],</span>
-                 <span class="n">organism</span><span class="o">=</span><span class="s1">'Human'</span><span class="p">,</span> <span class="c1"># change accordingly</span>
-                 <span class="c1">#description='pathway',</span>
-                 <span class="c1">#cutoff=0.08, # test dataset, use lower value for real case  </span>
-                 <span class="n">background</span><span class="o">=</span><span class="n">grn_c</span><span class="o">.</span><span class="n">var</span><span class="o">.</span><span class="n">symbol</span><span class="o">.</span><span class="n">tolist</span><span class="p">(),</span>
+<div class="highlight-ipynb hl-python"><pre><span></span><span class="n">enr</span> <span class="o">=</span> <span class="n">gp</span><span class="o">.</span><span class="n">enrichr</span><span class="p">(</span>
+    <span class="n">gene_list</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="n">G</span><span class="o">.</span><span class="n">nodes</span><span class="p">),</span>
+    <span class="n">gene_sets</span><span class="o">=</span><span class="p">[</span>
+        <span class="s2">"KEGG_2021_Human"</span><span class="p">,</span>
+        <span class="s2">"MSigDB_Hallmark_2020"</span><span class="p">,</span>
+        <span class="s2">"Reactome_2022"</span><span class="p">,</span>
+        <span class="s2">"Tabula_Sapiens"</span><span class="p">,</span>
+        <span class="s2">"WikiPathway_2023_Human"</span><span class="p">,</span>
+        <span class="s2">"TF_Perturbations_Followed_by_Expression"</span><span class="p">,</span>
+        <span class="s2">"Reactome"</span><span class="p">,</span>
+        <span class="s2">"PPI_Hub_Proteins"</span><span class="p">,</span>
+        <span class="s2">"OMIM_Disease"</span><span class="p">,</span>
+        <span class="s2">"GO_Molecular_Function_2023"</span><span class="p">,</span>
+    <span class="p">],</span>
+    <span class="n">organism</span><span class="o">=</span><span class="s2">"Human"</span><span class="p">,</span>  <span class="c1"># change accordingly</span>
+    <span class="c1"># description='pathway',</span>
+    <span class="c1"># cutoff=0.08, # test dataset, use lower value for real case</span>
+    <span class="n">background</span><span class="o">=</span><span class="n">grn_c</span><span class="o">.</span><span class="n">var</span><span class="o">.</span><span class="n">symbol</span><span class="o">.</span><span class="n">tolist</span><span class="p">(),</span>
 <span class="p">)</span>
 <span class="n">enr</span><span class="o">.</span><span class="n">res2d</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span>
 </pre></div>
-<div class="clipboard-copy-txt" id="cell-32">enr = gp.enrichr(gene_list=list(G.nodes),
-                 gene_sets=['KEGG_2021_Human', 'MSigDB_Hallmark_2020', 'Reactome_2022', 'Tabula_Sapiens', 'WikiPathway_2023_Human', 'TF_Perturbations_Followed_by_Expression', 'Reactome', 'PPI_Hub_Proteins', 'OMIM_Disease', 'GO_Molecular_Function_2023'],
-                 organism='Human', # change accordingly
-                 #description='pathway',
-                 #cutoff=0.08, # test dataset, use lower value for real case  
-                 background=grn_c.var.symbol.tolist(),
+<div class="clipboard-copy-txt" id="cell-32">enr = gp.enrichr(
+    gene_list=list(G.nodes),
+    gene_sets=[
+        "KEGG_2021_Human",
+        "MSigDB_Hallmark_2020",
+        "Reactome_2022",
+        "Tabula_Sapiens",
+        "WikiPathway_2023_Human",
+        "TF_Perturbations_Followed_by_Expression",
+        "Reactome",
+        "PPI_Hub_Proteins",
+        "OMIM_Disease",
+        "GO_Molecular_Function_2023",
+    ],
+    organism="Human",  # change accordingly
+    # description='pathway',
+    # cutoff=0.08, # test dataset, use lower value for real case
+    background=grn_c.var.symbol.tolist(),
 )
 enr.res2d.head(20)
 </div>
@@ -2619,7 +2737,7 @@ enr.res2d.head(20)
 </div>
 </div>
 <div class="jp-OutputArea-child jp-OutputArea-executeResult">
-<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[35]:</div>
+<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[ ]:</div>
 <div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/html" tabindex="0">
 <div>
 <style scoped="">
@@ -2905,7 +3023,7 @@ enr.res2d.head(20)
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [36]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="CodeMirror cm-s-jupyter">
 <div class="zeroclipboard-container">
 <clipboard-copy ,="" aria-label="Copy to Clipboard" for="cell-33">
@@ -2918,23 +3036,29 @@ enr.res2d.head(20)
 </div>
 </clipboard-copy>
 </div>
-<div class="highlight-ipynb hl-python"><pre><span></span><span class="n">enr</span><span class="o">.</span><span class="n">res2d</span><span class="o">.</span><span class="n">Term</span> <span class="o">=</span> <span class="n">enr</span><span class="o">.</span><span class="n">res2d</span><span class="o">.</span><span class="n">Term</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">"("</span><span class="p">)</span><span class="o">.</span><span class="n">str</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">','</span><span class="p">)</span><span class="o">.</span><span class="n">str</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-<span class="n">ax</span> <span class="o">=</span> <span class="n">dotplot</span><span class="p">(</span><span class="n">enr</span><span class="o">.</span><span class="n">res2d</span><span class="o">.</span><span class="n">replace</span><span class="p">([</span><span class="n">np</span><span class="o">.</span><span class="n">inf</span><span class="p">,</span> <span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">inf</span><span class="p">],</span> <span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">dropna</span><span class="p">(),</span>
-             <span class="n">column</span><span class="o">=</span><span class="s2">"Adjusted P-value"</span><span class="p">,</span>
-             <span class="c1">#title='normal fibro PAGE4',</span>
-             <span class="n">cmap</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">viridis</span><span class="p">,</span>
-             <span class="n">size</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="c1"># adjust dot size</span>
-             <span class="n">top_term</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span>
-             <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="mi">10</span><span class="p">),</span> <span class="n">cutoff</span><span class="o">=</span><span class="mf">0.25</span><span class="p">)</span>
+<div class="highlight-ipynb hl-python"><pre><span></span><span class="n">enr</span><span class="o">.</span><span class="n">res2d</span><span class="o">.</span><span class="n">Term</span> <span class="o">=</span> <span class="n">enr</span><span class="o">.</span><span class="n">res2d</span><span class="o">.</span><span class="n">Term</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">"("</span><span class="p">)</span><span class="o">.</span><span class="n">str</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">","</span><span class="p">)</span><span class="o">.</span><span class="n">str</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">dotplot</span><span class="p">(</span>
+    <span class="n">enr</span><span class="o">.</span><span class="n">res2d</span><span class="o">.</span><span class="n">replace</span><span class="p">([</span><span class="n">np</span><span class="o">.</span><span class="n">inf</span><span class="p">,</span> <span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">inf</span><span class="p">],</span> <span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">dropna</span><span class="p">(),</span>
+    <span class="n">column</span><span class="o">=</span><span class="s2">"Adjusted P-value"</span><span class="p">,</span>
+    <span class="c1"># title='normal fibro PAGE4',</span>
+    <span class="n">cmap</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">viridis</span><span class="p">,</span>
+    <span class="n">size</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span>  <span class="c1"># adjust dot size</span>
+    <span class="n">top_term</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span>
+    <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">10</span><span class="p">),</span>
+    <span class="n">cutoff</span><span class="o">=</span><span class="mf">0.25</span><span class="p">,</span>
+<span class="p">)</span>
 </pre></div>
-<div class="clipboard-copy-txt" id="cell-33">enr.res2d.Term = enr.res2d.Term.str.split("(").str[0].str.split(',').str[0]
-ax = dotplot(enr.res2d.replace([np.inf, -np.inf], 0).dropna(),
-             column="Adjusted P-value",
-             #title='normal fibro PAGE4',
-             cmap=plt.cm.viridis,
-             size=4, # adjust dot size
-             top_term=20,
-             figsize=(4,10), cutoff=0.25)</div>
+<div class="clipboard-copy-txt" id="cell-33">enr.res2d.Term = enr.res2d.Term.str.split("(").str[0].str.split(",").str[0]
+ax = dotplot(
+    enr.res2d.replace([np.inf, -np.inf], 0).dropna(),
+    column="Adjusted P-value",
+    # title='normal fibro PAGE4',
+    cmap=plt.cm.viridis,
+    size=4,  # adjust dot size
+    top_term=20,
+    figsize=(4, 10),
+    cutoff=0.25,
+)</div>
 </div>
 </div>
 </div>
@@ -3010,7 +3134,7 @@ Studies on the role of STEAP1, OR51E2, PTN, ABCC4, NDRG2 have been relatively in
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [9]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="CodeMirror cm-s-jupyter">
 <div class="zeroclipboard-container">
 <clipboard-copy ,="" aria-label="Copy to Clipboard" for="cell-34">
@@ -3023,9 +3147,9 @@ Studies on the role of STEAP1, OR51E2, PTN, ABCC4, NDRG2 have been relatively in
 </div>
 </clipboard-copy>
 </div>
-<div class="highlight-ipynb hl-python"><pre><span></span><span class="n">grn</span><span class="o">.</span><span class="n">var</span><span class="p">[</span><span class="s1">'cluster_1.5'</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+<div class="highlight-ipynb hl-python"><pre><span></span><span class="n">grn</span><span class="o">.</span><span class="n">var</span><span class="p">[</span><span class="s2">"cluster_1.5"</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
 </pre></div>
-<div class="clipboard-copy-txt" id="cell-34">grn.var['cluster_1.5'].value_counts().head(10)</div>
+<div class="clipboard-copy-txt" id="cell-34">grn.var["cluster_1.5"].value_counts().head(10)</div>
 </div>
 </div>
 </div>
@@ -3035,7 +3159,7 @@ Studies on the role of STEAP1, OR51E2, PTN, ABCC4, NDRG2 have been relatively in
 </div>
 <div class="jp-OutputArea jp-Cell-outputArea">
 <div class="jp-OutputArea-child jp-OutputArea-executeResult">
-<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[9]:</div>
+<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[ ]:</div>
 <div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain" tabindex="0">
 <pre>cluster_1.5
 0     1620
@@ -3071,7 +3195,7 @@ Name: count, dtype: int64</pre>
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [37]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="CodeMirror cm-s-jupyter">
 <div class="zeroclipboard-container">
 <clipboard-copy ,="" aria-label="Copy to Clipboard" for="cell-35">
@@ -3084,9 +3208,13 @@ Name: count, dtype: int64</pre>
 </div>
 </clipboard-copy>
 </div>
-<div class="highlight-ipynb hl-python"><pre><span></span><span class="n">G</span> <span class="o">=</span> <span class="n">grn</span><span class="o">.</span><span class="n">plot_subgraph</span><span class="p">(</span><span class="n">grn</span><span class="o">.</span><span class="n">var</span><span class="p">[</span><span class="n">grn</span><span class="o">.</span><span class="n">var</span><span class="p">[</span><span class="s1">'cluster_1.5'</span><span class="p">]</span><span class="o">==</span><span class="s1">'3'</span><span class="p">]</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">tolist</span><span class="p">(),</span> <span class="n">only</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span> <span class="n">interactive</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<div class="highlight-ipynb hl-python"><pre><span></span><span class="n">G</span> <span class="o">=</span> <span class="n">grn</span><span class="o">.</span><span class="n">plot_subgraph</span><span class="p">(</span>
+    <span class="n">grn</span><span class="o">.</span><span class="n">var</span><span class="p">[</span><span class="n">grn</span><span class="o">.</span><span class="n">var</span><span class="p">[</span><span class="s2">"cluster_1.5"</span><span class="p">]</span> <span class="o">==</span> <span class="s2">"3"</span><span class="p">]</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">tolist</span><span class="p">(),</span> <span class="n">only</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span> <span class="n">interactive</span><span class="o">=</span><span class="kc">False</span>
+<span class="p">)</span>
 </pre></div>
-<div class="clipboard-copy-txt" id="cell-35">G = grn.plot_subgraph(grn.var[grn.var['cluster_1.5']=='3'].index.tolist(), only=200, interactive=False)</div>
+<div class="clipboard-copy-txt" id="cell-35">G = grn.plot_subgraph(
+    grn.var[grn.var["cluster_1.5"] == "3"].index.tolist(), only=200, interactive=False
+)</div>
 </div>
 </div>
 </div>
@@ -3122,7 +3250,7 @@ Name: count, dtype: int64</pre>
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [26]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="CodeMirror cm-s-jupyter">
 <div class="zeroclipboard-container">
 <clipboard-copy ,="" aria-label="Copy to Clipboard" for="cell-36">
@@ -3137,14 +3265,14 @@ Name: count, dtype: int64</pre>
 </div>
 <div class="highlight-ipynb hl-python"><pre><span></span><span class="n">pnet</span> <span class="o">=</span> <span class="n">pnx</span><span class="o">.</span><span class="n">Network</span><span class="p">(</span><span class="n">notebook</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">cdn_resources</span><span class="o">=</span><span class="s2">"remote"</span><span class="p">,</span> <span class="n">directed</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="n">pnet</span><span class="o">.</span><span class="n">from_nx</span><span class="p">(</span><span class="n">G</span><span class="p">)</span>
-<span class="c1">#first_node = list(G.nodes)[-1]</span>
-<span class="c1">#pnet.get_node(first_node)['color'] = "red"</span>
+<span class="c1"># first_node = list(G.nodes)[-1]</span>
+<span class="c1"># pnet.get_node(first_node)['color'] = "red"</span>
 <span class="n">pnet</span><span class="o">.</span><span class="n">save_graph</span><span class="p">(</span><span class="s2">"../figures/pyvis/grn_3.html"</span><span class="p">)</span>
 </pre></div>
 <div class="clipboard-copy-txt" id="cell-36">pnet = pnx.Network(notebook=True, cdn_resources="remote", directed=True)
 pnet.from_nx(G)
-#first_node = list(G.nodes)[-1]
-#pnet.get_node(first_node)['color'] = "red"
+# first_node = list(G.nodes)[-1]
+# pnet.get_node(first_node)['color'] = "red"
 pnet.save_graph("../figures/pyvis/grn_3.html")</div>
 </div>
 </div>
@@ -3157,7 +3285,7 @@ pnet.save_graph("../figures/pyvis/grn_3.html")</div>
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [27]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="CodeMirror cm-s-jupyter">
 <div class="zeroclipboard-container">
 <clipboard-copy ,="" aria-label="Copy to Clipboard" for="cell-37">
@@ -3170,9 +3298,9 @@ pnet.save_graph("../figures/pyvis/grn_3.html")</div>
 </div>
 </clipboard-copy>
 </div>
-<div class="highlight-ipynb hl-python"><pre><span></span><span class="n">grn</span><span class="o">.</span><span class="n">var</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s1">'nan-259'</span><span class="p">]</span> <span class="c1"># par of the Glycoside Hydrolase Family</span>
+<div class="highlight-ipynb hl-python"><pre><span></span><span class="n">grn</span><span class="o">.</span><span class="n">var</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s2">"nan-259"</span><span class="p">]</span>  <span class="c1"># par of the Glycoside Hydrolase Family</span>
 </pre></div>
-<div class="clipboard-copy-txt" id="cell-37">grn.var.loc['nan-259'] # par of the Glycoside Hydrolase Family</div>
+<div class="clipboard-copy-txt" id="cell-37">grn.var.loc["nan-259"]  # par of the Glycoside Hydrolase Family</div>
 </div>
 </div>
 </div>
@@ -3182,7 +3310,7 @@ pnet.save_graph("../figures/pyvis/grn_3.html")</div>
 </div>
 <div class="jp-OutputArea jp-Cell-outputArea">
 <div class="jp-OutputArea-child jp-OutputArea-executeResult">
-<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[27]:</div>
+<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[ ]:</div>
 <div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain" tabindex="0">
 <pre>uid                    62JAXxQNqtOd
 symbol                      nan-259
@@ -3213,7 +3341,7 @@ Name: nan-259, dtype: object</pre>
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [12]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="CodeMirror cm-s-jupyter">
 <div class="zeroclipboard-container">
 <clipboard-copy ,="" aria-label="Copy to Clipboard" for="cell-38">
@@ -3226,9 +3354,13 @@ Name: nan-259, dtype: object</pre>
 </div>
 </clipboard-copy>
 </div>
-<div class="highlight-ipynb hl-python"><pre><span></span><span class="n">grn</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">grn</span><span class="o">.</span><span class="n">var</span><span class="p">[</span><span class="n">grn</span><span class="o">.</span><span class="n">var</span><span class="p">[</span><span class="s1">'cluster_1.5'</span><span class="p">]</span><span class="o">==</span><span class="s1">'3'</span><span class="p">]</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">tolist</span><span class="p">())</span><span class="o">.</span><span class="n">grn</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span><span class="c1">##.grn # selenom</span>
+<div class="highlight-ipynb hl-python"><pre><span></span><span class="n">grn</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">grn</span><span class="o">.</span><span class="n">var</span><span class="p">[</span><span class="n">grn</span><span class="o">.</span><span class="n">var</span><span class="p">[</span><span class="s2">"cluster_1.5"</span><span class="p">]</span> <span class="o">==</span> <span class="s2">"3"</span><span class="p">]</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">tolist</span><span class="p">())</span><span class="o">.</span><span class="n">grn</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span>
+    <span class="n">ascending</span><span class="o">=</span><span class="kc">False</span>
+<span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>  <span class="c1">##.grn # selenom</span>
 </pre></div>
-<div class="clipboard-copy-txt" id="cell-38">grn.get(grn.var[grn.var['cluster_1.5']=='3'].index.tolist()).grn.sum(0).sort_values(ascending=False).head(3)##.grn # selenom</div>
+<div class="clipboard-copy-txt" id="cell-38">grn.get(grn.var[grn.var["cluster_1.5"] == "3"].index.tolist()).grn.sum(0).sort_values(
+    ascending=False
+).head(3)  ##.grn # selenom</div>
 </div>
 </div>
 </div>
@@ -3238,7 +3370,7 @@ Name: nan-259, dtype: object</pre>
 </div>
 <div class="jp-OutputArea jp-Cell-outputArea">
 <div class="jp-OutputArea-child jp-OutputArea-executeResult">
-<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[12]:</div>
+<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[ ]:</div>
 <div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain" tabindex="0">
 <pre>symbol
 RNASEK     0.942102
@@ -3269,7 +3401,7 @@ RNA phosphodiester bond hydrolysis --&gt; hydrolisis pathway in the model and RN
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [38]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="CodeMirror cm-s-jupyter">
 <div class="zeroclipboard-container">
 <clipboard-copy ,="" aria-label="Copy to Clipboard" for="cell-39">
@@ -3283,22 +3415,46 @@ RNA phosphodiester bond hydrolysis --&gt; hydrolisis pathway in the model and RN
 </clipboard-copy>
 </div>
 <div class="highlight-ipynb hl-python"><pre><span></span><span class="c1"># Assuming 'node_names' contains the list of gene names</span>
-<span class="n">enr</span> <span class="o">=</span> <span class="n">gp</span><span class="o">.</span><span class="n">enrichr</span><span class="p">(</span><span class="n">gene_list</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="n">G</span><span class="o">.</span><span class="n">nodes</span><span class="p">),</span>
-                 <span class="n">gene_sets</span><span class="o">=</span><span class="p">[</span><span class="s1">'KEGG_2021_Human'</span><span class="p">,</span> <span class="s1">'MSigDB_Hallmark_2020'</span><span class="p">,</span> <span class="s1">'Reactome_2022'</span><span class="p">,</span> <span class="s1">'Tabula_Sapiens'</span><span class="p">,</span> <span class="s1">'WikiPathway_2023_Human'</span><span class="p">,</span> <span class="s1">'TF_Perturbations_Followed_by_Expression'</span><span class="p">,</span> <span class="s1">'Reactome'</span><span class="p">,</span> <span class="s1">'PPI_Hub_Proteins'</span><span class="p">,</span> <span class="s1">'OMIM_Disease'</span><span class="p">,</span> <span class="s1">'GO_Molecular_Function_2023'</span><span class="p">],</span>
-                 <span class="n">organism</span><span class="o">=</span><span class="s1">'Human'</span><span class="p">,</span> <span class="c1"># change accordingly</span>
-                 <span class="c1">#description='pathway',</span>
-                 <span class="c1">#cutoff=0.08, # test dataset, use lower value for real case  </span>
-                 <span class="n">background</span><span class="o">=</span><span class="n">grn</span><span class="o">.</span><span class="n">var</span><span class="o">.</span><span class="n">symbol</span><span class="o">.</span><span class="n">tolist</span><span class="p">(),</span>
+<span class="n">enr</span> <span class="o">=</span> <span class="n">gp</span><span class="o">.</span><span class="n">enrichr</span><span class="p">(</span>
+    <span class="n">gene_list</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="n">G</span><span class="o">.</span><span class="n">nodes</span><span class="p">),</span>
+    <span class="n">gene_sets</span><span class="o">=</span><span class="p">[</span>
+        <span class="s2">"KEGG_2021_Human"</span><span class="p">,</span>
+        <span class="s2">"MSigDB_Hallmark_2020"</span><span class="p">,</span>
+        <span class="s2">"Reactome_2022"</span><span class="p">,</span>
+        <span class="s2">"Tabula_Sapiens"</span><span class="p">,</span>
+        <span class="s2">"WikiPathway_2023_Human"</span><span class="p">,</span>
+        <span class="s2">"TF_Perturbations_Followed_by_Expression"</span><span class="p">,</span>
+        <span class="s2">"Reactome"</span><span class="p">,</span>
+        <span class="s2">"PPI_Hub_Proteins"</span><span class="p">,</span>
+        <span class="s2">"OMIM_Disease"</span><span class="p">,</span>
+        <span class="s2">"GO_Molecular_Function_2023"</span><span class="p">,</span>
+    <span class="p">],</span>
+    <span class="n">organism</span><span class="o">=</span><span class="s2">"Human"</span><span class="p">,</span>  <span class="c1"># change accordingly</span>
+    <span class="c1"># description='pathway',</span>
+    <span class="c1"># cutoff=0.08, # test dataset, use lower value for real case</span>
+    <span class="n">background</span><span class="o">=</span><span class="n">grn</span><span class="o">.</span><span class="n">var</span><span class="o">.</span><span class="n">symbol</span><span class="o">.</span><span class="n">tolist</span><span class="p">(),</span>
 <span class="p">)</span>
 <span class="n">enr</span><span class="o">.</span><span class="n">res2d</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span>
 </pre></div>
 <div class="clipboard-copy-txt" id="cell-39"># Assuming 'node_names' contains the list of gene names
-enr = gp.enrichr(gene_list=list(G.nodes),
-                 gene_sets=['KEGG_2021_Human', 'MSigDB_Hallmark_2020', 'Reactome_2022', 'Tabula_Sapiens', 'WikiPathway_2023_Human', 'TF_Perturbations_Followed_by_Expression', 'Reactome', 'PPI_Hub_Proteins', 'OMIM_Disease', 'GO_Molecular_Function_2023'],
-                 organism='Human', # change accordingly
-                 #description='pathway',
-                 #cutoff=0.08, # test dataset, use lower value for real case  
-                 background=grn.var.symbol.tolist(),
+enr = gp.enrichr(
+    gene_list=list(G.nodes),
+    gene_sets=[
+        "KEGG_2021_Human",
+        "MSigDB_Hallmark_2020",
+        "Reactome_2022",
+        "Tabula_Sapiens",
+        "WikiPathway_2023_Human",
+        "TF_Perturbations_Followed_by_Expression",
+        "Reactome",
+        "PPI_Hub_Proteins",
+        "OMIM_Disease",
+        "GO_Molecular_Function_2023",
+    ],
+    organism="Human",  # change accordingly
+    # description='pathway',
+    # cutoff=0.08, # test dataset, use lower value for real case
+    background=grn.var.symbol.tolist(),
 )
 enr.res2d.head(20)</div>
 </div>
@@ -3319,7 +3475,7 @@ enr.res2d.head(20)</div>
 </div>
 </div>
 <div class="jp-OutputArea-child jp-OutputArea-executeResult">
-<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[38]:</div>
+<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[ ]:</div>
 <div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/html" tabindex="0">
 <div>
 <style scoped="">
@@ -3605,7 +3761,7 @@ enr.res2d.head(20)</div>
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [39]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="CodeMirror cm-s-jupyter">
 <div class="zeroclipboard-container">
 <clipboard-copy ,="" aria-label="Copy to Clipboard" for="cell-40">
@@ -3618,23 +3774,29 @@ enr.res2d.head(20)</div>
 </div>
 </clipboard-copy>
 </div>
-<div class="highlight-ipynb hl-python"><pre><span></span><span class="n">enr</span><span class="o">.</span><span class="n">res2d</span><span class="o">.</span><span class="n">Term</span> <span class="o">=</span> <span class="n">enr</span><span class="o">.</span><span class="n">res2d</span><span class="o">.</span><span class="n">Term</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">"("</span><span class="p">)</span><span class="o">.</span><span class="n">str</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">','</span><span class="p">)</span><span class="o">.</span><span class="n">str</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="p">[:</span><span class="mi">50</span><span class="p">]</span>
-<span class="n">ax</span> <span class="o">=</span> <span class="n">dotplot</span><span class="p">(</span><span class="n">enr</span><span class="o">.</span><span class="n">res2d</span><span class="o">.</span><span class="n">replace</span><span class="p">([</span><span class="n">np</span><span class="o">.</span><span class="n">inf</span><span class="p">,</span> <span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">inf</span><span class="p">],</span> <span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">dropna</span><span class="p">(),</span>
-             <span class="n">column</span><span class="o">=</span><span class="s2">"Adjusted P-value"</span><span class="p">,</span>
-             <span class="c1">#title='normal fibro PAGE4',</span>
-             <span class="n">cmap</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">viridis</span><span class="p">,</span>
-             <span class="n">size</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="c1"># adjust dot size</span>
-            <span class="n">top_term</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span>
-            <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="mi">10</span><span class="p">),</span> <span class="n">cutoff</span><span class="o">=</span><span class="mf">0.25</span><span class="p">)</span>
+<div class="highlight-ipynb hl-python"><pre><span></span><span class="n">enr</span><span class="o">.</span><span class="n">res2d</span><span class="o">.</span><span class="n">Term</span> <span class="o">=</span> <span class="n">enr</span><span class="o">.</span><span class="n">res2d</span><span class="o">.</span><span class="n">Term</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">"("</span><span class="p">)</span><span class="o">.</span><span class="n">str</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">","</span><span class="p">)</span><span class="o">.</span><span class="n">str</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="p">[:</span><span class="mi">50</span><span class="p">]</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">dotplot</span><span class="p">(</span>
+    <span class="n">enr</span><span class="o">.</span><span class="n">res2d</span><span class="o">.</span><span class="n">replace</span><span class="p">([</span><span class="n">np</span><span class="o">.</span><span class="n">inf</span><span class="p">,</span> <span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">inf</span><span class="p">],</span> <span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">dropna</span><span class="p">(),</span>
+    <span class="n">column</span><span class="o">=</span><span class="s2">"Adjusted P-value"</span><span class="p">,</span>
+    <span class="c1"># title='normal fibro PAGE4',</span>
+    <span class="n">cmap</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">viridis</span><span class="p">,</span>
+    <span class="n">size</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span>  <span class="c1"># adjust dot size</span>
+    <span class="n">top_term</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span>
+    <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">10</span><span class="p">),</span>
+    <span class="n">cutoff</span><span class="o">=</span><span class="mf">0.25</span><span class="p">,</span>
+<span class="p">)</span>
 </pre></div>
-<div class="clipboard-copy-txt" id="cell-40">enr.res2d.Term = enr.res2d.Term.str.split("(").str[0].str.split(',').str[0].str[:50]
-ax = dotplot(enr.res2d.replace([np.inf, -np.inf], 0).dropna(),
-             column="Adjusted P-value",
-             #title='normal fibro PAGE4',
-             cmap=plt.cm.viridis,
-             size=4, # adjust dot size
-            top_term=20,
-            figsize=(4,10), cutoff=0.25)</div>
+<div class="clipboard-copy-txt" id="cell-40">enr.res2d.Term = enr.res2d.Term.str.split("(").str[0].str.split(",").str[0].str[:50]
+ax = dotplot(
+    enr.res2d.replace([np.inf, -np.inf], 0).dropna(),
+    column="Adjusted P-value",
+    # title='normal fibro PAGE4',
+    cmap=plt.cm.viridis,
+    size=4,  # adjust dot size
+    top_term=20,
+    figsize=(4, 10),
+    cutoff=0.25,
+)</div>
 </div>
 </div>
 </div>
@@ -3684,7 +3846,7 @@ For example, when doing 'df[col].method(value, inplace=True)', try using 'df.met
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [40]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="CodeMirror cm-s-jupyter">
 <div class="zeroclipboard-container">
 <clipboard-copy ,="" aria-label="Copy to Clipboard" for="cell-41">
@@ -3697,9 +3859,13 @@ For example, when doing 'df[col].method(value, inplace=True)', try using 'df.met
 </div>
 </clipboard-copy>
 </div>
-<div class="highlight-ipynb hl-python"><pre><span></span><span class="n">G</span> <span class="o">=</span> <span class="n">grn</span><span class="o">.</span><span class="n">plot_subgraph</span><span class="p">(</span><span class="n">grn</span><span class="o">.</span><span class="n">var</span><span class="p">[</span><span class="n">grn</span><span class="o">.</span><span class="n">var</span><span class="p">[</span><span class="s1">'cluster_1.5'</span><span class="p">]</span><span class="o">==</span><span class="s1">'4'</span><span class="p">]</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">tolist</span><span class="p">(),</span> <span class="n">only</span><span class="o">=</span><span class="mi">80</span><span class="p">,</span> <span class="n">interactive</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="c1">#</span>
+<div class="highlight-ipynb hl-python"><pre><span></span><span class="n">G</span> <span class="o">=</span> <span class="n">grn</span><span class="o">.</span><span class="n">plot_subgraph</span><span class="p">(</span>
+    <span class="n">grn</span><span class="o">.</span><span class="n">var</span><span class="p">[</span><span class="n">grn</span><span class="o">.</span><span class="n">var</span><span class="p">[</span><span class="s2">"cluster_1.5"</span><span class="p">]</span> <span class="o">==</span> <span class="s2">"4"</span><span class="p">]</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">tolist</span><span class="p">(),</span> <span class="n">only</span><span class="o">=</span><span class="mi">80</span><span class="p">,</span> <span class="n">interactive</span><span class="o">=</span><span class="kc">False</span>
+<span class="p">)</span>  <span class="c1">#</span>
 </pre></div>
-<div class="clipboard-copy-txt" id="cell-41">G = grn.plot_subgraph(grn.var[grn.var['cluster_1.5']=='4'].index.tolist(), only=80, interactive=False)#</div>
+<div class="clipboard-copy-txt" id="cell-41">G = grn.plot_subgraph(
+    grn.var[grn.var["cluster_1.5"] == "4"].index.tolist(), only=80, interactive=False
+)  #</div>
 </div>
 </div>
 </div>
@@ -3734,7 +3900,7 @@ For example, when doing 'df[col].method(value, inplace=True)', try using 'df.met
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [29]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="CodeMirror cm-s-jupyter">
 <div class="zeroclipboard-container">
 <clipboard-copy ,="" aria-label="Copy to Clipboard" for="cell-42">
@@ -3749,14 +3915,14 @@ For example, when doing 'df[col].method(value, inplace=True)', try using 'df.met
 </div>
 <div class="highlight-ipynb hl-python"><pre><span></span><span class="n">pnet</span> <span class="o">=</span> <span class="n">pnx</span><span class="o">.</span><span class="n">Network</span><span class="p">(</span><span class="n">notebook</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">cdn_resources</span><span class="o">=</span><span class="s2">"remote"</span><span class="p">,</span> <span class="n">directed</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="n">pnet</span><span class="o">.</span><span class="n">from_nx</span><span class="p">(</span><span class="n">G</span><span class="p">)</span>
-<span class="c1">#first_node = list(G.nodes)[-1]</span>
-<span class="c1">#pnet.get_node(first_node)['color'] = "red"</span>
+<span class="c1"># first_node = list(G.nodes)[-1]</span>
+<span class="c1"># pnet.get_node(first_node)['color'] = "red"</span>
 <span class="n">pnet</span><span class="o">.</span><span class="n">save_graph</span><span class="p">(</span><span class="s2">"../figures/pyvis/grn_4.html"</span><span class="p">)</span>
 </pre></div>
 <div class="clipboard-copy-txt" id="cell-42">pnet = pnx.Network(notebook=True, cdn_resources="remote", directed=True)
 pnet.from_nx(G)
-#first_node = list(G.nodes)[-1]
-#pnet.get_node(first_node)['color'] = "red"
+# first_node = list(G.nodes)[-1]
+# pnet.get_node(first_node)['color'] = "red"
 pnet.save_graph("../figures/pyvis/grn_4.html")</div>
 </div>
 </div>
@@ -3769,7 +3935,7 @@ pnet.save_graph("../figures/pyvis/grn_4.html")</div>
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [41]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="CodeMirror cm-s-jupyter">
 <div class="zeroclipboard-container">
 <clipboard-copy ,="" aria-label="Copy to Clipboard" for="cell-43">
@@ -3782,21 +3948,45 @@ pnet.save_graph("../figures/pyvis/grn_4.html")</div>
 </div>
 </clipboard-copy>
 </div>
-<div class="highlight-ipynb hl-python"><pre><span></span><span class="n">enr</span> <span class="o">=</span> <span class="n">gp</span><span class="o">.</span><span class="n">enrichr</span><span class="p">(</span><span class="n">gene_list</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="n">G</span><span class="o">.</span><span class="n">nodes</span><span class="p">),</span>
-                 <span class="n">gene_sets</span><span class="o">=</span><span class="p">[</span><span class="s1">'GO_Molecular_Function_2023'</span><span class="p">,</span> <span class="s1">'MSigDB_Hallmark_2020'</span><span class="p">,</span> <span class="s1">'Reactome_2022'</span><span class="p">,</span> <span class="s1">'Tabula_Sapiens'</span><span class="p">,</span> <span class="s1">'WikiPathway_2023_Human'</span><span class="p">,</span> <span class="s1">'TF_Perturbations_Followed_by_Expression'</span><span class="p">,</span> <span class="s1">'Reactome'</span><span class="p">,</span> <span class="s1">'PPI_Hub_Proteins'</span><span class="p">,</span> <span class="s1">'OMIM_Disease'</span><span class="p">,</span> <span class="s1">'GO_Molecular_Function_2023'</span><span class="p">],</span>
-                 <span class="n">organism</span><span class="o">=</span><span class="s1">'Human'</span><span class="p">,</span> <span class="c1"># change accordingly</span>
-                 <span class="c1">#description='pathway',</span>
-                 <span class="c1">#cutoff=0.08, # test dataset, use lower value for real case  </span>
-                 <span class="n">background</span><span class="o">=</span><span class="n">grn</span><span class="o">.</span><span class="n">var</span><span class="o">.</span><span class="n">symbol</span><span class="o">.</span><span class="n">tolist</span><span class="p">(),</span>
+<div class="highlight-ipynb hl-python"><pre><span></span><span class="n">enr</span> <span class="o">=</span> <span class="n">gp</span><span class="o">.</span><span class="n">enrichr</span><span class="p">(</span>
+    <span class="n">gene_list</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="n">G</span><span class="o">.</span><span class="n">nodes</span><span class="p">),</span>
+    <span class="n">gene_sets</span><span class="o">=</span><span class="p">[</span>
+        <span class="s2">"GO_Molecular_Function_2023"</span><span class="p">,</span>
+        <span class="s2">"MSigDB_Hallmark_2020"</span><span class="p">,</span>
+        <span class="s2">"Reactome_2022"</span><span class="p">,</span>
+        <span class="s2">"Tabula_Sapiens"</span><span class="p">,</span>
+        <span class="s2">"WikiPathway_2023_Human"</span><span class="p">,</span>
+        <span class="s2">"TF_Perturbations_Followed_by_Expression"</span><span class="p">,</span>
+        <span class="s2">"Reactome"</span><span class="p">,</span>
+        <span class="s2">"PPI_Hub_Proteins"</span><span class="p">,</span>
+        <span class="s2">"OMIM_Disease"</span><span class="p">,</span>
+        <span class="s2">"GO_Molecular_Function_2023"</span><span class="p">,</span>
+    <span class="p">],</span>
+    <span class="n">organism</span><span class="o">=</span><span class="s2">"Human"</span><span class="p">,</span>  <span class="c1"># change accordingly</span>
+    <span class="c1"># description='pathway',</span>
+    <span class="c1"># cutoff=0.08, # test dataset, use lower value for real case</span>
+    <span class="n">background</span><span class="o">=</span><span class="n">grn</span><span class="o">.</span><span class="n">var</span><span class="o">.</span><span class="n">symbol</span><span class="o">.</span><span class="n">tolist</span><span class="p">(),</span>
 <span class="p">)</span>
 <span class="n">enr</span><span class="o">.</span><span class="n">res2d</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span>
 </pre></div>
-<div class="clipboard-copy-txt" id="cell-43">enr = gp.enrichr(gene_list=list(G.nodes),
-                 gene_sets=['GO_Molecular_Function_2023', 'MSigDB_Hallmark_2020', 'Reactome_2022', 'Tabula_Sapiens', 'WikiPathway_2023_Human', 'TF_Perturbations_Followed_by_Expression', 'Reactome', 'PPI_Hub_Proteins', 'OMIM_Disease', 'GO_Molecular_Function_2023'],
-                 organism='Human', # change accordingly
-                 #description='pathway',
-                 #cutoff=0.08, # test dataset, use lower value for real case  
-                 background=grn.var.symbol.tolist(),
+<div class="clipboard-copy-txt" id="cell-43">enr = gp.enrichr(
+    gene_list=list(G.nodes),
+    gene_sets=[
+        "GO_Molecular_Function_2023",
+        "MSigDB_Hallmark_2020",
+        "Reactome_2022",
+        "Tabula_Sapiens",
+        "WikiPathway_2023_Human",
+        "TF_Perturbations_Followed_by_Expression",
+        "Reactome",
+        "PPI_Hub_Proteins",
+        "OMIM_Disease",
+        "GO_Molecular_Function_2023",
+    ],
+    organism="Human",  # change accordingly
+    # description='pathway',
+    # cutoff=0.08, # test dataset, use lower value for real case
+    background=grn.var.symbol.tolist(),
 )
 enr.res2d.head(20)</div>
 </div>
@@ -3815,7 +4005,7 @@ enr.res2d.head(20)</div>
 </div>
 </div>
 <div class="jp-OutputArea-child jp-OutputArea-executeResult">
-<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[41]:</div>
+<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[ ]:</div>
 <div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/html" tabindex="0">
 <div>
 <style scoped="">
@@ -4101,7 +4291,7 @@ enr.res2d.head(20)</div>
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [42]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="CodeMirror cm-s-jupyter">
 <div class="zeroclipboard-container">
 <clipboard-copy ,="" aria-label="Copy to Clipboard" for="cell-44">
@@ -4114,23 +4304,29 @@ enr.res2d.head(20)</div>
 </div>
 </clipboard-copy>
 </div>
-<div class="highlight-ipynb hl-python"><pre><span></span><span class="n">enr</span><span class="o">.</span><span class="n">res2d</span><span class="o">.</span><span class="n">Term</span> <span class="o">=</span> <span class="n">enr</span><span class="o">.</span><span class="n">res2d</span><span class="o">.</span><span class="n">Term</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">"("</span><span class="p">)</span><span class="o">.</span><span class="n">str</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">','</span><span class="p">)</span><span class="o">.</span><span class="n">str</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="p">[:</span><span class="mi">50</span><span class="p">]</span>
-<span class="n">ax</span> <span class="o">=</span> <span class="n">dotplot</span><span class="p">(</span><span class="n">enr</span><span class="o">.</span><span class="n">res2d</span><span class="o">.</span><span class="n">replace</span><span class="p">([</span><span class="n">np</span><span class="o">.</span><span class="n">inf</span><span class="p">,</span> <span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">inf</span><span class="p">],</span> <span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">dropna</span><span class="p">(),</span>
-             <span class="n">column</span><span class="o">=</span><span class="s2">"Adjusted P-value"</span><span class="p">,</span>
-             <span class="c1">#title='normal fibro PAGE4',</span>
-             <span class="n">cmap</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">viridis</span><span class="p">,</span>
-             <span class="n">size</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="c1"># adjust dot size</span>
-                <span class="n">top_term</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span>
-                <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="mi">10</span><span class="p">),</span> <span class="n">cutoff</span><span class="o">=</span><span class="mf">0.25</span><span class="p">)</span>
+<div class="highlight-ipynb hl-python"><pre><span></span><span class="n">enr</span><span class="o">.</span><span class="n">res2d</span><span class="o">.</span><span class="n">Term</span> <span class="o">=</span> <span class="n">enr</span><span class="o">.</span><span class="n">res2d</span><span class="o">.</span><span class="n">Term</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">"("</span><span class="p">)</span><span class="o">.</span><span class="n">str</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">","</span><span class="p">)</span><span class="o">.</span><span class="n">str</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="p">[:</span><span class="mi">50</span><span class="p">]</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">dotplot</span><span class="p">(</span>
+    <span class="n">enr</span><span class="o">.</span><span class="n">res2d</span><span class="o">.</span><span class="n">replace</span><span class="p">([</span><span class="n">np</span><span class="o">.</span><span class="n">inf</span><span class="p">,</span> <span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">inf</span><span class="p">],</span> <span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">dropna</span><span class="p">(),</span>
+    <span class="n">column</span><span class="o">=</span><span class="s2">"Adjusted P-value"</span><span class="p">,</span>
+    <span class="c1"># title='normal fibro PAGE4',</span>
+    <span class="n">cmap</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">viridis</span><span class="p">,</span>
+    <span class="n">size</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span>  <span class="c1"># adjust dot size</span>
+    <span class="n">top_term</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span>
+    <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">10</span><span class="p">),</span>
+    <span class="n">cutoff</span><span class="o">=</span><span class="mf">0.25</span><span class="p">,</span>
+<span class="p">)</span>
 </pre></div>
-<div class="clipboard-copy-txt" id="cell-44">enr.res2d.Term = enr.res2d.Term.str.split("(").str[0].str.split(',').str[0].str[:50]
-ax = dotplot(enr.res2d.replace([np.inf, -np.inf], 0).dropna(),
-             column="Adjusted P-value",
-             #title='normal fibro PAGE4',
-             cmap=plt.cm.viridis,
-             size=4, # adjust dot size
-                top_term=20,
-                figsize=(4,10), cutoff=0.25)</div>
+<div class="clipboard-copy-txt" id="cell-44">enr.res2d.Term = enr.res2d.Term.str.split("(").str[0].str.split(",").str[0].str[:50]
+ax = dotplot(
+    enr.res2d.replace([np.inf, -np.inf], 0).dropna(),
+    column="Adjusted P-value",
+    # title='normal fibro PAGE4',
+    cmap=plt.cm.viridis,
+    size=4,  # adjust dot size
+    top_term=20,
+    figsize=(4, 10),
+    cutoff=0.25,
+)</div>
 </div>
 </div>
 </div>
@@ -4184,7 +4380,7 @@ For example, when doing 'df[col].method(value, inplace=True)', try using 'df.met
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [5]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="CodeMirror cm-s-jupyter">
 <div class="zeroclipboard-container">
 <clipboard-copy ,="" aria-label="Copy to Clipboard" for="cell-45">
@@ -4197,9 +4393,9 @@ For example, when doing 'df[col].method(value, inplace=True)', try using 'df.met
 </div>
 </clipboard-copy>
 </div>
-<div class="highlight-ipynb hl-python"><pre><span></span><span class="n">G</span> <span class="o">=</span> <span class="n">grn_c</span><span class="o">.</span><span class="n">plot_subgraph</span><span class="p">(</span><span class="s2">"PAGE4"</span><span class="p">,</span> <span class="n">only</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">max_genes</span><span class="o">=</span><span class="mi">40</span><span class="p">,</span> <span class="n">interactive</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="c1">#</span>
+<div class="highlight-ipynb hl-python"><pre><span></span><span class="n">G</span> <span class="o">=</span> <span class="n">grn_c</span><span class="o">.</span><span class="n">plot_subgraph</span><span class="p">(</span><span class="s2">"PAGE4"</span><span class="p">,</span> <span class="n">only</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">max_genes</span><span class="o">=</span><span class="mi">40</span><span class="p">,</span> <span class="n">interactive</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>  <span class="c1">#</span>
 </pre></div>
-<div class="clipboard-copy-txt" id="cell-45">G = grn_c.plot_subgraph("PAGE4", only=100, max_genes=40, interactive=False)#</div>
+<div class="clipboard-copy-txt" id="cell-45">G = grn_c.plot_subgraph("PAGE4", only=100, max_genes=40, interactive=False)  #</div>
 </div>
 </div>
 </div>
@@ -4236,7 +4432,7 @@ For example, when doing 'df[col].method(value, inplace=True)', try using 'df.met
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [96]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="CodeMirror cm-s-jupyter">
 <div class="zeroclipboard-container">
 <clipboard-copy ,="" aria-label="Copy to Clipboard" for="cell-46">
@@ -4252,13 +4448,13 @@ For example, when doing 'df[col].method(value, inplace=True)', try using 'df.met
 <div class="highlight-ipynb hl-python"><pre><span></span><span class="n">pnet</span> <span class="o">=</span> <span class="n">pnx</span><span class="o">.</span><span class="n">Network</span><span class="p">(</span><span class="n">notebook</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">cdn_resources</span><span class="o">=</span><span class="s2">"remote"</span><span class="p">,</span> <span class="n">directed</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="n">pnet</span><span class="o">.</span><span class="n">from_nx</span><span class="p">(</span><span class="n">G</span><span class="p">)</span>
 <span class="n">first_node</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">G</span><span class="o">.</span><span class="n">nodes</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
-<span class="n">pnet</span><span class="o">.</span><span class="n">get_node</span><span class="p">(</span><span class="n">first_node</span><span class="p">)[</span><span class="s1">'color'</span><span class="p">]</span> <span class="o">=</span> <span class="s2">"red"</span>
+<span class="n">pnet</span><span class="o">.</span><span class="n">get_node</span><span class="p">(</span><span class="n">first_node</span><span class="p">)[</span><span class="s2">"color"</span><span class="p">]</span> <span class="o">=</span> <span class="s2">"red"</span>
 <span class="n">pnet</span><span class="o">.</span><span class="n">save_graph</span><span class="p">(</span><span class="s2">"../figures/pyvis/grn_c_PAGE4.html"</span><span class="p">)</span>
 </pre></div>
 <div class="clipboard-copy-txt" id="cell-46">pnet = pnx.Network(notebook=True, cdn_resources="remote", directed=True)
 pnet.from_nx(G)
 first_node = list(G.nodes)[-1]
-pnet.get_node(first_node)['color'] = "red"
+pnet.get_node(first_node)["color"] = "red"
 pnet.save_graph("../figures/pyvis/grn_c_PAGE4.html")</div>
 </div>
 </div>
@@ -4271,7 +4467,7 @@ pnet.save_graph("../figures/pyvis/grn_c_PAGE4.html")</div>
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [22]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="CodeMirror cm-s-jupyter">
 <div class="zeroclipboard-container">
 <clipboard-copy ,="" aria-label="Copy to Clipboard" for="cell-47">
@@ -4285,58 +4481,82 @@ pnet.save_graph("../figures/pyvis/grn_c_PAGE4.html")</div>
 </clipboard-copy>
 </div>
 <div class="highlight-ipynb hl-python"><pre><span></span><span class="c1"># Assuming 'node_names' contains the list of gene names</span>
-<span class="n">enr</span> <span class="o">=</span> <span class="n">gp</span><span class="o">.</span><span class="n">enrichr</span><span class="p">(</span><span class="n">gene_list</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="n">G</span><span class="o">.</span><span class="n">nodes</span><span class="p">),</span>
-                 <span class="n">gene_sets</span><span class="o">=</span><span class="p">[</span>
-                <span class="c1">#'KEGG_2021_Human', </span>
-                 <span class="c1">#'MSigDB_Hallmark_2020',</span>
-                 <span class="c1">#'Reactome_2022', </span>
-                 <span class="c1">#'Tabula_Sapiens', </span>
-                 <span class="s1">'WikiPathway_2023_Human'</span><span class="p">,</span> <span class="c1">#'TF_Perturbations_Followed_by_Expression', </span>
-                 <span class="c1">#'PPI_Hub_Proteins', </span>
-                 <span class="c1">#'OMIM_Disease', </span>
-                 <span class="c1">#'GO_Molecular_Function_2023'</span>
-                 <span class="p">],</span>
-                 <span class="n">organism</span><span class="o">=</span><span class="s1">'Human'</span><span class="p">,</span> <span class="c1"># change accordingly</span>
-                 <span class="c1">#description='pathway',</span>
-                <span class="c1"># cutoff=0.02, # test dataset, use lower value for real case  </span>
-                 <span class="n">background</span><span class="o">=</span><span class="n">grn</span><span class="o">.</span><span class="n">var</span><span class="o">.</span><span class="n">symbol</span><span class="o">.</span><span class="n">tolist</span><span class="p">(),</span>
+<span class="n">enr</span> <span class="o">=</span> <span class="n">gp</span><span class="o">.</span><span class="n">enrichr</span><span class="p">(</span>
+    <span class="n">gene_list</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="n">G</span><span class="o">.</span><span class="n">nodes</span><span class="p">),</span>
+    <span class="n">gene_sets</span><span class="o">=</span><span class="p">[</span>
+        <span class="c1">#'KEGG_2021_Human',</span>
+        <span class="c1">#'MSigDB_Hallmark_2020',</span>
+        <span class="c1">#'Reactome_2022',</span>
+        <span class="c1">#'Tabula_Sapiens',</span>
+        <span class="s2">"WikiPathway_2023_Human"</span><span class="p">,</span>  <span class="c1">#'TF_Perturbations_Followed_by_Expression',</span>
+        <span class="c1">#'PPI_Hub_Proteins',</span>
+        <span class="c1">#'OMIM_Disease',</span>
+        <span class="c1">#'GO_Molecular_Function_2023'</span>
+    <span class="p">],</span>
+    <span class="n">organism</span><span class="o">=</span><span class="s2">"Human"</span><span class="p">,</span>  <span class="c1"># change accordingly</span>
+    <span class="c1"># description='pathway',</span>
+    <span class="c1"># cutoff=0.02, # test dataset, use lower value for real case</span>
+    <span class="n">background</span><span class="o">=</span><span class="n">grn</span><span class="o">.</span><span class="n">var</span><span class="o">.</span><span class="n">symbol</span><span class="o">.</span><span class="n">tolist</span><span class="p">(),</span>
 <span class="p">)</span>
 <span class="n">enr</span><span class="o">.</span><span class="n">res2d</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
-<span class="n">enr</span><span class="o">.</span><span class="n">res2d</span><span class="o">.</span><span class="n">Term</span> <span class="o">=</span> <span class="n">enr</span><span class="o">.</span><span class="n">res2d</span><span class="o">.</span><span class="n">Term</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">"("</span><span class="p">)</span><span class="o">.</span><span class="n">str</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">'R-HSA'</span><span class="p">)</span><span class="o">.</span><span class="n">str</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">' WP'</span><span class="p">)</span><span class="o">.</span><span class="n">str</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="p">[:</span><span class="mi">50</span><span class="p">]</span>
-<span class="n">ax</span> <span class="o">=</span> <span class="n">dotplot</span><span class="p">(</span><span class="n">enr</span><span class="o">.</span><span class="n">res2d</span><span class="o">.</span><span class="n">replace</span><span class="p">([</span><span class="n">np</span><span class="o">.</span><span class="n">inf</span><span class="p">,</span> <span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">inf</span><span class="p">],</span> <span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">dropna</span><span class="p">(),</span>
-             <span class="n">column</span><span class="o">=</span><span class="s2">"Adjusted P-value"</span><span class="p">,</span>
-             <span class="n">title</span><span class="o">=</span><span class="s1">'normal fibro PAGE4'</span><span class="p">,</span>
-             <span class="n">cmap</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">viridis</span><span class="p">,</span>
-             <span class="n">size</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="c1"># adjust dot size</span>
-             <span class="n">top_term</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span>
-             <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="mi">10</span><span class="p">),</span> <span class="n">cutoff</span><span class="o">=</span><span class="mf">0.25</span><span class="p">)</span>
+<span class="n">enr</span><span class="o">.</span><span class="n">res2d</span><span class="o">.</span><span class="n">Term</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="n">enr</span><span class="o">.</span><span class="n">res2d</span><span class="o">.</span><span class="n">Term</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">"("</span><span class="p">)</span>
+    <span class="o">.</span><span class="n">str</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">"R-HSA"</span><span class="p">)</span>
+    <span class="o">.</span><span class="n">str</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">" WP"</span><span class="p">)</span>
+    <span class="o">.</span><span class="n">str</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="o">.</span><span class="n">str</span><span class="p">[:</span><span class="mi">50</span><span class="p">]</span>
+<span class="p">)</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">dotplot</span><span class="p">(</span>
+    <span class="n">enr</span><span class="o">.</span><span class="n">res2d</span><span class="o">.</span><span class="n">replace</span><span class="p">([</span><span class="n">np</span><span class="o">.</span><span class="n">inf</span><span class="p">,</span> <span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">inf</span><span class="p">],</span> <span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">dropna</span><span class="p">(),</span>
+    <span class="n">column</span><span class="o">=</span><span class="s2">"Adjusted P-value"</span><span class="p">,</span>
+    <span class="n">title</span><span class="o">=</span><span class="s2">"normal fibro PAGE4"</span><span class="p">,</span>
+    <span class="n">cmap</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">viridis</span><span class="p">,</span>
+    <span class="n">size</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span>  <span class="c1"># adjust dot size</span>
+    <span class="n">top_term</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span>
+    <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">10</span><span class="p">),</span>
+    <span class="n">cutoff</span><span class="o">=</span><span class="mf">0.25</span><span class="p">,</span>
+<span class="p">)</span>
 </pre></div>
 <div class="clipboard-copy-txt" id="cell-47"># Assuming 'node_names' contains the list of gene names
-enr = gp.enrichr(gene_list=list(G.nodes),
-                 gene_sets=[
-                #'KEGG_2021_Human', 
-                 #'MSigDB_Hallmark_2020',
-                 #'Reactome_2022', 
-                 #'Tabula_Sapiens', 
-                 'WikiPathway_2023_Human', #'TF_Perturbations_Followed_by_Expression', 
-                 #'PPI_Hub_Proteins', 
-                 #'OMIM_Disease', 
-                 #'GO_Molecular_Function_2023'
-                 ],
-                 organism='Human', # change accordingly
-                 #description='pathway',
-                # cutoff=0.02, # test dataset, use lower value for real case  
-                 background=grn.var.symbol.tolist(),
+enr = gp.enrichr(
+    gene_list=list(G.nodes),
+    gene_sets=[
+        #'KEGG_2021_Human',
+        #'MSigDB_Hallmark_2020',
+        #'Reactome_2022',
+        #'Tabula_Sapiens',
+        "WikiPathway_2023_Human",  #'TF_Perturbations_Followed_by_Expression',
+        #'PPI_Hub_Proteins',
+        #'OMIM_Disease',
+        #'GO_Molecular_Function_2023'
+    ],
+    organism="Human",  # change accordingly
+    # description='pathway',
+    # cutoff=0.02, # test dataset, use lower value for real case
+    background=grn.var.symbol.tolist(),
 )
 enr.res2d.head(10)
-enr.res2d.Term = enr.res2d.Term.str.split("(").str[0].str.split('R-HSA').str[0].str.split(' WP').str[0].str[:50]
-ax = dotplot(enr.res2d.replace([np.inf, -np.inf], 0).dropna(),
-             column="Adjusted P-value",
-             title='normal fibro PAGE4',
-             cmap=plt.cm.viridis,
-             size=4, # adjust dot size
-             top_term=20,
-             figsize=(4,10), cutoff=0.25)</div>
+enr.res2d.Term = (
+    enr.res2d.Term.str.split("(")
+    .str[0]
+    .str.split("R-HSA")
+    .str[0]
+    .str.split(" WP")
+    .str[0]
+    .str[:50]
+)
+ax = dotplot(
+    enr.res2d.replace([np.inf, -np.inf], 0).dropna(),
+    column="Adjusted P-value",
+    title="normal fibro PAGE4",
+    cmap=plt.cm.viridis,
+    size=4,  # adjust dot size
+    top_term=20,
+    figsize=(4, 10),
+    cutoff=0.25,
+)</div>
 </div>
 </div>
 </div>
@@ -4375,7 +4595,7 @@ For example, when doing 'df[col].method(value, inplace=True)', try using 'df.met
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [139]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="CodeMirror cm-s-jupyter">
 <div class="zeroclipboard-container">
 <clipboard-copy ,="" aria-label="Copy to Clipboard" for="cell-48">
@@ -4389,20 +4609,26 @@ For example, when doing 'df[col].method(value, inplace=True)', try using 'df.met
 </clipboard-copy>
 </div>
 <div class="highlight-ipynb hl-python"><pre><span></span><span class="n">enr</span><span class="o">.</span><span class="n">res2d</span><span class="o">.</span><span class="n">Term</span> <span class="o">=</span> <span class="n">enr</span><span class="o">.</span><span class="n">res2d</span><span class="o">.</span><span class="n">Term</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">"("</span><span class="p">)</span><span class="o">.</span><span class="n">str</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-<span class="n">ax</span> <span class="o">=</span> <span class="n">dotplot</span><span class="p">(</span><span class="n">enr</span><span class="o">.</span><span class="n">res2d</span><span class="o">.</span><span class="n">replace</span><span class="p">([</span><span class="n">np</span><span class="o">.</span><span class="n">inf</span><span class="p">,</span> <span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">inf</span><span class="p">],</span> <span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">dropna</span><span class="p">(),</span>
-             <span class="n">column</span><span class="o">=</span><span class="s2">"Adjusted P-value"</span><span class="p">,</span>
-             <span class="n">title</span><span class="o">=</span><span class="s1">'normal fibro PAGE4'</span><span class="p">,</span>
-             <span class="n">cmap</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">viridis</span><span class="p">,</span>
-             <span class="n">size</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="c1"># adjust dot size</span>
-             <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">),</span> <span class="n">cutoff</span><span class="o">=</span><span class="mf">0.25</span><span class="p">)</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">dotplot</span><span class="p">(</span>
+    <span class="n">enr</span><span class="o">.</span><span class="n">res2d</span><span class="o">.</span><span class="n">replace</span><span class="p">([</span><span class="n">np</span><span class="o">.</span><span class="n">inf</span><span class="p">,</span> <span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">inf</span><span class="p">],</span> <span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">dropna</span><span class="p">(),</span>
+    <span class="n">column</span><span class="o">=</span><span class="s2">"Adjusted P-value"</span><span class="p">,</span>
+    <span class="n">title</span><span class="o">=</span><span class="s2">"normal fibro PAGE4"</span><span class="p">,</span>
+    <span class="n">cmap</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">viridis</span><span class="p">,</span>
+    <span class="n">size</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span>  <span class="c1"># adjust dot size</span>
+    <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span>
+    <span class="n">cutoff</span><span class="o">=</span><span class="mf">0.25</span><span class="p">,</span>
+<span class="p">)</span>
 </pre></div>
 <div class="clipboard-copy-txt" id="cell-48">enr.res2d.Term = enr.res2d.Term.str.split("(").str[0]
-ax = dotplot(enr.res2d.replace([np.inf, -np.inf], 0).dropna(),
-             column="Adjusted P-value",
-             title='normal fibro PAGE4',
-             cmap=plt.cm.viridis,
-             size=4, # adjust dot size
-             figsize=(4,5), cutoff=0.25)</div>
+ax = dotplot(
+    enr.res2d.replace([np.inf, -np.inf], 0).dropna(),
+    column="Adjusted P-value",
+    title="normal fibro PAGE4",
+    cmap=plt.cm.viridis,
+    size=4,  # adjust dot size
+    figsize=(4, 5),
+    cutoff=0.25,
+)</div>
 </div>
 </div>
 </div>
@@ -4493,7 +4719,7 @@ For example, when doing 'df[col].method(value, inplace=True)', try using 'df.met
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [98]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="CodeMirror cm-s-jupyter">
 <div class="zeroclipboard-container">
 <clipboard-copy ,="" aria-label="Copy to Clipboard" for="cell-50">
@@ -4509,13 +4735,13 @@ For example, when doing 'df[col].method(value, inplace=True)', try using 'df.met
 <div class="highlight-ipynb hl-python"><pre><span></span><span class="n">pnet</span> <span class="o">=</span> <span class="n">pnx</span><span class="o">.</span><span class="n">Network</span><span class="p">(</span><span class="n">notebook</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">cdn_resources</span><span class="o">=</span><span class="s2">"remote"</span><span class="p">,</span> <span class="n">directed</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="n">pnet</span><span class="o">.</span><span class="n">from_nx</span><span class="p">(</span><span class="n">G</span><span class="p">)</span>
 <span class="n">first_node</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">G</span><span class="o">.</span><span class="n">nodes</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
-<span class="n">pnet</span><span class="o">.</span><span class="n">get_node</span><span class="p">(</span><span class="n">first_node</span><span class="p">)[</span><span class="s1">'color'</span><span class="p">]</span> <span class="o">=</span> <span class="s2">"red"</span>
+<span class="n">pnet</span><span class="o">.</span><span class="n">get_node</span><span class="p">(</span><span class="n">first_node</span><span class="p">)[</span><span class="s2">"color"</span><span class="p">]</span> <span class="o">=</span> <span class="s2">"red"</span>
 <span class="n">pnet</span><span class="o">.</span><span class="n">save_graph</span><span class="p">(</span><span class="s2">"../figures/pyvis/grn_PAGE4.html"</span><span class="p">)</span>
 </pre></div>
 <div class="clipboard-copy-txt" id="cell-50">pnet = pnx.Network(notebook=True, cdn_resources="remote", directed=True)
 pnet.from_nx(G)
 first_node = list(G.nodes)[-1]
-pnet.get_node(first_node)['color'] = "red"
+pnet.get_node(first_node)["color"] = "red"
 pnet.save_graph("../figures/pyvis/grn_PAGE4.html")</div>
 </div>
 </div>
@@ -4528,7 +4754,7 @@ pnet.save_graph("../figures/pyvis/grn_PAGE4.html")</div>
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [24]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="CodeMirror cm-s-jupyter">
 <div class="zeroclipboard-container">
 <clipboard-copy ,="" aria-label="Copy to Clipboard" for="cell-51">
@@ -4542,42 +4768,46 @@ pnet.save_graph("../figures/pyvis/grn_PAGE4.html")</div>
 </clipboard-copy>
 </div>
 <div class="highlight-ipynb hl-python"><pre><span></span><span class="c1"># Assuming 'node_names' contains the list of gene names</span>
-<span class="n">enr</span> <span class="o">=</span> <span class="n">gp</span><span class="o">.</span><span class="n">enrichr</span><span class="p">(</span><span class="n">gene_list</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="n">G</span><span class="o">.</span><span class="n">nodes</span><span class="p">),</span>
-                 <span class="n">gene_sets</span><span class="o">=</span><span class="p">[</span><span class="s1">'KEGG_2021_Human'</span><span class="p">,</span> 
-                 <span class="c1">#'MSigDB_Hallmark_2020',</span>
-                 <span class="c1">#'Reactome_2022',</span>
-                 <span class="c1">#'Tabula_Sapiens',</span>
-                 <span class="c1">#'WikiPathway_2023_Human',</span>
-                 <span class="c1"># 'TF_Perturbations_Followed_by_Expression', </span>
-                 <span class="c1"># 'Reactome', </span>
-                 <span class="c1">#'PPI_Hub_Proteins', </span>
-                 <span class="c1">#'OMIM_Disease',</span>
-                 <span class="s1">'GO_Molecular_Function_2023'</span>
-                 <span class="p">],</span>
-                 <span class="n">organism</span><span class="o">=</span><span class="s1">'Human'</span><span class="p">,</span> <span class="c1"># change accordingly</span>
-                 <span class="c1">#description='pathway',</span>
-                <span class="c1"># cutoff=0.02, # test dataset, use lower value for real case  </span>
-                 <span class="n">background</span><span class="o">=</span><span class="n">grn</span><span class="o">.</span><span class="n">var</span><span class="o">.</span><span class="n">symbol</span><span class="o">.</span><span class="n">tolist</span><span class="p">(),</span>
+<span class="n">enr</span> <span class="o">=</span> <span class="n">gp</span><span class="o">.</span><span class="n">enrichr</span><span class="p">(</span>
+    <span class="n">gene_list</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="n">G</span><span class="o">.</span><span class="n">nodes</span><span class="p">),</span>
+    <span class="n">gene_sets</span><span class="o">=</span><span class="p">[</span>
+        <span class="s2">"KEGG_2021_Human"</span><span class="p">,</span>
+        <span class="c1">#'MSigDB_Hallmark_2020',</span>
+        <span class="c1">#'Reactome_2022',</span>
+        <span class="c1">#'Tabula_Sapiens',</span>
+        <span class="c1">#'WikiPathway_2023_Human',</span>
+        <span class="c1"># 'TF_Perturbations_Followed_by_Expression',</span>
+        <span class="c1"># 'Reactome',</span>
+        <span class="c1">#'PPI_Hub_Proteins',</span>
+        <span class="c1">#'OMIM_Disease',</span>
+        <span class="s2">"GO_Molecular_Function_2023"</span><span class="p">,</span>
+    <span class="p">],</span>
+    <span class="n">organism</span><span class="o">=</span><span class="s2">"Human"</span><span class="p">,</span>  <span class="c1"># change accordingly</span>
+    <span class="c1"># description='pathway',</span>
+    <span class="c1"># cutoff=0.02, # test dataset, use lower value for real case</span>
+    <span class="n">background</span><span class="o">=</span><span class="n">grn</span><span class="o">.</span><span class="n">var</span><span class="o">.</span><span class="n">symbol</span><span class="o">.</span><span class="n">tolist</span><span class="p">(),</span>
 <span class="p">)</span>
 <span class="n">enr</span><span class="o">.</span><span class="n">res2d</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span>
 </pre></div>
 <div class="clipboard-copy-txt" id="cell-51"># Assuming 'node_names' contains the list of gene names
-enr = gp.enrichr(gene_list=list(G.nodes),
-                 gene_sets=['KEGG_2021_Human', 
-                 #'MSigDB_Hallmark_2020',
-                 #'Reactome_2022',
-                 #'Tabula_Sapiens',
-                 #'WikiPathway_2023_Human',
-                 # 'TF_Perturbations_Followed_by_Expression', 
-                 # 'Reactome', 
-                 #'PPI_Hub_Proteins', 
-                 #'OMIM_Disease',
-                 'GO_Molecular_Function_2023'
-                 ],
-                 organism='Human', # change accordingly
-                 #description='pathway',
-                # cutoff=0.02, # test dataset, use lower value for real case  
-                 background=grn.var.symbol.tolist(),
+enr = gp.enrichr(
+    gene_list=list(G.nodes),
+    gene_sets=[
+        "KEGG_2021_Human",
+        #'MSigDB_Hallmark_2020',
+        #'Reactome_2022',
+        #'Tabula_Sapiens',
+        #'WikiPathway_2023_Human',
+        # 'TF_Perturbations_Followed_by_Expression',
+        # 'Reactome',
+        #'PPI_Hub_Proteins',
+        #'OMIM_Disease',
+        "GO_Molecular_Function_2023",
+    ],
+    organism="Human",  # change accordingly
+    # description='pathway',
+    # cutoff=0.02, # test dataset, use lower value for real case
+    background=grn.var.symbol.tolist(),
 )
 enr.res2d.head(20)</div>
 </div>
@@ -4589,7 +4819,7 @@ enr.res2d.head(20)</div>
 </div>
 <div class="jp-OutputArea jp-Cell-outputArea">
 <div class="jp-OutputArea-child jp-OutputArea-executeResult">
-<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[24]:</div>
+<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[ ]:</div>
 <div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/html" tabindex="0">
 <div>
 <style scoped="">
@@ -4875,7 +5105,7 @@ enr.res2d.head(20)</div>
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [30]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="CodeMirror cm-s-jupyter">
 <div class="zeroclipboard-container">
 <clipboard-copy ,="" aria-label="Copy to Clipboard" for="cell-52">
@@ -4889,20 +5119,26 @@ enr.res2d.head(20)</div>
 </clipboard-copy>
 </div>
 <div class="highlight-ipynb hl-python"><pre><span></span><span class="n">enr</span><span class="o">.</span><span class="n">res2d</span><span class="o">.</span><span class="n">Term</span> <span class="o">=</span> <span class="n">enr</span><span class="o">.</span><span class="n">res2d</span><span class="o">.</span><span class="n">Term</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">"("</span><span class="p">)</span><span class="o">.</span><span class="n">str</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-<span class="n">ax</span> <span class="o">=</span> <span class="n">dotplot</span><span class="p">(</span><span class="n">enr</span><span class="o">.</span><span class="n">res2d</span><span class="o">.</span><span class="n">replace</span><span class="p">([</span><span class="n">np</span><span class="o">.</span><span class="n">inf</span><span class="p">,</span> <span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">inf</span><span class="p">],</span> <span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">dropna</span><span class="p">(),</span>
-             <span class="n">column</span><span class="o">=</span><span class="s2">"Adjusted P-value"</span><span class="p">,</span>
-             <span class="n">title</span><span class="o">=</span><span class="s1">'normal fibro PAGE4'</span><span class="p">,</span>
-             <span class="n">cmap</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">viridis</span><span class="p">,</span>
-             <span class="n">size</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="c1"># adjust dot size</span>
-             <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">),</span> <span class="n">cutoff</span><span class="o">=</span><span class="mf">0.25</span><span class="p">)</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">dotplot</span><span class="p">(</span>
+    <span class="n">enr</span><span class="o">.</span><span class="n">res2d</span><span class="o">.</span><span class="n">replace</span><span class="p">([</span><span class="n">np</span><span class="o">.</span><span class="n">inf</span><span class="p">,</span> <span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">inf</span><span class="p">],</span> <span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">dropna</span><span class="p">(),</span>
+    <span class="n">column</span><span class="o">=</span><span class="s2">"Adjusted P-value"</span><span class="p">,</span>
+    <span class="n">title</span><span class="o">=</span><span class="s2">"normal fibro PAGE4"</span><span class="p">,</span>
+    <span class="n">cmap</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">viridis</span><span class="p">,</span>
+    <span class="n">size</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span>  <span class="c1"># adjust dot size</span>
+    <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span>
+    <span class="n">cutoff</span><span class="o">=</span><span class="mf">0.25</span><span class="p">,</span>
+<span class="p">)</span>
 </pre></div>
 <div class="clipboard-copy-txt" id="cell-52">enr.res2d.Term = enr.res2d.Term.str.split("(").str[0]
-ax = dotplot(enr.res2d.replace([np.inf, -np.inf], 0).dropna(),
-             column="Adjusted P-value",
-             title='normal fibro PAGE4',
-             cmap=plt.cm.viridis,
-             size=4, # adjust dot size
-             figsize=(4,5), cutoff=0.25)</div>
+ax = dotplot(
+    enr.res2d.replace([np.inf, -np.inf], 0).dropna(),
+    column="Adjusted P-value",
+    title="normal fibro PAGE4",
+    cmap=plt.cm.viridis,
+    size=4,  # adjust dot size
+    figsize=(4, 5),
+    cutoff=0.25,
+)</div>
 </div>
 </div>
 </div>
@@ -4966,12 +5202,14 @@ For example, when doing 'df[col].method(value, inplace=True)', try using 'df.met
 </clipboard-copy>
 </div>
 <div class="highlight-ipynb hl-python"><pre><span></span><span class="n">grn_normal</span> <span class="o">=</span> <span class="n">grn_inferer</span><span class="p">(</span><span class="n">layer</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">nlayers</span><span class="p">))[:],</span> <span class="n">cell_type</span><span class="o">=</span><span class="s2">"naive B cell"</span><span class="p">)</span>
-<span class="n">grn_normal</span><span class="p">,</span> <span class="n">m</span><span class="p">,</span> <span class="n">omni_cls</span> <span class="o">=</span> <span class="n">train_classifier</span><span class="p">(</span><span class="n">grn_normal</span><span class="p">,</span> <span class="n">C</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">train_size</span><span class="o">=</span><span class="mf">0.9</span><span class="p">,</span> <span class="n">class_weight</span><span class="o">=</span><span class="p">{</span>
-                                    <span class="mi">1</span><span class="p">:</span> <span class="mi">200</span><span class="p">,</span> <span class="mi">0</span><span class="p">:</span> <span class="mi">1</span><span class="p">},</span> <span class="n">shuffle</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">grn_normal</span><span class="p">,</span> <span class="n">m</span><span class="p">,</span> <span class="n">omni_cls</span> <span class="o">=</span> <span class="n">train_classifier</span><span class="p">(</span>
+    <span class="n">grn_normal</span><span class="p">,</span> <span class="n">C</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">train_size</span><span class="o">=</span><span class="mf">0.9</span><span class="p">,</span> <span class="n">class_weight</span><span class="o">=</span><span class="p">{</span><span class="mi">1</span><span class="p">:</span> <span class="mi">200</span><span class="p">,</span> <span class="mi">0</span><span class="p">:</span> <span class="mi">1</span><span class="p">},</span> <span class="n">shuffle</span><span class="o">=</span><span class="kc">True</span>
+<span class="p">)</span>
 </pre></div>
 <div class="clipboard-copy-txt" id="cell-53">grn_normal = grn_inferer(layer=list(range(model.nlayers))[:], cell_type="naive B cell")
-grn_normal, m, omni_cls = train_classifier(grn_normal, C=0.5, train_size=0.9, class_weight={
-                                    1: 200, 0: 1}, shuffle=True)</div>
+grn_normal, m, omni_cls = train_classifier(
+    grn_normal, C=0.5, train_size=0.9, class_weight={1: 200, 0: 1}, shuffle=True
+)</div>
 </div>
 </div>
 </div>
@@ -5037,13 +5275,13 @@ metrics {'used_heads': 25, 'precision': 0.0, 'random_precision': 0.0006433550820
 </div>
 </clipboard-copy>
 </div>
-<div class="highlight-ipynb hl-python"><pre><span></span><span class="c1"># highlight differential links on genes that are expressed in both </span>
-<span class="n">grn_normal</span><span class="o">.</span><span class="n">varp</span><span class="p">[</span><span class="s1">'all'</span><span class="p">]</span> <span class="o">=</span> <span class="n">grn_normal</span><span class="o">.</span><span class="n">varp</span><span class="p">[</span><span class="s1">'GRN'</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
-<span class="n">grn_normal</span><span class="o">.</span><span class="n">varp</span><span class="p">[</span><span class="s1">'GRN'</span><span class="p">]</span> <span class="o">=</span> <span class="n">grn_normal</span><span class="o">.</span><span class="n">varp</span><span class="p">[</span><span class="s1">'classified'</span><span class="p">]</span>
+<div class="highlight-ipynb hl-python"><pre><span></span><span class="c1"># highlight differential links on genes that are expressed in both</span>
+<span class="n">grn_normal</span><span class="o">.</span><span class="n">varp</span><span class="p">[</span><span class="s2">"all"</span><span class="p">]</span> <span class="o">=</span> <span class="n">grn_normal</span><span class="o">.</span><span class="n">varp</span><span class="p">[</span><span class="s2">"GRN"</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="n">grn_normal</span><span class="o">.</span><span class="n">varp</span><span class="p">[</span><span class="s2">"GRN"</span><span class="p">]</span> <span class="o">=</span> <span class="n">grn_normal</span><span class="o">.</span><span class="n">varp</span><span class="p">[</span><span class="s2">"classified"</span><span class="p">]</span>
 </pre></div>
-<div class="clipboard-copy-txt" id="cell-54"># highlight differential links on genes that are expressed in both 
-grn_normal.varp['all'] = grn_normal.varp['GRN'].copy()
-grn_normal.varp['GRN'] = grn_normal.varp['classified']</div>
+<div class="clipboard-copy-txt" id="cell-54"># highlight differential links on genes that are expressed in both
+grn_normal.varp["all"] = grn_normal.varp["GRN"].copy()
+grn_normal.varp["GRN"] = grn_normal.varp["classified"]</div>
 </div>
 </div>
 </div>
