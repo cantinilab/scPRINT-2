@@ -68,6 +68,10 @@
                 <li class="toctree-l1"><a class="reference internal" href="../usage/">usage example</a>
                 </li>
               </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../umap/nice_umap_scprint2.html">350M subset umap</a>
+                </li>
+              </ul>
               <p class="caption"><span class="caption-text">example notebooks</span></p>
               <ul>
                   <li class="toctree-l1"><a class="reference internal" href="../notebooks/cancer_usecase/">scPRINT use case on BPH</a>
@@ -87,10 +91,6 @@
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../utils/">utils</a>
                   </li>
-              </ul>
-              <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../umap/nice_umap_scprint2.html">350M subset umap</a>
-                </li>
               </ul>
       </div>
     </div>
@@ -117,23 +117,28 @@
               
                 <h1 id="structure">structure</h1>
 <h2 id="gene-embedders">gene embedders</h2>
-<p>Function to get embeddings from a set of genes, given their ensembl ids. For now use 2 different models:</p>
+<p>Function to get embeddings from a set of genes, given their ensembl ids. For now
+use 2 different models:</p>
 <ul>
 <li><code>RNABert</code>: for non coding genes</li>
-<li><code>ESM2</code>: for protein coding genes</li>
+<li><code>ESM3</code>: for protein coding genes</li>
 </ul>
-<p>given ids, a fasta file, will use the models to compute an embedding of each gene.</p>
-<p>This could be potentially applied to genes with mutations and from different species.</p>
+<p>given ids, a fasta file, will use the models to compute an embedding of each
+gene.</p>
+<p>This could be potentially applied to genes with mutations and from different
+species.</p>
 <h2 id="data_loaders">data_loaders</h2>
-<p>From scDataloader. (see more in the available readmes and website https://jkobject.com/scDataLoader)</p>
-<p>For now can work with either one to many AnnData's or a laminDB Collection of AnnDatas</p>
+<p>From scDataloader. (see more in the available readmes and website
+https://jkobject.com/scDataLoader)</p>
+<p>For now can work with either one to many AnnData's or a laminDB Collection of
+AnnDatas</p>
 <p>allows you to preprocess your anndatas too.</p>
 <p>They can be stored locally or remotely</p>
-<p>stores them in a <code>Dataset</code> class.
-Creates the DataLoaders from a <code>Datamodule</code> Class.
-Collates the results using a <code>Collator</code> function.</p>
+<p>stores them in a <code>Dataset</code> class. Creates the DataLoaders from a <code>Datamodule</code>
+Class. Collates the results using a <code>Collator</code> function.</p>
 <h2 id="model">model</h2>
-<p>Extends from lightning data module to implement all the necessary functions to do:</p>
+<p>Extends from lightning data module to implement all the necessary functions to
+do:</p>
 <ul>
 <li>training</li>
 <li>validation</li>
@@ -145,19 +150,38 @@ Collates the results using a <code>Collator</code> function.</p>
 <li>encoder</li>
 <li>transformer</li>
 <li>decoder</li>
+<li>the fsq module</li>
 </ul>
 <h2 id="trainer-cli">trainer &amp; cli</h2>
 <p>the model uses lightning's training toolkit and CLI tools.</p>
 <p>to use CLI, just call <code>scprint ...</code> (will call the <code>__main__.py</code> function).
-Additional, training-specific informations are passed to the model using the trainer.py function.
-specific training schemes are available under the <code>config</code> folder as <code>yaml</code> files.
-Moreover the model can be trained on multiple compute types. SLURM scripts are available under the <code>slurm</code> folder.</p>
+Additional, training-specific informations are passed to the model using the
+trainer.py function. specific training schemes are available under the <code>config</code>
+folder as <code>yaml</code> files. Moreover the model can be trained on multiple compute
+types. SLURM scripts are available under the <code>slurm</code> folder.</p>
 <h2 id="tasks">tasks</h2>
 <p>Implement different tasks that a pretrained model would perform. for now:</p>
 <ul>
-<li>GRN prediction: given a single cell dataset and a group (cell type, cluster, ...) will output a <code>GRnnData</code> completed with a predicted GRN from the attention of the model.</li>
-<li>denoising: from a single cell dataset, will modify the count matrices to predict what it would have looked like if it had been sequenced deeper, according to the model.</li>
-<li>embedding: from a single cell dataset, will create embeddings (low dimensional representations) of each cells, as well as prediction of the cell labels the model has been trained on (cell type, disease, ethnicity, sex...). It will also output a umap and predicted expression from the zinb, post bottleneck (similar to a VAE decoder prediction)</li>
+<li>GRN prediction: given a single cell dataset and a group (cell type, cluster,
+  ...) will output a <code>GRnnData</code> completed with a predicted GRN from the
+  attention of the model.</li>
+<li>denoising: from a single cell dataset, will modify the count matrices to
+  predict what it would have looked like if it had been sequenced deeper,
+  according to the model.</li>
+<li>embedding: from a single cell dataset, will create embeddings (low dimensional
+  representations) of each cells, as well as prediction of the cell labels the
+  model has been trained on (cell type, disease, ethnicity, sex...). It will
+  also output a umap and predicted expression from the zinb, post bottleneck
+  (similar to a VAE decoder prediction)</li>
+<li>generation: from a set of conditions (cell type, disease state, ethnicity,
+  sex...) will generate new cell profile matching these conditions.</li>
+<li>imputation: from a single cell dataset with missing values (genes), will
+  impute the missing genes according to the model.</li>
+<li>finetuning: from a pretrained model and a new single cell dataset, will
+  finetune the model to better fit the new dataset and potentially correct for
+  batch effects if provided with batch labels.</li>
+<li>gene embedding: from a list of genes, and an expression profile will output
+  embeddings for gene.</li>
 </ul>
               
             </div>

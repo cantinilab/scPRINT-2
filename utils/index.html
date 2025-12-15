@@ -56,6 +56,10 @@
                 <li class="toctree-l1"><a class="reference internal" href="../usage/">usage example</a>
                 </li>
               </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../umap/nice_umap_scprint2.html">350M subset umap</a>
+                </li>
+              </ul>
               <p class="caption"><span class="caption-text">example notebooks</span></p>
               <ul>
                   <li class="toctree-l1"><a class="reference internal" href="../notebooks/cancer_usecase/">scPRINT use case on BPH</a>
@@ -137,12 +141,20 @@
     </li>
         </ul>
     </li>
+    <li class="toctree-l2"><a class="reference internal" href="#scprint.utils.graph_refinement">graph_refinement</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#scprint.utils.graph_refinement.build_knn_graph">build_knn_graph</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#scprint.utils.graph_refinement.graph_regularized_logit_refinement">graph_regularized_logit_refinement</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#scprint.utils.graph_refinement.test_graph_refinement">test_graph_refinement</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#scprint.utils.graph_refinement.zero_shot_annotation_with_refinement">zero_shot_annotation_with_refinement</a>
+    </li>
+        </ul>
+    </li>
     </ul>
                   </li>
-              </ul>
-              <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../umap/nice_umap_scprint2.html">350M subset umap</a>
-                </li>
               </ul>
       </div>
     </div>
@@ -4502,12 +4514,888 @@ showlabels: bool whether or not to show a text above each datapoint with its lab
     </div>
 
 </div>
+
+<div class="doc doc-object doc-module">
+
+
+
+<h2 id="scprint.utils.graph_refinement" class="doc doc-heading">
+            <code>scprint.utils.graph_refinement</code>
+
+
+</h2>
+
+    <div class="doc doc-contents first">
+
+        <p>Graph-regularized logit refinement implementation.</p>
+<p>This module implements the GRIT (Graph-Regularized logIT) refinement method
+for improving cell type predictions using graph structure.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+<p><span class="doc-section-title">Functions:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+            <tr class="doc-section-item">
+              <td><code><a class="autorefs autorefs-internal" title="build_knn_graph (scprint.utils.graph_refinement.build_knn_graph)" href="#scprint.utils.graph_refinement.build_knn_graph">build_knn_graph</a></code></td>
+              <td>
+                <div class="doc-md-description">
+                  <p>Build a k-nearest neighbor graph and store it in adata.obsp.</p>
+                </div>
+              </td>
+            </tr>
+            <tr class="doc-section-item">
+              <td><code><a class="autorefs autorefs-internal" title="graph_regularized_logit_refinement (scprint.utils.graph_refinement.graph_regularized_logit_refinement)" href="#scprint.utils.graph_refinement.graph_regularized_logit_refinement">graph_regularized_logit_refinement</a></code></td>
+              <td>
+                <div class="doc-md-description">
+                  <p>Refine logits using graph-regularized optimization.</p>
+                </div>
+              </td>
+            </tr>
+            <tr class="doc-section-item">
+              <td><code><a class="autorefs autorefs-internal" title="test_graph_refinement (scprint.utils.graph_refinement.test_graph_refinement)" href="#scprint.utils.graph_refinement.test_graph_refinement">test_graph_refinement</a></code></td>
+              <td>
+                <div class="doc-md-description">
+                  <p>Test function for graph refinement.</p>
+                </div>
+              </td>
+            </tr>
+            <tr class="doc-section-item">
+              <td><code><a class="autorefs autorefs-internal" title="zero_shot_annotation_with_refinement (scprint.utils.graph_refinement.zero_shot_annotation_with_refinement)" href="#scprint.utils.graph_refinement.zero_shot_annotation_with_refinement">zero_shot_annotation_with_refinement</a></code></td>
+              <td>
+                <div class="doc-md-description">
+                  <p>Perform zero-shot cell type annotation with graph refinement.</p>
+                </div>
+              </td>
+            </tr>
+      </tbody>
+    </table>
+
+
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="scprint.utils.graph_refinement.build_knn_graph" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">build_knn_graph</span></code>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Build a k-nearest neighbor graph and store it in adata.obsp.</p>
+
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Parameters:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+              <b><code>adata</code></b>
+                  (<code><span title="anndata.AnnData">AnnData</span></code>)
+              –
+              <div class="doc-md-description">
+                <p>AnnData object</p>
+              </div>
+            </li>
+            <li>
+              <b><code>representation_key</code></b>
+                  (<code><span title="str">str</span></code>, default:
+                      <code>&#39;X_pca&#39;</code>
+)
+              –
+              <div class="doc-md-description">
+                <p>Key in adata.obsm for the representation to use</p>
+              </div>
+            </li>
+            <li>
+              <b><code>n_neighbors</code></b>
+                  (<code><span title="int">int</span></code>, default:
+                      <code>15</code>
+)
+              –
+              <div class="doc-md-description">
+                <p>Number of nearest neighbors</p>
+              </div>
+            </li>
+            <li>
+              <b><code>metric</code></b>
+                  (<code><span title="str">str</span></code>, default:
+                      <code>&#39;euclidean&#39;</code>
+)
+              –
+              <div class="doc-md-description">
+                <p>Distance metric for nearest neighbor search</p>
+              </div>
+            </li>
+            <li>
+              <b><code>store_key</code></b>
+                  (<code><span title="str">str</span></code>)
+              –
+              <div class="doc-md-description">
+                <p>Key to store connectivity matrix in adata.obsp</p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Returns:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+                  <code><span title="anndata.AnnData">AnnData</span></code>
+              –
+              <div class="doc-md-description">
+                <p>anndata.AnnData: Updated AnnData object with connectivity matrix</p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+            <details class="mkdocstrings-source">
+              <summary>Source code in <code>scprint/utils/graph_refinement.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 98</span>
+<span class="normal"> 99</span>
+<span class="normal">100</span>
+<span class="normal">101</span>
+<span class="normal">102</span>
+<span class="normal">103</span>
+<span class="normal">104</span>
+<span class="normal">105</span>
+<span class="normal">106</span>
+<span class="normal">107</span>
+<span class="normal">108</span>
+<span class="normal">109</span>
+<span class="normal">110</span>
+<span class="normal">111</span>
+<span class="normal">112</span>
+<span class="normal">113</span>
+<span class="normal">114</span>
+<span class="normal">115</span>
+<span class="normal">116</span>
+<span class="normal">117</span>
+<span class="normal">118</span>
+<span class="normal">119</span>
+<span class="normal">120</span>
+<span class="normal">121</span>
+<span class="normal">122</span>
+<span class="normal">123</span>
+<span class="normal">124</span>
+<span class="normal">125</span>
+<span class="normal">126</span>
+<span class="normal">127</span>
+<span class="normal">128</span>
+<span class="normal">129</span>
+<span class="normal">130</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">build_knn_graph</span><span class="p">(</span>
+    <span class="n">adata</span><span class="p">:</span> <span class="n">anndata</span><span class="o">.</span><span class="n">AnnData</span><span class="p">,</span>
+    <span class="n">representation_key</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;X_pca&quot;</span><span class="p">,</span>
+    <span class="n">n_neighbors</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">15</span><span class="p">,</span>
+    <span class="n">metric</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;euclidean&quot;</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">anndata</span><span class="o">.</span><span class="n">AnnData</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Build a k-nearest neighbor graph and store it in adata.obsp.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        adata (anndata.AnnData): AnnData object</span>
+<span class="sd">        representation_key (str): Key in adata.obsm for the representation to use</span>
+<span class="sd">        n_neighbors (int): Number of nearest neighbors</span>
+<span class="sd">        metric (str): Distance metric for nearest neighbor search</span>
+<span class="sd">        store_key (str): Key to store connectivity matrix in adata.obsp</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        anndata.AnnData: Updated AnnData object with connectivity matrix</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="kn">import</span><span class="w"> </span><span class="nn">scanpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">sc</span>
+    <span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ImportError</span><span class="p">(</span><span class="s2">&quot;scanpy is required for building k-NN graphs&quot;</span><span class="p">)</span>
+
+    <span class="c1"># Compute neighbors</span>
+    <span class="n">sc</span><span class="o">.</span><span class="n">pp</span><span class="o">.</span><span class="n">neighbors</span><span class="p">(</span>
+        <span class="n">adata</span><span class="p">,</span>
+        <span class="n">use_rep</span><span class="o">=</span><span class="n">representation_key</span><span class="p">,</span>
+        <span class="n">n_neighbors</span><span class="o">=</span><span class="n">n_neighbors</span><span class="p">,</span>
+        <span class="n">metric</span><span class="o">=</span><span class="n">metric</span><span class="p">,</span>
+    <span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">adata</span>
+</code></pre></div></td></tr></table></div>
+            </details>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="scprint.utils.graph_refinement.graph_regularized_logit_refinement" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">graph_regularized_logit_refinement</span></code>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Refine logits using graph-regularized optimization.
+Optimized version that solves for all classes simultaneously.</p>
+<p>This function implements the optimization problem:
+P̃ = arg min_P ||P - P₀||²_F + λ Tr(P^T L P)</p>
+<p>where P₀ are the initial logits, L is the graph Laplacian, and λ controls
+the strength of regularization.</p>
+<p>The solution has a closed form: P̃ = (I + λL)⁻¹P₀</p>
+
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Parameters:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+              <b><code>pred</code></b>
+                  (<code><span title="numpy.ndarray">ndarray</span></code>)
+              –
+              <div class="doc-md-description">
+                <p>Initial logits of shape (n_cells, n_classes)</p>
+              </div>
+            </li>
+            <li>
+              <b><code>adata</code></b>
+                  (<code><span title="anndata.AnnData">AnnData</span></code>)
+              –
+              <div class="doc-md-description">
+                <p>AnnData object containing graph connectivity</p>
+              </div>
+            </li>
+            <li>
+              <b><code>connectivity_key</code></b>
+                  (<code><span title="str">str</span></code>, default:
+                      <code>&#39;connectivities&#39;</code>
+)
+              –
+              <div class="doc-md-description">
+                <p>Key in adata.obsp for connectivity matrix</p>
+              </div>
+            </li>
+            <li>
+              <b><code>lambda_reg</code></b>
+                  (<code><span title="float">float</span></code>, default:
+                      <code>0.1</code>
+)
+              –
+              <div class="doc-md-description">
+                <p>Regularization strength λ &gt; 0</p>
+              </div>
+            </li>
+            <li>
+              <b><code>use_laplacian</code></b>
+                  (<code><span title="bool">bool</span></code>, default:
+                      <code>True</code>
+)
+              –
+              <div class="doc-md-description">
+                <p>If True, use graph Laplacian; if False, use adjacency matrix</p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Returns:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+                  <code><span title="numpy.ndarray">ndarray</span></code>
+              –
+              <div class="doc-md-description">
+                <p>np.ndarray: Refined logits of same shape as input pred</p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Raises:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+                  <code><span title="ValueError">ValueError</span></code>
+              –
+              <div class="doc-md-description">
+                <p>If connectivity matrix is not found or dimensions don't match</p>
+              </div>
+            </li>
+            <li>
+                  <code><span title="KeyError">KeyError</span></code>
+              –
+              <div class="doc-md-description">
+                <p>If connectivity_key is not in adata.obsp</p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+            <details class="mkdocstrings-source">
+              <summary>Source code in <code>scprint/utils/graph_refinement.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span>
+<span class="normal">26</span>
+<span class="normal">27</span>
+<span class="normal">28</span>
+<span class="normal">29</span>
+<span class="normal">30</span>
+<span class="normal">31</span>
+<span class="normal">32</span>
+<span class="normal">33</span>
+<span class="normal">34</span>
+<span class="normal">35</span>
+<span class="normal">36</span>
+<span class="normal">37</span>
+<span class="normal">38</span>
+<span class="normal">39</span>
+<span class="normal">40</span>
+<span class="normal">41</span>
+<span class="normal">42</span>
+<span class="normal">43</span>
+<span class="normal">44</span>
+<span class="normal">45</span>
+<span class="normal">46</span>
+<span class="normal">47</span>
+<span class="normal">48</span>
+<span class="normal">49</span>
+<span class="normal">50</span>
+<span class="normal">51</span>
+<span class="normal">52</span>
+<span class="normal">53</span>
+<span class="normal">54</span>
+<span class="normal">55</span>
+<span class="normal">56</span>
+<span class="normal">57</span>
+<span class="normal">58</span>
+<span class="normal">59</span>
+<span class="normal">60</span>
+<span class="normal">61</span>
+<span class="normal">62</span>
+<span class="normal">63</span>
+<span class="normal">64</span>
+<span class="normal">65</span>
+<span class="normal">66</span>
+<span class="normal">67</span>
+<span class="normal">68</span>
+<span class="normal">69</span>
+<span class="normal">70</span>
+<span class="normal">71</span>
+<span class="normal">72</span>
+<span class="normal">73</span>
+<span class="normal">74</span>
+<span class="normal">75</span>
+<span class="normal">76</span>
+<span class="normal">77</span>
+<span class="normal">78</span>
+<span class="normal">79</span>
+<span class="normal">80</span>
+<span class="normal">81</span>
+<span class="normal">82</span>
+<span class="normal">83</span>
+<span class="normal">84</span>
+<span class="normal">85</span>
+<span class="normal">86</span>
+<span class="normal">87</span>
+<span class="normal">88</span>
+<span class="normal">89</span>
+<span class="normal">90</span>
+<span class="normal">91</span>
+<span class="normal">92</span>
+<span class="normal">93</span>
+<span class="normal">94</span>
+<span class="normal">95</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">graph_regularized_logit_refinement</span><span class="p">(</span>
+    <span class="n">pred</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span>
+    <span class="n">adata</span><span class="p">:</span> <span class="n">anndata</span><span class="o">.</span><span class="n">AnnData</span><span class="p">,</span>
+    <span class="n">connectivity_key</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;connectivities&quot;</span><span class="p">,</span>
+    <span class="n">lambda_reg</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.1</span><span class="p">,</span>
+    <span class="n">use_laplacian</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Refine logits using graph-regularized optimization.</span>
+<span class="sd">    Optimized version that solves for all classes simultaneously.</span>
+
+<span class="sd">    This function implements the optimization problem:</span>
+<span class="sd">    P̃ = arg min_P ||P - P₀||²_F + λ Tr(P^T L P)</span>
+
+<span class="sd">    where P₀ are the initial logits, L is the graph Laplacian, and λ controls</span>
+<span class="sd">    the strength of regularization.</span>
+
+<span class="sd">    The solution has a closed form: P̃ = (I + λL)⁻¹P₀</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        pred (np.ndarray): Initial logits of shape (n_cells, n_classes)</span>
+<span class="sd">        adata (anndata.AnnData): AnnData object containing graph connectivity</span>
+<span class="sd">        connectivity_key (str): Key in adata.obsp for connectivity matrix</span>
+<span class="sd">        lambda_reg (float): Regularization strength λ &gt; 0</span>
+<span class="sd">        use_laplacian (bool): If True, use graph Laplacian; if False, use adjacency matrix</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        np.ndarray: Refined logits of same shape as input pred</span>
+
+<span class="sd">    Raises:</span>
+<span class="sd">        ValueError: If connectivity matrix is not found or dimensions don&#39;t match</span>
+<span class="sd">        KeyError: If connectivity_key is not in adata.obsp</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c1"># Validate inputs</span>
+    <span class="k">if</span> <span class="n">connectivity_key</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">adata</span><span class="o">.</span><span class="n">obsp</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">KeyError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Connectivity key &#39;</span><span class="si">{</span><span class="n">connectivity_key</span><span class="si">}</span><span class="s2">&#39; not found in adata.obsp&quot;</span><span class="p">)</span>
+
+    <span class="n">A</span> <span class="o">=</span> <span class="n">adata</span><span class="o">.</span><span class="n">obsp</span><span class="p">[</span><span class="n">connectivity_key</span><span class="p">]</span>
+    <span class="n">n_cells</span><span class="p">,</span> <span class="n">n_classes</span> <span class="o">=</span> <span class="n">pred</span><span class="o">.</span><span class="n">shape</span>
+
+    <span class="c1"># Check dimensions</span>
+    <span class="k">if</span> <span class="n">A</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">!=</span> <span class="n">n_cells</span> <span class="ow">or</span> <span class="n">A</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">!=</span> <span class="n">n_cells</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+            <span class="sa">f</span><span class="s2">&quot;Connectivity matrix shape </span><span class="si">{</span><span class="n">A</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2"> doesn&#39;t match number of cells </span><span class="si">{</span><span class="n">n_cells</span><span class="si">}</span><span class="s2">&quot;</span>
+        <span class="p">)</span>
+
+    <span class="c1"># Ensure adjacency matrix is symmetric and sparse</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">sp</span><span class="o">.</span><span class="n">issparse</span><span class="p">(</span><span class="n">A</span><span class="p">):</span>
+        <span class="n">A</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">csr_matrix</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+
+    <span class="c1"># Make symmetric if not already</span>
+    <span class="n">A</span> <span class="o">=</span> <span class="p">(</span><span class="n">A</span> <span class="o">+</span> <span class="n">A</span><span class="o">.</span><span class="n">T</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span>
+
+    <span class="k">if</span> <span class="n">use_laplacian</span><span class="p">:</span>
+        <span class="c1"># Compute graph Laplacian: L = D - A</span>
+        <span class="c1"># where D is the diagonal degree matrix</span>
+        <span class="n">degrees</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">A</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span><span class="o">.</span><span class="n">flatten</span><span class="p">()</span>
+        <span class="n">D</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">diags</span><span class="p">(</span><span class="n">degrees</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="s2">&quot;csr&quot;</span><span class="p">)</span>
+        <span class="n">L</span> <span class="o">=</span> <span class="n">D</span> <span class="o">-</span> <span class="n">A</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="c1"># Use adjacency matrix directly</span>
+        <span class="n">L</span> <span class="o">=</span> <span class="n">A</span>
+
+    <span class="n">identity_matrix</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">identity</span><span class="p">(</span><span class="n">n_cells</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="s2">&quot;csr&quot;</span><span class="p">)</span>
+    <span class="n">system_matrix</span> <span class="o">=</span> <span class="n">identity_matrix</span> <span class="o">+</span> <span class="n">lambda_reg</span> <span class="o">*</span> <span class="n">L</span>
+
+    <span class="c1"># Solve for all classes at once instead of looping</span>
+    <span class="c1"># spsolve can handle multiple right-hand sides</span>
+    <span class="n">refined_pred</span> <span class="o">=</span> <span class="n">spsolve</span><span class="p">(</span><span class="n">system_matrix</span><span class="p">,</span> <span class="n">pred</span><span class="p">)</span>
+
+    <span class="c1"># Handle the case where spsolve returns 1D array for single class</span>
+    <span class="k">if</span> <span class="n">refined_pred</span><span class="o">.</span><span class="n">ndim</span> <span class="o">==</span> <span class="mi">1</span> <span class="ow">and</span> <span class="n">n_classes</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="n">refined_pred</span> <span class="o">=</span> <span class="n">refined_pred</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">refined_pred</span><span class="o">.</span><span class="n">ndim</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="n">refined_pred</span> <span class="o">=</span> <span class="n">refined_pred</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">n_cells</span><span class="p">,</span> <span class="n">n_classes</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">refined_pred</span>
+</code></pre></div></td></tr></table></div>
+            </details>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="scprint.utils.graph_refinement.test_graph_refinement" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">test_graph_refinement</span></code>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Test function for graph refinement.</p>
+
+
+            <details class="mkdocstrings-source">
+              <summary>Source code in <code>scprint/utils/graph_refinement.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">192</span>
+<span class="normal">193</span>
+<span class="normal">194</span>
+<span class="normal">195</span>
+<span class="normal">196</span>
+<span class="normal">197</span>
+<span class="normal">198</span>
+<span class="normal">199</span>
+<span class="normal">200</span>
+<span class="normal">201</span>
+<span class="normal">202</span>
+<span class="normal">203</span>
+<span class="normal">204</span>
+<span class="normal">205</span>
+<span class="normal">206</span>
+<span class="normal">207</span>
+<span class="normal">208</span>
+<span class="normal">209</span>
+<span class="normal">210</span>
+<span class="normal">211</span>
+<span class="normal">212</span>
+<span class="normal">213</span>
+<span class="normal">214</span>
+<span class="normal">215</span>
+<span class="normal">216</span>
+<span class="normal">217</span>
+<span class="normal">218</span>
+<span class="normal">219</span>
+<span class="normal">220</span>
+<span class="normal">221</span>
+<span class="normal">222</span>
+<span class="normal">223</span>
+<span class="normal">224</span>
+<span class="normal">225</span>
+<span class="normal">226</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">test_graph_refinement</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Test function for graph refinement.&quot;&quot;&quot;</span>
+
+    <span class="c1"># Create synthetic data</span>
+    <span class="n">n_cells</span><span class="p">,</span> <span class="n">n_classes</span> <span class="o">=</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">5</span>
+
+    <span class="c1"># Random logits</span>
+    <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>
+    <span class="n">pred</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">n_cells</span><span class="p">,</span> <span class="n">n_classes</span><span class="p">)</span>
+
+    <span class="c1"># Create synthetic AnnData with connectivity</span>
+    <span class="n">adata</span> <span class="o">=</span> <span class="n">anndata</span><span class="o">.</span><span class="n">AnnData</span><span class="p">(</span><span class="n">X</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">n_cells</span><span class="p">,</span> <span class="mi">50</span><span class="p">))</span>
+
+    <span class="c1"># Create a random sparse connectivity matrix</span>
+    <span class="kn">from</span><span class="w"> </span><span class="nn">scipy.sparse</span><span class="w"> </span><span class="kn">import</span> <span class="n">random</span>
+
+    <span class="n">connectivity</span> <span class="o">=</span> <span class="n">random</span><span class="p">(</span><span class="n">n_cells</span><span class="p">,</span> <span class="n">n_cells</span><span class="p">,</span> <span class="n">density</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="s2">&quot;csr&quot;</span><span class="p">)</span>
+    <span class="n">connectivity</span> <span class="o">=</span> <span class="p">(</span><span class="n">connectivity</span> <span class="o">+</span> <span class="n">connectivity</span><span class="o">.</span><span class="n">T</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span>  <span class="c1"># Make symmetric</span>
+    <span class="n">adata</span><span class="o">.</span><span class="n">obsp</span><span class="p">[</span><span class="s2">&quot;connectivities&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">connectivity</span>
+
+    <span class="c1"># Test refinement</span>
+    <span class="n">refined_pred</span> <span class="o">=</span> <span class="n">graph_regularized_logit_refinement</span><span class="p">(</span><span class="n">pred</span><span class="p">,</span> <span class="n">adata</span><span class="p">,</span> <span class="n">lambda_reg</span><span class="o">=</span><span class="mf">0.1</span><span class="p">)</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Original logits shape: </span><span class="si">{</span><span class="n">pred</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Refined logits shape: </span><span class="si">{</span><span class="n">refined_pred</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Logits changed: </span><span class="si">{</span><span class="ow">not</span><span class="w"> </span><span class="n">np</span><span class="o">.</span><span class="n">allclose</span><span class="p">(</span><span class="n">pred</span><span class="p">,</span><span class="w"> </span><span class="n">refined_pred</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+    <span class="c1"># Test zero-shot annotation</span>
+    <span class="n">predictions</span><span class="p">,</span> <span class="n">probabilities</span> <span class="o">=</span> <span class="n">zero_shot_annotation_with_refinement</span><span class="p">(</span>
+        <span class="n">pred</span><span class="p">,</span> <span class="n">adata</span><span class="p">,</span> <span class="n">return_probabilities</span><span class="o">=</span><span class="kc">True</span>
+    <span class="p">)</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Predictions shape: </span><span class="si">{</span><span class="n">predictions</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Probabilities shape: </span><span class="si">{</span><span class="n">probabilities</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Predicted classes: </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">predictions</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+            </details>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="scprint.utils.graph_refinement.zero_shot_annotation_with_refinement" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">zero_shot_annotation_with_refinement</span></code>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Perform zero-shot cell type annotation with graph refinement.</p>
+<p>This function first refines the logits using graph regularization,
+then performs argmax to get final predictions.</p>
+
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Parameters:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+              <b><code>pred</code></b>
+                  (<code><span title="numpy.ndarray">ndarray</span></code>)
+              –
+              <div class="doc-md-description">
+                <p>Initial logits of shape (n_cells, n_classes)</p>
+              </div>
+            </li>
+            <li>
+              <b><code>adata</code></b>
+                  (<code><span title="anndata.AnnData">AnnData</span></code>)
+              –
+              <div class="doc-md-description">
+                <p>AnnData object containing graph connectivity</p>
+              </div>
+            </li>
+            <li>
+              <b><code>connectivity_key</code></b>
+                  (<code><span title="str">str</span></code>, default:
+                      <code>&#39;connectivities&#39;</code>
+)
+              –
+              <div class="doc-md-description">
+                <p>Key in adata.obsp for connectivity matrix</p>
+              </div>
+            </li>
+            <li>
+              <b><code>lambda_reg</code></b>
+                  (<code><span title="float">float</span></code>, default:
+                      <code>0.1</code>
+)
+              –
+              <div class="doc-md-description">
+                <p>Regularization strength</p>
+              </div>
+            </li>
+            <li>
+              <b><code>return_probabilities</code></b>
+                  (<code><span title="bool">bool</span></code>, default:
+                      <code>False</code>
+)
+              –
+              <div class="doc-md-description">
+                <p>If True, also return refined probabilities</p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Returns:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+                  <code><span title="typing.Union">Union</span>[<span title="numpy.ndarray">ndarray</span>, <span title="tuple">tuple</span>]</code>
+              –
+              <div class="doc-md-description">
+                <p>np.ndarray or tuple: If return_probabilities is False, returns array of
+               predicted class indices. If True, returns tuple of
+               (predictions, refined_probabilities)</p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+            <details class="mkdocstrings-source">
+              <summary>Source code in <code>scprint/utils/graph_refinement.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">133</span>
+<span class="normal">134</span>
+<span class="normal">135</span>
+<span class="normal">136</span>
+<span class="normal">137</span>
+<span class="normal">138</span>
+<span class="normal">139</span>
+<span class="normal">140</span>
+<span class="normal">141</span>
+<span class="normal">142</span>
+<span class="normal">143</span>
+<span class="normal">144</span>
+<span class="normal">145</span>
+<span class="normal">146</span>
+<span class="normal">147</span>
+<span class="normal">148</span>
+<span class="normal">149</span>
+<span class="normal">150</span>
+<span class="normal">151</span>
+<span class="normal">152</span>
+<span class="normal">153</span>
+<span class="normal">154</span>
+<span class="normal">155</span>
+<span class="normal">156</span>
+<span class="normal">157</span>
+<span class="normal">158</span>
+<span class="normal">159</span>
+<span class="normal">160</span>
+<span class="normal">161</span>
+<span class="normal">162</span>
+<span class="normal">163</span>
+<span class="normal">164</span>
+<span class="normal">165</span>
+<span class="normal">166</span>
+<span class="normal">167</span>
+<span class="normal">168</span>
+<span class="normal">169</span>
+<span class="normal">170</span>
+<span class="normal">171</span>
+<span class="normal">172</span>
+<span class="normal">173</span>
+<span class="normal">174</span>
+<span class="normal">175</span>
+<span class="normal">176</span>
+<span class="normal">177</span>
+<span class="normal">178</span>
+<span class="normal">179</span>
+<span class="normal">180</span>
+<span class="normal">181</span>
+<span class="normal">182</span>
+<span class="normal">183</span>
+<span class="normal">184</span>
+<span class="normal">185</span>
+<span class="normal">186</span>
+<span class="normal">187</span>
+<span class="normal">188</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">zero_shot_annotation_with_refinement</span><span class="p">(</span>
+    <span class="n">pred</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span>
+    <span class="n">adata</span><span class="p">:</span> <span class="n">anndata</span><span class="o">.</span><span class="n">AnnData</span><span class="p">,</span>
+    <span class="n">connectivity_key</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;connectivities&quot;</span><span class="p">,</span>
+    <span class="n">representation_key</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;X_pca&quot;</span><span class="p">,</span>
+    <span class="n">n_neighbors</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">15</span><span class="p">,</span>
+    <span class="n">metric</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;euclidean&quot;</span><span class="p">,</span>
+    <span class="n">lambda_reg</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.1</span><span class="p">,</span>
+    <span class="n">return_probabilities</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+    <span class="n">return_raw</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Union</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">]:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Perform zero-shot cell type annotation with graph refinement.</span>
+
+<span class="sd">    This function first refines the logits using graph regularization,</span>
+<span class="sd">    then performs argmax to get final predictions.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        pred (np.ndarray): Initial logits of shape (n_cells, n_classes)</span>
+<span class="sd">        adata (anndata.AnnData): AnnData object containing graph connectivity</span>
+<span class="sd">        connectivity_key (str): Key in adata.obsp for connectivity matrix</span>
+<span class="sd">        lambda_reg (float): Regularization strength</span>
+<span class="sd">        return_probabilities (bool): If True, also return refined probabilities</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        np.ndarray or tuple: If return_probabilities is False, returns array of</span>
+<span class="sd">                           predicted class indices. If True, returns tuple of</span>
+<span class="sd">                           (predictions, refined_probabilities)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">pred</span> <span class="ow">is</span> <span class="nb">type</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">):</span>
+        <span class="n">pred</span> <span class="o">=</span> <span class="n">pred</span><span class="o">.</span><span class="n">values</span>
+    <span class="k">if</span> <span class="n">adata</span><span class="o">.</span><span class="n">obsp</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">connectivity_key</span><span class="p">)</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="c1"># Refine logits</span>
+        <span class="n">adata</span> <span class="o">=</span> <span class="n">build_knn_graph</span><span class="p">(</span>
+            <span class="n">adata</span><span class="o">=</span><span class="n">adata</span><span class="p">,</span>
+            <span class="n">representation_key</span><span class="o">=</span><span class="n">representation_key</span><span class="p">,</span>
+            <span class="n">n_neighbors</span><span class="o">=</span><span class="n">n_neighbors</span><span class="p">,</span>
+            <span class="n">metric</span><span class="o">=</span><span class="n">metric</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="n">connectivity_key</span> <span class="o">=</span> <span class="s2">&quot;connectivities&quot;</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">adata</span><span class="o">.</span><span class="n">obsp</span><span class="p">)</span>
+    <span class="n">refined_logits</span> <span class="o">=</span> <span class="n">graph_regularized_logit_refinement</span><span class="p">(</span>
+        <span class="n">pred</span><span class="p">,</span> <span class="n">adata</span><span class="p">,</span> <span class="n">connectivity_key</span><span class="p">,</span> <span class="n">lambda_reg</span>
+    <span class="p">)</span>
+    <span class="k">if</span> <span class="n">return_raw</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">refined_logits</span>
+    <span class="c1"># Get predictions: g(xi) = arg max_j {P̃(i)}</span>
+    <span class="n">predictions</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">refined_logits</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">return_probabilities</span><span class="p">:</span>
+        <span class="c1"># Convert to probabilities using softmax</span>
+        <span class="n">refined_probs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">refined_logits</span><span class="p">)</span>
+        <span class="n">refined_probs</span> <span class="o">=</span> <span class="n">refined_probs</span> <span class="o">/</span> <span class="n">refined_probs</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">keepdims</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">predictions</span><span class="p">,</span> <span class="n">refined_probs</span>
+
+    <span class="k">return</span> <span class="n">predictions</span>
+</code></pre></div></td></tr></table></div>
+            </details>
+    </div>
+
+</div>
+
+
+
+  </div>
+
+    </div>
+
+</div>
               
             </div>
           </div><footer>
     <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
         <a href="../cli/" class="btn btn-neutral float-left" title="cli"><span class="icon icon-circle-arrow-left"></span> Previous</a>
-        <a href="../umap/nice_umap_scprint2.html" class="btn btn-neutral float-right" title="350M subset umap">Next <span class="icon icon-circle-arrow-right"></span></a>
     </div>
 
   <hr/>
@@ -4532,8 +5420,6 @@ showlabels: bool whether or not to show a text above each datapoint with its lab
     
       <span><a href="../cli/" style="color: #fcfcfc">&laquo; Previous</a></span>
     
-    
-      <span><a href="../umap/nice_umap_scprint2.html" style="color: #fcfcfc">Next &raquo;</a></span>
     
   </span>
 </div>
