@@ -262,6 +262,10 @@
                   <li class="toctree-l1"><a class="reference internal" href="../utils/">utils</a>
                   </li>
               </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../umap/nice_umap_scprint2.html">350M subset umap</a>
+                </li>
+              </ul>
       </div>
     </div>
     </nav>
@@ -766,7 +770,12 @@
 
                   <details class="quote">
                     <summary>Source code in <code>scprint/model/model.py</code></summary>
-                    <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 43</span>
+                    <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 38</span>
+<span class="normal"> 39</span>
+<span class="normal"> 40</span>
+<span class="normal"> 41</span>
+<span class="normal"> 42</span>
+<span class="normal"> 43</span>
 <span class="normal"> 44</span>
 <span class="normal"> 45</span>
 <span class="normal"> 46</span>
@@ -1243,12 +1252,7 @@
 <span class="normal">517</span>
 <span class="normal">518</span>
 <span class="normal">519</span>
-<span class="normal">520</span>
-<span class="normal">521</span>
-<span class="normal">522</span>
-<span class="normal">523</span>
-<span class="normal">524</span>
-<span class="normal">525</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
+<span class="normal">520</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
     <span class="bp">self</span><span class="p">,</span>
     <span class="n">genes</span><span class="p">,</span>
     <span class="n">organisms</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span>
@@ -1843,7 +1847,12 @@
 
             <details class="mkdocstrings-source">
               <summary>Source code in <code>scprint/model/model.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">530</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">525</span>
+<span class="normal">526</span>
+<span class="normal">527</span>
+<span class="normal">528</span>
+<span class="normal">529</span>
+<span class="normal">530</span>
 <span class="normal">531</span>
 <span class="normal">532</span>
 <span class="normal">533</span>
@@ -1911,12 +1920,7 @@
 <span class="normal">595</span>
 <span class="normal">596</span>
 <span class="normal">597</span>
-<span class="normal">598</span>
-<span class="normal">599</span>
-<span class="normal">600</span>
-<span class="normal">601</span>
-<span class="normal">602</span>
-<span class="normal">603</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">add_organism</span><span class="p">(</span>
+<span class="normal">598</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">add_organism</span><span class="p">(</span>
     <span class="bp">self</span><span class="p">,</span> <span class="n">organism</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">genes</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">Index</span><span class="p">,</span> <span class="n">emb</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span> <span class="n">locs</span><span class="o">=</span><span class="kc">None</span>
 <span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
@@ -2012,7 +2016,12 @@
 
             <details class="mkdocstrings-source">
               <summary>Source code in <code>scprint/model/model.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1256</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1251</span>
+<span class="normal">1252</span>
+<span class="normal">1253</span>
+<span class="normal">1254</span>
+<span class="normal">1255</span>
+<span class="normal">1256</span>
 <span class="normal">1257</span>
 <span class="normal">1258</span>
 <span class="normal">1259</span>
@@ -2101,12 +2110,7 @@
 <span class="normal">1342</span>
 <span class="normal">1343</span>
 <span class="normal">1344</span>
-<span class="normal">1345</span>
-<span class="normal">1346</span>
-<span class="normal">1347</span>
-<span class="normal">1348</span>
-<span class="normal">1349</span>
-<span class="normal">1350</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">configure_optimizers</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="normal">1345</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">configure_optimizers</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;@see pl.LightningModule&quot;&quot;&quot;</span>
     <span class="c1"># https://pytorch.org/docs/stable/generated/torch.optim.Adam.html#torch.optim.Adam</span>
     <span class="c1"># not working because of poor weight decay implem</span>
@@ -2391,7 +2395,12 @@ at minima, the dictionary codntains the following:
 
             <details class="mkdocstrings-source">
               <summary>Source code in <code>scprint/model/model.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1035</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1030</span>
+<span class="normal">1031</span>
+<span class="normal">1032</span>
+<span class="normal">1033</span>
+<span class="normal">1034</span>
+<span class="normal">1035</span>
 <span class="normal">1036</span>
 <span class="normal">1037</span>
 <span class="normal">1038</span>
@@ -2536,12 +2545,7 @@ at minima, the dictionary codntains the following:
 <span class="normal">1177</span>
 <span class="normal">1178</span>
 <span class="normal">1179</span>
-<span class="normal">1180</span>
-<span class="normal">1181</span>
-<span class="normal">1182</span>
-<span class="normal">1183</span>
-<span class="normal">1184</span>
-<span class="normal">1185</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">forward</span><span class="p">(</span>
+<span class="normal">1180</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">forward</span><span class="p">(</span>
     <span class="bp">self</span><span class="p">,</span>
     <span class="n">gene_pos</span><span class="p">:</span> <span class="n">Tensor</span><span class="p">,</span>
     <span class="n">expression</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Tensor</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
@@ -2716,7 +2720,11 @@ It will log to tensorboard and wandb if available</p>
 
             <details class="mkdocstrings-source">
               <summary>Source code in <code>scprint/model/model.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">2370</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">2366</span>
+<span class="normal">2367</span>
+<span class="normal">2368</span>
+<span class="normal">2369</span>
+<span class="normal">2370</span>
 <span class="normal">2371</span>
 <span class="normal">2372</span>
 <span class="normal">2373</span>
@@ -2765,17 +2773,7 @@ It will log to tensorboard and wandb if available</p>
 <span class="normal">2416</span>
 <span class="normal">2417</span>
 <span class="normal">2418</span>
-<span class="normal">2419</span>
-<span class="normal">2420</span>
-<span class="normal">2421</span>
-<span class="normal">2422</span>
-<span class="normal">2423</span>
-<span class="normal">2424</span>
-<span class="normal">2425</span>
-<span class="normal">2426</span>
-<span class="normal">2427</span>
-<span class="normal">2428</span>
-<span class="normal">2429</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">log_adata</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">gtclass</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">):</span>
+<span class="normal">2419</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">log_adata</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">gtclass</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    log_adata will log an adata from predictions.</span>
 <span class="sd">    It will log to tensorboard and wandb if available</span>
@@ -2786,41 +2784,22 @@ It will log to tensorboard and wandb if available</p>
         <span class="n">mdir</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">save_dir</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">save_dir</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="s2">&quot;/tmp&quot;</span>
     <span class="k">except</span><span class="p">:</span>
         <span class="n">mdir</span> <span class="o">=</span> <span class="s2">&quot;data/&quot;</span>
+    <span class="c1"># mdir = &quot;/pasteur/appa/scratch/jkalfon/&quot; + mdir</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">mdir</span><span class="p">):</span>
         <span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">mdir</span><span class="p">)</span>
-    <span class="bp">self</span><span class="o">.</span><span class="n">embs</span> <span class="o">=</span> <span class="p">(</span>
-        <span class="n">torch</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">v</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">embs</span><span class="o">.</span><span class="n">items</span><span class="p">()],</span> <span class="n">dim</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-        <span class="o">.</span><span class="n">cpu</span><span class="p">()</span>
-        <span class="o">.</span><span class="n">numpy</span><span class="p">()</span>
-        <span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">float16</span><span class="p">)</span>
+    <span class="n">adata</span><span class="p">,</span> <span class="n">fig</span> <span class="o">=</span> <span class="n">utils</span><span class="o">.</span><span class="n">make_adata</span><span class="p">(</span>
+        <span class="n">genes</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">genes</span><span class="p">,</span>
+        <span class="n">embs</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">embs</span><span class="p">,</span>
+        <span class="n">pos</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">pos</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">save_expr</span> <span class="k">else</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">expr_pred</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">expr_pred</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">save_expr</span> <span class="k">else</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">classes</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">classes</span><span class="p">,</span>
+        <span class="n">pred</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">pred</span> <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">keep_all_labels_pred</span> <span class="k">else</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">label_decoders</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">label_decoders</span><span class="p">,</span>
+        <span class="n">labels_hierarchy</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">labels_hierarchy</span><span class="p">,</span>
+        <span class="n">gtclass</span><span class="o">=</span><span class="n">gtclass</span><span class="p">,</span>
+        <span class="n">doplot</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">doplot</span><span class="p">,</span>
     <span class="p">)</span>
-
-    <span class="n">count</span> <span class="o">=</span> <span class="p">{</span>
-        <span class="s2">&quot;cell_type_ontology_term_id&quot;</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span>
-        <span class="s2">&quot;tissue_ontology_term_id&quot;</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span>
-        <span class="s2">&quot;disease_ontology_term_id&quot;</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span>
-        <span class="s2">&quot;age_group&quot;</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span>
-        <span class="s2">&quot;assay_ontology_term_id&quot;</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span>
-        <span class="s2">&quot;self_reported_ethnicity_ontology_term_id&quot;</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span>
-        <span class="s2">&quot;sex_ontology_term_id&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
-        <span class="s2">&quot;organism_ontology_term_id&quot;</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span>
-        <span class="s2">&quot;cell_culture&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
-    <span class="p">}</span>
-    <span class="n">tot</span> <span class="o">=</span> <span class="mi">0</span>
-    <span class="n">locs</span> <span class="o">=</span> <span class="p">[]</span>
-    <span class="n">predloc</span> <span class="o">=</span> <span class="p">[]</span>
-    <span class="k">for</span> <span class="n">val</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">classes</span><span class="p">:</span>
-        <span class="n">num</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">hparams</span><span class="p">[</span><span class="s2">&quot;classes&quot;</span><span class="p">][</span><span class="n">val</span><span class="p">]</span>
-        <span class="n">pred_slice</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">pred</span><span class="p">[:,</span> <span class="n">tot</span> <span class="p">:</span> <span class="n">tot</span> <span class="o">+</span> <span class="n">num</span><span class="p">]</span>
-        <span class="n">loc</span> <span class="o">=</span> <span class="n">pred_slice</span><span class="o">.</span><span class="n">argsort</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)[:,</span> <span class="o">-</span><span class="n">count</span><span class="p">[</span><span class="n">val</span><span class="p">]</span> <span class="p">:]</span><span class="o">.</span><span class="n">flip</span><span class="p">([</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
-        <span class="n">top_k</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">gather</span><span class="p">(</span><span class="n">pred_slice</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">loc</span><span class="p">)</span>
-        <span class="n">predloc</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">top_k</span><span class="o">.</span><span class="n">cpu</span><span class="p">()</span><span class="o">.</span><span class="n">numpy</span><span class="p">()</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">float16</span><span class="p">))</span>
-        <span class="n">locs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">loc</span><span class="o">.</span><span class="n">cpu</span><span class="p">()</span><span class="o">.</span><span class="n">numpy</span><span class="p">()</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">uint16</span><span class="p">))</span>
-        <span class="n">tot</span> <span class="o">+=</span> <span class="n">num</span>
-
-    <span class="n">predloc</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">hstack</span><span class="p">(</span><span class="n">predloc</span><span class="p">)</span>
-    <span class="n">locs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">hstack</span><span class="p">(</span><span class="n">locs</span><span class="p">)</span>
-    <span class="n">save</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="n">adata</span><span class="o">.</span><span class="n">write</span><span class="p">(</span>
         <span class="nb">str</span><span class="p">(</span><span class="n">mdir</span><span class="p">)</span>
         <span class="o">+</span> <span class="s2">&quot;/step_&quot;</span>
         <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">global_step</span><span class="p">)</span>
@@ -2830,11 +2809,24 @@ It will log to tensorboard and wandb if available</p>
         <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
         <span class="o">+</span> <span class="s2">&quot;_&quot;</span>
         <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">global_rank</span><span class="p">)</span>
+        <span class="o">+</span> <span class="s2">&quot;.h5ad&quot;</span>
     <span class="p">)</span>
+    <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">doplot</span><span class="p">:</span>
+        <span class="n">logged</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">experiment</span><span class="o">.</span><span class="n">add_figure</span><span class="p">(</span><span class="n">fig</span><span class="p">)</span>
+            <span class="n">logged</span> <span class="o">=</span> <span class="kc">True</span>
+        <span class="k">except</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;couldn&#39;t log to tensorboard&quot;</span><span class="p">)</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">log_image</span><span class="p">(</span><span class="n">key</span><span class="o">=</span><span class="s2">&quot;umaps&quot;</span><span class="p">,</span> <span class="n">images</span><span class="o">=</span><span class="p">[</span><span class="n">fig</span><span class="p">],</span> <span class="n">step</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">global_step</span><span class="p">)</span>
+            <span class="n">logged</span> <span class="o">=</span> <span class="kc">True</span>
+        <span class="k">except</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;couldn&#39;t log to wandb&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">logged</span><span class="p">:</span>
+            <span class="n">fig</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="n">mdir</span> <span class="o">+</span> <span class="s2">&quot;/umap_&quot;</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">+</span> <span class="s2">&quot;_&quot;</span> <span class="o">+</span> <span class="n">name</span> <span class="o">+</span> <span class="s2">&quot;.png&quot;</span><span class="p">)</span>
 
-    <span class="n">np</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">save</span> <span class="o">+</span> <span class="s2">&quot;_top3.npz&quot;</span><span class="p">,</span> <span class="n">locs</span><span class="p">)</span>
-    <span class="n">np</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">save</span> <span class="o">+</span> <span class="s2">&quot;_scores.npz&quot;</span><span class="p">,</span> <span class="n">predloc</span><span class="p">)</span>
-    <span class="n">np</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">save</span> <span class="o">+</span> <span class="s2">&quot;_embs.npz&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">embs</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">adata</span>
 </code></pre></div></td></tr></table></div>
             </details>
     </div>
@@ -2857,13 +2849,13 @@ It will log to tensorboard and wandb if available</p>
 
             <details class="mkdocstrings-source">
               <summary>Source code in <code>scprint/model/model.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1352</span>
-<span class="normal">1353</span>
-<span class="normal">1354</span>
-<span class="normal">1355</span>
-<span class="normal">1356</span>
-<span class="normal">1357</span>
-<span class="normal">1358</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">on_fit_start</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1347</span>
+<span class="normal">1348</span>
+<span class="normal">1349</span>
+<span class="normal">1350</span>
+<span class="normal">1351</span>
+<span class="normal">1352</span>
+<span class="normal">1353</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">on_fit_start</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;@see pl.LightningModule&quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">transformer</span><span class="p">)</span> <span class="ow">is</span> <span class="n">FlashTransformer</span><span class="p">:</span>
         <span class="k">for</span> <span class="n">encoder_layers</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">transformer</span><span class="o">.</span><span class="n">blocks</span><span class="p">:</span>
@@ -2892,13 +2884,13 @@ It will log to tensorboard and wandb if available</p>
 
             <details class="mkdocstrings-source">
               <summary>Source code in <code>scprint/model/model.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">2362</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">2358</span>
+<span class="normal">2359</span>
+<span class="normal">2360</span>
+<span class="normal">2361</span>
+<span class="normal">2362</span>
 <span class="normal">2363</span>
-<span class="normal">2364</span>
-<span class="normal">2365</span>
-<span class="normal">2366</span>
-<span class="normal">2367</span>
-<span class="normal">2368</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">on_predict_epoch_end</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="normal">2364</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">on_predict_epoch_end</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;@see pl.LightningModule will&quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">pos</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&lt;</span> <span class="mi">100</span><span class="p">:</span>
         <span class="k">return</span>
@@ -2927,16 +2919,16 @@ It will log to tensorboard and wandb if available</p>
 
             <details class="mkdocstrings-source">
               <summary>Source code in <code>scprint/model/model.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">2097</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">2092</span>
+<span class="normal">2093</span>
+<span class="normal">2094</span>
+<span class="normal">2095</span>
+<span class="normal">2096</span>
+<span class="normal">2097</span>
 <span class="normal">2098</span>
 <span class="normal">2099</span>
 <span class="normal">2100</span>
-<span class="normal">2101</span>
-<span class="normal">2102</span>
-<span class="normal">2103</span>
-<span class="normal">2104</span>
-<span class="normal">2105</span>
-<span class="normal">2106</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">on_predict_epoch_start</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="normal">2101</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">on_predict_epoch_start</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;@see pl.LightningModule&quot;&quot;&quot;</span>
     <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;predict epoch start&quot;</span><span class="p">)</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">embs</span> <span class="o">=</span> <span class="kc">None</span>
@@ -2968,11 +2960,11 @@ It will log to tensorboard and wandb if available</p>
 
             <details class="mkdocstrings-source">
               <summary>Source code in <code>scprint/model/model.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">2056</span>
-<span class="normal">2057</span>
-<span class="normal">2058</span>
-<span class="normal">2059</span>
-<span class="normal">2060</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">on_test_start</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">2051</span>
+<span class="normal">2052</span>
+<span class="normal">2053</span>
+<span class="normal">2054</span>
+<span class="normal">2055</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">on_test_start</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;@see pl.LightningModule&quot;&quot;&quot;</span>
     <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;test start&quot;</span><span class="p">)</span>
     <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">mat_labels_hierarchy</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
@@ -2999,7 +2991,12 @@ It will log to tensorboard and wandb if available</p>
 
             <details class="mkdocstrings-source">
               <summary>Source code in <code>scprint/model/model.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">2009</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">2004</span>
+<span class="normal">2005</span>
+<span class="normal">2006</span>
+<span class="normal">2007</span>
+<span class="normal">2008</span>
+<span class="normal">2009</span>
 <span class="normal">2010</span>
 <span class="normal">2011</span>
 <span class="normal">2012</span>
@@ -3039,12 +3036,7 @@ It will log to tensorboard and wandb if available</p>
 <span class="normal">2046</span>
 <span class="normal">2047</span>
 <span class="normal">2048</span>
-<span class="normal">2049</span>
-<span class="normal">2050</span>
-<span class="normal">2051</span>
-<span class="normal">2052</span>
-<span class="normal">2053</span>
-<span class="normal">2054</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">on_validation_epoch_end</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="normal">2049</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">on_validation_epoch_end</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;@see pl.LightningModule&quot;&quot;&quot;</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">pos</span> <span class="o">=</span> <span class="kc">None</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">expr_pred</span> <span class="o">=</span> <span class="kc">None</span>
@@ -3112,7 +3104,12 @@ It will log to tensorboard and wandb if available</p>
 
             <details class="mkdocstrings-source">
               <summary>Source code in <code>scprint/model/model.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1893</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1888</span>
+<span class="normal">1889</span>
+<span class="normal">1890</span>
+<span class="normal">1891</span>
+<span class="normal">1892</span>
+<span class="normal">1893</span>
 <span class="normal">1894</span>
 <span class="normal">1895</span>
 <span class="normal">1896</span>
@@ -3135,12 +3132,7 @@ It will log to tensorboard and wandb if available</p>
 <span class="normal">1913</span>
 <span class="normal">1914</span>
 <span class="normal">1915</span>
-<span class="normal">1916</span>
-<span class="normal">1917</span>
-<span class="normal">1918</span>
-<span class="normal">1919</span>
-<span class="normal">1920</span>
-<span class="normal">1921</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">optimizer_step</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">epoch</span><span class="p">,</span> <span class="n">batch_idx</span><span class="p">,</span> <span class="n">optimizer</span><span class="p">,</span> <span class="n">optimizer_closure</span><span class="p">):</span>
+<span class="normal">1916</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">optimizer_step</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">epoch</span><span class="p">,</span> <span class="n">batch_idx</span><span class="p">,</span> <span class="n">optimizer</span><span class="p">,</span> <span class="n">optimizer_closure</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;@see pl.LightningModule&quot;&quot;&quot;</span>
     <span class="c1"># update params</span>
     <span class="c1"># manually warm up lr without a scheduler</span>
@@ -3213,7 +3205,12 @@ It will log to tensorboard and wandb if available</p>
 
             <details class="mkdocstrings-source">
               <summary>Source code in <code>scprint/model/model.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">2108</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">2103</span>
+<span class="normal">2104</span>
+<span class="normal">2105</span>
+<span class="normal">2106</span>
+<span class="normal">2107</span>
+<span class="normal">2108</span>
 <span class="normal">2109</span>
 <span class="normal">2110</span>
 <span class="normal">2111</span>
@@ -3228,12 +3225,7 @@ It will log to tensorboard and wandb if available</p>
 <span class="normal">2120</span>
 <span class="normal">2121</span>
 <span class="normal">2122</span>
-<span class="normal">2123</span>
-<span class="normal">2124</span>
-<span class="normal">2125</span>
-<span class="normal">2126</span>
-<span class="normal">2127</span>
-<span class="normal">2128</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">predict_step</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">batch</span><span class="p">,</span> <span class="n">batch_idx</span><span class="p">):</span>
+<span class="normal">2123</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">predict_step</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">batch</span><span class="p">,</span> <span class="n">batch_idx</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    embed given gene expression, encode the gene embedding and cell embedding.</span>
 
@@ -3299,7 +3291,12 @@ It will log to tensorboard and wandb if available</p>
 
             <details class="mkdocstrings-source">
               <summary>Source code in <code>scprint/model/model.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1360</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1355</span>
+<span class="normal">1356</span>
+<span class="normal">1357</span>
+<span class="normal">1358</span>
+<span class="normal">1359</span>
+<span class="normal">1360</span>
 <span class="normal">1361</span>
 <span class="normal">1362</span>
 <span class="normal">1363</span>
@@ -3324,12 +3321,7 @@ It will log to tensorboard and wandb if available</p>
 <span class="normal">1382</span>
 <span class="normal">1383</span>
 <span class="normal">1384</span>
-<span class="normal">1385</span>
-<span class="normal">1386</span>
-<span class="normal">1387</span>
-<span class="normal">1388</span>
-<span class="normal">1389</span>
-<span class="normal">1390</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">training_step</span><span class="p">(</span>
+<span class="normal">1385</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">training_step</span><span class="p">(</span>
     <span class="bp">self</span><span class="p">,</span>
     <span class="n">batch</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Tensor</span><span class="p">],</span>
     <span class="n">batch_idx</span><span class="p">,</span>
@@ -3407,7 +3399,12 @@ It will log to tensorboard and wandb if available</p>
 
             <details class="mkdocstrings-source">
               <summary>Source code in <code>scprint/model/model.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1934</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1929</span>
+<span class="normal">1930</span>
+<span class="normal">1931</span>
+<span class="normal">1932</span>
+<span class="normal">1933</span>
+<span class="normal">1934</span>
 <span class="normal">1935</span>
 <span class="normal">1936</span>
 <span class="normal">1937</span>
@@ -3475,12 +3472,7 @@ It will log to tensorboard and wandb if available</p>
 <span class="normal">1999</span>
 <span class="normal">2000</span>
 <span class="normal">2001</span>
-<span class="normal">2002</span>
-<span class="normal">2003</span>
-<span class="normal">2004</span>
-<span class="normal">2005</span>
-<span class="normal">2006</span>
-<span class="normal">2007</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">validation_step</span><span class="p">(</span>
+<span class="normal">2002</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">validation_step</span><span class="p">(</span>
     <span class="bp">self</span><span class="p">,</span>
     <span class="n">batch</span><span class="p">,</span>
     <span class="n">batch_idx</span><span class="p">,</span>

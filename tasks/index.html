@@ -122,6 +122,10 @@
                   <li class="toctree-l1"><a class="reference internal" href="../utils/">utils</a>
                   </li>
               </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../umap/nice_umap_scprint2.html">350M subset umap</a>
+                </li>
+              </ul>
       </div>
     </div>
     </nav>
@@ -1982,7 +1986,11 @@ This is important to avoid memory issues.</p>
 <span class="normal">693</span>
 <span class="normal">694</span>
 <span class="normal">695</span>
-<span class="normal">696</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">display_confusion_matrix</span><span class="p">(</span>
+<span class="normal">696</span>
+<span class="normal">697</span>
+<span class="normal">698</span>
+<span class="normal">699</span>
+<span class="normal">700</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">display_confusion_matrix</span><span class="p">(</span>
     <span class="n">nadata</span><span class="p">,</span> <span class="n">pred</span><span class="o">=</span><span class="s2">&quot;conv_pred_cell_type_ontology_term_id&quot;</span><span class="p">,</span> <span class="n">true</span><span class="o">=</span><span class="s2">&quot;cell_type&quot;</span>
 <span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
@@ -2026,22 +2034,26 @@ This is important to avoid memory issues.</p>
     <span class="n">counts_percentage</span> <span class="o">=</span> <span class="n">counts_filled</span><span class="o">.</span><span class="n">div</span><span class="p">(</span><span class="n">counts_filled</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span> <span class="o">*</span> <span class="mi">100</span>
     <span class="n">counts_percentage</span> <span class="o">=</span> <span class="n">counts_percentage</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span> <span class="n">counts_percentage</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">5</span><span class="p">]</span>
 
-    <span class="n">sns</span><span class="o">.</span><span class="n">heatmap</span><span class="p">(</span>
+    <span class="n">ax</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">heatmap</span><span class="p">(</span>
         <span class="n">counts_percentage</span><span class="p">,</span>
         <span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;Blues&quot;</span><span class="p">,</span>
         <span class="n">cbar_kws</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;label&quot;</span><span class="p">:</span> <span class="s2">&quot;Percentage (%)&quot;</span><span class="p">},</span>
         <span class="n">linewidths</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span>
         <span class="n">square</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
     <span class="p">)</span>
+    <span class="c1"># place the x-label on top</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">xaxis</span><span class="o">.</span><span class="n">set_label_position</span><span class="p">(</span><span class="s2">&quot;top&quot;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">xaxis</span><span class="o">.</span><span class="n">tick_top</span><span class="p">()</span>
+
     <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span>
         <span class="s2">&quot;Confusion Matrix: &quot;</span> <span class="o">+</span> <span class="n">true</span> <span class="o">+</span> <span class="s2">&quot; vs &quot;</span> <span class="o">+</span> <span class="n">pred</span> <span class="o">+</span> <span class="s2">&quot; (Percentage)&quot;</span><span class="p">,</span>
         <span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">,</span>
         <span class="n">pad</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span>
     <span class="p">)</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="n">pred</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="n">true</span> <span class="o">+</span> <span class="s2">&quot; (with counts)&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">rotation</span><span class="o">=</span><span class="mi">45</span><span class="p">,</span> <span class="n">ha</span><span class="o">=</span><span class="s2">&quot;right&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">(</span><span class="n">rotation</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="n">pred</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="n">true</span> <span class="o">+</span> <span class="s2">&quot; (with counts)&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_xticklabels</span><span class="p">(</span><span class="n">ax</span><span class="o">.</span><span class="n">get_xticklabels</span><span class="p">(),</span> <span class="n">rotation</span><span class="o">=</span><span class="mi">45</span><span class="p">,</span> <span class="n">ha</span><span class="o">=</span><span class="s2">&quot;left&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_yticklabels</span><span class="p">(</span><span class="n">ax</span><span class="o">.</span><span class="n">get_yticklabels</span><span class="p">(),</span> <span class="n">rotation</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">)</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </code></pre></div></td></tr></table></div>
