@@ -3,9 +3,9 @@
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://www.jkobject.com/scPRINT/model/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://www.jkobject.com/scPRINT-2/model/" />
       <link rel="shortcut icon" href="../img/favicon.ico" />
-    <title>model - scprint</title>
+    <title>model - scPRINT-2</title>
     <link rel="stylesheet" href="../css/theme.css" />
     <link rel="stylesheet" href="../css/theme_extra.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
@@ -15,7 +15,7 @@
         // Current page data
         var mkdocs_page_name = "model";
         var mkdocs_page_input_path = "model.md";
-        var mkdocs_page_url = "/scPRINT/model/";
+        var mkdocs_page_url = "/scPRINT-2/model/";
       </script>
     
     <!--[if lt IE 9]>
@@ -31,7 +31,7 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
     <div class="wy-side-scroll">
       <div class="wy-side-nav-search">
-          <a href=".." class="icon icon-home"> scprint
+          <a href=".." class="icon icon-home"> scPRINT-2
         </a><div role="search">
   <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
       <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
@@ -73,47 +73,47 @@
     <ul class="current">
     <li class="toctree-l2"><a class="reference internal" href="#model-description">model description</a>
     </li>
-    <li class="toctree-l2"><a class="reference internal" href="#scprint.model.model">model</a>
+    <li class="toctree-l2"><a class="reference internal" href="#scprint2.model.model">model</a>
         <ul>
-    <li class="toctree-l3"><a class="reference internal" href="#scprint.model.model.scPrint">scPrint</a>
+    <li class="toctree-l3"><a class="reference internal" href="#scprint2.model.model.scPrint2">scPrint2</a>
         <ul>
-    <li class="toctree-l4"><a class="reference internal" href="#scprint.model.model.scPrint--initialize-model">Initialize model</a>
+    <li class="toctree-l4"><a class="reference internal" href="#scprint2.model.model.scPrint2--initialize-model">Initialize model</a>
     </li>
-    <li class="toctree-l4"><a class="reference internal" href="#scprint.model.model.scPrint--configure-training">Configure training</a>
+    <li class="toctree-l4"><a class="reference internal" href="#scprint2.model.model.scPrint2--configure-training">Configure training</a>
     </li>
-    <li class="toctree-l4"><a class="reference internal" href="#scprint.model.model.scPrint--train-with-pytorch-lightning">Train with PyTorch Lightning</a>
+    <li class="toctree-l4"><a class="reference internal" href="#scprint2.model.model.scPrint2--train-with-pytorch-lightning">Train with PyTorch Lightning</a>
     </li>
-    <li class="toctree-l4"><a class="reference internal" href="#scprint.model.model.scPrint--generate-embeddings">Generate embeddings</a>
+    <li class="toctree-l4"><a class="reference internal" href="#scprint2.model.model.scPrint2--generate-embeddings">Generate embeddings</a>
     </li>
-    <li class="toctree-l4"><a class="reference internal" href="#scprint.model.model.scPrint.genes">genes</a>
+    <li class="toctree-l4"><a class="reference internal" href="#scprint2.model.model.scPrint2.genes">genes</a>
     </li>
-    <li class="toctree-l4"><a class="reference internal" href="#scprint.model.model.scPrint.add_organism">add_organism</a>
+    <li class="toctree-l4"><a class="reference internal" href="#scprint2.model.model.scPrint2.add_organism">add_organism</a>
     </li>
-    <li class="toctree-l4"><a class="reference internal" href="#scprint.model.model.scPrint.configure_optimizers">configure_optimizers</a>
+    <li class="toctree-l4"><a class="reference internal" href="#scprint2.model.model.scPrint2.configure_optimizers">configure_optimizers</a>
     </li>
-    <li class="toctree-l4"><a class="reference internal" href="#scprint.model.model.scPrint.forward">forward</a>
+    <li class="toctree-l4"><a class="reference internal" href="#scprint2.model.model.scPrint2.forward">forward</a>
     </li>
-    <li class="toctree-l4"><a class="reference internal" href="#scprint.model.model.scPrint.log_adata">log_adata</a>
+    <li class="toctree-l4"><a class="reference internal" href="#scprint2.model.model.scPrint2.log_adata">log_adata</a>
     </li>
-    <li class="toctree-l4"><a class="reference internal" href="#scprint.model.model.scPrint.on_fit_start">on_fit_start</a>
+    <li class="toctree-l4"><a class="reference internal" href="#scprint2.model.model.scPrint2.on_fit_start">on_fit_start</a>
     </li>
-    <li class="toctree-l4"><a class="reference internal" href="#scprint.model.model.scPrint.on_load_checkpoint">on_load_checkpoint</a>
+    <li class="toctree-l4"><a class="reference internal" href="#scprint2.model.model.scPrint2.on_load_checkpoint">on_load_checkpoint</a>
     </li>
-    <li class="toctree-l4"><a class="reference internal" href="#scprint.model.model.scPrint.on_predict_epoch_end">on_predict_epoch_end</a>
+    <li class="toctree-l4"><a class="reference internal" href="#scprint2.model.model.scPrint2.on_predict_epoch_end">on_predict_epoch_end</a>
     </li>
-    <li class="toctree-l4"><a class="reference internal" href="#scprint.model.model.scPrint.on_predict_epoch_start">on_predict_epoch_start</a>
+    <li class="toctree-l4"><a class="reference internal" href="#scprint2.model.model.scPrint2.on_predict_epoch_start">on_predict_epoch_start</a>
     </li>
-    <li class="toctree-l4"><a class="reference internal" href="#scprint.model.model.scPrint.on_test_start">on_test_start</a>
+    <li class="toctree-l4"><a class="reference internal" href="#scprint2.model.model.scPrint2.on_test_start">on_test_start</a>
     </li>
-    <li class="toctree-l4"><a class="reference internal" href="#scprint.model.model.scPrint.on_validation_epoch_end">on_validation_epoch_end</a>
+    <li class="toctree-l4"><a class="reference internal" href="#scprint2.model.model.scPrint2.on_validation_epoch_end">on_validation_epoch_end</a>
     </li>
-    <li class="toctree-l4"><a class="reference internal" href="#scprint.model.model.scPrint.optimizer_step">optimizer_step</a>
+    <li class="toctree-l4"><a class="reference internal" href="#scprint2.model.model.scPrint2.optimizer_step">optimizer_step</a>
     </li>
-    <li class="toctree-l4"><a class="reference internal" href="#scprint.model.model.scPrint.predict_step">predict_step</a>
+    <li class="toctree-l4"><a class="reference internal" href="#scprint2.model.model.scPrint2.predict_step">predict_step</a>
     </li>
-    <li class="toctree-l4"><a class="reference internal" href="#scprint.model.model.scPrint.training_step">training_step</a>
+    <li class="toctree-l4"><a class="reference internal" href="#scprint2.model.model.scPrint2.training_step">training_step</a>
     </li>
-    <li class="toctree-l4"><a class="reference internal" href="#scprint.model.model.scPrint.validation_step">validation_step</a>
+    <li class="toctree-l4"><a class="reference internal" href="#scprint2.model.model.scPrint2.validation_step">validation_step</a>
     </li>
         </ul>
     </li>
@@ -121,175 +121,175 @@
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#losses">losses</a>
     </li>
-    <li class="toctree-l2"><a class="reference internal" href="#scprint.model.loss">loss</a>
+    <li class="toctree-l2"><a class="reference internal" href="#scprint2.model.loss">loss</a>
         <ul>
-    <li class="toctree-l3"><a class="reference internal" href="#scprint.model.loss.AdversarialDiscriminatorLoss">AdversarialDiscriminatorLoss</a>
+    <li class="toctree-l3"><a class="reference internal" href="#scprint2.model.loss.AdversarialDiscriminatorLoss">AdversarialDiscriminatorLoss</a>
         <ul>
-    <li class="toctree-l4"><a class="reference internal" href="#scprint.model.loss.AdversarialDiscriminatorLoss.forward">forward</a>
+    <li class="toctree-l4"><a class="reference internal" href="#scprint2.model.loss.AdversarialDiscriminatorLoss.forward">forward</a>
     </li>
         </ul>
     </li>
-    <li class="toctree-l3"><a class="reference internal" href="#scprint.model.loss.contrastive_loss">contrastive_loss</a>
+    <li class="toctree-l3"><a class="reference internal" href="#scprint2.model.loss.contrastive_loss">contrastive_loss</a>
     </li>
-    <li class="toctree-l3"><a class="reference internal" href="#scprint.model.loss.criterion_neg_log_bernoulli">criterion_neg_log_bernoulli</a>
+    <li class="toctree-l3"><a class="reference internal" href="#scprint2.model.loss.criterion_neg_log_bernoulli">criterion_neg_log_bernoulli</a>
     </li>
-    <li class="toctree-l3"><a class="reference internal" href="#scprint.model.loss.ecs">ecs</a>
+    <li class="toctree-l3"><a class="reference internal" href="#scprint2.model.loss.ecs">ecs</a>
     </li>
-    <li class="toctree-l3"><a class="reference internal" href="#scprint.model.loss.grad_reverse">grad_reverse</a>
+    <li class="toctree-l3"><a class="reference internal" href="#scprint2.model.loss.grad_reverse">grad_reverse</a>
     </li>
-    <li class="toctree-l3"><a class="reference internal" href="#scprint.model.loss.hierarchical_classification">hierarchical_classification</a>
+    <li class="toctree-l3"><a class="reference internal" href="#scprint2.model.loss.hierarchical_classification">hierarchical_classification</a>
     </li>
-    <li class="toctree-l3"><a class="reference internal" href="#scprint.model.loss.masked_mae">masked_mae</a>
+    <li class="toctree-l3"><a class="reference internal" href="#scprint2.model.loss.masked_mae">masked_mae</a>
     </li>
-    <li class="toctree-l3"><a class="reference internal" href="#scprint.model.loss.masked_mse">masked_mse</a>
+    <li class="toctree-l3"><a class="reference internal" href="#scprint2.model.loss.masked_mse">masked_mse</a>
     </li>
-    <li class="toctree-l3"><a class="reference internal" href="#scprint.model.loss.masked_nb">masked_nb</a>
+    <li class="toctree-l3"><a class="reference internal" href="#scprint2.model.loss.masked_nb">masked_nb</a>
     </li>
-    <li class="toctree-l3"><a class="reference internal" href="#scprint.model.loss.masked_relative_error">masked_relative_error</a>
+    <li class="toctree-l3"><a class="reference internal" href="#scprint2.model.loss.masked_relative_error">masked_relative_error</a>
     </li>
-    <li class="toctree-l3"><a class="reference internal" href="#scprint.model.loss.mse">mse</a>
+    <li class="toctree-l3"><a class="reference internal" href="#scprint2.model.loss.mse">mse</a>
     </li>
-    <li class="toctree-l3"><a class="reference internal" href="#scprint.model.loss.nb">nb</a>
+    <li class="toctree-l3"><a class="reference internal" href="#scprint2.model.loss.nb">nb</a>
     </li>
-    <li class="toctree-l3"><a class="reference internal" href="#scprint.model.loss.nb_dist">nb_dist</a>
+    <li class="toctree-l3"><a class="reference internal" href="#scprint2.model.loss.nb_dist">nb_dist</a>
     </li>
-    <li class="toctree-l3"><a class="reference internal" href="#scprint.model.loss.within_sample">within_sample</a>
+    <li class="toctree-l3"><a class="reference internal" href="#scprint2.model.loss.within_sample">within_sample</a>
     </li>
-    <li class="toctree-l3"><a class="reference internal" href="#scprint.model.loss.zinb">zinb</a>
+    <li class="toctree-l3"><a class="reference internal" href="#scprint2.model.loss.zinb">zinb</a>
     </li>
         </ul>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#utils">utils</a>
     </li>
-    <li class="toctree-l2"><a class="reference internal" href="#scprint.model.utils">utils</a>
+    <li class="toctree-l2"><a class="reference internal" href="#scprint2.model.utils">utils</a>
         <ul>
-    <li class="toctree-l3"><a class="reference internal" href="#scprint.model.utils.Attention">Attention</a>
+    <li class="toctree-l3"><a class="reference internal" href="#scprint2.model.utils.Attention">Attention</a>
         <ul>
-    <li class="toctree-l4"><a class="reference internal" href="#scprint.model.utils.Attention.add_attn">add_attn</a>
+    <li class="toctree-l4"><a class="reference internal" href="#scprint2.model.utils.Attention.add_attn">add_attn</a>
     </li>
-    <li class="toctree-l4"><a class="reference internal" href="#scprint.model.utils.Attention.add_qk">add_qk</a>
+    <li class="toctree-l4"><a class="reference internal" href="#scprint2.model.utils.Attention.add_qk">add_qk</a>
     </li>
-    <li class="toctree-l4"><a class="reference internal" href="#scprint.model.utils.Attention.get">get</a>
+    <li class="toctree-l4"><a class="reference internal" href="#scprint2.model.utils.Attention.get">get</a>
     </li>
         </ul>
     </li>
-    <li class="toctree-l3"><a class="reference internal" href="#scprint.model.utils.WeightedMasker">WeightedMasker</a>
+    <li class="toctree-l3"><a class="reference internal" href="#scprint2.model.utils.WeightedMasker">WeightedMasker</a>
     </li>
-    <li class="toctree-l3"><a class="reference internal" href="#scprint.model.utils.downsample_profile">downsample_profile</a>
+    <li class="toctree-l3"><a class="reference internal" href="#scprint2.model.utils.downsample_profile">downsample_profile</a>
     </li>
-    <li class="toctree-l3"><a class="reference internal" href="#scprint.model.utils.make_adata">make_adata</a>
+    <li class="toctree-l3"><a class="reference internal" href="#scprint2.model.utils.make_adata">make_adata</a>
     </li>
-    <li class="toctree-l3"><a class="reference internal" href="#scprint.model.utils.simple_masker">simple_masker</a>
+    <li class="toctree-l3"><a class="reference internal" href="#scprint2.model.utils.simple_masker">simple_masker</a>
     </li>
-    <li class="toctree-l3"><a class="reference internal" href="#scprint.model.utils.test">test</a>
+    <li class="toctree-l3"><a class="reference internal" href="#scprint2.model.utils.test">test</a>
     </li>
-    <li class="toctree-l3"><a class="reference internal" href="#scprint.model.utils.zinb_sample">zinb_sample</a>
+    <li class="toctree-l3"><a class="reference internal" href="#scprint2.model.utils.zinb_sample">zinb_sample</a>
     </li>
         </ul>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#encoder-and-decoder-modules">encoder and decoder modules</a>
     </li>
-    <li class="toctree-l2"><a class="reference internal" href="#scprint.model.encoders">encoders</a>
+    <li class="toctree-l2"><a class="reference internal" href="#scprint2.model.encoders">encoders</a>
         <ul>
-    <li class="toctree-l3"><a class="reference internal" href="#scprint.model.encoders.CategoryValueEncoder">CategoryValueEncoder</a>
+    <li class="toctree-l3"><a class="reference internal" href="#scprint2.model.encoders.CategoryValueEncoder">CategoryValueEncoder</a>
     </li>
-    <li class="toctree-l3"><a class="reference internal" href="#scprint.model.encoders.ContinuousValueEncoder">ContinuousValueEncoder</a>
+    <li class="toctree-l3"><a class="reference internal" href="#scprint2.model.encoders.ContinuousValueEncoder">ContinuousValueEncoder</a>
         <ul>
-    <li class="toctree-l4"><a class="reference internal" href="#scprint.model.encoders.ContinuousValueEncoder.forward">forward</a>
+    <li class="toctree-l4"><a class="reference internal" href="#scprint2.model.encoders.ContinuousValueEncoder.forward">forward</a>
     </li>
         </ul>
     </li>
-    <li class="toctree-l3"><a class="reference internal" href="#scprint.model.encoders.DPositionalEncoding">DPositionalEncoding</a>
+    <li class="toctree-l3"><a class="reference internal" href="#scprint2.model.encoders.DPositionalEncoding">DPositionalEncoding</a>
         <ul>
-    <li class="toctree-l4"><a class="reference internal" href="#scprint.model.encoders.DPositionalEncoding.forward">forward</a>
+    <li class="toctree-l4"><a class="reference internal" href="#scprint2.model.encoders.DPositionalEncoding.forward">forward</a>
     </li>
         </ul>
     </li>
-    <li class="toctree-l3"><a class="reference internal" href="#scprint.model.encoders.EasyExprGNN">EasyExprGNN</a>
+    <li class="toctree-l3"><a class="reference internal" href="#scprint2.model.encoders.EasyExprGNN">EasyExprGNN</a>
         <ul>
-    <li class="toctree-l4"><a class="reference internal" href="#scprint.model.encoders.EasyExprGNN.forward">forward</a>
+    <li class="toctree-l4"><a class="reference internal" href="#scprint2.model.encoders.EasyExprGNN.forward">forward</a>
     </li>
         </ul>
     </li>
-    <li class="toctree-l3"><a class="reference internal" href="#scprint.model.encoders.ExprBasedFT">ExprBasedFT</a>
+    <li class="toctree-l3"><a class="reference internal" href="#scprint2.model.encoders.ExprBasedFT">ExprBasedFT</a>
         <ul>
-    <li class="toctree-l4"><a class="reference internal" href="#scprint.model.encoders.ExprBasedFT.forward">forward</a>
+    <li class="toctree-l4"><a class="reference internal" href="#scprint2.model.encoders.ExprBasedFT.forward">forward</a>
     </li>
         </ul>
     </li>
-    <li class="toctree-l3"><a class="reference internal" href="#scprint.model.encoders.GNN">GNN</a>
+    <li class="toctree-l3"><a class="reference internal" href="#scprint2.model.encoders.GNN">GNN</a>
         <ul>
-    <li class="toctree-l4"><a class="reference internal" href="#scprint.model.encoders.GNN.forward">forward</a>
+    <li class="toctree-l4"><a class="reference internal" href="#scprint2.model.encoders.GNN.forward">forward</a>
     </li>
         </ul>
     </li>
-    <li class="toctree-l3"><a class="reference internal" href="#scprint.model.encoders.GeneEncoder">GeneEncoder</a>
+    <li class="toctree-l3"><a class="reference internal" href="#scprint2.model.encoders.GeneEncoder">GeneEncoder</a>
         <ul>
-    <li class="toctree-l4"><a class="reference internal" href="#scprint.model.encoders.GeneEncoder.__del__">__del__</a>
+    <li class="toctree-l4"><a class="reference internal" href="#scprint2.model.encoders.GeneEncoder.__del__">__del__</a>
     </li>
-    <li class="toctree-l4"><a class="reference internal" href="#scprint.model.encoders.GeneEncoder.forward">forward</a>
+    <li class="toctree-l4"><a class="reference internal" href="#scprint2.model.encoders.GeneEncoder.forward">forward</a>
     </li>
         </ul>
     </li>
-    <li class="toctree-l3"><a class="reference internal" href="#scprint.model.encoders.PositionalEncoding">PositionalEncoding</a>
+    <li class="toctree-l3"><a class="reference internal" href="#scprint2.model.encoders.PositionalEncoding">PositionalEncoding</a>
         <ul>
-    <li class="toctree-l4"><a class="reference internal" href="#scprint.model.encoders.PositionalEncoding.forward">forward</a>
-    </li>
-        </ul>
-    </li>
-        </ul>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#scprint.model.decoders">decoders</a>
-        <ul>
-    <li class="toctree-l3"><a class="reference internal" href="#scprint.model.decoders.ClsDecoder">ClsDecoder</a>
-        <ul>
-    <li class="toctree-l4"><a class="reference internal" href="#scprint.model.decoders.ClsDecoder.forward">forward</a>
-    </li>
-        </ul>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#scprint.model.decoders.ExprDecoder">ExprDecoder</a>
-        <ul>
-    <li class="toctree-l4"><a class="reference internal" href="#scprint.model.decoders.ExprDecoder.forward">forward</a>
-    </li>
-        </ul>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#scprint.model.decoders.GraphSDEExprDecoder">GraphSDEExprDecoder</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#scprint.model.decoders.MVCDecoder">MVCDecoder</a>
-        <ul>
-    <li class="toctree-l4"><a class="reference internal" href="#scprint.model.decoders.MVCDecoder.forward">forward</a>
-    </li>
-        </ul>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#scprint.model.decoders.VAEDecoder">VAEDecoder</a>
-        <ul>
-    <li class="toctree-l4"><a class="reference internal" href="#scprint.model.decoders.VAEDecoder.forward">forward</a>
-    </li>
-    <li class="toctree-l4"><a class="reference internal" href="#scprint.model.decoders.VAEDecoder.kl_divergence">kl_divergence</a>
-    </li>
-    <li class="toctree-l4"><a class="reference internal" href="#scprint.model.decoders.VAEDecoder.reparameterize">reparameterize</a>
+    <li class="toctree-l4"><a class="reference internal" href="#scprint2.model.encoders.PositionalEncoding.forward">forward</a>
     </li>
         </ul>
     </li>
         </ul>
     </li>
-    <li class="toctree-l2"><a class="reference internal" href="#scprint.model.fsq">fsq</a>
+    <li class="toctree-l2"><a class="reference internal" href="#scprint2.model.decoders">decoders</a>
         <ul>
-    <li class="toctree-l3"><a class="reference internal" href="#scprint.model.fsq.FSQ">FSQ</a>
+    <li class="toctree-l3"><a class="reference internal" href="#scprint2.model.decoders.ClsDecoder">ClsDecoder</a>
         <ul>
-    <li class="toctree-l4"><a class="reference internal" href="#scprint.model.fsq.FSQ.bound">bound</a>
-    </li>
-    <li class="toctree-l4"><a class="reference internal" href="#scprint.model.fsq.FSQ.codes_to_indices">codes_to_indices</a>
-    </li>
-    <li class="toctree-l4"><a class="reference internal" href="#scprint.model.fsq.FSQ.forward">forward</a>
-    </li>
-    <li class="toctree-l4"><a class="reference internal" href="#scprint.model.fsq.FSQ.indices_to_codes">indices_to_codes</a>
-    </li>
-    <li class="toctree-l4"><a class="reference internal" href="#scprint.model.fsq.FSQ.quantize">quantize</a>
+    <li class="toctree-l4"><a class="reference internal" href="#scprint2.model.decoders.ClsDecoder.forward">forward</a>
     </li>
         </ul>
     </li>
-    <li class="toctree-l3"><a class="reference internal" href="#scprint.model.fsq.round_ste">round_ste</a>
+    <li class="toctree-l3"><a class="reference internal" href="#scprint2.model.decoders.ExprDecoder">ExprDecoder</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#scprint2.model.decoders.ExprDecoder.forward">forward</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#scprint2.model.decoders.GraphSDEExprDecoder">GraphSDEExprDecoder</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#scprint2.model.decoders.MVCDecoder">MVCDecoder</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#scprint2.model.decoders.MVCDecoder.forward">forward</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#scprint2.model.decoders.VAEDecoder">VAEDecoder</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#scprint2.model.decoders.VAEDecoder.forward">forward</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#scprint2.model.decoders.VAEDecoder.kl_divergence">kl_divergence</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#scprint2.model.decoders.VAEDecoder.reparameterize">reparameterize</a>
+    </li>
+        </ul>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#scprint2.model.fsq">fsq</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#scprint2.model.fsq.FSQ">FSQ</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#scprint2.model.fsq.FSQ.bound">bound</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#scprint2.model.fsq.FSQ.codes_to_indices">codes_to_indices</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#scprint2.model.fsq.FSQ.forward">forward</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#scprint2.model.fsq.FSQ.indices_to_codes">indices_to_codes</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#scprint2.model.fsq.FSQ.quantize">quantize</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#scprint2.model.fsq.round_ste">round_ste</a>
     </li>
         </ul>
     </li>
@@ -311,7 +311,7 @@
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
       <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="..">scprint</a>
+          <a href="..">scPRINT-2</a>
         
       </nav>
       <div class="wy-nav-content">
@@ -336,8 +336,8 @@
 
 
 
-<h2 id="scprint.model.model" class="doc doc-heading">
-            <code>scprint.model.model</code>
+<h2 id="scprint2.model.model" class="doc doc-heading">
+            <code>scprint2.model.model</code>
 
 
 </h2>
@@ -363,7 +363,7 @@
       </thead>
       <tbody>
           <tr class="doc-section-item">
-            <td><code><a class="autorefs autorefs-internal" title="scPrint (scprint.model.model.scPrint)" href="#scprint.model.model.scPrint">scPrint</a></code></td>
+            <td><code><a class="autorefs autorefs-internal" title="scPrint2 (scprint2.model.model.scPrint2)" href="#scprint2.model.model.scPrint2">scPrint2</a></code></td>
             <td>
               <div class="doc-md-description">
                 
@@ -393,8 +393,8 @@
 
 
 
-<h3 id="scprint.model.model.scPrint" class="doc doc-heading">
-              <code class="highlight language-python"><span class="n">scPrint</span></code>
+<h3 id="scprint2.model.model.scPrint2" class="doc doc-heading">
+              <code class="highlight language-python"><span class="n">scPrint2</span></code>
 
 </h3>
 
@@ -405,7 +405,7 @@
 
 
 
-        <p>scPRINT: Single-Cell Pretrained Regulatory Inference Network Transformer.</p>
+        <p>scPRINT-2: Single-Cell Pretrained Regulatory Inference Network Transformer.</p>
 <p>A foundation model for single-cell biology that learns cell and gene representations
 through self-supervised learning on large-scale single-cell RNA-seq data. The model
 can be used for:
@@ -947,21 +947,21 @@ pred_log_adata (bool): Whether to log predictions as AnnData.</p>
   <blockquote>
 <blockquote>
 <blockquote>
-<h4 id="scprint.model.model.scPrint--initialize-model">Initialize model</h4>
-<p>model = scPrint(
+<h4 id="scprint2.model.model.scPrint2--initialize-model">Initialize model</h4>
+<p>model = scPrint2(
 ...     genes=gene_list,
 ...     organisms=["NCBITaxon:9606"],
 ...     d_model=512,
 ...     nlayers=12,
 ...     classes={"cell_type_ontology_term_id": 100},
 ... )</p>
-<h4 id="scprint.model.model.scPrint--configure-training">Configure training</h4>
+<h4 id="scprint2.model.model.scPrint2--configure-training">Configure training</h4>
 <p>model.noise = [0.4, 0.6]
 model.mask_ratio = [0.15, 0.3]</p>
-<h4 id="scprint.model.model.scPrint--train-with-pytorch-lightning">Train with PyTorch Lightning</h4>
+<h4 id="scprint2.model.model.scPrint2--train-with-pytorch-lightning">Train with PyTorch Lightning</h4>
 <p>trainer = L.Trainer(max_epochs=100)
 trainer.fit(model, datamodule)</p>
-<h4 id="scprint.model.model.scPrint--generate-embeddings">Generate embeddings</h4>
+<h4 id="scprint2.model.model.scPrint2--generate-embeddings">Generate embeddings</h4>
 <p>model.pred_embedding = ["cell_type_ontology_term_id"]
 predictions = trainer.predict(model, datamodule)</p>
 </blockquote>
@@ -994,7 +994,7 @@ Gene order must match between model initialization and data loading.</p>
       </thead>
       <tbody>
             <tr class="doc-section-item">
-              <td><code><a class="autorefs autorefs-internal" title="add_organism (scprint.model.model.scPrint.add_organism)" href="#scprint.model.model.scPrint.add_organism">add_organism</a></code></td>
+              <td><code><a class="autorefs autorefs-internal" title="add_organism (scprint2.model.model.scPrint2.add_organism)" href="#scprint2.model.model.scPrint2.add_organism">add_organism</a></code></td>
               <td>
                 <div class="doc-md-description">
                   <p>Add a new organism to an existing model for transfer learning.</p>
@@ -1002,7 +1002,7 @@ Gene order must match between model initialization and data loading.</p>
               </td>
             </tr>
             <tr class="doc-section-item">
-              <td><code><a class="autorefs autorefs-internal" title="configure_optimizers (scprint.model.model.scPrint.configure_optimizers)" href="#scprint.model.model.scPrint.configure_optimizers">configure_optimizers</a></code></td>
+              <td><code><a class="autorefs autorefs-internal" title="configure_optimizers (scprint2.model.model.scPrint2.configure_optimizers)" href="#scprint2.model.model.scPrint2.configure_optimizers">configure_optimizers</a></code></td>
               <td>
                 <div class="doc-md-description">
                   <p>@see pl.LightningModule</p>
@@ -1010,15 +1010,15 @@ Gene order must match between model initialization and data loading.</p>
               </td>
             </tr>
             <tr class="doc-section-item">
-              <td><code><a class="autorefs autorefs-internal" title="forward (scprint.model.model.scPrint.forward)" href="#scprint.model.model.scPrint.forward">forward</a></code></td>
+              <td><code><a class="autorefs autorefs-internal" title="forward (scprint2.model.model.scPrint2.forward)" href="#scprint2.model.model.scPrint2.forward">forward</a></code></td>
               <td>
                 <div class="doc-md-description">
-                  <p>Complete forward pass through the scPRINT model.</p>
+                  <p>Complete forward pass through the scPRINT-2 model.</p>
                 </div>
               </td>
             </tr>
             <tr class="doc-section-item">
-              <td><code><a class="autorefs autorefs-internal" title="log_adata (scprint.model.model.scPrint.log_adata)" href="#scprint.model.model.scPrint.log_adata">log_adata</a></code></td>
+              <td><code><a class="autorefs autorefs-internal" title="log_adata (scprint2.model.model.scPrint2.log_adata)" href="#scprint2.model.model.scPrint2.log_adata">log_adata</a></code></td>
               <td>
                 <div class="doc-md-description">
                   <p>log_adata will log an adata from predictions.</p>
@@ -1026,7 +1026,7 @@ Gene order must match between model initialization and data loading.</p>
               </td>
             </tr>
             <tr class="doc-section-item">
-              <td><code><a class="autorefs autorefs-internal" title="on_fit_start (scprint.model.model.scPrint.on_fit_start)" href="#scprint.model.model.scPrint.on_fit_start">on_fit_start</a></code></td>
+              <td><code><a class="autorefs autorefs-internal" title="on_fit_start (scprint2.model.model.scPrint2.on_fit_start)" href="#scprint2.model.model.scPrint2.on_fit_start">on_fit_start</a></code></td>
               <td>
                 <div class="doc-md-description">
                   <p>@see pl.LightningModule</p>
@@ -1034,7 +1034,7 @@ Gene order must match between model initialization and data loading.</p>
               </td>
             </tr>
             <tr class="doc-section-item">
-              <td><code><a class="autorefs autorefs-internal" title="on_load_checkpoint (scprint.model.model.scPrint.on_load_checkpoint)" href="#scprint.model.model.scPrint.on_load_checkpoint">on_load_checkpoint</a></code></td>
+              <td><code><a class="autorefs autorefs-internal" title="on_load_checkpoint (scprint2.model.model.scPrint2.on_load_checkpoint)" href="#scprint2.model.model.scPrint2.on_load_checkpoint">on_load_checkpoint</a></code></td>
               <td>
                 <div class="doc-md-description">
                   <p>Handle checkpoint loading with backward compatibility.</p>
@@ -1042,7 +1042,7 @@ Gene order must match between model initialization and data loading.</p>
               </td>
             </tr>
             <tr class="doc-section-item">
-              <td><code><a class="autorefs autorefs-internal" title="on_predict_epoch_end (scprint.model.model.scPrint.on_predict_epoch_end)" href="#scprint.model.model.scPrint.on_predict_epoch_end">on_predict_epoch_end</a></code></td>
+              <td><code><a class="autorefs autorefs-internal" title="on_predict_epoch_end (scprint2.model.model.scPrint2.on_predict_epoch_end)" href="#scprint2.model.model.scPrint2.on_predict_epoch_end">on_predict_epoch_end</a></code></td>
               <td>
                 <div class="doc-md-description">
                   <p>@see pl.LightningModule will</p>
@@ -1050,7 +1050,7 @@ Gene order must match between model initialization and data loading.</p>
               </td>
             </tr>
             <tr class="doc-section-item">
-              <td><code><a class="autorefs autorefs-internal" title="on_predict_epoch_start (scprint.model.model.scPrint.on_predict_epoch_start)" href="#scprint.model.model.scPrint.on_predict_epoch_start">on_predict_epoch_start</a></code></td>
+              <td><code><a class="autorefs autorefs-internal" title="on_predict_epoch_start (scprint2.model.model.scPrint2.on_predict_epoch_start)" href="#scprint2.model.model.scPrint2.on_predict_epoch_start">on_predict_epoch_start</a></code></td>
               <td>
                 <div class="doc-md-description">
                   <p>@see pl.LightningModule</p>
@@ -1058,7 +1058,7 @@ Gene order must match between model initialization and data loading.</p>
               </td>
             </tr>
             <tr class="doc-section-item">
-              <td><code><a class="autorefs autorefs-internal" title="on_test_start (scprint.model.model.scPrint.on_test_start)" href="#scprint.model.model.scPrint.on_test_start">on_test_start</a></code></td>
+              <td><code><a class="autorefs autorefs-internal" title="on_test_start (scprint2.model.model.scPrint2.on_test_start)" href="#scprint2.model.model.scPrint2.on_test_start">on_test_start</a></code></td>
               <td>
                 <div class="doc-md-description">
                   <p>@see pl.LightningModule</p>
@@ -1066,7 +1066,7 @@ Gene order must match between model initialization and data loading.</p>
               </td>
             </tr>
             <tr class="doc-section-item">
-              <td><code><a class="autorefs autorefs-internal" title="on_validation_epoch_end (scprint.model.model.scPrint.on_validation_epoch_end)" href="#scprint.model.model.scPrint.on_validation_epoch_end">on_validation_epoch_end</a></code></td>
+              <td><code><a class="autorefs autorefs-internal" title="on_validation_epoch_end (scprint2.model.model.scPrint2.on_validation_epoch_end)" href="#scprint2.model.model.scPrint2.on_validation_epoch_end">on_validation_epoch_end</a></code></td>
               <td>
                 <div class="doc-md-description">
                   <p>@see pl.LightningModule</p>
@@ -1074,7 +1074,7 @@ Gene order must match between model initialization and data loading.</p>
               </td>
             </tr>
             <tr class="doc-section-item">
-              <td><code><a class="autorefs autorefs-internal" title="optimizer_step (scprint.model.model.scPrint.optimizer_step)" href="#scprint.model.model.scPrint.optimizer_step">optimizer_step</a></code></td>
+              <td><code><a class="autorefs autorefs-internal" title="optimizer_step (scprint2.model.model.scPrint2.optimizer_step)" href="#scprint2.model.model.scPrint2.optimizer_step">optimizer_step</a></code></td>
               <td>
                 <div class="doc-md-description">
                   <p>@see pl.LightningModule</p>
@@ -1082,7 +1082,7 @@ Gene order must match between model initialization and data loading.</p>
               </td>
             </tr>
             <tr class="doc-section-item">
-              <td><code><a class="autorefs autorefs-internal" title="predict_step (scprint.model.model.scPrint.predict_step)" href="#scprint.model.model.scPrint.predict_step">predict_step</a></code></td>
+              <td><code><a class="autorefs autorefs-internal" title="predict_step (scprint2.model.model.scPrint2.predict_step)" href="#scprint2.model.model.scPrint2.predict_step">predict_step</a></code></td>
               <td>
                 <div class="doc-md-description">
                   <p>embed given gene expression, encode the gene embedding and cell embedding.</p>
@@ -1090,7 +1090,7 @@ Gene order must match between model initialization and data loading.</p>
               </td>
             </tr>
             <tr class="doc-section-item">
-              <td><code><a class="autorefs autorefs-internal" title="training_step (scprint.model.model.scPrint.training_step)" href="#scprint.model.model.scPrint.training_step">training_step</a></code></td>
+              <td><code><a class="autorefs autorefs-internal" title="training_step (scprint2.model.model.scPrint2.training_step)" href="#scprint2.model.model.scPrint2.training_step">training_step</a></code></td>
               <td>
                 <div class="doc-md-description">
                   <p>training_step defines the train loop. It is independent of forward</p>
@@ -1098,7 +1098,7 @@ Gene order must match between model initialization and data loading.</p>
               </td>
             </tr>
             <tr class="doc-section-item">
-              <td><code><a class="autorefs autorefs-internal" title="validation_step (scprint.model.model.scPrint.validation_step)" href="#scprint.model.model.scPrint.validation_step">validation_step</a></code></td>
+              <td><code><a class="autorefs autorefs-internal" title="validation_step (scprint2.model.model.scPrint2.validation_step)" href="#scprint2.model.model.scPrint2.validation_step">validation_step</a></code></td>
               <td>
                 <div class="doc-md-description">
                   <p>validation_step defines the validation loop. It is independent of forward</p>
@@ -1134,8 +1134,10 @@ Gene order must match between model initialization and data loading.</p>
   </tbody>
 </table>
                   <details class="quote">
-                    <summary>Source code in <code>scprint/model/model.py</code></summary>
-                    <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 39</span>
+                    <summary>Source code in <code>scprint2/model/model.py</code></summary>
+                    <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 37</span>
+<span class="normal"> 38</span>
+<span class="normal"> 39</span>
 <span class="normal"> 40</span>
 <span class="normal"> 41</span>
 <span class="normal"> 42</span>
@@ -1734,9 +1736,7 @@ Gene order must match between model initialization and data loading.</p>
 <span class="normal">635</span>
 <span class="normal">636</span>
 <span class="normal">637</span>
-<span class="normal">638</span>
-<span class="normal">639</span>
-<span class="normal">640</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
+<span class="normal">638</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
     <span class="bp">self</span><span class="p">,</span>
     <span class="n">genes</span><span class="p">,</span>
     <span class="n">organisms</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span>
@@ -1799,7 +1799,7 @@ Gene order must match between model initialization and data loading.</p>
     <span class="o">**</span><span class="n">attention_kwargs</span><span class="p">,</span>
 <span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    scPRINT: Single-Cell Pretrained Regulatory Inference Network Transformer.</span>
+<span class="sd">    scPRINT-2: Single-Cell Pretrained Regulatory Inference Network Transformer.</span>
 
 <span class="sd">    A foundation model for single-cell biology that learns cell and gene representations</span>
 <span class="sd">    through self-supervised learning on large-scale single-cell RNA-seq data. The model</span>
@@ -1938,7 +1938,7 @@ Gene order must match between model initialization and data loading.</p>
 
 <span class="sd">    Example:</span>
 <span class="sd">        &gt;&gt;&gt; # Initialize model</span>
-<span class="sd">        &gt;&gt;&gt; model = scPrint(</span>
+<span class="sd">        &gt;&gt;&gt; model = scPrint2(</span>
 <span class="sd">        ...     genes=gene_list,</span>
 <span class="sd">        ...     organisms=[&quot;NCBITaxon:9606&quot;],</span>
 <span class="sd">        ...     d_model=512,</span>
@@ -2355,7 +2355,7 @@ Gene order must match between model initialization and data loading.</p>
 
 
 
-<h4 id="scprint.model.model.scPrint.genes" class="doc doc-heading">
+<h4 id="scprint2.model.model.scPrint2.genes" class="doc doc-heading">
             <code class="highlight language-python"><span class="n">genes</span></code>
 
   <span class="doc doc-labels">
@@ -2403,7 +2403,7 @@ in consistent order.</p>
 <div class="doc doc-object doc-function">
 
 
-<h4 id="scprint.model.model.scPrint.add_organism" class="doc doc-heading">
+<h4 id="scprint2.model.model.scPrint2.add_organism" class="doc doc-heading">
             <code class="highlight language-python"><span class="n">add_organism</span></code>
 
 </h4>
@@ -2505,8 +2505,10 @@ will be added. The model's gene encoder is expanded in-place.</p>
 </details>
 
             <details class="mkdocstrings-source">
-              <summary>Source code in <code>scprint/model/model.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">645</span>
+              <summary>Source code in <code>scprint2/model/model.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">643</span>
+<span class="normal">644</span>
+<span class="normal">645</span>
 <span class="normal">646</span>
 <span class="normal">647</span>
 <span class="normal">648</span>
@@ -2586,9 +2588,7 @@ will be added. The model's gene encoder is expanded in-place.</p>
 <span class="normal">722</span>
 <span class="normal">723</span>
 <span class="normal">724</span>
-<span class="normal">725</span>
-<span class="normal">726</span>
-<span class="normal">727</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">add_organism</span><span class="p">(</span>
+<span class="normal">725</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">add_organism</span><span class="p">(</span>
     <span class="bp">self</span><span class="p">,</span> <span class="n">organism</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">genes</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">Index</span><span class="p">,</span> <span class="n">emb</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span> <span class="n">locs</span><span class="o">=</span><span class="kc">None</span>
 <span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
@@ -2680,7 +2680,7 @@ will be added. The model's gene encoder is expanded in-place.</p>
 <div class="doc doc-object doc-function">
 
 
-<h4 id="scprint.model.model.scPrint.configure_optimizers" class="doc doc-heading">
+<h4 id="scprint2.model.model.scPrint2.configure_optimizers" class="doc doc-heading">
             <code class="highlight language-python"><span class="n">configure_optimizers</span></code>
 
 </h4>
@@ -2692,8 +2692,10 @@ will be added. The model's gene encoder is expanded in-place.</p>
 
 
             <details class="mkdocstrings-source">
-              <summary>Source code in <code>scprint/model/model.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1495</span>
+              <summary>Source code in <code>scprint2/model/model.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1493</span>
+<span class="normal">1494</span>
+<span class="normal">1495</span>
 <span class="normal">1496</span>
 <span class="normal">1497</span>
 <span class="normal">1498</span>
@@ -2785,9 +2787,7 @@ will be added. The model's gene encoder is expanded in-place.</p>
 <span class="normal">1584</span>
 <span class="normal">1585</span>
 <span class="normal">1586</span>
-<span class="normal">1587</span>
-<span class="normal">1588</span>
-<span class="normal">1589</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">configure_optimizers</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="normal">1587</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">configure_optimizers</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;@see pl.LightningModule&quot;&quot;&quot;</span>
     <span class="c1"># https://pytorch.org/docs/stable/generated/torch.optim.Adam.html#torch.optim.Adam</span>
     <span class="c1"># not working because of poor weight decay implem</span>
@@ -2891,7 +2891,7 @@ will be added. The model's gene encoder is expanded in-place.</p>
 <div class="doc doc-object doc-function">
 
 
-<h4 id="scprint.model.model.scPrint.forward" class="doc doc-heading">
+<h4 id="scprint2.model.model.scPrint2.forward" class="doc doc-heading">
             <code class="highlight language-python"><span class="n">forward</span></code>
 
 </h4>
@@ -2899,7 +2899,7 @@ will be added. The model's gene encoder is expanded in-place.</p>
 
     <div class="doc doc-contents ">
 
-        <p>Complete forward pass through the scPRINT model.</p>
+        <p>Complete forward pass through the scPRINT-2 model.</p>
 <p>Encodes input expression data, processes through transformer(s), and
 decodes into expression predictions and cell classifications.</p>
 
@@ -3127,8 +3127,10 @@ cell_types = output["cls_output_cell_type_ontology_term_id"].argmax(-1)</p>
 </details>
 
             <details class="mkdocstrings-source">
-              <summary>Source code in <code>scprint/model/model.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1239</span>
+              <summary>Source code in <code>scprint2/model/model.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1237</span>
+<span class="normal">1238</span>
+<span class="normal">1239</span>
 <span class="normal">1240</span>
 <span class="normal">1241</span>
 <span class="normal">1242</span>
@@ -3299,9 +3301,7 @@ cell_types = output["cls_output_cell_type_ontology_term_id"].argmax(-1)</p>
 <span class="normal">1407</span>
 <span class="normal">1408</span>
 <span class="normal">1409</span>
-<span class="normal">1410</span>
-<span class="normal">1411</span>
-<span class="normal">1412</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">forward</span><span class="p">(</span>
+<span class="normal">1410</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">forward</span><span class="p">(</span>
     <span class="bp">self</span><span class="p">,</span>
     <span class="n">gene_pos</span><span class="p">:</span> <span class="n">Tensor</span><span class="p">,</span>
     <span class="n">expression</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Tensor</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
@@ -3319,7 +3319,7 @@ cell_types = output["cls_output_cell_type_ontology_term_id"].argmax(-1)</p>
     <span class="n">mask_zeros</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Tensor</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
 <span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Complete forward pass through the scPRINT model.</span>
+<span class="sd">    Complete forward pass through the scPRINT-2 model.</span>
 
 <span class="sd">    Encodes input expression data, processes through transformer(s), and</span>
 <span class="sd">    decodes into expression predictions and cell classifications.</span>
@@ -3484,7 +3484,7 @@ cell_types = output["cls_output_cell_type_ontology_term_id"].argmax(-1)</p>
 <div class="doc doc-object doc-function">
 
 
-<h4 id="scprint.model.model.scPrint.log_adata" class="doc doc-heading">
+<h4 id="scprint2.model.model.scPrint2.log_adata" class="doc doc-heading">
             <code class="highlight language-python"><span class="n">log_adata</span></code>
 
 </h4>
@@ -3498,8 +3498,10 @@ It will log to tensorboard and wandb if available</p>
 
 
             <details class="mkdocstrings-source">
-              <summary>Source code in <code>scprint/model/model.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">2631</span>
+              <summary>Source code in <code>scprint2/model/model.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">2629</span>
+<span class="normal">2630</span>
+<span class="normal">2631</span>
 <span class="normal">2632</span>
 <span class="normal">2633</span>
 <span class="normal">2634</span>
@@ -3550,9 +3552,7 @@ It will log to tensorboard and wandb if available</p>
 <span class="normal">2679</span>
 <span class="normal">2680</span>
 <span class="normal">2681</span>
-<span class="normal">2682</span>
-<span class="normal">2683</span>
-<span class="normal">2684</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">log_adata</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">gtclass</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">):</span>
+<span class="normal">2682</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">log_adata</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">gtclass</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    log_adata will log an adata from predictions.</span>
 <span class="sd">    It will log to tensorboard and wandb if available</span>
@@ -3615,7 +3615,7 @@ It will log to tensorboard and wandb if available</p>
 <div class="doc doc-object doc-function">
 
 
-<h4 id="scprint.model.model.scPrint.on_fit_start" class="doc doc-heading">
+<h4 id="scprint2.model.model.scPrint2.on_fit_start" class="doc doc-heading">
             <code class="highlight language-python"><span class="n">on_fit_start</span></code>
 
 </h4>
@@ -3627,14 +3627,14 @@ It will log to tensorboard and wandb if available</p>
 
 
             <details class="mkdocstrings-source">
-              <summary>Source code in <code>scprint/model/model.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1591</span>
+              <summary>Source code in <code>scprint2/model/model.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1589</span>
+<span class="normal">1590</span>
+<span class="normal">1591</span>
 <span class="normal">1592</span>
 <span class="normal">1593</span>
 <span class="normal">1594</span>
-<span class="normal">1595</span>
-<span class="normal">1596</span>
-<span class="normal">1597</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">on_fit_start</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="normal">1595</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">on_fit_start</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;@see pl.LightningModule&quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">transformer</span><span class="p">)</span> <span class="ow">is</span> <span class="n">FlashTransformer</span><span class="p">:</span>
         <span class="k">for</span> <span class="n">encoder_layers</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">transformer</span><span class="o">.</span><span class="n">blocks</span><span class="p">:</span>
@@ -3650,7 +3650,7 @@ It will log to tensorboard and wandb if available</p>
 <div class="doc doc-object doc-function">
 
 
-<h4 id="scprint.model.model.scPrint.on_load_checkpoint" class="doc doc-heading">
+<h4 id="scprint2.model.model.scPrint2.on_load_checkpoint" class="doc doc-heading">
             <code class="highlight language-python"><span class="n">on_load_checkpoint</span></code>
 
 </h4>
@@ -3699,8 +3699,10 @@ current model. These should be reviewed to ensure expected behavior.</p>
 </details>
 
             <details class="mkdocstrings-source">
-              <summary>Source code in <code>scprint/model/model.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">729</span>
+              <summary>Source code in <code>scprint2/model/model.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">727</span>
+<span class="normal">728</span>
+<span class="normal">729</span>
 <span class="normal">730</span>
 <span class="normal">731</span>
 <span class="normal">732</span>
@@ -3919,9 +3921,7 @@ current model. These should be reviewed to ensure expected behavior.</p>
 <span class="normal">945</span>
 <span class="normal">946</span>
 <span class="normal">947</span>
-<span class="normal">948</span>
-<span class="normal">949</span>
-<span class="normal">950</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">on_load_checkpoint</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">checkpoints</span><span class="p">):</span>
+<span class="normal">948</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">on_load_checkpoint</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">checkpoints</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Handle checkpoint loading with backward compatibility.</span>
 
@@ -4107,8 +4107,8 @@ current model. These should be reviewed to ensure expected behavior.</p>
                     <span class="p">][</span><span class="s2">&quot;stopped_epoch&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
 
     <span class="k">except</span> <span class="ne">RuntimeError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-        <span class="k">if</span> <span class="s2">&quot;scPrint is not attached to a `Trainer`.&quot;</span> <span class="ow">in</span> <span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">):</span>
-            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;FYI: scPrint is not attached to a `Trainer`.&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="s2">&quot;scPrint2 is not attached to a `Trainer`.&quot;</span> <span class="ow">in</span> <span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">):</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;FYI: scPrint2 is not attached to a `Trainer`.&quot;</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="k">raise</span> <span class="n">e</span>
     <span class="k">if</span> <span class="p">(</span>
@@ -4131,14 +4131,14 @@ current model. These should be reviewed to ensure expected behavior.</p>
         <span class="k">try</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">trainer</span><span class="o">.</span><span class="n">datamodule</span><span class="o">.</span><span class="n">organisms</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">organisms</span>
         <span class="k">except</span> <span class="ne">RuntimeError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-            <span class="k">if</span> <span class="s2">&quot;scPrint is not attached to a `Trainer`.&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">):</span>
+            <span class="k">if</span> <span class="s2">&quot;scPrint2 is not attached to a `Trainer`.&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">):</span>
                 <span class="k">raise</span> <span class="n">e</span>
     <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_genes</span> <span class="o">!=</span> <span class="n">checkpoints</span><span class="p">[</span><span class="s2">&quot;hyper_parameters&quot;</span><span class="p">][</span><span class="s2">&quot;genes&quot;</span><span class="p">]:</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_genes</span> <span class="o">=</span> <span class="n">checkpoints</span><span class="p">[</span><span class="s2">&quot;hyper_parameters&quot;</span><span class="p">][</span><span class="s2">&quot;genes&quot;</span><span class="p">]</span>
     <span class="k">try</span><span class="p">:</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">trainer</span><span class="o">.</span><span class="n">datamodule</span><span class="o">.</span><span class="n">set_valid_genes_collator</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">genes</span><span class="p">)</span>
     <span class="k">except</span> <span class="ne">RuntimeError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-        <span class="k">if</span> <span class="s2">&quot;scPrint is not attached to a `Trainer`.&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">):</span>
+        <span class="k">if</span> <span class="s2">&quot;scPrint2 is not attached to a `Trainer`.&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">):</span>
             <span class="k">raise</span> <span class="n">e</span>
 
     <span class="k">if</span> <span class="ow">not</span> <span class="n">is_interactive</span><span class="p">():</span>
@@ -4152,7 +4152,7 @@ current model. These should be reviewed to ensure expected behavior.</p>
 <div class="doc doc-object doc-function">
 
 
-<h4 id="scprint.model.model.scPrint.on_predict_epoch_end" class="doc doc-heading">
+<h4 id="scprint2.model.model.scPrint2.on_predict_epoch_end" class="doc doc-heading">
             <code class="highlight language-python"><span class="n">on_predict_epoch_end</span></code>
 
 </h4>
@@ -4164,14 +4164,14 @@ current model. These should be reviewed to ensure expected behavior.</p>
 
 
             <details class="mkdocstrings-source">
-              <summary>Source code in <code>scprint/model/model.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">2623</span>
+              <summary>Source code in <code>scprint2/model/model.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">2621</span>
+<span class="normal">2622</span>
+<span class="normal">2623</span>
 <span class="normal">2624</span>
 <span class="normal">2625</span>
 <span class="normal">2626</span>
-<span class="normal">2627</span>
-<span class="normal">2628</span>
-<span class="normal">2629</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">on_predict_epoch_end</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="normal">2627</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">on_predict_epoch_end</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;@see pl.LightningModule will&quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">pos</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&lt;</span> <span class="mi">100</span><span class="p">:</span>
         <span class="k">return</span>
@@ -4187,7 +4187,7 @@ current model. These should be reviewed to ensure expected behavior.</p>
 <div class="doc doc-object doc-function">
 
 
-<h4 id="scprint.model.model.scPrint.on_predict_epoch_start" class="doc doc-heading">
+<h4 id="scprint2.model.model.scPrint2.on_predict_epoch_start" class="doc doc-heading">
             <code class="highlight language-python"><span class="n">on_predict_epoch_start</span></code>
 
 </h4>
@@ -4199,17 +4199,17 @@ current model. These should be reviewed to ensure expected behavior.</p>
 
 
             <details class="mkdocstrings-source">
-              <summary>Source code in <code>scprint/model/model.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">2357</span>
+              <summary>Source code in <code>scprint2/model/model.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">2355</span>
+<span class="normal">2356</span>
+<span class="normal">2357</span>
 <span class="normal">2358</span>
 <span class="normal">2359</span>
 <span class="normal">2360</span>
 <span class="normal">2361</span>
 <span class="normal">2362</span>
 <span class="normal">2363</span>
-<span class="normal">2364</span>
-<span class="normal">2365</span>
-<span class="normal">2366</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">on_predict_epoch_start</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="normal">2364</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">on_predict_epoch_start</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;@see pl.LightningModule&quot;&quot;&quot;</span>
     <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;predict epoch start&quot;</span><span class="p">)</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">embs</span> <span class="o">=</span> <span class="kc">None</span>
@@ -4228,7 +4228,7 @@ current model. These should be reviewed to ensure expected behavior.</p>
 <div class="doc doc-object doc-function">
 
 
-<h4 id="scprint.model.model.scPrint.on_test_start" class="doc doc-heading">
+<h4 id="scprint2.model.model.scPrint2.on_test_start" class="doc doc-heading">
             <code class="highlight language-python"><span class="n">on_test_start</span></code>
 
 </h4>
@@ -4240,12 +4240,12 @@ current model. These should be reviewed to ensure expected behavior.</p>
 
 
             <details class="mkdocstrings-source">
-              <summary>Source code in <code>scprint/model/model.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">2316</span>
+              <summary>Source code in <code>scprint2/model/model.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">2314</span>
+<span class="normal">2315</span>
+<span class="normal">2316</span>
 <span class="normal">2317</span>
-<span class="normal">2318</span>
-<span class="normal">2319</span>
-<span class="normal">2320</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">on_test_start</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="normal">2318</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">on_test_start</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;@see pl.LightningModule&quot;&quot;&quot;</span>
     <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;test start&quot;</span><span class="p">)</span>
     <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">mat_labels_hierarchy</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
@@ -4259,7 +4259,7 @@ current model. These should be reviewed to ensure expected behavior.</p>
 <div class="doc doc-object doc-function">
 
 
-<h4 id="scprint.model.model.scPrint.on_validation_epoch_end" class="doc doc-heading">
+<h4 id="scprint2.model.model.scPrint2.on_validation_epoch_end" class="doc doc-heading">
             <code class="highlight language-python"><span class="n">on_validation_epoch_end</span></code>
 
 </h4>
@@ -4271,8 +4271,10 @@ current model. These should be reviewed to ensure expected behavior.</p>
 
 
             <details class="mkdocstrings-source">
-              <summary>Source code in <code>scprint/model/model.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">2269</span>
+              <summary>Source code in <code>scprint2/model/model.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">2267</span>
+<span class="normal">2268</span>
+<span class="normal">2269</span>
 <span class="normal">2270</span>
 <span class="normal">2271</span>
 <span class="normal">2272</span>
@@ -4315,9 +4317,7 @@ current model. These should be reviewed to ensure expected behavior.</p>
 <span class="normal">2309</span>
 <span class="normal">2310</span>
 <span class="normal">2311</span>
-<span class="normal">2312</span>
-<span class="normal">2313</span>
-<span class="normal">2314</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">on_validation_epoch_end</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="normal">2312</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">on_validation_epoch_end</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;@see pl.LightningModule&quot;&quot;&quot;</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">pos</span> <span class="o">=</span> <span class="kc">None</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">expr_pred</span> <span class="o">=</span> <span class="kc">None</span>
@@ -4372,7 +4372,7 @@ current model. These should be reviewed to ensure expected behavior.</p>
 <div class="doc doc-object doc-function">
 
 
-<h4 id="scprint.model.model.scPrint.optimizer_step" class="doc doc-heading">
+<h4 id="scprint2.model.model.scPrint2.optimizer_step" class="doc doc-heading">
             <code class="highlight language-python"><span class="n">optimizer_step</span></code>
 
 </h4>
@@ -4384,8 +4384,10 @@ current model. These should be reviewed to ensure expected behavior.</p>
 
 
             <details class="mkdocstrings-source">
-              <summary>Source code in <code>scprint/model/model.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">2153</span>
+              <summary>Source code in <code>scprint2/model/model.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">2151</span>
+<span class="normal">2152</span>
+<span class="normal">2153</span>
 <span class="normal">2154</span>
 <span class="normal">2155</span>
 <span class="normal">2156</span>
@@ -4411,9 +4413,7 @@ current model. These should be reviewed to ensure expected behavior.</p>
 <span class="normal">2176</span>
 <span class="normal">2177</span>
 <span class="normal">2178</span>
-<span class="normal">2179</span>
-<span class="normal">2180</span>
-<span class="normal">2181</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">optimizer_step</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">epoch</span><span class="p">,</span> <span class="n">batch_idx</span><span class="p">,</span> <span class="n">optimizer</span><span class="p">,</span> <span class="n">optimizer_closure</span><span class="p">):</span>
+<span class="normal">2179</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">optimizer_step</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">epoch</span><span class="p">,</span> <span class="n">batch_idx</span><span class="p">,</span> <span class="n">optimizer</span><span class="p">,</span> <span class="n">optimizer_closure</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;@see pl.LightningModule&quot;&quot;&quot;</span>
     <span class="c1"># update params</span>
     <span class="c1"># manually warm up lr without a scheduler</span>
@@ -4451,7 +4451,7 @@ current model. These should be reviewed to ensure expected behavior.</p>
 <div class="doc doc-object doc-function">
 
 
-<h4 id="scprint.model.model.scPrint.predict_step" class="doc doc-heading">
+<h4 id="scprint2.model.model.scPrint2.predict_step" class="doc doc-heading">
             <code class="highlight language-python"><span class="n">predict_step</span></code>
 
 </h4>
@@ -4485,8 +4485,10 @@ current model. These should be reviewed to ensure expected behavior.</p>
 </table>
 
             <details class="mkdocstrings-source">
-              <summary>Source code in <code>scprint/model/model.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">2368</span>
+              <summary>Source code in <code>scprint2/model/model.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">2366</span>
+<span class="normal">2367</span>
+<span class="normal">2368</span>
 <span class="normal">2369</span>
 <span class="normal">2370</span>
 <span class="normal">2371</span>
@@ -4504,9 +4506,7 @@ current model. These should be reviewed to ensure expected behavior.</p>
 <span class="normal">2383</span>
 <span class="normal">2384</span>
 <span class="normal">2385</span>
-<span class="normal">2386</span>
-<span class="normal">2387</span>
-<span class="normal">2388</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">predict_step</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">batch</span><span class="p">,</span> <span class="n">batch_idx</span><span class="p">):</span>
+<span class="normal">2386</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">predict_step</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">batch</span><span class="p">,</span> <span class="n">batch_idx</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    embed given gene expression, encode the gene embedding and cell embedding.</span>
 
@@ -4536,7 +4536,7 @@ current model. These should be reviewed to ensure expected behavior.</p>
 <div class="doc doc-object doc-function">
 
 
-<h4 id="scprint.model.model.scPrint.training_step" class="doc doc-heading">
+<h4 id="scprint2.model.model.scPrint2.training_step" class="doc doc-heading">
             <code class="highlight language-python"><span class="n">training_step</span></code>
 
 </h4>
@@ -4571,8 +4571,10 @@ current model. These should be reviewed to ensure expected behavior.</p>
 </table>
 
             <details class="mkdocstrings-source">
-              <summary>Source code in <code>scprint/model/model.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1599</span>
+              <summary>Source code in <code>scprint2/model/model.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1597</span>
+<span class="normal">1598</span>
+<span class="normal">1599</span>
 <span class="normal">1600</span>
 <span class="normal">1601</span>
 <span class="normal">1602</span>
@@ -4600,9 +4602,7 @@ current model. These should be reviewed to ensure expected behavior.</p>
 <span class="normal">1624</span>
 <span class="normal">1625</span>
 <span class="normal">1626</span>
-<span class="normal">1627</span>
-<span class="normal">1628</span>
-<span class="normal">1629</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">training_step</span><span class="p">(</span>
+<span class="normal">1627</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">training_step</span><span class="p">(</span>
     <span class="bp">self</span><span class="p">,</span>
     <span class="n">batch</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Tensor</span><span class="p">],</span>
     <span class="n">batch_idx</span><span class="p">,</span>
@@ -4642,7 +4642,7 @@ current model. These should be reviewed to ensure expected behavior.</p>
 <div class="doc doc-object doc-function">
 
 
-<h4 id="scprint.model.model.scPrint.validation_step" class="doc doc-heading">
+<h4 id="scprint2.model.model.scPrint2.validation_step" class="doc doc-heading">
             <code class="highlight language-python"><span class="n">validation_step</span></code>
 
 </h4>
@@ -4679,8 +4679,10 @@ current model. These should be reviewed to ensure expected behavior.</p>
 </table>
 
             <details class="mkdocstrings-source">
-              <summary>Source code in <code>scprint/model/model.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">2194</span>
+              <summary>Source code in <code>scprint2/model/model.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">2192</span>
+<span class="normal">2193</span>
+<span class="normal">2194</span>
 <span class="normal">2195</span>
 <span class="normal">2196</span>
 <span class="normal">2197</span>
@@ -4751,9 +4753,7 @@ current model. These should be reviewed to ensure expected behavior.</p>
 <span class="normal">2262</span>
 <span class="normal">2263</span>
 <span class="normal">2264</span>
-<span class="normal">2265</span>
-<span class="normal">2266</span>
-<span class="normal">2267</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">validation_step</span><span class="p">(</span>
+<span class="normal">2265</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">validation_step</span><span class="p">(</span>
     <span class="bp">self</span><span class="p">,</span>
     <span class="n">batch</span><span class="p">,</span>
     <span class="n">batch_idx</span><span class="p">,</span>
@@ -4856,8 +4856,8 @@ current model. These should be reviewed to ensure expected behavior.</p>
 
 
 
-<h2 id="scprint.model.loss" class="doc doc-heading">
-            <code>scprint.model.loss</code>
+<h2 id="scprint2.model.loss" class="doc doc-heading">
+            <code>scprint2.model.loss</code>
 
 
 </h2>
@@ -4883,7 +4883,7 @@ current model. These should be reviewed to ensure expected behavior.</p>
       </thead>
       <tbody>
           <tr class="doc-section-item">
-            <td><code><a class="autorefs autorefs-internal" title="AdversarialDiscriminatorLoss (scprint.model.loss.AdversarialDiscriminatorLoss)" href="#scprint.model.loss.AdversarialDiscriminatorLoss">AdversarialDiscriminatorLoss</a></code></td>
+            <td><code><a class="autorefs autorefs-internal" title="AdversarialDiscriminatorLoss (scprint2.model.loss.AdversarialDiscriminatorLoss)" href="#scprint2.model.loss.AdversarialDiscriminatorLoss">AdversarialDiscriminatorLoss</a></code></td>
             <td>
               <div class="doc-md-description">
                 
@@ -4906,7 +4906,7 @@ current model. These should be reviewed to ensure expected behavior.</p>
       </thead>
       <tbody>
             <tr class="doc-section-item">
-              <td><code><a class="autorefs autorefs-internal" title="contrastive_loss (scprint.model.loss.contrastive_loss)" href="#scprint.model.loss.contrastive_loss">contrastive_loss</a></code></td>
+              <td><code><a class="autorefs autorefs-internal" title="contrastive_loss (scprint2.model.loss.contrastive_loss)" href="#scprint2.model.loss.contrastive_loss">contrastive_loss</a></code></td>
               <td>
                 <div class="doc-md-description">
                   <p>Computes NT-Xent loss (InfoNCE) between two sets of vectors.</p>
@@ -4914,7 +4914,7 @@ current model. These should be reviewed to ensure expected behavior.</p>
               </td>
             </tr>
             <tr class="doc-section-item">
-              <td><code><a class="autorefs autorefs-internal" title="criterion_neg_log_bernoulli (scprint.model.loss.criterion_neg_log_bernoulli)" href="#scprint.model.loss.criterion_neg_log_bernoulli">criterion_neg_log_bernoulli</a></code></td>
+              <td><code><a class="autorefs autorefs-internal" title="criterion_neg_log_bernoulli (scprint2.model.loss.criterion_neg_log_bernoulli)" href="#scprint2.model.loss.criterion_neg_log_bernoulli">criterion_neg_log_bernoulli</a></code></td>
               <td>
                 <div class="doc-md-description">
                   <p>Compute the negative log-likelihood of Bernoulli distribution</p>
@@ -4922,7 +4922,7 @@ current model. These should be reviewed to ensure expected behavior.</p>
               </td>
             </tr>
             <tr class="doc-section-item">
-              <td><code><a class="autorefs autorefs-internal" title="ecs (scprint.model.loss.ecs)" href="#scprint.model.loss.ecs">ecs</a></code></td>
+              <td><code><a class="autorefs autorefs-internal" title="ecs (scprint2.model.loss.ecs)" href="#scprint2.model.loss.ecs">ecs</a></code></td>
               <td>
                 <div class="doc-md-description">
                   <p>ecs Computes the similarity of cell embeddings based on a threshold.</p>
@@ -4930,7 +4930,7 @@ current model. These should be reviewed to ensure expected behavior.</p>
               </td>
             </tr>
             <tr class="doc-section-item">
-              <td><code><a class="autorefs autorefs-internal" title="grad_reverse (scprint.model.loss.grad_reverse)" href="#scprint.model.loss.grad_reverse">grad_reverse</a></code></td>
+              <td><code><a class="autorefs autorefs-internal" title="grad_reverse (scprint2.model.loss.grad_reverse)" href="#scprint2.model.loss.grad_reverse">grad_reverse</a></code></td>
               <td>
                 <div class="doc-md-description">
                   <p>grad_reverse Reverses the gradient of the input tensor.</p>
@@ -4938,7 +4938,7 @@ current model. These should be reviewed to ensure expected behavior.</p>
               </td>
             </tr>
             <tr class="doc-section-item">
-              <td><code><a class="autorefs autorefs-internal" title="hierarchical_classification (scprint.model.loss.hierarchical_classification)" href="#scprint.model.loss.hierarchical_classification">hierarchical_classification</a></code></td>
+              <td><code><a class="autorefs autorefs-internal" title="hierarchical_classification (scprint2.model.loss.hierarchical_classification)" href="#scprint2.model.loss.hierarchical_classification">hierarchical_classification</a></code></td>
               <td>
                 <div class="doc-md-description">
                   <p>Computes the classification loss for a given batch of predictions and ground truth labels.</p>
@@ -4946,7 +4946,7 @@ current model. These should be reviewed to ensure expected behavior.</p>
               </td>
             </tr>
             <tr class="doc-section-item">
-              <td><code><a class="autorefs autorefs-internal" title="masked_mae (scprint.model.loss.masked_mae)" href="#scprint.model.loss.masked_mae">masked_mae</a></code></td>
+              <td><code><a class="autorefs autorefs-internal" title="masked_mae (scprint2.model.loss.masked_mae)" href="#scprint2.model.loss.masked_mae">masked_mae</a></code></td>
               <td>
                 <div class="doc-md-description">
                   <p>Compute the masked MAE loss between input and target.</p>
@@ -4954,7 +4954,7 @@ current model. These should be reviewed to ensure expected behavior.</p>
               </td>
             </tr>
             <tr class="doc-section-item">
-              <td><code><a class="autorefs autorefs-internal" title="masked_mse (scprint.model.loss.masked_mse)" href="#scprint.model.loss.masked_mse">masked_mse</a></code></td>
+              <td><code><a class="autorefs autorefs-internal" title="masked_mse (scprint2.model.loss.masked_mse)" href="#scprint2.model.loss.masked_mse">masked_mse</a></code></td>
               <td>
                 <div class="doc-md-description">
                   <p>Compute the masked MSE loss between input and target.</p>
@@ -4962,7 +4962,7 @@ current model. These should be reviewed to ensure expected behavior.</p>
               </td>
             </tr>
             <tr class="doc-section-item">
-              <td><code><a class="autorefs autorefs-internal" title="masked_nb (scprint.model.loss.masked_nb)" href="#scprint.model.loss.masked_nb">masked_nb</a></code></td>
+              <td><code><a class="autorefs autorefs-internal" title="masked_nb (scprint2.model.loss.masked_nb)" href="#scprint2.model.loss.masked_nb">masked_nb</a></code></td>
               <td>
                 <div class="doc-md-description">
                   <p>Compute the masked negative binomial loss between input and target.</p>
@@ -4970,7 +4970,7 @@ current model. These should be reviewed to ensure expected behavior.</p>
               </td>
             </tr>
             <tr class="doc-section-item">
-              <td><code><a class="autorefs autorefs-internal" title="masked_relative_error (scprint.model.loss.masked_relative_error)" href="#scprint.model.loss.masked_relative_error">masked_relative_error</a></code></td>
+              <td><code><a class="autorefs autorefs-internal" title="masked_relative_error (scprint2.model.loss.masked_relative_error)" href="#scprint2.model.loss.masked_relative_error">masked_relative_error</a></code></td>
               <td>
                 <div class="doc-md-description">
                   <p>Compute the masked relative error between input and target.</p>
@@ -4978,7 +4978,7 @@ current model. These should be reviewed to ensure expected behavior.</p>
               </td>
             </tr>
             <tr class="doc-section-item">
-              <td><code><a class="autorefs autorefs-internal" title="mse (scprint.model.loss.mse)" href="#scprint.model.loss.mse">mse</a></code></td>
+              <td><code><a class="autorefs autorefs-internal" title="mse (scprint2.model.loss.mse)" href="#scprint2.model.loss.mse">mse</a></code></td>
               <td>
                 <div class="doc-md-description">
                   <p>Compute the MSE loss between input and target.</p>
@@ -4986,7 +4986,7 @@ current model. These should be reviewed to ensure expected behavior.</p>
               </td>
             </tr>
             <tr class="doc-section-item">
-              <td><code><a class="autorefs autorefs-internal" title="nb (scprint.model.loss.nb)" href="#scprint.model.loss.nb">nb</a></code></td>
+              <td><code><a class="autorefs autorefs-internal" title="nb (scprint2.model.loss.nb)" href="#scprint2.model.loss.nb">nb</a></code></td>
               <td>
                 <div class="doc-md-description">
                   <p>Computes the negative binomial (NB) loss.</p>
@@ -4994,7 +4994,7 @@ current model. These should be reviewed to ensure expected behavior.</p>
               </td>
             </tr>
             <tr class="doc-section-item">
-              <td><code><a class="autorefs autorefs-internal" title="nb_dist (scprint.model.loss.nb_dist)" href="#scprint.model.loss.nb_dist">nb_dist</a></code></td>
+              <td><code><a class="autorefs autorefs-internal" title="nb_dist (scprint2.model.loss.nb_dist)" href="#scprint2.model.loss.nb_dist">nb_dist</a></code></td>
               <td>
                 <div class="doc-md-description">
                   <p>nb_dist Computes the negative binomial distribution.</p>
@@ -5002,7 +5002,7 @@ current model. These should be reviewed to ensure expected behavior.</p>
               </td>
             </tr>
             <tr class="doc-section-item">
-              <td><code><a class="autorefs autorefs-internal" title="within_sample (scprint.model.loss.within_sample)" href="#scprint.model.loss.within_sample">within_sample</a></code></td>
+              <td><code><a class="autorefs autorefs-internal" title="within_sample (scprint2.model.loss.within_sample)" href="#scprint2.model.loss.within_sample">within_sample</a></code></td>
               <td>
                 <div class="doc-md-description">
                   <p>Compute dissimilarity between embeddings within each sample</p>
@@ -5010,7 +5010,7 @@ current model. These should be reviewed to ensure expected behavior.</p>
               </td>
             </tr>
             <tr class="doc-section-item">
-              <td><code><a class="autorefs autorefs-internal" title="zinb (scprint.model.loss.zinb)" href="#scprint.model.loss.zinb">zinb</a></code></td>
+              <td><code><a class="autorefs autorefs-internal" title="zinb (scprint2.model.loss.zinb)" href="#scprint2.model.loss.zinb">zinb</a></code></td>
               <td>
                 <div class="doc-md-description">
                   <p>Computes zero-inflated negative binomial (ZINB) loss.</p>
@@ -5038,7 +5038,7 @@ current model. These should be reviewed to ensure expected behavior.</p>
 
 
 
-<h3 id="scprint.model.loss.AdversarialDiscriminatorLoss" class="doc doc-heading">
+<h3 id="scprint2.model.loss.AdversarialDiscriminatorLoss" class="doc doc-heading">
               <code class="highlight language-python"><span class="n">AdversarialDiscriminatorLoss</span></code>
 
 </h3>
@@ -5134,7 +5134,7 @@ current model. These should be reviewed to ensure expected behavior.</p>
       </thead>
       <tbody>
             <tr class="doc-section-item">
-              <td><code><a class="autorefs autorefs-internal" title="forward (scprint.model.loss.AdversarialDiscriminatorLoss.forward)" href="#scprint.model.loss.AdversarialDiscriminatorLoss.forward">forward</a></code></td>
+              <td><code><a class="autorefs autorefs-internal" title="forward (scprint2.model.loss.AdversarialDiscriminatorLoss.forward)" href="#scprint2.model.loss.AdversarialDiscriminatorLoss.forward">forward</a></code></td>
               <td>
                 <div class="doc-md-description">
                   <p>Args:</p>
@@ -5147,7 +5147,7 @@ current model. These should be reviewed to ensure expected behavior.</p>
 
 
                   <details class="quote">
-                    <summary>Source code in <code>scprint/model/loss.py</code></summary>
+                    <summary>Source code in <code>scprint2/model/loss.py</code></summary>
                     <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">339</span>
 <span class="normal">340</span>
 <span class="normal">341</span>
@@ -5220,7 +5220,7 @@ current model. These should be reviewed to ensure expected behavior.</p>
 <div class="doc doc-object doc-function">
 
 
-<h4 id="scprint.model.loss.AdversarialDiscriminatorLoss.forward" class="doc doc-heading">
+<h4 id="scprint2.model.loss.AdversarialDiscriminatorLoss.forward" class="doc doc-heading">
             <code class="highlight language-python"><span class="n">forward</span></code>
 
 </h4>
@@ -5263,7 +5263,7 @@ current model. These should be reviewed to ensure expected behavior.</p>
 </table>
 
             <details class="mkdocstrings-source">
-              <summary>Source code in <code>scprint/model/loss.py</code></summary>
+              <summary>Source code in <code>scprint2/model/loss.py</code></summary>
               <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">367</span>
 <span class="normal">368</span>
 <span class="normal">369</span>
@@ -5306,7 +5306,7 @@ current model. These should be reviewed to ensure expected behavior.</p>
 <div class="doc doc-object doc-function">
 
 
-<h3 id="scprint.model.loss.contrastive_loss" class="doc doc-heading">
+<h3 id="scprint2.model.loss.contrastive_loss" class="doc doc-heading">
             <code class="highlight language-python"><span class="n">contrastive_loss</span></code>
 
 </h3>
@@ -5394,7 +5394,7 @@ Typical values are between 0.1 and 0.5.</p>
 </details>
 
             <details class="mkdocstrings-source">
-              <summary>Source code in <code>scprint/model/loss.py</code></summary>
+              <summary>Source code in <code>scprint2/model/loss.py</code></summary>
               <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">181</span>
 <span class="normal">182</span>
 <span class="normal">183</span>
@@ -5475,7 +5475,7 @@ Typical values are between 0.1 and 0.5.</p>
 <div class="doc doc-object doc-function">
 
 
-<h3 id="scprint.model.loss.criterion_neg_log_bernoulli" class="doc doc-heading">
+<h3 id="scprint2.model.loss.criterion_neg_log_bernoulli" class="doc doc-heading">
             <code class="highlight language-python"><span class="n">criterion_neg_log_bernoulli</span></code>
 
 </h3>
@@ -5487,7 +5487,7 @@ Typical values are between 0.1 and 0.5.</p>
 
 
             <details class="mkdocstrings-source">
-              <summary>Source code in <code>scprint/model/loss.py</code></summary>
+              <summary>Source code in <code>scprint2/model/loss.py</code></summary>
               <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">160</span>
 <span class="normal">161</span>
 <span class="normal">162</span>
@@ -5512,7 +5512,7 @@ Typical values are between 0.1 and 0.5.</p>
 <div class="doc doc-object doc-function">
 
 
-<h3 id="scprint.model.loss.ecs" class="doc doc-heading">
+<h3 id="scprint2.model.loss.ecs" class="doc doc-heading">
             <code class="highlight language-python"><span class="n">ecs</span></code>
 
 </h3>
@@ -5581,7 +5581,7 @@ Typical values are between 0.1 and 0.5.</p>
 </table>
 
             <details class="mkdocstrings-source">
-              <summary>Source code in <code>scprint/model/loss.py</code></summary>
+              <summary>Source code in <code>scprint2/model/loss.py</code></summary>
               <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">219</span>
 <span class="normal">220</span>
 <span class="normal">221</span>
@@ -5636,7 +5636,7 @@ Typical values are between 0.1 and 0.5.</p>
 <div class="doc doc-object doc-function">
 
 
-<h3 id="scprint.model.loss.grad_reverse" class="doc doc-heading">
+<h3 id="scprint2.model.loss.grad_reverse" class="doc doc-heading">
             <code class="highlight language-python"><span class="n">grad_reverse</span></code>
 
 </h3>
@@ -5705,7 +5705,7 @@ Typical values are between 0.1 and 0.5.</p>
 </table>
 
             <details class="mkdocstrings-source">
-              <summary>Source code in <code>scprint/model/loss.py</code></summary>
+              <summary>Source code in <code>scprint2/model/loss.py</code></summary>
               <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">392</span>
 <span class="normal">393</span>
 <span class="normal">394</span>
@@ -5738,7 +5738,7 @@ Typical values are between 0.1 and 0.5.</p>
 <div class="doc doc-object doc-function">
 
 
-<h3 id="scprint.model.loss.hierarchical_classification" class="doc doc-heading">
+<h3 id="scprint2.model.loss.hierarchical_classification" class="doc doc-heading">
             <code class="highlight language-python"><span class="n">hierarchical_classification</span></code>
 
 </h3>
@@ -5842,7 +5842,7 @@ https://gist.github.com/jkobject/5b36bc4807edb440b86644952a49781e</p>
 </table>
 
             <details class="mkdocstrings-source">
-              <summary>Source code in <code>scprint/model/loss.py</code></summary>
+              <summary>Source code in <code>scprint2/model/loss.py</code></summary>
               <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">244</span>
 <span class="normal">245</span>
 <span class="normal">246</span>
@@ -6035,7 +6035,7 @@ https://gist.github.com/jkobject/5b36bc4807edb440b86644952a49781e</p>
 <div class="doc doc-object doc-function">
 
 
-<h3 id="scprint.model.loss.masked_mae" class="doc doc-heading">
+<h3 id="scprint2.model.loss.masked_mae" class="doc doc-heading">
             <code class="highlight language-python"><span class="n">masked_mae</span></code>
 
 </h3>
@@ -6048,7 +6048,7 @@ MAE = mean absolute error</p>
 
 
             <details class="mkdocstrings-source">
-              <summary>Source code in <code>scprint/model/loss.py</code></summary>
+              <summary>Source code in <code>scprint2/model/loss.py</code></summary>
               <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">41</span>
 <span class="normal">42</span>
 <span class="normal">43</span>
@@ -6073,7 +6073,7 @@ MAE = mean absolute error</p>
 <div class="doc doc-object doc-function">
 
 
-<h3 id="scprint.model.loss.masked_mse" class="doc doc-heading">
+<h3 id="scprint2.model.loss.masked_mse" class="doc doc-heading">
             <code class="highlight language-python"><span class="n">masked_mse</span></code>
 
 </h3>
@@ -6085,7 +6085,7 @@ MAE = mean absolute error</p>
 
 
             <details class="mkdocstrings-source">
-              <summary>Source code in <code>scprint/model/loss.py</code></summary>
+              <summary>Source code in <code>scprint2/model/loss.py</code></summary>
               <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">15</span>
 <span class="normal">16</span>
 <span class="normal">17</span>
@@ -6116,7 +6116,7 @@ MAE = mean absolute error</p>
 <div class="doc doc-object doc-function">
 
 
-<h3 id="scprint.model.loss.masked_nb" class="doc doc-heading">
+<h3 id="scprint2.model.loss.masked_nb" class="doc doc-heading">
             <code class="highlight language-python"><span class="n">masked_nb</span></code>
 
 </h3>
@@ -6128,7 +6128,7 @@ MAE = mean absolute error</p>
 
 
             <details class="mkdocstrings-source">
-              <summary>Source code in <code>scprint/model/loss.py</code></summary>
+              <summary>Source code in <code>scprint2/model/loss.py</code></summary>
               <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">51</span>
 <span class="normal">52</span>
 <span class="normal">53</span>
@@ -6153,7 +6153,7 @@ MAE = mean absolute error</p>
 <div class="doc doc-object doc-function">
 
 
-<h3 id="scprint.model.loss.masked_relative_error" class="doc doc-heading">
+<h3 id="scprint2.model.loss.masked_relative_error" class="doc doc-heading">
             <code class="highlight language-python"><span class="n">masked_relative_error</span></code>
 
 </h3>
@@ -6165,7 +6165,7 @@ MAE = mean absolute error</p>
 
 
             <details class="mkdocstrings-source">
-              <summary>Source code in <code>scprint/model/loss.py</code></summary>
+              <summary>Source code in <code>scprint2/model/loss.py</code></summary>
               <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">170</span>
 <span class="normal">171</span>
 <span class="normal">172</span>
@@ -6192,7 +6192,7 @@ MAE = mean absolute error</p>
 <div class="doc doc-object doc-function">
 
 
-<h3 id="scprint.model.loss.mse" class="doc doc-heading">
+<h3 id="scprint2.model.loss.mse" class="doc doc-heading">
             <code class="highlight language-python"><span class="n">mse</span></code>
 
 </h3>
@@ -6204,7 +6204,7 @@ MAE = mean absolute error</p>
 
 
             <details class="mkdocstrings-source">
-              <summary>Source code in <code>scprint/model/loss.py</code></summary>
+              <summary>Source code in <code>scprint2/model/loss.py</code></summary>
               <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">28</span>
 <span class="normal">29</span>
 <span class="normal">30</span>
@@ -6235,7 +6235,7 @@ MAE = mean absolute error</p>
 <div class="doc doc-object doc-function">
 
 
-<h3 id="scprint.model.loss.nb" class="doc doc-heading">
+<h3 id="scprint2.model.loss.nb" class="doc doc-heading">
             <code class="highlight language-python"><span class="n">nb</span></code>
 
 </h3>
@@ -6320,7 +6320,7 @@ MAE = mean absolute error</p>
 </table>
 
             <details class="mkdocstrings-source">
-              <summary>Source code in <code>scprint/model/loss.py</code></summary>
+              <summary>Source code in <code>scprint2/model/loss.py</code></summary>
               <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">62</span>
 <span class="normal">63</span>
 <span class="normal">64</span>
@@ -6385,7 +6385,7 @@ MAE = mean absolute error</p>
 <div class="doc doc-object doc-function">
 
 
-<h3 id="scprint.model.loss.nb_dist" class="doc doc-heading">
+<h3 id="scprint2.model.loss.nb_dist" class="doc doc-heading">
             <code class="highlight language-python"><span class="n">nb_dist</span></code>
 
 </h3>
@@ -6469,7 +6469,7 @@ MAE = mean absolute error</p>
 </table>
 
             <details class="mkdocstrings-source">
-              <summary>Source code in <code>scprint/model/loss.py</code></summary>
+              <summary>Source code in <code>scprint2/model/loss.py</code></summary>
               <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 92</span>
 <span class="normal"> 93</span>
 <span class="normal"> 94</span>
@@ -6508,7 +6508,7 @@ MAE = mean absolute error</p>
 <div class="doc doc-object doc-function">
 
 
-<h3 id="scprint.model.loss.within_sample" class="doc doc-heading">
+<h3 id="scprint2.model.loss.within_sample" class="doc doc-heading">
             <code class="highlight language-python"><span class="n">within_sample</span></code>
 
 </h3>
@@ -6544,7 +6544,7 @@ using a combination of cosine and L2 distance</p>
 </table>
 
             <details class="mkdocstrings-source">
-              <summary>Source code in <code>scprint/model/loss.py</code></summary>
+              <summary>Source code in <code>scprint2/model/loss.py</code></summary>
               <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">439</span>
 <span class="normal">440</span>
 <span class="normal">441</span>
@@ -6613,7 +6613,7 @@ using a combination of cosine and L2 distance</p>
 <div class="doc doc-object doc-function">
 
 
-<h3 id="scprint.model.loss.zinb" class="doc doc-heading">
+<h3 id="scprint2.model.loss.zinb" class="doc doc-heading">
             <code class="highlight language-python"><span class="n">zinb</span></code>
 
 </h3>
@@ -6706,7 +6706,7 @@ using a combination of cosine and L2 distance</p>
 </table>
 
             <details class="mkdocstrings-source">
-              <summary>Source code in <code>scprint/model/loss.py</code></summary>
+              <summary>Source code in <code>scprint2/model/loss.py</code></summary>
               <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">109</span>
 <span class="normal">110</span>
 <span class="normal">111</span>
@@ -6823,8 +6823,8 @@ using a combination of cosine and L2 distance</p>
 
 
 
-<h2 id="scprint.model.utils" class="doc doc-heading">
-            <code>scprint.model.utils</code>
+<h2 id="scprint2.model.utils" class="doc doc-heading">
+            <code>scprint2.model.utils</code>
 
 
 </h2>
@@ -6850,7 +6850,7 @@ using a combination of cosine and L2 distance</p>
       </thead>
       <tbody>
           <tr class="doc-section-item">
-            <td><code><a class="autorefs autorefs-internal" title="Attention (scprint.model.utils.Attention)" href="#scprint.model.utils.Attention">Attention</a></code></td>
+            <td><code><a class="autorefs autorefs-internal" title="Attention (scprint2.model.utils.Attention)" href="#scprint2.model.utils.Attention">Attention</a></code></td>
             <td>
               <div class="doc-md-description">
                 
@@ -6858,7 +6858,7 @@ using a combination of cosine and L2 distance</p>
             </td>
           </tr>
           <tr class="doc-section-item">
-            <td><code><a class="autorefs autorefs-internal" title="WeightedMasker (scprint.model.utils.WeightedMasker)" href="#scprint.model.utils.WeightedMasker">WeightedMasker</a></code></td>
+            <td><code><a class="autorefs autorefs-internal" title="WeightedMasker (scprint2.model.utils.WeightedMasker)" href="#scprint2.model.utils.WeightedMasker">WeightedMasker</a></code></td>
             <td>
               <div class="doc-md-description">
                 
@@ -6881,7 +6881,7 @@ using a combination of cosine and L2 distance</p>
       </thead>
       <tbody>
             <tr class="doc-section-item">
-              <td><code><a class="autorefs autorefs-internal" title="downsample_profile (scprint.model.utils.downsample_profile)" href="#scprint.model.utils.downsample_profile">downsample_profile</a></code></td>
+              <td><code><a class="autorefs autorefs-internal" title="downsample_profile (scprint2.model.utils.downsample_profile)" href="#scprint2.model.utils.downsample_profile">downsample_profile</a></code></td>
               <td>
                 <div class="doc-md-description">
                   <p>This function downsamples the expression profile of a given single cell RNA matrix.</p>
@@ -6889,7 +6889,7 @@ using a combination of cosine and L2 distance</p>
               </td>
             </tr>
             <tr class="doc-section-item">
-              <td><code><a class="autorefs autorefs-internal" title="make_adata (scprint.model.utils.make_adata)" href="#scprint.model.utils.make_adata">make_adata</a></code></td>
+              <td><code><a class="autorefs autorefs-internal" title="make_adata (scprint2.model.utils.make_adata)" href="#scprint2.model.utils.make_adata">make_adata</a></code></td>
               <td>
                 <div class="doc-md-description">
                   <p>This function creates an AnnData object from the given input parameters.</p>
@@ -6897,7 +6897,7 @@ using a combination of cosine and L2 distance</p>
               </td>
             </tr>
             <tr class="doc-section-item">
-              <td><code><a class="autorefs autorefs-internal" title="simple_masker (scprint.model.utils.simple_masker)" href="#scprint.model.utils.simple_masker">simple_masker</a></code></td>
+              <td><code><a class="autorefs autorefs-internal" title="simple_masker (scprint2.model.utils.simple_masker)" href="#scprint2.model.utils.simple_masker">simple_masker</a></code></td>
               <td>
                 <div class="doc-md-description">
                   <p>Randomly mask a batch of data.</p>
@@ -6905,7 +6905,7 @@ using a combination of cosine and L2 distance</p>
               </td>
             </tr>
             <tr class="doc-section-item">
-              <td><code><a class="autorefs autorefs-internal" title="test (scprint.model.utils.test)" href="#scprint.model.utils.test">test</a></code></td>
+              <td><code><a class="autorefs autorefs-internal" title="test (scprint2.model.utils.test)" href="#scprint2.model.utils.test">test</a></code></td>
               <td>
                 <div class="doc-md-description">
                   <p>Test the given model on the full set of benchmarks and save the results to JSON files.</p>
@@ -6913,7 +6913,7 @@ using a combination of cosine and L2 distance</p>
               </td>
             </tr>
             <tr class="doc-section-item">
-              <td><code><a class="autorefs autorefs-internal" title="zinb_sample (scprint.model.utils.zinb_sample)" href="#scprint.model.utils.zinb_sample">zinb_sample</a></code></td>
+              <td><code><a class="autorefs autorefs-internal" title="zinb_sample (scprint2.model.utils.zinb_sample)" href="#scprint2.model.utils.zinb_sample">zinb_sample</a></code></td>
               <td>
                 <div class="doc-md-description">
                   <p>zinb_sample This function generates a sample from a Zero-Inflated Negative Binomial (ZINB) distribution.</p>
@@ -6941,7 +6941,7 @@ using a combination of cosine and L2 distance</p>
 
 
 
-<h3 id="scprint.model.utils.Attention" class="doc doc-heading">
+<h3 id="scprint2.model.utils.Attention" class="doc doc-heading">
               <code class="highlight language-python"><span class="n">Attention</span></code>
 
 </h3>
@@ -7037,7 +7037,7 @@ using a combination of cosine and L2 distance</p>
       </thead>
       <tbody>
             <tr class="doc-section-item">
-              <td><code><a class="autorefs autorefs-internal" title="add_attn (scprint.model.utils.Attention.add_attn)" href="#scprint.model.utils.Attention.add_attn">add_attn</a></code></td>
+              <td><code><a class="autorefs autorefs-internal" title="add_attn (scprint2.model.utils.Attention.add_attn)" href="#scprint2.model.utils.Attention.add_attn">add_attn</a></code></td>
               <td>
                 <div class="doc-md-description">
                   <p>Aggregate the attention or data based on the precomp_attn flag.</p>
@@ -7045,7 +7045,7 @@ using a combination of cosine and L2 distance</p>
               </td>
             </tr>
             <tr class="doc-section-item">
-              <td><code><a class="autorefs autorefs-internal" title="add_qk (scprint.model.utils.Attention.add_qk)" href="#scprint.model.utils.Attention.add_qk">add_qk</a></code></td>
+              <td><code><a class="autorefs autorefs-internal" title="add_qk (scprint2.model.utils.Attention.add_qk)" href="#scprint2.model.utils.Attention.add_qk">add_qk</a></code></td>
               <td>
                 <div class="doc-md-description">
                   <p>Add data to the internal storage.</p>
@@ -7053,7 +7053,7 @@ using a combination of cosine and L2 distance</p>
               </td>
             </tr>
             <tr class="doc-section-item">
-              <td><code><a class="autorefs autorefs-internal" title="get (scprint.model.utils.Attention.get)" href="#scprint.model.utils.Attention.get">get</a></code></td>
+              <td><code><a class="autorefs autorefs-internal" title="get (scprint2.model.utils.Attention.get)" href="#scprint2.model.utils.Attention.get">get</a></code></td>
               <td>
                 <div class="doc-md-description">
                   <p>Get the aggregated attention or data.</p>
@@ -7066,8 +7066,10 @@ using a combination of cosine and L2 distance</p>
 
 
                   <details class="quote">
-                    <summary>Source code in <code>scprint/model/utils.py</code></summary>
-                    <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">519</span>
+                    <summary>Source code in <code>scprint2/model/utils.py</code></summary>
+                    <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">517</span>
+<span class="normal">518</span>
+<span class="normal">519</span>
 <span class="normal">520</span>
 <span class="normal">521</span>
 <span class="normal">522</span>
@@ -7090,9 +7092,7 @@ using a combination of cosine and L2 distance</p>
 <span class="normal">539</span>
 <span class="normal">540</span>
 <span class="normal">541</span>
-<span class="normal">542</span>
-<span class="normal">543</span>
-<span class="normal">544</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
+<span class="normal">542</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
     <span class="bp">self</span><span class="p">,</span>
     <span class="n">gene_dim</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
     <span class="n">precomp_attn</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
@@ -7137,7 +7137,7 @@ using a combination of cosine and L2 distance</p>
 <div class="doc doc-object doc-function">
 
 
-<h4 id="scprint.model.utils.Attention.add_attn" class="doc doc-heading">
+<h4 id="scprint2.model.utils.Attention.add_attn" class="doc doc-heading">
             <code class="highlight language-python"><span class="n">add_attn</span></code>
 
 </h4>
@@ -7181,8 +7181,10 @@ using a combination of cosine and L2 distance</p>
 </table>
 
             <details class="mkdocstrings-source">
-              <summary>Source code in <code>scprint/model/utils.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">552</span>
+              <summary>Source code in <code>scprint2/model/utils.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">550</span>
+<span class="normal">551</span>
+<span class="normal">552</span>
 <span class="normal">553</span>
 <span class="normal">554</span>
 <span class="normal">555</span>
@@ -7223,9 +7225,7 @@ using a combination of cosine and L2 distance</p>
 <span class="normal">590</span>
 <span class="normal">591</span>
 <span class="normal">592</span>
-<span class="normal">593</span>
-<span class="normal">594</span>
-<span class="normal">595</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">add_attn</span><span class="p">(</span>
+<span class="normal">593</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">add_attn</span><span class="p">(</span>
     <span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Tensor</span><span class="p">],</span> <span class="n">pos</span><span class="p">:</span> <span class="n">Tensor</span><span class="p">,</span> <span class="n">expr</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Tensor</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
@@ -7278,7 +7278,7 @@ using a combination of cosine and L2 distance</p>
 <div class="doc doc-object doc-function">
 
 
-<h4 id="scprint.model.utils.Attention.add_qk" class="doc doc-heading">
+<h4 id="scprint2.model.utils.Attention.add_qk" class="doc doc-heading">
             <code class="highlight language-python"><span class="n">add_qk</span></code>
 
 </h4>
@@ -7322,8 +7322,10 @@ using a combination of cosine and L2 distance</p>
 </table>
 
             <details class="mkdocstrings-source">
-              <summary>Source code in <code>scprint/model/utils.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">597</span>
+              <summary>Source code in <code>scprint2/model/utils.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">595</span>
+<span class="normal">596</span>
+<span class="normal">597</span>
 <span class="normal">598</span>
 <span class="normal">599</span>
 <span class="normal">600</span>
@@ -7349,9 +7351,7 @@ using a combination of cosine and L2 distance</p>
 <span class="normal">620</span>
 <span class="normal">621</span>
 <span class="normal">622</span>
-<span class="normal">623</span>
-<span class="normal">624</span>
-<span class="normal">625</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">add_qk</span><span class="p">(</span>
+<span class="normal">623</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">add_qk</span><span class="p">(</span>
     <span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Tensor</span><span class="p">],</span> <span class="n">pos</span><span class="p">:</span> <span class="n">Tensor</span><span class="p">,</span> <span class="n">expr</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Tensor</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
@@ -7389,7 +7389,7 @@ using a combination of cosine and L2 distance</p>
 <div class="doc doc-object doc-function">
 
 
-<h4 id="scprint.model.utils.Attention.get" class="doc doc-heading">
+<h4 id="scprint2.model.utils.Attention.get" class="doc doc-heading">
             <code class="highlight language-python"><span class="n">get</span></code>
 
 </h4>
@@ -7424,8 +7424,10 @@ using a combination of cosine and L2 distance</p>
 </table>
 
             <details class="mkdocstrings-source">
-              <summary>Source code in <code>scprint/model/utils.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">627</span>
+              <summary>Source code in <code>scprint2/model/utils.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">625</span>
+<span class="normal">626</span>
+<span class="normal">627</span>
 <span class="normal">628</span>
 <span class="normal">629</span>
 <span class="normal">630</span>
@@ -7439,9 +7441,7 @@ using a combination of cosine and L2 distance</p>
 <span class="normal">638</span>
 <span class="normal">639</span>
 <span class="normal">640</span>
-<span class="normal">641</span>
-<span class="normal">642</span>
-<span class="normal">643</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">]:</span>
+<span class="normal">641</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">]:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Get the aggregated attention or data.</span>
 
@@ -7477,7 +7477,7 @@ using a combination of cosine and L2 distance</p>
 
 
 
-<h3 id="scprint.model.utils.WeightedMasker" class="doc doc-heading">
+<h3 id="scprint2.model.utils.WeightedMasker" class="doc doc-heading">
               <code class="highlight language-python"><span class="n">WeightedMasker</span></code>
 
 </h3>
@@ -7511,7 +7511,7 @@ using a combination of cosine and L2 distance</p>
             <li>
               <b><code>TFs</code></b>
                   (<code><span title="typing.List">List</span>[<span title="str">str</span>]</code>, default:
-                      <code><a class="autorefs autorefs-internal" title="fileToList (scprint.utils.fileToList)" href="../utils/#scprint.utils.utils.fileToList">fileToList</a>(<span title="scprint.model.utils.FILEDIR">FILEDIR</span> + &#39;/../../data/main/TFs.txt&#39;)</code>
+                      <code><a class="autorefs autorefs-internal" title="fileToList (scprint2.utils.fileToList)" href="../utils/#scprint2.utils.utils.fileToList">fileToList</a>(<span title="scprint2.model.utils.FILEDIR">FILEDIR</span> + &#39;/../../data/main/TFs.txt&#39;)</code>
 )
               –
               <div class="doc-md-description">
@@ -7567,8 +7567,10 @@ using a combination of cosine and L2 distance</p>
 
 
                   <details class="quote">
-                    <summary>Source code in <code>scprint/model/utils.py</code></summary>
-                    <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">444</span>
+                    <summary>Source code in <code>scprint2/model/utils.py</code></summary>
+                    <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">442</span>
+<span class="normal">443</span>
+<span class="normal">444</span>
 <span class="normal">445</span>
 <span class="normal">446</span>
 <span class="normal">447</span>
@@ -7586,9 +7588,7 @@ using a combination of cosine and L2 distance</p>
 <span class="normal">459</span>
 <span class="normal">460</span>
 <span class="normal">461</span>
-<span class="normal">462</span>
-<span class="normal">463</span>
-<span class="normal">464</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
+<span class="normal">462</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
     <span class="bp">self</span><span class="p">,</span>
     <span class="n">genes</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span>
     <span class="n">TFs</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">utils</span><span class="o">.</span><span class="n">fileToList</span><span class="p">(</span><span class="n">FILEDIR</span> <span class="o">+</span> <span class="s2">&quot;/../../data/main/TFs.txt&quot;</span><span class="p">),</span>
@@ -7638,7 +7638,7 @@ using a combination of cosine and L2 distance</p>
 <div class="doc doc-object doc-function">
 
 
-<h3 id="scprint.model.utils.downsample_profile" class="doc doc-heading">
+<h3 id="scprint2.model.utils.downsample_profile" class="doc doc-heading">
             <code class="highlight language-python"><span class="n">downsample_profile</span></code>
 
 </h3>
@@ -7715,8 +7715,10 @@ returns the final matrix count.</p>
 </table>
 
             <details class="mkdocstrings-source">
-              <summary>Source code in <code>scprint/model/utils.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">341</span>
+              <summary>Source code in <code>scprint2/model/utils.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">339</span>
+<span class="normal">340</span>
+<span class="normal">341</span>
 <span class="normal">342</span>
 <span class="normal">343</span>
 <span class="normal">344</span>
@@ -7796,9 +7798,7 @@ returns the final matrix count.</p>
 <span class="normal">418</span>
 <span class="normal">419</span>
 <span class="normal">420</span>
-<span class="normal">421</span>
-<span class="normal">422</span>
-<span class="normal">423</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">downsample_profile</span><span class="p">(</span><span class="n">mat</span><span class="p">:</span> <span class="n">Tensor</span><span class="p">,</span> <span class="n">dropout</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s2">&quot;new&quot;</span><span class="p">,</span> <span class="n">randsamp</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+<span class="normal">421</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">downsample_profile</span><span class="p">(</span><span class="n">mat</span><span class="p">:</span> <span class="n">Tensor</span><span class="p">,</span> <span class="n">dropout</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s2">&quot;new&quot;</span><span class="p">,</span> <span class="n">randsamp</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    This function downsamples the expression profile of a given single cell RNA matrix.</span>
 
@@ -7890,7 +7890,7 @@ returns the final matrix count.</p>
 <div class="doc doc-object doc-function">
 
 
-<h3 id="scprint.model.utils.make_adata" class="doc doc-heading">
+<h3 id="scprint2.model.utils.make_adata" class="doc doc-heading">
             <code class="highlight language-python"><span class="n">make_adata</span></code>
 
 </h3>
@@ -8038,8 +8038,10 @@ the first is mu, the second theta, the third pi if present</p>
 </table>
 
             <details class="mkdocstrings-source">
-              <summary>Source code in <code>scprint/model/utils.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 30</span>
+              <summary>Source code in <code>scprint2/model/utils.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 28</span>
+<span class="normal"> 29</span>
+<span class="normal"> 30</span>
 <span class="normal"> 31</span>
 <span class="normal"> 32</span>
 <span class="normal"> 33</span>
@@ -8292,9 +8294,7 @@ the first is mu, the second theta, the third pi if present</p>
 <span class="normal">280</span>
 <span class="normal">281</span>
 <span class="normal">282</span>
-<span class="normal">283</span>
-<span class="normal">284</span>
-<span class="normal">285</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">make_adata</span><span class="p">(</span>
+<span class="normal">283</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">make_adata</span><span class="p">(</span>
     <span class="n">genes</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span>
     <span class="n">embs</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">Tensor</span><span class="p">,</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Tensor</span><span class="p">]],</span>
     <span class="n">pos</span><span class="p">:</span> <span class="n">Tensor</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
@@ -8559,7 +8559,7 @@ the first is mu, the second theta, the third pi if present</p>
 <div class="doc doc-object doc-function">
 
 
-<h3 id="scprint.model.utils.simple_masker" class="doc doc-heading">
+<h3 id="scprint2.model.utils.simple_masker" class="doc doc-heading">
             <code class="highlight language-python"><span class="n">simple_masker</span></code>
 
 </h3>
@@ -8628,8 +8628,10 @@ the first is mu, the second theta, the third pi if present</p>
 </table>
 
             <details class="mkdocstrings-source">
-              <summary>Source code in <code>scprint/model/utils.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">426</span>
+              <summary>Source code in <code>scprint2/model/utils.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">424</span>
+<span class="normal">425</span>
+<span class="normal">426</span>
 <span class="normal">427</span>
 <span class="normal">428</span>
 <span class="normal">429</span>
@@ -8641,9 +8643,7 @@ the first is mu, the second theta, the third pi if present</p>
 <span class="normal">435</span>
 <span class="normal">436</span>
 <span class="normal">437</span>
-<span class="normal">438</span>
-<span class="normal">439</span>
-<span class="normal">440</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">simple_masker</span><span class="p">(</span>
+<span class="normal">438</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">simple_masker</span><span class="p">(</span>
     <span class="n">shape</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">],</span>
     <span class="n">mask_ratio</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.15</span><span class="p">,</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">:</span>
@@ -8667,7 +8667,7 @@ the first is mu, the second theta, the third pi if present</p>
 <div class="doc doc-object doc-function">
 
 
-<h3 id="scprint.model.utils.test" class="doc doc-heading">
+<h3 id="scprint2.model.utils.test" class="doc doc-heading">
             <code class="highlight language-python"><span class="n">test</span></code>
 
 </h3>
@@ -8742,8 +8742,10 @@ the first is mu, the second theta, the third pi if present</p>
 </table>
 
             <details class="mkdocstrings-source">
-              <summary>Source code in <code>scprint/model/utils.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">646</span>
+              <summary>Source code in <code>scprint2/model/utils.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">644</span>
+<span class="normal">645</span>
+<span class="normal">646</span>
 <span class="normal">647</span>
 <span class="normal">648</span>
 <span class="normal">649</span>
@@ -8913,9 +8915,7 @@ the first is mu, the second theta, the third pi if present</p>
 <span class="normal">813</span>
 <span class="normal">814</span>
 <span class="normal">815</span>
-<span class="normal">816</span>
-<span class="normal">817</span>
-<span class="normal">818</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">test</span><span class="p">(</span>
+<span class="normal">816</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">test</span><span class="p">(</span>
     <span class="n">model</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">,</span>
     <span class="n">filedir</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
     <span class="n">do_class</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
@@ -9097,7 +9097,7 @@ the first is mu, the second theta, the third pi if present</p>
 <div class="doc doc-object doc-function">
 
 
-<h3 id="scprint.model.utils.zinb_sample" class="doc doc-heading">
+<h3 id="scprint2.model.utils.zinb_sample" class="doc doc-heading">
             <code class="highlight language-python"><span class="n">zinb_sample</span></code>
 
 </h3>
@@ -9181,8 +9181,10 @@ the first is mu, the second theta, the third pi if present</p>
 </table>
 
             <details class="mkdocstrings-source">
-              <summary>Source code in <code>scprint/model/utils.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">485</span>
+              <summary>Source code in <code>scprint2/model/utils.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">483</span>
+<span class="normal">484</span>
+<span class="normal">485</span>
 <span class="normal">486</span>
 <span class="normal">487</span>
 <span class="normal">488</span>
@@ -9210,9 +9212,7 @@ the first is mu, the second theta, the third pi if present</p>
 <span class="normal">510</span>
 <span class="normal">511</span>
 <span class="normal">512</span>
-<span class="normal">513</span>
-<span class="normal">514</span>
-<span class="normal">515</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">zinb_sample</span><span class="p">(</span>
+<span class="normal">513</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">zinb_sample</span><span class="p">(</span>
     <span class="n">mu</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">,</span>
     <span class="n">theta</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">,</span>
     <span class="n">zi_probs</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">,</span>
@@ -9262,8 +9262,8 @@ the first is mu, the second theta, the third pi if present</p>
 
 
 
-<h2 id="scprint.model.encoders" class="doc doc-heading">
-            <code>scprint.model.encoders</code>
+<h2 id="scprint2.model.encoders" class="doc doc-heading">
+            <code>scprint2.model.encoders</code>
 
 
 </h2>
@@ -9289,7 +9289,7 @@ the first is mu, the second theta, the third pi if present</p>
       </thead>
       <tbody>
           <tr class="doc-section-item">
-            <td><code><a class="autorefs autorefs-internal" title="CategoryValueEncoder (scprint.model.encoders.CategoryValueEncoder)" href="#scprint.model.encoders.CategoryValueEncoder">CategoryValueEncoder</a></code></td>
+            <td><code><a class="autorefs autorefs-internal" title="CategoryValueEncoder (scprint2.model.encoders.CategoryValueEncoder)" href="#scprint2.model.encoders.CategoryValueEncoder">CategoryValueEncoder</a></code></td>
             <td>
               <div class="doc-md-description">
                 
@@ -9297,7 +9297,7 @@ the first is mu, the second theta, the third pi if present</p>
             </td>
           </tr>
           <tr class="doc-section-item">
-            <td><code><a class="autorefs autorefs-internal" title="ContinuousValueEncoder (scprint.model.encoders.ContinuousValueEncoder)" href="#scprint.model.encoders.ContinuousValueEncoder">ContinuousValueEncoder</a></code></td>
+            <td><code><a class="autorefs autorefs-internal" title="ContinuousValueEncoder (scprint2.model.encoders.ContinuousValueEncoder)" href="#scprint2.model.encoders.ContinuousValueEncoder">ContinuousValueEncoder</a></code></td>
             <td>
               <div class="doc-md-description">
                 
@@ -9305,7 +9305,7 @@ the first is mu, the second theta, the third pi if present</p>
             </td>
           </tr>
           <tr class="doc-section-item">
-            <td><code><a class="autorefs autorefs-internal" title="DPositionalEncoding (scprint.model.encoders.DPositionalEncoding)" href="#scprint.model.encoders.DPositionalEncoding">DPositionalEncoding</a></code></td>
+            <td><code><a class="autorefs autorefs-internal" title="DPositionalEncoding (scprint2.model.encoders.DPositionalEncoding)" href="#scprint2.model.encoders.DPositionalEncoding">DPositionalEncoding</a></code></td>
             <td>
               <div class="doc-md-description">
                 <p>The PositionalEncoding module applies a positional encoding to a sequence of vectors.</p>
@@ -9313,7 +9313,7 @@ the first is mu, the second theta, the third pi if present</p>
             </td>
           </tr>
           <tr class="doc-section-item">
-            <td><code><a class="autorefs autorefs-internal" title="EasyExprGNN (scprint.model.encoders.EasyExprGNN)" href="#scprint.model.encoders.EasyExprGNN">EasyExprGNN</a></code></td>
+            <td><code><a class="autorefs autorefs-internal" title="EasyExprGNN (scprint2.model.encoders.EasyExprGNN)" href="#scprint2.model.encoders.EasyExprGNN">EasyExprGNN</a></code></td>
             <td>
               <div class="doc-md-description">
                 
@@ -9321,7 +9321,7 @@ the first is mu, the second theta, the third pi if present</p>
             </td>
           </tr>
           <tr class="doc-section-item">
-            <td><code><a class="autorefs autorefs-internal" title="ExprBasedFT (scprint.model.encoders.ExprBasedFT)" href="#scprint.model.encoders.ExprBasedFT">ExprBasedFT</a></code></td>
+            <td><code><a class="autorefs autorefs-internal" title="ExprBasedFT (scprint2.model.encoders.ExprBasedFT)" href="#scprint2.model.encoders.ExprBasedFT">ExprBasedFT</a></code></td>
             <td>
               <div class="doc-md-description">
                 
@@ -9329,7 +9329,7 @@ the first is mu, the second theta, the third pi if present</p>
             </td>
           </tr>
           <tr class="doc-section-item">
-            <td><code><a class="autorefs autorefs-internal" title="GNN (scprint.model.encoders.GNN)" href="#scprint.model.encoders.GNN">GNN</a></code></td>
+            <td><code><a class="autorefs autorefs-internal" title="GNN (scprint2.model.encoders.GNN)" href="#scprint2.model.encoders.GNN">GNN</a></code></td>
             <td>
               <div class="doc-md-description">
                 
@@ -9337,7 +9337,7 @@ the first is mu, the second theta, the third pi if present</p>
             </td>
           </tr>
           <tr class="doc-section-item">
-            <td><code><a class="autorefs autorefs-internal" title="GeneEncoder (scprint.model.encoders.GeneEncoder)" href="#scprint.model.encoders.GeneEncoder">GeneEncoder</a></code></td>
+            <td><code><a class="autorefs autorefs-internal" title="GeneEncoder (scprint2.model.encoders.GeneEncoder)" href="#scprint2.model.encoders.GeneEncoder">GeneEncoder</a></code></td>
             <td>
               <div class="doc-md-description">
                 
@@ -9345,7 +9345,7 @@ the first is mu, the second theta, the third pi if present</p>
             </td>
           </tr>
           <tr class="doc-section-item">
-            <td><code><a class="autorefs autorefs-internal" title="PositionalEncoding (scprint.model.encoders.PositionalEncoding)" href="#scprint.model.encoders.PositionalEncoding">PositionalEncoding</a></code></td>
+            <td><code><a class="autorefs autorefs-internal" title="PositionalEncoding (scprint2.model.encoders.PositionalEncoding)" href="#scprint2.model.encoders.PositionalEncoding">PositionalEncoding</a></code></td>
             <td>
               <div class="doc-md-description">
                 
@@ -9375,7 +9375,7 @@ the first is mu, the second theta, the third pi if present</p>
 
 
 
-<h3 id="scprint.model.encoders.CategoryValueEncoder" class="doc doc-heading">
+<h3 id="scprint2.model.encoders.CategoryValueEncoder" class="doc doc-heading">
               <code class="highlight language-python"><span class="n">CategoryValueEncoder</span></code>
 
 </h3>
@@ -9452,7 +9452,7 @@ the first is mu, the second theta, the third pi if present</p>
       </td>
     </tr>
   </tbody>
-</table>        <p>Note: not used in the current version of scprint.</p>
+</table>        <p>Note: not used in the current version of scprint-2.</p>
 
 
 
@@ -9466,7 +9466,7 @@ the first is mu, the second theta, the third pi if present</p>
 
 
                   <details class="quote">
-                    <summary>Source code in <code>scprint/model/encoders.py</code></summary>
+                    <summary>Source code in <code>scprint2/model/encoders.py</code></summary>
                     <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">392</span>
 <span class="normal">393</span>
 <span class="normal">394</span>
@@ -9506,7 +9506,7 @@ the first is mu, the second theta, the third pi if present</p>
 <span class="sd">    Returns:</span>
 <span class="sd">        torch.Tensor: A tensor representing the encoded categorical values.</span>
 
-<span class="sd">    Note: not used in the current version of scprint.</span>
+<span class="sd">    Note: not used in the current version of scprint-2.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="nb">super</span><span class="p">(</span><span class="n">CategoryValueEncoder</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">embedding</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Embedding</span><span class="p">(</span>
@@ -9541,7 +9541,7 @@ the first is mu, the second theta, the third pi if present</p>
 
 
 
-<h3 id="scprint.model.encoders.ContinuousValueEncoder" class="doc doc-heading">
+<h3 id="scprint2.model.encoders.ContinuousValueEncoder" class="doc doc-heading">
               <code class="highlight language-python"><span class="n">ContinuousValueEncoder</span></code>
 
 </h3>
@@ -9661,7 +9661,7 @@ the first is mu, the second theta, the third pi if present</p>
       </thead>
       <tbody>
             <tr class="doc-section-item">
-              <td><code><a class="autorefs autorefs-internal" title="forward (scprint.model.encoders.ContinuousValueEncoder.forward)" href="#scprint.model.encoders.ContinuousValueEncoder.forward">forward</a></code></td>
+              <td><code><a class="autorefs autorefs-internal" title="forward (scprint2.model.encoders.ContinuousValueEncoder.forward)" href="#scprint2.model.encoders.ContinuousValueEncoder.forward">forward</a></code></td>
               <td>
                 <div class="doc-md-description">
                   <p>Args:</p>
@@ -9674,7 +9674,7 @@ the first is mu, the second theta, the third pi if present</p>
 
 
                   <details class="quote">
-                    <summary>Source code in <code>scprint/model/encoders.py</code></summary>
+                    <summary>Source code in <code>scprint2/model/encoders.py</code></summary>
                     <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">240</span>
 <span class="normal">241</span>
 <span class="normal">242</span>
@@ -9757,7 +9757,7 @@ the first is mu, the second theta, the third pi if present</p>
 <div class="doc doc-object doc-function">
 
 
-<h4 id="scprint.model.encoders.ContinuousValueEncoder.forward" class="doc doc-heading">
+<h4 id="scprint2.model.encoders.ContinuousValueEncoder.forward" class="doc doc-heading">
             <code class="highlight language-python"><span class="n">forward</span></code>
 
 </h4>
@@ -9792,7 +9792,7 @@ the first is mu, the second theta, the third pi if present</p>
 </table>
 
             <details class="mkdocstrings-source">
-              <summary>Source code in <code>scprint/model/encoders.py</code></summary>
+              <summary>Source code in <code>scprint2/model/encoders.py</code></summary>
               <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">273</span>
 <span class="normal">274</span>
 <span class="normal">275</span>
@@ -9843,7 +9843,7 @@ the first is mu, the second theta, the third pi if present</p>
 
 
 
-<h3 id="scprint.model.encoders.DPositionalEncoding" class="doc doc-heading">
+<h3 id="scprint2.model.encoders.DPositionalEncoding" class="doc doc-heading">
               <code class="highlight language-python"><span class="n">DPositionalEncoding</span></code>
 
 </h3>
@@ -9899,7 +9899,7 @@ allows the model to attend to positions in the sequence.</p>
       </td>
     </tr>
   </tbody>
-</table>        <p>Note: not used in the current version of scprint.</p>
+</table>        <p>Note: not used in the current version of scprint-2.</p>
 
 
 
@@ -9921,7 +9921,7 @@ allows the model to attend to positions in the sequence.</p>
       </thead>
       <tbody>
             <tr class="doc-section-item">
-              <td><code><a class="autorefs autorefs-internal" title="forward (scprint.model.encoders.DPositionalEncoding.forward)" href="#scprint.model.encoders.DPositionalEncoding.forward">forward</a></code></td>
+              <td><code><a class="autorefs autorefs-internal" title="forward (scprint2.model.encoders.DPositionalEncoding.forward)" href="#scprint2.model.encoders.DPositionalEncoding.forward">forward</a></code></td>
               <td>
                 <div class="doc-md-description">
                   <p>Args:</p>
@@ -9934,7 +9934,7 @@ allows the model to attend to positions in the sequence.</p>
 
 
                   <details class="quote">
-                    <summary>Source code in <code>scprint/model/encoders.py</code></summary>
+                    <summary>Source code in <code>scprint2/model/encoders.py</code></summary>
                     <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">194</span>
 <span class="normal">195</span>
 <span class="normal">196</span>
@@ -10011,7 +10011,7 @@ allows the model to attend to positions in the sequence.</p>
 <div class="doc doc-object doc-function">
 
 
-<h4 id="scprint.model.encoders.DPositionalEncoding.forward" class="doc doc-heading">
+<h4 id="scprint2.model.encoders.DPositionalEncoding.forward" class="doc doc-heading">
             <code class="highlight language-python"><span class="n">forward</span></code>
 
 </h4>
@@ -10046,7 +10046,7 @@ allows the model to attend to positions in the sequence.</p>
 </table>
 
             <details class="mkdocstrings-source">
-              <summary>Source code in <code>scprint/model/encoders.py</code></summary>
+              <summary>Source code in <code>scprint2/model/encoders.py</code></summary>
               <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">229</span>
 <span class="normal">230</span>
 <span class="normal">231</span>
@@ -10081,7 +10081,7 @@ allows the model to attend to positions in the sequence.</p>
 
 
 
-<h3 id="scprint.model.encoders.EasyExprGNN" class="doc doc-heading">
+<h3 id="scprint2.model.encoders.EasyExprGNN" class="doc doc-heading">
               <code class="highlight language-python"><span class="n">EasyExprGNN</span></code>
 
 </h3>
@@ -10193,7 +10193,7 @@ It is inspired from the DeepSets architecture to aggregate neighbor information.
       </thead>
       <tbody>
             <tr class="doc-section-item">
-              <td><code><a class="autorefs autorefs-internal" title="forward (scprint.model.encoders.EasyExprGNN.forward)" href="#scprint.model.encoders.EasyExprGNN.forward">forward</a></code></td>
+              <td><code><a class="autorefs autorefs-internal" title="forward (scprint2.model.encoders.EasyExprGNN.forward)" href="#scprint2.model.encoders.EasyExprGNN.forward">forward</a></code></td>
               <td>
                 <div class="doc-md-description">
                   <p>Forward pass of the Easy Expression GNN</p>
@@ -10206,7 +10206,7 @@ It is inspired from the DeepSets architecture to aggregate neighbor information.
 
 
                   <details class="quote">
-                    <summary>Source code in <code>scprint/model/encoders.py</code></summary>
+                    <summary>Source code in <code>scprint2/model/encoders.py</code></summary>
                     <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">427</span>
 <span class="normal">428</span>
 <span class="normal">429</span>
@@ -10325,7 +10325,7 @@ It is inspired from the DeepSets architecture to aggregate neighbor information.
 <div class="doc doc-object doc-function">
 
 
-<h4 id="scprint.model.encoders.EasyExprGNN.forward" class="doc doc-heading">
+<h4 id="scprint2.model.encoders.EasyExprGNN.forward" class="doc doc-heading">
             <code class="highlight language-python"><span class="n">forward</span></code>
 
 </h4>
@@ -10403,7 +10403,7 @@ It is inspired from the DeepSets architecture to aggregate neighbor information.
 </table>
 
             <details class="mkdocstrings-source">
-              <summary>Source code in <code>scprint/model/encoders.py</code></summary>
+              <summary>Source code in <code>scprint2/model/encoders.py</code></summary>
               <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">478</span>
 <span class="normal">479</span>
 <span class="normal">480</span>
@@ -10506,7 +10506,7 @@ It is inspired from the DeepSets architecture to aggregate neighbor information.
 
 
 
-<h3 id="scprint.model.encoders.ExprBasedFT" class="doc doc-heading">
+<h3 id="scprint2.model.encoders.ExprBasedFT" class="doc doc-heading">
               <code class="highlight language-python"><span class="n">ExprBasedFT</span></code>
 
 </h3>
@@ -10642,7 +10642,7 @@ It is inspired from the DeepSets architecture to aggregate neighbor information.
       </thead>
       <tbody>
             <tr class="doc-section-item">
-              <td><code><a class="autorefs autorefs-internal" title="forward (scprint.model.encoders.ExprBasedFT.forward)" href="#scprint.model.encoders.ExprBasedFT.forward">forward</a></code></td>
+              <td><code><a class="autorefs autorefs-internal" title="forward (scprint2.model.encoders.ExprBasedFT.forward)" href="#scprint2.model.encoders.ExprBasedFT.forward">forward</a></code></td>
               <td>
                 <div class="doc-md-description">
                   <p>Args:</p>
@@ -10655,7 +10655,7 @@ It is inspired from the DeepSets architecture to aggregate neighbor information.
 
 
                   <details class="quote">
-                    <summary>Source code in <code>scprint/model/encoders.py</code></summary>
+                    <summary>Source code in <code>scprint2/model/encoders.py</code></summary>
                     <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">298</span>
 <span class="normal">299</span>
 <span class="normal">300</span>
@@ -10756,7 +10756,7 @@ It is inspired from the DeepSets architecture to aggregate neighbor information.
 <div class="doc doc-object doc-function">
 
 
-<h4 id="scprint.model.encoders.ExprBasedFT.forward" class="doc doc-heading">
+<h4 id="scprint2.model.encoders.ExprBasedFT.forward" class="doc doc-heading">
             <code class="highlight language-python"><span class="n">forward</span></code>
 
 </h4>
@@ -10836,7 +10836,7 @@ input to the expression encoder when it is a GNN</p>
 </table>
 
             <details class="mkdocstrings-source">
-              <summary>Source code in <code>scprint/model/encoders.py</code></summary>
+              <summary>Source code in <code>scprint2/model/encoders.py</code></summary>
               <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">340</span>
 <span class="normal">341</span>
 <span class="normal">342</span>
@@ -10937,7 +10937,7 @@ input to the expression encoder when it is a GNN</p>
 
 
 
-<h3 id="scprint.model.encoders.GNN" class="doc doc-heading">
+<h3 id="scprint2.model.encoders.GNN" class="doc doc-heading">
               <code class="highlight language-python"><span class="n">GNN</span></code>
 
 </h3>
@@ -11039,7 +11039,7 @@ Supports GCN, GAT, GraphSAGE, and DeepSets architectures.</p>
       </thead>
       <tbody>
             <tr class="doc-section-item">
-              <td><code><a class="autorefs autorefs-internal" title="forward (scprint.model.encoders.GNN.forward)" href="#scprint.model.encoders.GNN.forward">forward</a></code></td>
+              <td><code><a class="autorefs autorefs-internal" title="forward (scprint2.model.encoders.GNN.forward)" href="#scprint2.model.encoders.GNN.forward">forward</a></code></td>
               <td>
                 <div class="doc-md-description">
                   <p>Forward pass</p>
@@ -11052,7 +11052,7 @@ Supports GCN, GAT, GraphSAGE, and DeepSets architectures.</p>
 
 
                   <details class="quote">
-                    <summary>Source code in <code>scprint/model/encoders.py</code></summary>
+                    <summary>Source code in <code>scprint2/model/encoders.py</code></summary>
                     <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">542</span>
 <span class="normal">543</span>
 <span class="normal">544</span>
@@ -11249,7 +11249,7 @@ Supports GCN, GAT, GraphSAGE, and DeepSets architectures.</p>
 <div class="doc doc-object doc-function">
 
 
-<h4 id="scprint.model.encoders.GNN.forward" class="doc doc-heading">
+<h4 id="scprint2.model.encoders.GNN.forward" class="doc doc-heading">
             <code class="highlight language-python"><span class="n">forward</span></code>
 
 </h4>
@@ -11331,7 +11331,7 @@ Supports GCN, GAT, GraphSAGE, and DeepSets architectures.</p>
 </table>
 
             <details class="mkdocstrings-source">
-              <summary>Source code in <code>scprint/model/encoders.py</code></summary>
+              <summary>Source code in <code>scprint2/model/encoders.py</code></summary>
               <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">632</span>
 <span class="normal">633</span>
 <span class="normal">634</span>
@@ -11424,7 +11424,7 @@ Supports GCN, GAT, GraphSAGE, and DeepSets architectures.</p>
 
 
 
-<h3 id="scprint.model.encoders.GeneEncoder" class="doc doc-heading">
+<h3 id="scprint2.model.encoders.GeneEncoder" class="doc doc-heading">
               <code class="highlight language-python"><span class="n">GeneEncoder</span></code>
 
 </h3>
@@ -11531,7 +11531,7 @@ Uses memory mapping for efficient access to large embedding files.</p>
       </thead>
       <tbody>
             <tr class="doc-section-item">
-              <td><code><a class="autorefs autorefs-internal" title="__del__ (scprint.model.encoders.GeneEncoder.__del__)" href="#scprint.model.encoders.GeneEncoder.__del__">__del__</a></code></td>
+              <td><code><a class="autorefs autorefs-internal" title="__del__ (scprint2.model.encoders.GeneEncoder.__del__)" href="#scprint2.model.encoders.GeneEncoder.__del__">__del__</a></code></td>
               <td>
                 <div class="doc-md-description">
                   <p>Cleanup method to ensure proper handling of memory-mapped file.</p>
@@ -11539,7 +11539,7 @@ Uses memory mapping for efficient access to large embedding files.</p>
               </td>
             </tr>
             <tr class="doc-section-item">
-              <td><code><a class="autorefs autorefs-internal" title="forward (scprint.model.encoders.GeneEncoder.forward)" href="#scprint.model.encoders.GeneEncoder.forward">forward</a></code></td>
+              <td><code><a class="autorefs autorefs-internal" title="forward (scprint2.model.encoders.GeneEncoder.forward)" href="#scprint2.model.encoders.GeneEncoder.forward">forward</a></code></td>
               <td>
                 <div class="doc-md-description">
                   <p>Forward pass of the encoder.</p>
@@ -11552,7 +11552,7 @@ Uses memory mapping for efficient access to large embedding files.</p>
 
 
                   <details class="quote">
-                    <summary>Source code in <code>scprint/model/encoders.py</code></summary>
+                    <summary>Source code in <code>scprint2/model/encoders.py</code></summary>
                     <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">14</span>
 <span class="normal">15</span>
 <span class="normal">16</span>
@@ -11725,7 +11725,7 @@ Uses memory mapping for efficient access to large embedding files.</p>
 <div class="doc doc-object doc-function">
 
 
-<h4 id="scprint.model.encoders.GeneEncoder.__del__" class="doc doc-heading">
+<h4 id="scprint2.model.encoders.GeneEncoder.__del__" class="doc doc-heading">
             <code class="highlight language-python"><span class="fm">__del__</span></code>
 
 </h4>
@@ -11737,7 +11737,7 @@ Uses memory mapping for efficient access to large embedding files.</p>
 
 
             <details class="mkdocstrings-source">
-              <summary>Source code in <code>scprint/model/encoders.py</code></summary>
+              <summary>Source code in <code>scprint2/model/encoders.py</code></summary>
               <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">116</span>
 <span class="normal">117</span>
 <span class="normal">118</span>
@@ -11760,7 +11760,7 @@ Uses memory mapping for efficient access to large embedding files.</p>
 <div class="doc doc-object doc-function">
 
 
-<h4 id="scprint.model.encoders.GeneEncoder.forward" class="doc doc-heading">
+<h4 id="scprint2.model.encoders.GeneEncoder.forward" class="doc doc-heading">
             <code class="highlight language-python"><span class="n">forward</span></code>
 
 </h4>
@@ -11819,7 +11819,7 @@ Uses memory mapping for efficient access to large embedding files.</p>
 </table>
 
             <details class="mkdocstrings-source">
-              <summary>Source code in <code>scprint/model/encoders.py</code></summary>
+              <summary>Source code in <code>scprint2/model/encoders.py</code></summary>
               <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 92</span>
 <span class="normal"> 93</span>
 <span class="normal"> 94</span>
@@ -11884,7 +11884,7 @@ Uses memory mapping for efficient access to large embedding files.</p>
 
 
 
-<h3 id="scprint.model.encoders.PositionalEncoding" class="doc doc-heading">
+<h3 id="scprint2.model.encoders.PositionalEncoding" class="doc doc-heading">
               <code class="highlight language-python"><span class="n">PositionalEncoding</span></code>
 
 </h3>
@@ -11934,7 +11934,7 @@ allows the model to attend to positions in the sequence.</p>
       </td>
     </tr>
   </tbody>
-</table>        <p>Note: not used in the current version of scprint.</p>
+</table>        <p>Note: not used in the current version of scprint-2.</p>
 
 
 
@@ -11956,7 +11956,7 @@ allows the model to attend to positions in the sequence.</p>
       </thead>
       <tbody>
             <tr class="doc-section-item">
-              <td><code><a class="autorefs autorefs-internal" title="forward (scprint.model.encoders.PositionalEncoding.forward)" href="#scprint.model.encoders.PositionalEncoding.forward">forward</a></code></td>
+              <td><code><a class="autorefs autorefs-internal" title="forward (scprint2.model.encoders.PositionalEncoding.forward)" href="#scprint2.model.encoders.PositionalEncoding.forward">forward</a></code></td>
               <td>
                 <div class="doc-md-description">
                   <p>Args:</p>
@@ -11969,7 +11969,7 @@ allows the model to attend to positions in the sequence.</p>
 
 
                   <details class="quote">
-                    <summary>Source code in <code>scprint/model/encoders.py</code></summary>
+                    <summary>Source code in <code>scprint2/model/encoders.py</code></summary>
                     <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">129</span>
 <span class="normal">130</span>
 <span class="normal">131</span>
@@ -12023,7 +12023,7 @@ allows the model to attend to positions in the sequence.</p>
 <span class="sd">        d_model (int): The dimension of the input vectors.</span>
 <span class="sd">        gene_pos_enc (list[str], optional): The gene position encoding to use.</span>
 
-<span class="sd">    Note: not used in the current version of scprint.</span>
+<span class="sd">    Note: not used in the current version of scprint-2.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="nb">super</span><span class="p">(</span><span class="n">PositionalEncoding</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">gene_pos_enc</span> <span class="o">=</span> <span class="n">gene_pos_enc</span>
@@ -12066,7 +12066,7 @@ allows the model to attend to positions in the sequence.</p>
 <div class="doc doc-object doc-function">
 
 
-<h4 id="scprint.model.encoders.PositionalEncoding.forward" class="doc doc-heading">
+<h4 id="scprint2.model.encoders.PositionalEncoding.forward" class="doc doc-heading">
             <code class="highlight language-python"><span class="n">forward</span></code>
 
 </h4>
@@ -12100,7 +12100,7 @@ allows the model to attend to positions in the sequence.</p>
 </table>
 
             <details class="mkdocstrings-source">
-              <summary>Source code in <code>scprint/model/encoders.py</code></summary>
+              <summary>Source code in <code>scprint2/model/encoders.py</code></summary>
               <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">169</span>
 <span class="normal">170</span>
 <span class="normal">171</span>
@@ -12144,8 +12144,8 @@ allows the model to attend to positions in the sequence.</p>
 
 
 
-<h2 id="scprint.model.decoders" class="doc doc-heading">
-            <code>scprint.model.decoders</code>
+<h2 id="scprint2.model.decoders" class="doc doc-heading">
+            <code>scprint2.model.decoders</code>
 
 
 </h2>
@@ -12171,7 +12171,7 @@ allows the model to attend to positions in the sequence.</p>
       </thead>
       <tbody>
           <tr class="doc-section-item">
-            <td><code><a class="autorefs autorefs-internal" title="ClsDecoder (scprint.model.decoders.ClsDecoder)" href="#scprint.model.decoders.ClsDecoder">ClsDecoder</a></code></td>
+            <td><code><a class="autorefs autorefs-internal" title="ClsDecoder (scprint2.model.decoders.ClsDecoder)" href="#scprint2.model.decoders.ClsDecoder">ClsDecoder</a></code></td>
             <td>
               <div class="doc-md-description">
                 
@@ -12179,7 +12179,7 @@ allows the model to attend to positions in the sequence.</p>
             </td>
           </tr>
           <tr class="doc-section-item">
-            <td><code><a class="autorefs autorefs-internal" title="ExprDecoder (scprint.model.decoders.ExprDecoder)" href="#scprint.model.decoders.ExprDecoder">ExprDecoder</a></code></td>
+            <td><code><a class="autorefs autorefs-internal" title="ExprDecoder (scprint2.model.decoders.ExprDecoder)" href="#scprint2.model.decoders.ExprDecoder">ExprDecoder</a></code></td>
             <td>
               <div class="doc-md-description">
                 
@@ -12187,7 +12187,7 @@ allows the model to attend to positions in the sequence.</p>
             </td>
           </tr>
           <tr class="doc-section-item">
-            <td><code><a class="autorefs autorefs-internal" title="GraphSDEExprDecoder (scprint.model.decoders.GraphSDEExprDecoder)" href="#scprint.model.decoders.GraphSDEExprDecoder">GraphSDEExprDecoder</a></code></td>
+            <td><code><a class="autorefs autorefs-internal" title="GraphSDEExprDecoder (scprint2.model.decoders.GraphSDEExprDecoder)" href="#scprint2.model.decoders.GraphSDEExprDecoder">GraphSDEExprDecoder</a></code></td>
             <td>
               <div class="doc-md-description">
                 
@@ -12195,7 +12195,7 @@ allows the model to attend to positions in the sequence.</p>
             </td>
           </tr>
           <tr class="doc-section-item">
-            <td><code><a class="autorefs autorefs-internal" title="MVCDecoder (scprint.model.decoders.MVCDecoder)" href="#scprint.model.decoders.MVCDecoder">MVCDecoder</a></code></td>
+            <td><code><a class="autorefs autorefs-internal" title="MVCDecoder (scprint2.model.decoders.MVCDecoder)" href="#scprint2.model.decoders.MVCDecoder">MVCDecoder</a></code></td>
             <td>
               <div class="doc-md-description">
                 
@@ -12203,7 +12203,7 @@ allows the model to attend to positions in the sequence.</p>
             </td>
           </tr>
           <tr class="doc-section-item">
-            <td><code><a class="autorefs autorefs-internal" title="VAEDecoder (scprint.model.decoders.VAEDecoder)" href="#scprint.model.decoders.VAEDecoder">VAEDecoder</a></code></td>
+            <td><code><a class="autorefs autorefs-internal" title="VAEDecoder (scprint2.model.decoders.VAEDecoder)" href="#scprint2.model.decoders.VAEDecoder">VAEDecoder</a></code></td>
             <td>
               <div class="doc-md-description">
                 
@@ -12233,7 +12233,7 @@ allows the model to attend to positions in the sequence.</p>
 
 
 
-<h3 id="scprint.model.decoders.ClsDecoder" class="doc doc-heading">
+<h3 id="scprint2.model.decoders.ClsDecoder" class="doc doc-heading">
               <code class="highlight language-python"><span class="n">ClsDecoder</span></code>
 
 </h3>
@@ -12351,7 +12351,7 @@ allows the model to attend to positions in the sequence.</p>
       </thead>
       <tbody>
             <tr class="doc-section-item">
-              <td><code><a class="autorefs autorefs-internal" title="forward (scprint.model.decoders.ClsDecoder.forward)" href="#scprint.model.decoders.ClsDecoder.forward">forward</a></code></td>
+              <td><code><a class="autorefs autorefs-internal" title="forward (scprint2.model.decoders.ClsDecoder.forward)" href="#scprint2.model.decoders.ClsDecoder.forward">forward</a></code></td>
               <td>
                 <div class="doc-md-description">
                   <p>Args:</p>
@@ -12364,7 +12364,7 @@ allows the model to attend to positions in the sequence.</p>
 
 
                   <details class="quote">
-                    <summary>Source code in <code>scprint/model/decoders.py</code></summary>
+                    <summary>Source code in <code>scprint2/model/decoders.py</code></summary>
                     <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">232</span>
 <span class="normal">233</span>
 <span class="normal">234</span>
@@ -12447,7 +12447,7 @@ allows the model to attend to positions in the sequence.</p>
 <div class="doc doc-object doc-function">
 
 
-<h4 id="scprint.model.decoders.ClsDecoder.forward" class="doc doc-heading">
+<h4 id="scprint2.model.decoders.ClsDecoder.forward" class="doc doc-heading">
             <code class="highlight language-python"><span class="n">forward</span></code>
 
 </h4>
@@ -12482,7 +12482,7 @@ allows the model to attend to positions in the sequence.</p>
 </table>
 
             <details class="mkdocstrings-source">
-              <summary>Source code in <code>scprint/model/decoders.py</code></summary>
+              <summary>Source code in <code>scprint2/model/decoders.py</code></summary>
               <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">265</span>
 <span class="normal">266</span>
 <span class="normal">267</span>
@@ -12515,7 +12515,7 @@ allows the model to attend to positions in the sequence.</p>
 
 
 
-<h3 id="scprint.model.decoders.ExprDecoder" class="doc doc-heading">
+<h3 id="scprint2.model.decoders.ExprDecoder" class="doc doc-heading">
               <code class="highlight language-python"><span class="n">ExprDecoder</span></code>
 
 </h3>
@@ -12636,7 +12636,7 @@ allows the model to attend to positions in the sequence.</p>
       </thead>
       <tbody>
             <tr class="doc-section-item">
-              <td><code><a class="autorefs autorefs-internal" title="forward (scprint.model.decoders.ExprDecoder.forward)" href="#scprint.model.decoders.ExprDecoder.forward">forward</a></code></td>
+              <td><code><a class="autorefs autorefs-internal" title="forward (scprint2.model.decoders.ExprDecoder.forward)" href="#scprint2.model.decoders.ExprDecoder.forward">forward</a></code></td>
               <td>
                 <div class="doc-md-description">
                   <p>x is the output of the transformer, (batch, seq_len, d_model)</p>
@@ -12649,7 +12649,7 @@ allows the model to attend to positions in the sequence.</p>
 
 
                   <details class="quote">
-                    <summary>Source code in <code>scprint/model/decoders.py</code></summary>
+                    <summary>Source code in <code>scprint2/model/decoders.py</code></summary>
                     <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">31</span>
 <span class="normal">32</span>
 <span class="normal">33</span>
@@ -12738,7 +12738,7 @@ allows the model to attend to positions in the sequence.</p>
 <div class="doc doc-object doc-function">
 
 
-<h4 id="scprint.model.decoders.ExprDecoder.forward" class="doc doc-heading">
+<h4 id="scprint2.model.decoders.ExprDecoder.forward" class="doc doc-heading">
             <code class="highlight language-python"><span class="n">forward</span></code>
 
 </h4>
@@ -12750,7 +12750,7 @@ allows the model to attend to positions in the sequence.</p>
 
 
             <details class="mkdocstrings-source">
-              <summary>Source code in <code>scprint/model/decoders.py</code></summary>
+              <summary>Source code in <code>scprint2/model/decoders.py</code></summary>
               <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">67</span>
 <span class="normal">68</span>
 <span class="normal">69</span>
@@ -12817,7 +12817,7 @@ allows the model to attend to positions in the sequence.</p>
 
 
 
-<h3 id="scprint.model.decoders.GraphSDEExprDecoder" class="doc doc-heading">
+<h3 id="scprint2.model.decoders.GraphSDEExprDecoder" class="doc doc-heading">
               <code class="highlight language-python"><span class="n">GraphSDEExprDecoder</span></code>
 
 </h3>
@@ -12883,7 +12883,7 @@ allows the model to attend to positions in the sequence.</p>
 
 
                   <details class="quote">
-                    <summary>Source code in <code>scprint/model/decoders.py</code></summary>
+                    <summary>Source code in <code>scprint2/model/decoders.py</code></summary>
                     <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 9</span>
 <span class="normal">10</span>
 <span class="normal">11</span>
@@ -12938,7 +12938,7 @@ allows the model to attend to positions in the sequence.</p>
 
 
 
-<h3 id="scprint.model.decoders.MVCDecoder" class="doc doc-heading">
+<h3 id="scprint2.model.decoders.MVCDecoder" class="doc doc-heading">
               <code class="highlight language-python"><span class="n">MVCDecoder</span></code>
 
 </h3>
@@ -13079,7 +13079,7 @@ parameters of a zero-inflated negative binomial distribution.</p>
       </thead>
       <tbody>
             <tr class="doc-section-item">
-              <td><code><a class="autorefs autorefs-internal" title="forward (scprint.model.decoders.MVCDecoder.forward)" href="#scprint.model.decoders.MVCDecoder.forward">forward</a></code></td>
+              <td><code><a class="autorefs autorefs-internal" title="forward (scprint2.model.decoders.MVCDecoder.forward)" href="#scprint2.model.decoders.MVCDecoder.forward">forward</a></code></td>
               <td>
                 <div class="doc-md-description">
                   <p>Args:</p>
@@ -13092,7 +13092,7 @@ parameters of a zero-inflated negative binomial distribution.</p>
 
 
                   <details class="quote">
-                    <summary>Source code in <code>scprint/model/decoders.py</code></summary>
+                    <summary>Source code in <code>scprint2/model/decoders.py</code></summary>
                     <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 94</span>
 <span class="normal"> 95</span>
 <span class="normal"> 96</span>
@@ -13235,7 +13235,7 @@ parameters of a zero-inflated negative binomial distribution.</p>
 <div class="doc doc-object doc-function">
 
 
-<h4 id="scprint.model.decoders.MVCDecoder.forward" class="doc doc-heading">
+<h4 id="scprint2.model.decoders.MVCDecoder.forward" class="doc doc-heading">
             <code class="highlight language-python"><span class="n">forward</span></code>
 
 </h4>
@@ -13311,7 +13311,7 @@ parameters of a zero-inflated negative binomial distribution.</p>
 </table>
 
             <details class="mkdocstrings-source">
-              <summary>Source code in <code>scprint/model/decoders.py</code></summary>
+              <summary>Source code in <code>scprint2/model/decoders.py</code></summary>
               <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">157</span>
 <span class="normal">158</span>
 <span class="normal">159</span>
@@ -13474,7 +13474,7 @@ parameters of a zero-inflated negative binomial distribution.</p>
 
 
 
-<h3 id="scprint.model.decoders.VAEDecoder" class="doc doc-heading">
+<h3 id="scprint2.model.decoders.VAEDecoder" class="doc doc-heading">
               <code class="highlight language-python"><span class="n">VAEDecoder</span></code>
 
 </h3>
@@ -13572,7 +13572,7 @@ parameters of a zero-inflated negative binomial distribution.</p>
       </thead>
       <tbody>
             <tr class="doc-section-item">
-              <td><code><a class="autorefs autorefs-internal" title="forward (scprint.model.decoders.VAEDecoder.forward)" href="#scprint.model.decoders.VAEDecoder.forward">forward</a></code></td>
+              <td><code><a class="autorefs autorefs-internal" title="forward (scprint2.model.decoders.VAEDecoder.forward)" href="#scprint2.model.decoders.VAEDecoder.forward">forward</a></code></td>
               <td>
                 <div class="doc-md-description">
                   <p>Forward pass through VAE.</p>
@@ -13580,7 +13580,7 @@ parameters of a zero-inflated negative binomial distribution.</p>
               </td>
             </tr>
             <tr class="doc-section-item">
-              <td><code><a class="autorefs autorefs-internal" title="kl_divergence (scprint.model.decoders.VAEDecoder.kl_divergence)" href="#scprint.model.decoders.VAEDecoder.kl_divergence">kl_divergence</a></code></td>
+              <td><code><a class="autorefs autorefs-internal" title="kl_divergence (scprint2.model.decoders.VAEDecoder.kl_divergence)" href="#scprint2.model.decoders.VAEDecoder.kl_divergence">kl_divergence</a></code></td>
               <td>
                 <div class="doc-md-description">
                   <p>Compute KL divergence between N(mu, var) and N(0, 1).</p>
@@ -13588,7 +13588,7 @@ parameters of a zero-inflated negative binomial distribution.</p>
               </td>
             </tr>
             <tr class="doc-section-item">
-              <td><code><a class="autorefs autorefs-internal" title="reparameterize (scprint.model.decoders.VAEDecoder.reparameterize)" href="#scprint.model.decoders.VAEDecoder.reparameterize">reparameterize</a></code></td>
+              <td><code><a class="autorefs autorefs-internal" title="reparameterize (scprint2.model.decoders.VAEDecoder.reparameterize)" href="#scprint2.model.decoders.VAEDecoder.reparameterize">reparameterize</a></code></td>
               <td>
                 <div class="doc-md-description">
                   <p>Reparameterization trick to sample from N(mu, var) from N(0,1).</p>
@@ -13601,7 +13601,7 @@ parameters of a zero-inflated negative binomial distribution.</p>
 
 
                   <details class="quote">
-                    <summary>Source code in <code>scprint/model/decoders.py</code></summary>
+                    <summary>Source code in <code>scprint2/model/decoders.py</code></summary>
                     <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">275</span>
 <span class="normal">276</span>
 <span class="normal">277</span>
@@ -13722,7 +13722,7 @@ parameters of a zero-inflated negative binomial distribution.</p>
 <div class="doc doc-object doc-function">
 
 
-<h4 id="scprint.model.decoders.VAEDecoder.forward" class="doc doc-heading">
+<h4 id="scprint2.model.decoders.VAEDecoder.forward" class="doc doc-heading">
             <code class="highlight language-python"><span class="n">forward</span></code>
 
 </h4>
@@ -13793,7 +13793,7 @@ Tuple[Tensor, Tensor, Tensor, Tensor, Tensor]:
 </table>
 
             <details class="mkdocstrings-source">
-              <summary>Source code in <code>scprint/model/decoders.py</code></summary>
+              <summary>Source code in <code>scprint2/model/decoders.py</code></summary>
               <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">357</span>
 <span class="normal">358</span>
 <span class="normal">359</span>
@@ -13880,7 +13880,7 @@ Tuple[Tensor, Tensor, Tensor, Tensor, Tensor]:
 <div class="doc doc-object doc-function">
 
 
-<h4 id="scprint.model.decoders.VAEDecoder.kl_divergence" class="doc doc-heading">
+<h4 id="scprint2.model.decoders.VAEDecoder.kl_divergence" class="doc doc-heading">
             <code class="highlight language-python"><span class="n">kl_divergence</span></code>
 
 </h4>
@@ -13947,7 +13947,7 @@ Tuple[Tensor, Tensor, Tensor, Tensor, Tensor]:
 </table>
 
             <details class="mkdocstrings-source">
-              <summary>Source code in <code>scprint/model/decoders.py</code></summary>
+              <summary>Source code in <code>scprint2/model/decoders.py</code></summary>
               <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">342</span>
 <span class="normal">343</span>
 <span class="normal">344</span>
@@ -13984,7 +13984,7 @@ Tuple[Tensor, Tensor, Tensor, Tensor, Tensor]:
 <div class="doc doc-object doc-function">
 
 
-<h4 id="scprint.model.decoders.VAEDecoder.reparameterize" class="doc doc-heading">
+<h4 id="scprint2.model.decoders.VAEDecoder.reparameterize" class="doc doc-heading">
             <code class="highlight language-python"><span class="n">reparameterize</span></code>
 
 </h4>
@@ -14051,7 +14051,7 @@ Tuple[Tensor, Tensor, Tensor, Tensor, Tensor]:
 </table>
 
             <details class="mkdocstrings-source">
-              <summary>Source code in <code>scprint/model/decoders.py</code></summary>
+              <summary>Source code in <code>scprint2/model/decoders.py</code></summary>
               <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">327</span>
 <span class="normal">328</span>
 <span class="normal">329</span>
@@ -14107,8 +14107,8 @@ Tuple[Tensor, Tensor, Tensor, Tensor, Tensor]:
 
 
 
-<h2 id="scprint.model.fsq" class="doc doc-heading">
-            <code>scprint.model.fsq</code>
+<h2 id="scprint2.model.fsq" class="doc doc-heading">
+            <code>scprint2.model.fsq</code>
 
 
 </h2>
@@ -14137,7 +14137,7 @@ Code adapted from Jax version in Appendix A.1</p>
       </thead>
       <tbody>
           <tr class="doc-section-item">
-            <td><code><a class="autorefs autorefs-internal" title="FSQ (scprint.model.fsq.FSQ)" href="#scprint.model.fsq.FSQ">FSQ</a></code></td>
+            <td><code><a class="autorefs autorefs-internal" title="FSQ (scprint2.model.fsq.FSQ)" href="#scprint2.model.fsq.FSQ">FSQ</a></code></td>
             <td>
               <div class="doc-md-description">
                 
@@ -14160,7 +14160,7 @@ Code adapted from Jax version in Appendix A.1</p>
       </thead>
       <tbody>
             <tr class="doc-section-item">
-              <td><code><a class="autorefs autorefs-internal" title="round_ste (scprint.model.fsq.round_ste)" href="#scprint.model.fsq.round_ste">round_ste</a></code></td>
+              <td><code><a class="autorefs autorefs-internal" title="round_ste (scprint2.model.fsq.round_ste)" href="#scprint2.model.fsq.round_ste">round_ste</a></code></td>
               <td>
                 <div class="doc-md-description">
                   <p>Round with straight through gradients.</p>
@@ -14188,7 +14188,7 @@ Code adapted from Jax version in Appendix A.1</p>
 
 
 
-<h3 id="scprint.model.fsq.FSQ" class="doc doc-heading">
+<h3 id="scprint2.model.fsq.FSQ" class="doc doc-heading">
               <code class="highlight language-python"><span class="n">FSQ</span></code>
 
 </h3>
@@ -14220,7 +14220,7 @@ Code adapted from Jax version in Appendix A.1</p>
       </thead>
       <tbody>
             <tr class="doc-section-item">
-              <td><code><a class="autorefs autorefs-internal" title="bound (scprint.model.fsq.FSQ.bound)" href="#scprint.model.fsq.FSQ.bound">bound</a></code></td>
+              <td><code><a class="autorefs autorefs-internal" title="bound (scprint2.model.fsq.FSQ.bound)" href="#scprint2.model.fsq.FSQ.bound">bound</a></code></td>
               <td>
                 <div class="doc-md-description">
                   <p>Bound <code>z</code>, an array of shape (..., d).</p>
@@ -14228,7 +14228,7 @@ Code adapted from Jax version in Appendix A.1</p>
               </td>
             </tr>
             <tr class="doc-section-item">
-              <td><code><a class="autorefs autorefs-internal" title="codes_to_indices (scprint.model.fsq.FSQ.codes_to_indices)" href="#scprint.model.fsq.FSQ.codes_to_indices">codes_to_indices</a></code></td>
+              <td><code><a class="autorefs autorefs-internal" title="codes_to_indices (scprint2.model.fsq.FSQ.codes_to_indices)" href="#scprint2.model.fsq.FSQ.codes_to_indices">codes_to_indices</a></code></td>
               <td>
                 <div class="doc-md-description">
                   <p>Converts a <code>code</code> to an index in the codebook.</p>
@@ -14236,7 +14236,7 @@ Code adapted from Jax version in Appendix A.1</p>
               </td>
             </tr>
             <tr class="doc-section-item">
-              <td><code><a class="autorefs autorefs-internal" title="forward (scprint.model.fsq.FSQ.forward)" href="#scprint.model.fsq.FSQ.forward">forward</a></code></td>
+              <td><code><a class="autorefs autorefs-internal" title="forward (scprint2.model.fsq.FSQ.forward)" href="#scprint2.model.fsq.FSQ.forward">forward</a></code></td>
               <td>
                 <div class="doc-md-description">
                   <p>einstein notation</p>
@@ -14244,7 +14244,7 @@ Code adapted from Jax version in Appendix A.1</p>
               </td>
             </tr>
             <tr class="doc-section-item">
-              <td><code><a class="autorefs autorefs-internal" title="indices_to_codes (scprint.model.fsq.FSQ.indices_to_codes)" href="#scprint.model.fsq.FSQ.indices_to_codes">indices_to_codes</a></code></td>
+              <td><code><a class="autorefs autorefs-internal" title="indices_to_codes (scprint2.model.fsq.FSQ.indices_to_codes)" href="#scprint2.model.fsq.FSQ.indices_to_codes">indices_to_codes</a></code></td>
               <td>
                 <div class="doc-md-description">
                   <p>Inverse of <code>codes_to_indices</code>.</p>
@@ -14252,7 +14252,7 @@ Code adapted from Jax version in Appendix A.1</p>
               </td>
             </tr>
             <tr class="doc-section-item">
-              <td><code><a class="autorefs autorefs-internal" title="quantize (scprint.model.fsq.FSQ.quantize)" href="#scprint.model.fsq.FSQ.quantize">quantize</a></code></td>
+              <td><code><a class="autorefs autorefs-internal" title="quantize (scprint2.model.fsq.FSQ.quantize)" href="#scprint2.model.fsq.FSQ.quantize">quantize</a></code></td>
               <td>
                 <div class="doc-md-description">
                   <p>Quantizes z, returns quantized zhat, same shape as z.</p>
@@ -14265,7 +14265,7 @@ Code adapted from Jax version in Appendix A.1</p>
 
 
                   <details class="quote">
-                    <summary>Source code in <code>scprint/model/fsq.py</code></summary>
+                    <summary>Source code in <code>scprint2/model/fsq.py</code></summary>
                     <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">49</span>
 <span class="normal">50</span>
 <span class="normal">51</span>
@@ -14382,7 +14382,7 @@ Code adapted from Jax version in Appendix A.1</p>
 <div class="doc doc-object doc-function">
 
 
-<h4 id="scprint.model.fsq.FSQ.bound" class="doc doc-heading">
+<h4 id="scprint2.model.fsq.FSQ.bound" class="doc doc-heading">
             <code class="highlight language-python"><span class="n">bound</span></code>
 
 </h4>
@@ -14394,7 +14394,7 @@ Code adapted from Jax version in Appendix A.1</p>
 
 
             <details class="mkdocstrings-source">
-              <summary>Source code in <code>scprint/model/fsq.py</code></summary>
+              <summary>Source code in <code>scprint2/model/fsq.py</code></summary>
               <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 99</span>
 <span class="normal">100</span>
 <span class="normal">101</span>
@@ -14415,7 +14415,7 @@ Code adapted from Jax version in Appendix A.1</p>
 <div class="doc doc-object doc-function">
 
 
-<h4 id="scprint.model.fsq.FSQ.codes_to_indices" class="doc doc-heading">
+<h4 id="scprint2.model.fsq.FSQ.codes_to_indices" class="doc doc-heading">
             <code class="highlight language-python"><span class="n">codes_to_indices</span></code>
 
 </h4>
@@ -14427,7 +14427,7 @@ Code adapted from Jax version in Appendix A.1</p>
 
 
             <details class="mkdocstrings-source">
-              <summary>Source code in <code>scprint/model/fsq.py</code></summary>
+              <summary>Source code in <code>scprint2/model/fsq.py</code></summary>
               <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">120</span>
 <span class="normal">121</span>
 <span class="normal">122</span>
@@ -14446,7 +14446,7 @@ Code adapted from Jax version in Appendix A.1</p>
 <div class="doc doc-object doc-function">
 
 
-<h4 id="scprint.model.fsq.FSQ.forward" class="doc doc-heading">
+<h4 id="scprint2.model.fsq.FSQ.forward" class="doc doc-heading">
             <code class="highlight language-python"><span class="n">forward</span></code>
 
 </h4>
@@ -14462,7 +14462,7 @@ c - number of codebook dim</p>
 
 
             <details class="mkdocstrings-source">
-              <summary>Source code in <code>scprint/model/fsq.py</code></summary>
+              <summary>Source code in <code>scprint2/model/fsq.py</code></summary>
               <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">139</span>
 <span class="normal">140</span>
 <span class="normal">141</span>
@@ -14523,7 +14523,7 @@ c - number of codebook dim</p>
 <div class="doc doc-object doc-function">
 
 
-<h4 id="scprint.model.fsq.FSQ.indices_to_codes" class="doc doc-heading">
+<h4 id="scprint2.model.fsq.FSQ.indices_to_codes" class="doc doc-heading">
             <code class="highlight language-python"><span class="n">indices_to_codes</span></code>
 
 </h4>
@@ -14535,7 +14535,7 @@ c - number of codebook dim</p>
 
 
             <details class="mkdocstrings-source">
-              <summary>Source code in <code>scprint/model/fsq.py</code></summary>
+              <summary>Source code in <code>scprint2/model/fsq.py</code></summary>
               <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">126</span>
 <span class="normal">127</span>
 <span class="normal">128</span>
@@ -14568,7 +14568,7 @@ c - number of codebook dim</p>
 <div class="doc doc-object doc-function">
 
 
-<h4 id="scprint.model.fsq.FSQ.quantize" class="doc doc-heading">
+<h4 id="scprint2.model.fsq.FSQ.quantize" class="doc doc-heading">
             <code class="highlight language-python"><span class="n">quantize</span></code>
 
 </h4>
@@ -14580,7 +14580,7 @@ c - number of codebook dim</p>
 
 
             <details class="mkdocstrings-source">
-              <summary>Source code in <code>scprint/model/fsq.py</code></summary>
+              <summary>Source code in <code>scprint2/model/fsq.py</code></summary>
               <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">106</span>
 <span class="normal">107</span>
 <span class="normal">108</span>
@@ -14609,7 +14609,7 @@ c - number of codebook dim</p>
 <div class="doc doc-object doc-function">
 
 
-<h3 id="scprint.model.fsq.round_ste" class="doc doc-heading">
+<h3 id="scprint2.model.fsq.round_ste" class="doc doc-heading">
             <code class="highlight language-python"><span class="n">round_ste</span></code>
 
 </h3>
@@ -14621,7 +14621,7 @@ c - number of codebook dim</p>
 
 
             <details class="mkdocstrings-source">
-              <summary>Source code in <code>scprint/model/fsq.py</code></summary>
+              <summary>Source code in <code>scprint2/model/fsq.py</code></summary>
               <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">39</span>
 <span class="normal">40</span>
 <span class="normal">41</span>

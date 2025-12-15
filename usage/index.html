@@ -3,9 +3,9 @@
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://www.jkobject.com/scPRINT/usage/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://www.jkobject.com/scPRINT-2/usage/" />
       <link rel="shortcut icon" href="../img/favicon.ico" />
-    <title>usage example - scprint</title>
+    <title>usage example - scPRINT-2</title>
     <link rel="stylesheet" href="../css/theme.css" />
     <link rel="stylesheet" href="../css/theme_extra.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
@@ -15,7 +15,7 @@
         // Current page data
         var mkdocs_page_name = "usage example";
         var mkdocs_page_input_path = "usage.md";
-        var mkdocs_page_url = "/scPRINT/usage/";
+        var mkdocs_page_url = "/scPRINT-2/usage/";
       </script>
     
     <!--[if lt IE 9]>
@@ -31,7 +31,7 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
     <div class="wy-side-scroll">
       <div class="wy-side-nav-search">
-          <a href=".." class="icon icon-home"> scprint
+          <a href=".." class="icon icon-home"> scPRINT-2
         </a><div role="search">
   <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
       <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
@@ -89,7 +89,7 @@
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
       <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="..">scprint</a>
+          <a href="..">scPRINT-2</a>
         
       </nav>
       <div class="wy-nav-content">
@@ -105,19 +105,26 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
-                <h1 id="scprint-usage">scPRINT usage</h1>
-<p>scPRINT can be used to denoise / embed (&amp; predict labels) / infer gene networks on single-cell data.</p>
-<p>Example of doing these tasks on a dataset is given in our manuscript and the <a href="../notebooks/cancer_usecase/">example notebooks</a>.</p>
-<p>But in a nutshell, here is the most minimal example of how scPRINT works: </p>
+                <h1 id="scprint-2-usage">scPRINT-2 usage</h1>
+<p>scPRINT-2 can be used to denoise / embed (&amp; predict labels) / infer gene
+networks on single-cell data.</p>
+<p>Example of doing these tasks on a dataset is given in our manuscript and the
+<a href="../notebooks/cancer_usecase/">example notebooks</a>.</p>
+<p>But in a nutshell, here is the most minimal example of how scPRINT-2 works:</p>
 <ol>
-<li>once you have loaded an anndata object, make sure you preprocess it so everything is checked out. (number of genes mentioned, gene format, raw counts used, etc...) more information on the Preprocessor is available in the scDataLoader package ()</li>
-<li>Then you can denoise / embed / infer gn on this anndata using scPRINT and its helper classes. These classes follow a similar pattern to the trainer class in pytorch-lightning.</li>
+<li>once you have loaded an anndata object, make sure you preprocess it so
+   everything is checked out. (number of genes mentioned, gene format, raw
+   counts used, etc...) more information on the Preprocessor is available in the
+   scDataLoader package ()</li>
+<li>Then you can denoise / embed / infer gn on this anndata using scPRINT-2 and
+   its helper classes. These classes follow a similar pattern to the trainer
+   class in pytorch-lightning.</li>
 </ol>
 <p>Here is an example for denoising:</p>
-<pre><code class="language-py">from scprint import scPrint
+<pre><code class="language-py">from scprint2 import scPrint2
 from scdataloader import Preprocessor
 import scanpy as sc
-from scprint.tasks import Denoiser
+from scprint2.tasks import Denoiser
 
 #better to do it in lower precision
 import torch
@@ -127,7 +134,7 @@ adata = sc.read_h5ad(&quot;../data/temp.h5ad&quot;)
 #make sure we have this metadata
 adata.obs['organism_ontology_term_id'] = &quot;NCBITaxon:9606&quot;
 # load the model
-model = scPrint.load_from_checkpoint('../data/temp/last.ckpt', precpt_gene_emb=None)
+model = scPrint2.load_from_checkpoint('../data/temp/last.ckpt', precpt_gene_emb=None)
 
 # preprocess to make sure it looks good
 preprocessor = Preprocessor(do_postp=False)
@@ -166,9 +173,11 @@ for i, idx in enumerate(idxs):
 adata.X = adata.X.tocsr()
 </code></pre>
 <p>But you can do the same thing with a bash command line:</p>
-<pre><code class="language-bash">$ scprint denoise --ckpt_path ../data/temp/last.ckpt --adata ../data/temp.h5ad --how &quot;most var&quot; --dtype &quot;torch.bfloat16&quot; --batch_size 20 --max_len 2000 --max_cells 100000 --num_workers 1 --predict_depth_mult 10 --doplot false --species &quot;NCBITaxon:9606&quot;
+<pre><code class="language-bash">$ scprint2 denoise --ckpt_path ../data/temp/last.ckpt --adata ../data/temp.h5ad --how &quot;most var&quot; --dtype &quot;torch.bfloat16&quot; --batch_size 20 --max_len 2000 --max_cells 100000 --num_workers 1 --predict_depth_mult 10 --doplot false --species &quot;NCBITaxon:9606&quot;
 </code></pre>
-<p>However in this context you might have somewhat less options for the preprocessing of the anndataset. However, all parameters of the denoiser, embedder and gninfer classes are available in the cli interface as well!</p>
+<p>However in this context you might have somewhat less options for the
+preprocessing of the anndataset. However, all parameters of the denoiser,
+embedder and gninfer classes are available in the cli interface as well!</p>
               
             </div>
           </div><footer>
