@@ -60,13 +60,6 @@
                 <li class="toctree-l1"><a class="reference internal" href="../umap/nice_umap_scprint2.html">350M subset umap</a>
                 </li>
               </ul>
-              <p class="caption"><span class="caption-text">example notebooks</span></p>
-              <ul>
-                  <li class="toctree-l1"><a class="reference internal" href="../notebooks/cancer_usecase/">scPRINT use case on BPH</a>
-                  </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../notebooks/cancer_usecase_part2/">scPRINT use case on BPH (part 2, GN analysis)</a>
-                  </li>
-              </ul>
               <p class="caption"><span class="caption-text">documentation</span></p>
               <ul>
                   <li class="toctree-l1"><a class="reference internal" href="../model/">model</a>
@@ -722,7 +715,8 @@
 
             <details class="mkdocstrings-source">
               <summary>Source code in <code>scprint2/tokenizers/embedder.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 16</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 15</span>
+<span class="normal"> 16</span>
 <span class="normal"> 17</span>
 <span class="normal"> 18</span>
 <span class="normal"> 19</span>
@@ -816,8 +810,7 @@
 <span class="normal">107</span>
 <span class="normal">108</span>
 <span class="normal">109</span>
-<span class="normal">110</span>
-<span class="normal">111</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">protein_embeddings_generator</span><span class="p">(</span>
+<span class="normal">110</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">protein_embeddings_generator</span><span class="p">(</span>
     <span class="n">genedf</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="n">organism</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;homo_sapiens&quot;</span><span class="p">,</span>  <span class="c1"># mus_musculus,</span>
     <span class="n">cache</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>

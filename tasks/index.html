@@ -60,13 +60,6 @@
                 <li class="toctree-l1"><a class="reference internal" href="../umap/nice_umap_scprint2.html">350M subset umap</a>
                 </li>
               </ul>
-              <p class="caption"><span class="caption-text">example notebooks</span></p>
-              <ul>
-                  <li class="toctree-l1"><a class="reference internal" href="../notebooks/cancer_usecase/">scPRINT use case on BPH</a>
-                  </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../notebooks/cancer_usecase_part2/">scPRINT use case on BPH (part 2, GN analysis)</a>
-                  </li>
-              </ul>
               <p class="caption"><span class="caption-text">documentation</span></p>
               <ul class="current">
                   <li class="toctree-l1"><a class="reference internal" href="../model/">model</a>
@@ -441,6 +434,16 @@ This is important to avoid memory issues.</p>
                 <p>The label to be used for unknown cell types. Defaults to "unknown".</p>
               </div>
             </li>
+            <li>
+              <b><code>use_knn</code></b>
+                  (<code><span title="bool">bool</span></code>, default:
+                      <code>True</code>
+)
+              –
+              <div class="doc-md-description">
+                <p>Whether to use k-nearest neighbors information. Defaults to True.</p>
+              </div>
+            </li>
         </ul>
       </td>
     </tr>
@@ -528,7 +531,10 @@ This is important to avoid memory issues.</p>
 <span class="normal">71</span>
 <span class="normal">72</span>
 <span class="normal">73</span>
-<span class="normal">74</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
+<span class="normal">74</span>
+<span class="normal">75</span>
+<span class="normal">76</span>
+<span class="normal">77</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
     <span class="bp">self</span><span class="p">,</span>
     <span class="n">batch_size</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">64</span><span class="p">,</span>
     <span class="n">num_workers</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">8</span><span class="p">,</span>
@@ -543,6 +549,7 @@ This is important to avoid memory issues.</p>
     <span class="n">genelist</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="n">save_every</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">40_000</span><span class="p">,</span>
     <span class="n">unknown_label</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;unknown&quot;</span><span class="p">,</span>
+    <span class="n">use_knn</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
 <span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Embedder a class to embed and annotate cells using a model</span>
@@ -564,6 +571,7 @@ This is important to avoid memory issues.</p>
 <span class="sd">        save_every (int, optional): The number of cells to save at a time. Defaults to 100_000.</span>
 <span class="sd">            This is important to avoid memory issues.</span>
 <span class="sd">        unknown_label (str, optional): The label to be used for unknown cell types. Defaults to &quot;unknown&quot;.</span>
+<span class="sd">        use_knn (bool, optional): Whether to use k-nearest neighbors information. Defaults to True.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">batch_size</span> <span class="o">=</span> <span class="n">batch_size</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">num_workers</span> <span class="o">=</span> <span class="n">num_workers</span>
@@ -577,6 +585,7 @@ This is important to avoid memory issues.</p>
     <span class="bp">self</span><span class="o">.</span><span class="n">save_every</span> <span class="o">=</span> <span class="n">save_every</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">pred</span> <span class="o">=</span> <span class="kc">None</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">unknown_label</span> <span class="o">=</span> <span class="n">unknown_label</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">use_knn</span> <span class="o">=</span> <span class="n">use_knn</span>
 </code></pre></div></td></tr></table></div>
                   </details>
 
@@ -699,10 +708,7 @@ This is important to avoid memory issues.</p>
 
             <details class="mkdocstrings-source">
               <summary>Source code in <code>scprint2/tasks/cell_emb.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 76</span>
-<span class="normal"> 77</span>
-<span class="normal"> 78</span>
-<span class="normal"> 79</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 79</span>
 <span class="normal"> 80</span>
 <span class="normal"> 81</span>
 <span class="normal"> 82</span>
@@ -945,7 +951,10 @@ This is important to avoid memory issues.</p>
 <span class="normal">319</span>
 <span class="normal">320</span>
 <span class="normal">321</span>
-<span class="normal">322</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">model</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">,</span> <span class="n">adata</span><span class="p">:</span> <span class="n">AnnData</span><span class="p">):</span>
+<span class="normal">322</span>
+<span class="normal">323</span>
+<span class="normal">324</span>
+<span class="normal">325</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">model</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">,</span> <span class="n">adata</span><span class="p">:</span> <span class="n">AnnData</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    __call__ function to call the embedding</span>
 
@@ -975,7 +984,7 @@ This is important to avoid memory issues.</p>
     <span class="n">adataset</span> <span class="o">=</span> <span class="n">SimpleAnnDataset</span><span class="p">(</span>
         <span class="n">adata</span><span class="p">,</span>
         <span class="n">obs_to_output</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;organism_ontology_term_id&quot;</span><span class="p">],</span>
-        <span class="n">get_knn_cells</span><span class="o">=</span><span class="n">model</span><span class="o">.</span><span class="n">expr_emb_style</span> <span class="o">==</span> <span class="s2">&quot;metacell&quot;</span><span class="p">,</span>
+        <span class="n">get_knn_cells</span><span class="o">=</span><span class="n">model</span><span class="o">.</span><span class="n">expr_emb_style</span> <span class="o">==</span> <span class="s2">&quot;metacell&quot;</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">use_knn</span><span class="p">,</span>
     <span class="p">)</span>
     <span class="n">col</span> <span class="o">=</span> <span class="n">Collator</span><span class="p">(</span>
         <span class="n">organisms</span><span class="o">=</span><span class="n">model</span><span class="o">.</span><span class="n">organisms</span><span class="p">,</span>
@@ -1022,12 +1031,12 @@ This is important to avoid memory issues.</p>
                 <span class="n">depth</span><span class="p">,</span>
                 <span class="n">knn_cells</span><span class="o">=</span><span class="p">(</span>
                     <span class="n">batch</span><span class="p">[</span><span class="s2">&quot;knn_cells&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">)</span>
-                    <span class="k">if</span> <span class="n">model</span><span class="o">.</span><span class="n">expr_emb_style</span> <span class="o">==</span> <span class="s2">&quot;metacell&quot;</span>
+                    <span class="k">if</span> <span class="n">model</span><span class="o">.</span><span class="n">expr_emb_style</span> <span class="o">==</span> <span class="s2">&quot;metacell&quot;</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">use_knn</span>
                     <span class="k">else</span> <span class="kc">None</span>
                 <span class="p">),</span>
                 <span class="n">knn_cells_info</span><span class="o">=</span><span class="p">(</span>
                     <span class="n">batch</span><span class="p">[</span><span class="s2">&quot;knn_cells_info&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">)</span>
-                    <span class="k">if</span> <span class="n">model</span><span class="o">.</span><span class="n">expr_emb_style</span> <span class="o">==</span> <span class="s2">&quot;metacell&quot;</span>
+                    <span class="k">if</span> <span class="n">model</span><span class="o">.</span><span class="n">expr_emb_style</span> <span class="o">==</span> <span class="s2">&quot;metacell&quot;</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">use_knn</span>
                     <span class="k">else</span> <span class="kc">None</span>
                 <span class="p">),</span>
                 <span class="n">pred_embedding</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">pred_embedding</span><span class="p">,</span>
@@ -1305,10 +1314,7 @@ This is important to avoid memory issues.</p>
 
             <details class="mkdocstrings-source">
               <summary>Source code in <code>scprint2/tasks/cell_emb.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">477</span>
-<span class="normal">478</span>
-<span class="normal">479</span>
-<span class="normal">480</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">480</span>
 <span class="normal">481</span>
 <span class="normal">482</span>
 <span class="normal">483</span>
@@ -1369,7 +1375,10 @@ This is important to avoid memory issues.</p>
 <span class="normal">538</span>
 <span class="normal">539</span>
 <span class="normal">540</span>
-<span class="normal">541</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">compute_classification</span><span class="p">(</span>
+<span class="normal">541</span>
+<span class="normal">542</span>
+<span class="normal">543</span>
+<span class="normal">544</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">compute_classification</span><span class="p">(</span>
     <span class="n">adata</span><span class="p">:</span> <span class="n">AnnData</span><span class="p">,</span>
     <span class="n">classes</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span>
     <span class="n">label_decoders</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">],</span>
@@ -1541,10 +1550,7 @@ This is important to avoid memory issues.</p>
 
             <details class="mkdocstrings-source">
               <summary>Source code in <code>scprint2/tasks/cell_emb.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">325</span>
-<span class="normal">326</span>
-<span class="normal">327</span>
-<span class="normal">328</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">328</span>
 <span class="normal">329</span>
 <span class="normal">330</span>
 <span class="normal">331</span>
@@ -1593,7 +1599,10 @@ This is important to avoid memory issues.</p>
 <span class="normal">374</span>
 <span class="normal">375</span>
 <span class="normal">376</span>
-<span class="normal">377</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">compute_corr</span><span class="p">(</span>
+<span class="normal">377</span>
+<span class="normal">378</span>
+<span class="normal">379</span>
+<span class="normal">380</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">compute_corr</span><span class="p">(</span>
     <span class="n">out</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span>
     <span class="n">to</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span>
     <span class="n">doplot</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
@@ -1722,10 +1731,7 @@ This is important to avoid memory issues.</p>
 
             <details class="mkdocstrings-source">
               <summary>Source code in <code>scprint2/tasks/cell_emb.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">380</span>
-<span class="normal">381</span>
-<span class="normal">382</span>
-<span class="normal">383</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">383</span>
 <span class="normal">384</span>
 <span class="normal">385</span>
 <span class="normal">386</span>
@@ -1816,7 +1822,10 @@ This is important to avoid memory issues.</p>
 <span class="normal">471</span>
 <span class="normal">472</span>
 <span class="normal">473</span>
-<span class="normal">474</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">default_benchmark</span><span class="p">(</span>
+<span class="normal">474</span>
+<span class="normal">475</span>
+<span class="normal">476</span>
+<span class="normal">477</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">default_benchmark</span><span class="p">(</span>
     <span class="n">model</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">,</span>
     <span class="n">folder_dir</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">FILE_LOC</span> <span class="o">+</span> <span class="s2">&quot;/../../data/&quot;</span><span class="p">,</span>
     <span class="n">dataset</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">FILE_LOC</span> <span class="o">+</span> <span class="s2">&quot;/../../data/gNNpgpo6gATjuxTE7CCp.h5ad&quot;</span><span class="p">,</span>
@@ -1965,10 +1974,7 @@ This is important to avoid memory issues.</p>
 
             <details class="mkdocstrings-source">
               <summary>Source code in <code>scprint2/tasks/cell_emb.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">634</span>
-<span class="normal">635</span>
-<span class="normal">636</span>
-<span class="normal">637</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">637</span>
 <span class="normal">638</span>
 <span class="normal">639</span>
 <span class="normal">640</span>
@@ -2030,7 +2036,10 @@ This is important to avoid memory issues.</p>
 <span class="normal">696</span>
 <span class="normal">697</span>
 <span class="normal">698</span>
-<span class="normal">699</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">display_confusion_matrix</span><span class="p">(</span>
+<span class="normal">699</span>
+<span class="normal">700</span>
+<span class="normal">701</span>
+<span class="normal">702</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">display_confusion_matrix</span><span class="p">(</span>
     <span class="n">nadata</span><span class="p">,</span> <span class="n">pred</span><span class="o">=</span><span class="s2">&quot;conv_pred_cell_type_ontology_term_id&quot;</span><span class="p">,</span> <span class="n">true</span><span class="o">=</span><span class="s2">&quot;cell_type&quot;</span>
 <span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
@@ -2396,6 +2405,16 @@ It is required for mean_full head_agg. Defaults to False.</p>
                 <p>Location to save results. Defaults to "./".</p>
               </div>
             </li>
+            <li>
+              <b><code>use_knn</code></b>
+                  (<code><span title="bool">bool</span></code>, default:
+                      <code>True</code>
+)
+              –
+              <div class="doc-md-description">
+                <p>Whether to use k-nearest neighbors information. Defaults to True.</p>
+              </div>
+            </li>
         </ul>
       </td>
     </tr>
@@ -2537,7 +2556,10 @@ It is required for mean_full head_agg. Defaults to False.</p>
 <span class="normal">112</span>
 <span class="normal">113</span>
 <span class="normal">114</span>
-<span class="normal">115</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
+<span class="normal">115</span>
+<span class="normal">116</span>
+<span class="normal">117</span>
+<span class="normal">118</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
     <span class="bp">self</span><span class="p">,</span>
     <span class="n">batch_size</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">64</span><span class="p">,</span>
     <span class="n">num_workers</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">8</span><span class="p">,</span>
@@ -2556,6 +2578,7 @@ It is required for mean_full head_agg. Defaults to False.</p>
     <span class="n">precomp_attn</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
     <span class="n">symmetrize</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
     <span class="n">loc</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;./&quot;</span><span class="p">,</span>
+    <span class="n">use_knn</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
 <span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    GNInfer a class to infer gene regulatory networks from a dataset using a scPRINT model.</span>
@@ -2589,6 +2612,7 @@ It is required for mean_full head_agg. Defaults to False.</p>
 <span class="sd">            It is required for mean_full head_agg. Defaults to False.</span>
 <span class="sd">        symmetrize (bool, optional): Whether to GRN. Defaults to False.</span>
 <span class="sd">        loc (str, optional): Location to save results. Defaults to &quot;./&quot;.</span>
+<span class="sd">        use_knn (bool, optional): Whether to use k-nearest neighbors information. Defaults to True.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">batch_size</span> <span class="o">=</span> <span class="n">batch_size</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">num_workers</span> <span class="o">=</span> <span class="n">num_workers</span>
@@ -2614,6 +2638,7 @@ It is required for mean_full head_agg. Defaults to False.</p>
     <span class="bp">self</span><span class="o">.</span><span class="n">max_cells</span> <span class="o">=</span> <span class="n">max_cells</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">curr_genes</span> <span class="o">=</span> <span class="kc">None</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">drop_unexpressed</span> <span class="o">=</span> <span class="n">drop_unexpressed</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">use_knn</span> <span class="o">=</span> <span class="n">use_knn</span>
     <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">filtration</span> <span class="o">!=</span> <span class="s2">&quot;none&quot;</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">head_agg</span> <span class="o">==</span> <span class="s2">&quot;none&quot;</span><span class="p">:</span>
         <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;filtration must be &#39;none&#39; when head_agg is &#39;none&#39;&quot;</span><span class="p">)</span>
 </code></pre></div></td></tr></table></div>
@@ -2718,10 +2743,7 @@ It is required for mean_full head_agg. Defaults to False.</p>
 
             <details class="mkdocstrings-source">
               <summary>Source code in <code>scprint2/tasks/grn.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">117</span>
-<span class="normal">118</span>
-<span class="normal">119</span>
-<span class="normal">120</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">120</span>
 <span class="normal">121</span>
 <span class="normal">122</span>
 <span class="normal">123</span>
@@ -2748,7 +2770,10 @@ It is required for mean_full head_agg. Defaults to False.</p>
 <span class="normal">144</span>
 <span class="normal">145</span>
 <span class="normal">146</span>
-<span class="normal">147</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">model</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">,</span> <span class="n">adata</span><span class="p">:</span> <span class="n">AnnData</span><span class="p">,</span> <span class="n">cell_type</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="normal">147</span>
+<span class="normal">148</span>
+<span class="normal">149</span>
+<span class="normal">150</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">model</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">,</span> <span class="n">adata</span><span class="p">:</span> <span class="n">AnnData</span><span class="p">,</span> <span class="n">cell_type</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    __call__ runs the method</span>
 
@@ -2803,10 +2828,7 @@ or do nothing if already done</p>
 
             <details class="mkdocstrings-source">
               <summary>Source code in <code>scprint2/tasks/grn.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">311</span>
-<span class="normal">312</span>
-<span class="normal">313</span>
-<span class="normal">314</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">314</span>
 <span class="normal">315</span>
 <span class="normal">316</span>
 <span class="normal">317</span>
@@ -2885,7 +2907,10 @@ or do nothing if already done</p>
 <span class="normal">390</span>
 <span class="normal">391</span>
 <span class="normal">392</span>
-<span class="normal">393</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">aggregate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">model</span><span class="p">):</span>
+<span class="normal">393</span>
+<span class="normal">394</span>
+<span class="normal">395</span>
+<span class="normal">396</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">aggregate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">model</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    part to aggregate the qks and compute the attns</span>
 <span class="sd">    or to aggregate the attns</span>
@@ -2990,10 +3015,7 @@ or do nothing if already done</p>
 
             <details class="mkdocstrings-source">
               <summary>Source code in <code>scprint2/tasks/grn.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">395</span>
-<span class="normal">396</span>
-<span class="normal">397</span>
-<span class="normal">398</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">398</span>
 <span class="normal">399</span>
 <span class="normal">400</span>
 <span class="normal">401</span>
@@ -3025,7 +3047,10 @@ or do nothing if already done</p>
 <span class="normal">427</span>
 <span class="normal">428</span>
 <span class="normal">429</span>
-<span class="normal">430</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">filter</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">adj</span><span class="p">,</span> <span class="n">gt</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="normal">430</span>
+<span class="normal">431</span>
+<span class="normal">432</span>
+<span class="normal">433</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">filter</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">adj</span><span class="p">,</span> <span class="n">gt</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    part to filter the attn matrix given user inputs</span>
 <span class="sd">    &quot;&quot;&quot;</span>
@@ -3083,10 +3108,7 @@ or do nothing if already done</p>
 
             <details class="mkdocstrings-source">
               <summary>Source code in <code>scprint2/tasks/grn.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">149</span>
-<span class="normal">150</span>
-<span class="normal">151</span>
-<span class="normal">152</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">152</span>
 <span class="normal">153</span>
 <span class="normal">154</span>
 <span class="normal">155</span>
@@ -3243,7 +3265,10 @@ or do nothing if already done</p>
 <span class="normal">306</span>
 <span class="normal">307</span>
 <span class="normal">308</span>
-<span class="normal">309</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">predict</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">model</span><span class="p">,</span> <span class="n">adata</span><span class="p">,</span> <span class="n">layer</span><span class="p">,</span> <span class="n">cell_type</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="normal">309</span>
+<span class="normal">310</span>
+<span class="normal">311</span>
+<span class="normal">312</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">predict</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">model</span><span class="p">,</span> <span class="n">adata</span><span class="p">,</span> <span class="n">layer</span><span class="p">,</span> <span class="n">cell_type</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    part to predict the qks or attns matrices from the adata with the model</span>
 <span class="sd">    &quot;&quot;&quot;</span>
@@ -3312,7 +3337,7 @@ or do nothing if already done</p>
     <span class="n">adataset</span> <span class="o">=</span> <span class="n">SimpleAnnDataset</span><span class="p">(</span>
         <span class="n">subadata</span><span class="p">,</span>
         <span class="n">obs_to_output</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;organism_ontology_term_id&quot;</span><span class="p">],</span>
-        <span class="n">get_knn_cells</span><span class="o">=</span><span class="n">model</span><span class="o">.</span><span class="n">expr_emb_style</span> <span class="o">==</span> <span class="s2">&quot;metacell&quot;</span><span class="p">,</span>
+        <span class="n">get_knn_cells</span><span class="o">=</span><span class="n">model</span><span class="o">.</span><span class="n">expr_emb_style</span> <span class="o">==</span> <span class="s2">&quot;metacell&quot;</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">use_knn</span><span class="p">,</span>
     <span class="p">)</span>
     <span class="n">col</span> <span class="o">=</span> <span class="n">Collator</span><span class="p">(</span>
         <span class="n">organisms</span><span class="o">=</span><span class="n">model</span><span class="o">.</span><span class="n">organisms</span><span class="p">,</span>
@@ -3390,12 +3415,12 @@ or do nothing if already done</p>
                 <span class="n">depth</span><span class="p">,</span>
                 <span class="n">knn_cells</span><span class="o">=</span><span class="p">(</span>
                     <span class="n">batch</span><span class="p">[</span><span class="s2">&quot;knn_cells&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">)</span>
-                    <span class="k">if</span> <span class="n">model</span><span class="o">.</span><span class="n">expr_emb_style</span> <span class="o">==</span> <span class="s2">&quot;metacell&quot;</span>
+                    <span class="k">if</span> <span class="n">model</span><span class="o">.</span><span class="n">expr_emb_style</span> <span class="o">==</span> <span class="s2">&quot;metacell&quot;</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">use_knn</span>
                     <span class="k">else</span> <span class="kc">None</span>
                 <span class="p">),</span>
                 <span class="n">knn_cells_info</span><span class="o">=</span><span class="p">(</span>
                     <span class="n">batch</span><span class="p">[</span><span class="s2">&quot;knn_cells_info&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">)</span>
-                    <span class="k">if</span> <span class="n">model</span><span class="o">.</span><span class="n">expr_emb_style</span> <span class="o">==</span> <span class="s2">&quot;metacell&quot;</span>
+                    <span class="k">if</span> <span class="n">model</span><span class="o">.</span><span class="n">expr_emb_style</span> <span class="o">==</span> <span class="s2">&quot;metacell&quot;</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">use_knn</span>
                     <span class="k">else</span> <span class="kc">None</span>
                 <span class="p">),</span>
                 <span class="n">keep_output</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
@@ -3542,10 +3567,7 @@ or do nothing if already done</p>
 
             <details class="mkdocstrings-source">
               <summary>Source code in <code>scprint2/tasks/grn.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">453</span>
-<span class="normal">454</span>
-<span class="normal">455</span>
-<span class="normal">456</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">456</span>
 <span class="normal">457</span>
 <span class="normal">458</span>
 <span class="normal">459</span>
@@ -3932,7 +3954,10 @@ or do nothing if already done</p>
 <span class="normal">840</span>
 <span class="normal">841</span>
 <span class="normal">842</span>
-<span class="normal">843</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">default_benchmark</span><span class="p">(</span>
+<span class="normal">843</span>
+<span class="normal">844</span>
+<span class="normal">845</span>
+<span class="normal">846</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">default_benchmark</span><span class="p">(</span>
     <span class="n">model</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span>
     <span class="n">default_dataset</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;sroy&quot;</span><span class="p">,</span>
     <span class="n">cell_types</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="p">[],</span>
@@ -4590,6 +4615,16 @@ only useful when downsampling is used.</p>
 applying zero inflation might give results closer to the specific biases of sequencing technologies but less biological truthful.</p>
               </div>
             </li>
+            <li>
+              <b><code>use_knn</code></b>
+                  (<code><span title="bool">bool</span></code>, default:
+                      <code>True</code>
+)
+              –
+              <div class="doc-md-description">
+                <p>Whether to use knn cells for denoising when the model uses metacell expression embedding. Defaults to True.</p>
+              </div>
+            </li>
         </ul>
       </td>
     </tr>
@@ -4685,7 +4720,10 @@ applying zero inflation might give results closer to the specific biases of sequ
 <span class="normal">79</span>
 <span class="normal">80</span>
 <span class="normal">81</span>
-<span class="normal">82</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
+<span class="normal">82</span>
+<span class="normal">83</span>
+<span class="normal">84</span>
+<span class="normal">85</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
     <span class="bp">self</span><span class="p">,</span>
     <span class="n">batch_size</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">10</span><span class="p">,</span>
     <span class="n">num_workers</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
@@ -4700,6 +4738,7 @@ applying zero inflation might give results closer to the specific biases of sequ
     <span class="n">pred_embedding</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;cell_type_ontology_term_id&quot;</span><span class="p">],</span>
     <span class="n">additional_info</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
     <span class="n">apply_zero_pred</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+    <span class="n">use_knn</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
 <span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Denoiser class for denoising scRNA-seq data using a scPRINT model</span>
@@ -4728,6 +4767,7 @@ applying zero inflation might give results closer to the specific biases of sequ
 <span class="sd">            only useful when downsampling is used.</span>
 <span class="sd">        apply_zero_pred (bool, optional): Whether to apply zero inflation to the output value during denoising, else uses only the predicted mean.</span>
 <span class="sd">            applying zero inflation might give results closer to the specific biases of sequencing technologies but less biological truthful.</span>
+<span class="sd">        use_knn (bool, optional): Whether to use knn cells for denoising when the model uses metacell expression embedding. Defaults to True.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">batch_size</span> <span class="o">=</span> <span class="n">batch_size</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">num_workers</span> <span class="o">=</span> <span class="n">num_workers</span>
@@ -4742,6 +4782,7 @@ applying zero inflation might give results closer to the specific biases of sequ
     <span class="bp">self</span><span class="o">.</span><span class="n">pred_embedding</span> <span class="o">=</span> <span class="n">pred_embedding</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">additional_info</span> <span class="o">=</span> <span class="n">additional_info</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">apply_zero_pred</span> <span class="o">=</span> <span class="n">apply_zero_pred</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">use_knn</span> <span class="o">=</span> <span class="n">use_knn</span>
 </code></pre></div></td></tr></table></div>
                   </details>
 
@@ -4840,10 +4881,7 @@ applying zero inflation might give results closer to the specific biases of sequ
 
             <details class="mkdocstrings-source">
               <summary>Source code in <code>scprint2/tasks/denoise.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 84</span>
-<span class="normal"> 85</span>
-<span class="normal"> 86</span>
-<span class="normal"> 87</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 87</span>
 <span class="normal"> 88</span>
 <span class="normal"> 89</span>
 <span class="normal"> 90</span>
@@ -5100,7 +5138,13 @@ applying zero inflation might give results closer to the specific biases of sequ
 <span class="normal">341</span>
 <span class="normal">342</span>
 <span class="normal">343</span>
-<span class="normal">344</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">model</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">,</span> <span class="n">adata</span><span class="p">:</span> <span class="n">AnnData</span><span class="p">):</span>
+<span class="normal">344</span>
+<span class="normal">345</span>
+<span class="normal">346</span>
+<span class="normal">347</span>
+<span class="normal">348</span>
+<span class="normal">349</span>
+<span class="normal">350</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">model</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">,</span> <span class="n">adata</span><span class="p">:</span> <span class="n">AnnData</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    __call__ calling the function</span>
 
@@ -5122,13 +5166,13 @@ applying zero inflation might give results closer to the specific biases of sequ
         <span class="n">adataset</span> <span class="o">=</span> <span class="n">SimpleAnnDataset</span><span class="p">(</span>
             <span class="n">adata</span><span class="p">[</span><span class="n">random_indices</span><span class="p">],</span>
             <span class="n">obs_to_output</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;organism_ontology_term_id&quot;</span><span class="p">],</span>
-            <span class="n">get_knn_cells</span><span class="o">=</span><span class="n">model</span><span class="o">.</span><span class="n">expr_emb_style</span> <span class="o">==</span> <span class="s2">&quot;metacell&quot;</span><span class="p">,</span>
+            <span class="n">get_knn_cells</span><span class="o">=</span><span class="n">model</span><span class="o">.</span><span class="n">expr_emb_style</span> <span class="o">==</span> <span class="s2">&quot;metacell&quot;</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">use_knn</span><span class="p">,</span>
         <span class="p">)</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="n">adataset</span> <span class="o">=</span> <span class="n">SimpleAnnDataset</span><span class="p">(</span>
             <span class="n">adata</span><span class="p">,</span>
             <span class="n">obs_to_output</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;organism_ontology_term_id&quot;</span><span class="p">],</span>
-            <span class="n">get_knn_cells</span><span class="o">=</span><span class="n">model</span><span class="o">.</span><span class="n">expr_emb_style</span> <span class="o">==</span> <span class="s2">&quot;metacell&quot;</span><span class="p">,</span>
+            <span class="n">get_knn_cells</span><span class="o">=</span><span class="n">model</span><span class="o">.</span><span class="n">expr_emb_style</span> <span class="o">==</span> <span class="s2">&quot;metacell&quot;</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">use_knn</span><span class="p">,</span>
         <span class="p">)</span>
     <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">how</span> <span class="o">==</span> <span class="s2">&quot;most var&quot;</span><span class="p">:</span>
         <span class="n">sc</span><span class="o">.</span><span class="n">pp</span><span class="o">.</span><span class="n">highly_variable_genes</span><span class="p">(</span>
@@ -5170,6 +5214,8 @@ applying zero inflation might give results closer to the specific biases of sequ
         <span class="k">else</span> <span class="n">model</span><span class="o">.</span><span class="n">dtype</span>
     <span class="p">)</span>
     <span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">empty_cache</span><span class="p">()</span>
+    <span class="n">save_expr</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">save_expr</span>
+    <span class="n">model</span><span class="o">.</span><span class="n">save_expr</span> <span class="o">=</span> <span class="kc">True</span>
     <span class="k">with</span> <span class="n">torch</span><span class="o">.</span><span class="n">no_grad</span><span class="p">(),</span> <span class="n">torch</span><span class="o">.</span><span class="n">autocast</span><span class="p">(</span><span class="n">device_type</span><span class="o">=</span><span class="n">device</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">dtype</span><span class="p">):</span>
         <span class="k">for</span> <span class="n">batch</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="p">(</span><span class="n">dataloader</span><span class="p">):</span>
             <span class="n">gene_pos</span><span class="p">,</span> <span class="n">expression</span><span class="p">,</span> <span class="n">depth</span> <span class="o">=</span> <span class="p">(</span>
@@ -5179,7 +5225,7 @@ applying zero inflation might give results closer to the specific biases of sequ
             <span class="p">)</span>
             <span class="n">knn_cells</span> <span class="o">=</span> <span class="p">(</span>
                 <span class="n">batch</span><span class="p">[</span><span class="s2">&quot;knn_cells&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">)</span>
-                <span class="k">if</span> <span class="n">model</span><span class="o">.</span><span class="n">expr_emb_style</span> <span class="o">==</span> <span class="s2">&quot;metacell&quot;</span>
+                <span class="k">if</span> <span class="n">model</span><span class="o">.</span><span class="n">expr_emb_style</span> <span class="o">==</span> <span class="s2">&quot;metacell&quot;</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">use_knn</span>
                 <span class="k">else</span> <span class="kc">None</span>
             <span class="p">)</span>
             <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">downsample_expr</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
@@ -5204,12 +5250,12 @@ applying zero inflation might give results closer to the specific biases of sequ
                 <span class="n">depth</span><span class="p">,</span>
                 <span class="n">knn_cells</span><span class="o">=</span><span class="p">(</span>
                     <span class="n">batch</span><span class="p">[</span><span class="s2">&quot;knn_cells&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">)</span>
-                    <span class="k">if</span> <span class="n">model</span><span class="o">.</span><span class="n">expr_emb_style</span> <span class="o">==</span> <span class="s2">&quot;metacell&quot;</span>
+                    <span class="k">if</span> <span class="n">model</span><span class="o">.</span><span class="n">expr_emb_style</span> <span class="o">==</span> <span class="s2">&quot;metacell&quot;</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">use_knn</span>
                     <span class="k">else</span> <span class="kc">None</span>
                 <span class="p">),</span>
                 <span class="n">knn_cells_info</span><span class="o">=</span><span class="p">(</span>
                     <span class="n">batch</span><span class="p">[</span><span class="s2">&quot;knn_cells_info&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">)</span>
-                    <span class="k">if</span> <span class="n">model</span><span class="o">.</span><span class="n">expr_emb_style</span> <span class="o">==</span> <span class="s2">&quot;metacell&quot;</span>
+                    <span class="k">if</span> <span class="n">model</span><span class="o">.</span><span class="n">expr_emb_style</span> <span class="o">==</span> <span class="s2">&quot;metacell&quot;</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">use_knn</span>
                     <span class="k">else</span> <span class="kc">None</span>
                 <span class="p">),</span>
                 <span class="n">do_generate</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
@@ -5259,6 +5305,7 @@ applying zero inflation might give results closer to the specific biases of sequ
 
     <span class="n">metrics</span> <span class="o">=</span> <span class="kc">None</span>
     <span class="n">model</span><span class="o">.</span><span class="n">doplot</span> <span class="o">=</span> <span class="n">prevplot</span>
+    <span class="n">model</span><span class="o">.</span><span class="n">save_expr</span> <span class="o">=</span> <span class="n">save_expr</span>
     <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">downsample_expr</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
         <span class="n">reco</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">pred_adata</span><span class="o">.</span><span class="n">layers</span><span class="p">[</span><span class="s2">&quot;scprint_mu&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">data</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span>
             <span class="n">pred_adata</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="o">-</span><span class="mi">1</span>
@@ -5455,13 +5502,7 @@ applying zero inflation might give results closer to the specific biases of sequ
 
             <details class="mkdocstrings-source">
               <summary>Source code in <code>scprint2/tasks/denoise.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">354</span>
-<span class="normal">355</span>
-<span class="normal">356</span>
-<span class="normal">357</span>
-<span class="normal">358</span>
-<span class="normal">359</span>
-<span class="normal">360</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">360</span>
 <span class="normal">361</span>
 <span class="normal">362</span>
 <span class="normal">363</span>
@@ -5509,7 +5550,13 @@ applying zero inflation might give results closer to the specific biases of sequ
 <span class="normal">405</span>
 <span class="normal">406</span>
 <span class="normal">407</span>
-<span class="normal">408</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">default_benchmark</span><span class="p">(</span>
+<span class="normal">408</span>
+<span class="normal">409</span>
+<span class="normal">410</span>
+<span class="normal">411</span>
+<span class="normal">412</span>
+<span class="normal">413</span>
+<span class="normal">414</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">default_benchmark</span><span class="p">(</span>
     <span class="n">model</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span>
     <span class="n">folder_dir</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">FILE_DIR</span> <span class="o">+</span> <span class="s2">&quot;/../../data/&quot;</span><span class="p">,</span>
     <span class="n">dataset</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">FILE_DIR</span>
@@ -5592,13 +5639,7 @@ applying zero inflation might give results closer to the specific biases of sequ
 
             <details class="mkdocstrings-source">
               <summary>Source code in <code>scprint2/tasks/denoise.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">428</span>
-<span class="normal">429</span>
-<span class="normal">430</span>
-<span class="normal">431</span>
-<span class="normal">432</span>
-<span class="normal">433</span>
-<span class="normal">434</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">434</span>
 <span class="normal">435</span>
 <span class="normal">436</span>
 <span class="normal">437</span>
@@ -5617,7 +5658,13 @@ applying zero inflation might give results closer to the specific biases of sequ
 <span class="normal">450</span>
 <span class="normal">451</span>
 <span class="normal">452</span>
-<span class="normal">453</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">split_molecules</span><span class="p">(</span>
+<span class="normal">453</span>
+<span class="normal">454</span>
+<span class="normal">455</span>
+<span class="normal">456</span>
+<span class="normal">457</span>
+<span class="normal">458</span>
+<span class="normal">459</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">split_molecules</span><span class="p">(</span>
     <span class="n">umis</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span>
     <span class="n">data_split</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
     <span class="n">overlap_factor</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">,</span>
@@ -5790,6 +5837,36 @@ applying zero inflation might give results closer to the specific biases of sequ
                 <p>Save embeddings every <code>save_every</code> batches.</p>
               </div>
             </li>
+            <li>
+              <b><code>average</code></b>
+                  (<code><span title="bool">bool</span></code>, default:
+                      <code>False</code>
+)
+              –
+              <div class="doc-md-description">
+                <p>Whether to average embeddings across all cells.</p>
+              </div>
+            </li>
+            <li>
+              <b><code>save_dir</code></b>
+                  (<code><span title="str">str</span></code>, default:
+                      <code>None</code>
+)
+              –
+              <div class="doc-md-description">
+                <p>Directory to save embeddings. If None, embeddings are not saved to</p>
+              </div>
+            </li>
+            <li>
+              <b><code>use_knn</code></b>
+                  (<code><span title="bool">bool</span></code>, default:
+                      <code>False</code>
+)
+              –
+              <div class="doc-md-description">
+                <p>Whether to use k-nearest neighbors information. Defaults to False.</p>
+              </div>
+            </li>
         </ul>
       </td>
     </tr>
@@ -5860,7 +5937,12 @@ applying zero inflation might give results closer to the specific biases of sequ
 <span class="normal">43</span>
 <span class="normal">44</span>
 <span class="normal">45</span>
-<span class="normal">46</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
+<span class="normal">46</span>
+<span class="normal">47</span>
+<span class="normal">48</span>
+<span class="normal">49</span>
+<span class="normal">50</span>
+<span class="normal">51</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
     <span class="bp">self</span><span class="p">,</span>
     <span class="n">genelist</span><span class="p">,</span>
     <span class="n">batch_size</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">64</span><span class="p">,</span>
@@ -5868,6 +5950,7 @@ applying zero inflation might give results closer to the specific biases of sequ
     <span class="n">save_every</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">4_000</span><span class="p">,</span>
     <span class="n">average</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
     <span class="n">save_dir</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">use_knn</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
 <span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Args:</span>
@@ -5880,6 +5963,9 @@ applying zero inflation might give results closer to the specific biases of sequ
 <span class="sd">            - &quot;some&quot;: specific genes (from genelist)</span>
 <span class="sd">            - &quot;most expr&quot;: most expressed genes in the cell</span>
 <span class="sd">        save_every (int): Save embeddings every `save_every` batches.</span>
+<span class="sd">        average (bool): Whether to average embeddings across all cells.</span>
+<span class="sd">        save_dir (str): Directory to save embeddings. If None, embeddings are not saved to</span>
+<span class="sd">        use_knn (bool): Whether to use k-nearest neighbors information. Defaults to False.</span>
 
 <span class="sd">    Returns:</span>
 <span class="sd">        embeddings (np.ndarray): A numpy array of shape (n_cells, n_genes, embedding_dim)</span>
@@ -5890,6 +5976,7 @@ applying zero inflation might give results closer to the specific biases of sequ
     <span class="bp">self</span><span class="o">.</span><span class="n">save_every</span> <span class="o">=</span> <span class="n">save_every</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">average</span> <span class="o">=</span> <span class="n">average</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">save_dir</span> <span class="o">=</span> <span class="n">save_dir</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">use_knn</span> <span class="o">=</span> <span class="n">use_knn</span>
 </code></pre></div></td></tr></table></div>
                   </details>
 
@@ -6672,6 +6759,16 @@ This is important to avoid memory issues.</p>
 applying zero inflation might give results closer to the specific biases of sequencing technologies but less biological truthful.</p>
               </div>
             </li>
+            <li>
+              <b><code>use_knn</code></b>
+                  (<code><span title="bool">bool</span></code>, default:
+                      <code>True</code>
+)
+              –
+              <div class="doc-md-description">
+                <p>Whether to use k-nearest neighbors information. Defaults to True.</p>
+              </div>
+            </li>
         </ul>
       </td>
     </tr>
@@ -6752,7 +6849,10 @@ applying zero inflation might give results closer to the specific biases of sequ
 <span class="normal">64</span>
 <span class="normal">65</span>
 <span class="normal">66</span>
-<span class="normal">67</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
+<span class="normal">67</span>
+<span class="normal">68</span>
+<span class="normal">69</span>
+<span class="normal">70</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
     <span class="bp">self</span><span class="p">,</span>
     <span class="n">batch_size</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">10</span><span class="p">,</span>
     <span class="n">num_workers</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
@@ -6764,6 +6864,7 @@ applying zero inflation might give results closer to the specific biases of sequ
     <span class="n">genes_to_impute</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="n">save_every</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">100_000</span><span class="p">,</span>
     <span class="n">apply_zero_pred</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+    <span class="n">use_knn</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
 <span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Imputer class for imputing missing values in scRNA-seq data using a scPRINT model</span>
@@ -6783,6 +6884,7 @@ applying zero inflation might give results closer to the specific biases of sequ
 <span class="sd">            This is important to avoid memory issues.</span>
 <span class="sd">        apply_zero_pred (bool, optional): Whether to apply zero prediction adjustment. Defaults to True.</span>
 <span class="sd">            applying zero inflation might give results closer to the specific biases of sequencing technologies but less biological truthful.</span>
+<span class="sd">        use_knn (bool, optional): Whether to use k-nearest neighbors information. Defaults to True.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">batch_size</span> <span class="o">=</span> <span class="n">batch_size</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">num_workers</span> <span class="o">=</span> <span class="n">num_workers</span>
@@ -6794,6 +6896,7 @@ applying zero inflation might give results closer to the specific biases of sequ
     <span class="bp">self</span><span class="o">.</span><span class="n">genes_to_impute</span> <span class="o">=</span> <span class="n">genes_to_impute</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">method</span> <span class="o">=</span> <span class="n">method</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">apply_zero_pred</span> <span class="o">=</span> <span class="n">apply_zero_pred</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">use_knn</span> <span class="o">=</span> <span class="n">use_knn</span>
 </code></pre></div></td></tr></table></div>
                   </details>
 
@@ -6886,10 +6989,7 @@ applying zero inflation might give results closer to the specific biases of sequ
 
             <details class="mkdocstrings-source">
               <summary>Source code in <code>scprint2/tasks/impute.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 69</span>
-<span class="normal"> 70</span>
-<span class="normal"> 71</span>
-<span class="normal"> 72</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 72</span>
 <span class="normal"> 73</span>
 <span class="normal"> 74</span>
 <span class="normal"> 75</span>
@@ -7086,7 +7186,10 @@ applying zero inflation might give results closer to the specific biases of sequ
 <span class="normal">266</span>
 <span class="normal">267</span>
 <span class="normal">268</span>
-<span class="normal">269</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">model</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">,</span> <span class="n">adata</span><span class="p">:</span> <span class="n">AnnData</span><span class="p">):</span>
+<span class="normal">269</span>
+<span class="normal">270</span>
+<span class="normal">271</span>
+<span class="normal">272</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">model</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">,</span> <span class="n">adata</span><span class="p">:</span> <span class="n">AnnData</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    __call__ calling the function</span>
 
@@ -7107,13 +7210,13 @@ applying zero inflation might give results closer to the specific biases of sequ
         <span class="n">adataset</span> <span class="o">=</span> <span class="n">SimpleAnnDataset</span><span class="p">(</span>
             <span class="n">adata</span><span class="p">[</span><span class="n">random_indices</span><span class="p">],</span>
             <span class="n">obs_to_output</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;organism_ontology_term_id&quot;</span><span class="p">],</span>
-            <span class="n">get_knn_cells</span><span class="o">=</span><span class="n">model</span><span class="o">.</span><span class="n">expr_emb_style</span> <span class="o">==</span> <span class="s2">&quot;metacell&quot;</span><span class="p">,</span>
+            <span class="n">get_knn_cells</span><span class="o">=</span><span class="n">model</span><span class="o">.</span><span class="n">expr_emb_style</span> <span class="o">==</span> <span class="s2">&quot;metacell&quot;</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">use_knn</span><span class="p">,</span>
         <span class="p">)</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="n">adataset</span> <span class="o">=</span> <span class="n">SimpleAnnDataset</span><span class="p">(</span>
             <span class="n">adata</span><span class="p">,</span>
             <span class="n">obs_to_output</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;organism_ontology_term_id&quot;</span><span class="p">],</span>
-            <span class="n">get_knn_cells</span><span class="o">=</span><span class="n">model</span><span class="o">.</span><span class="n">expr_emb_style</span> <span class="o">==</span> <span class="s2">&quot;metacell&quot;</span><span class="p">,</span>
+            <span class="n">get_knn_cells</span><span class="o">=</span><span class="n">model</span><span class="o">.</span><span class="n">expr_emb_style</span> <span class="o">==</span> <span class="s2">&quot;metacell&quot;</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">use_knn</span><span class="p">,</span>
         <span class="p">)</span>
     <span class="n">genes_to_use</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">genes</span><span class="p">)</span> <span class="o">&amp;</span> <span class="nb">set</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">genes_to_use</span><span class="p">)</span>
     <span class="nb">print</span><span class="p">(</span>
@@ -7182,7 +7285,7 @@ applying zero inflation might give results closer to the specific biases of sequ
                 <span class="n">depth</span><span class="p">,</span>
                 <span class="n">knn_cells</span><span class="o">=</span><span class="p">(</span>
                     <span class="n">batch</span><span class="p">[</span><span class="s2">&quot;knn_cells&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">)</span>
-                    <span class="k">if</span> <span class="n">model</span><span class="o">.</span><span class="n">expr_emb_style</span> <span class="o">==</span> <span class="s2">&quot;metacell&quot;</span>
+                    <span class="k">if</span> <span class="n">model</span><span class="o">.</span><span class="n">expr_emb_style</span> <span class="o">==</span> <span class="s2">&quot;metacell&quot;</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">use_knn</span>
                     <span class="k">else</span> <span class="kc">None</span>
                 <span class="p">),</span>
                 <span class="n">do_generate</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">method</span> <span class="o">==</span> <span class="s2">&quot;generative&quot;</span><span class="p">,</span>
@@ -7542,6 +7645,16 @@ this embedding should have less batch information in it, after finetuning.</p>
 expr, class, mmd, kl, and any of the predict_keys can be specified.</p>
               </div>
             </li>
+            <li>
+              <b><code>use_knn</code></b>
+                  (<code><span title="bool">bool</span></code>, default:
+                      <code>True</code>
+)
+              –
+              <div class="doc-md-description">
+                <p>Whether to use k-nearest neighbors information. Defaults to True.</p>
+              </div>
+            </li>
         </ul>
       </td>
     </tr>
@@ -7632,7 +7745,10 @@ expr, class, mmd, kl, and any of the predict_keys can be specified.</p>
 <span class="normal">77</span>
 <span class="normal">78</span>
 <span class="normal">79</span>
-<span class="normal">80</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
+<span class="normal">80</span>
+<span class="normal">81</span>
+<span class="normal">82</span>
+<span class="normal">83</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
     <span class="bp">self</span><span class="p">,</span>
     <span class="n">batch_key</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;batch&quot;</span><span class="p">,</span>
     <span class="n">predict_keys</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;cell_type_ontology_term_id&quot;</span><span class="p">],</span>
@@ -7646,6 +7762,7 @@ expr, class, mmd, kl, and any of the predict_keys can be specified.</p>
     <span class="n">ft_mode</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;xpressor&quot;</span><span class="p">,</span>
     <span class="n">frac_train</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.8</span><span class="p">,</span>
     <span class="n">loss_scalers</span><span class="p">:</span> <span class="nb">dict</span> <span class="o">=</span> <span class="p">{},</span>
+    <span class="n">use_knn</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
 <span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Embedder a class to embed and annotate cells using a model</span>
@@ -7669,6 +7786,7 @@ expr, class, mmd, kl, and any of the predict_keys can be specified.</p>
 <span class="sd">        frac_train (float, optional): The fraction of data to be used for training. Defaults to 0.8.</span>
 <span class="sd">        loss_scalers (dict, optional): A dictionary specifying the scaling factors for different loss components. Defaults to {}.</span>
 <span class="sd">            expr, class, mmd, kl, and any of the predict_keys can be specified.</span>
+<span class="sd">        use_knn (bool, optional): Whether to use k-nearest neighbors information. Defaults to True.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">batch_size</span> <span class="o">=</span> <span class="n">batch_size</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">num_workers</span> <span class="o">=</span> <span class="n">num_workers</span>
@@ -7684,6 +7802,7 @@ expr, class, mmd, kl, and any of the predict_keys can be specified.</p>
     <span class="bp">self</span><span class="o">.</span><span class="n">batch_encoder</span> <span class="o">=</span> <span class="p">{}</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">do_mmd_on</span> <span class="o">=</span> <span class="n">do_mmd_on</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">loss_scalers</span> <span class="o">=</span> <span class="n">loss_scalers</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">use_knn</span> <span class="o">=</span> <span class="n">use_knn</span>
 </code></pre></div></td></tr></table></div>
                   </details>
 
@@ -7827,10 +7946,7 @@ if adata is provided, this will be ignored.</p>
 
             <details class="mkdocstrings-source">
               <summary>Source code in <code>scprint2/tasks/finetune.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 82</span>
-<span class="normal"> 83</span>
-<span class="normal"> 84</span>
-<span class="normal"> 85</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 85</span>
 <span class="normal"> 86</span>
 <span class="normal"> 87</span>
 <span class="normal"> 88</span>
@@ -8115,7 +8231,10 @@ if adata is provided, this will be ignored.</p>
 <span class="normal">367</span>
 <span class="normal">368</span>
 <span class="normal">369</span>
-<span class="normal">370</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="fm">__call__</span><span class="p">(</span>
+<span class="normal">370</span>
+<span class="normal">371</span>
+<span class="normal">372</span>
+<span class="normal">373</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="fm">__call__</span><span class="p">(</span>
     <span class="bp">self</span><span class="p">,</span>
     <span class="n">model</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">,</span>
     <span class="n">adata</span><span class="p">:</span> <span class="n">AnnData</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
@@ -8202,7 +8321,7 @@ if adata is provided, this will be ignored.</p>
     <span class="n">train_dataset</span> <span class="o">=</span> <span class="n">SimpleAnnDataset</span><span class="p">(</span>
         <span class="n">train_data</span><span class="p">,</span>
         <span class="n">obs_to_output</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">predict_keys</span> <span class="o">+</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">batch_key</span><span class="p">],</span>
-        <span class="n">get_knn_cells</span><span class="o">=</span><span class="n">model</span><span class="o">.</span><span class="n">expr_emb_style</span> <span class="o">==</span> <span class="s2">&quot;metacell&quot;</span><span class="p">,</span>
+        <span class="n">get_knn_cells</span><span class="o">=</span><span class="n">model</span><span class="o">.</span><span class="n">expr_emb_style</span> <span class="o">==</span> <span class="s2">&quot;metacell&quot;</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">use_knn</span><span class="p">,</span>
         <span class="n">encoder</span><span class="o">=</span><span class="n">mencoders</span><span class="p">,</span>
     <span class="p">)</span>
     <span class="k">if</span> <span class="n">val_data</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
@@ -8225,7 +8344,7 @@ if adata is provided, this will be ignored.</p>
         <span class="n">val_dataset</span> <span class="o">=</span> <span class="n">SimpleAnnDataset</span><span class="p">(</span>
             <span class="n">val_data</span><span class="p">,</span>
             <span class="n">obs_to_output</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">predict_keys</span> <span class="o">+</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">batch_key</span><span class="p">],</span>
-            <span class="n">get_knn_cells</span><span class="o">=</span><span class="n">model</span><span class="o">.</span><span class="n">expr_emb_style</span> <span class="o">==</span> <span class="s2">&quot;metacell&quot;</span><span class="p">,</span>
+            <span class="n">get_knn_cells</span><span class="o">=</span><span class="n">model</span><span class="o">.</span><span class="n">expr_emb_style</span> <span class="o">==</span> <span class="s2">&quot;metacell&quot;</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">use_knn</span><span class="p">,</span>
             <span class="n">encoder</span><span class="o">=</span><span class="n">mencoders</span><span class="p">,</span>
         <span class="p">)</span>
 
@@ -8488,10 +8607,7 @@ if adata is provided, this will be ignored.</p>
 
             <details class="mkdocstrings-source">
               <summary>Source code in <code>scprint2/tasks/finetune.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">492</span>
-<span class="normal">493</span>
-<span class="normal">494</span>
-<span class="normal">495</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">495</span>
 <span class="normal">496</span>
 <span class="normal">497</span>
 <span class="normal">498</span>
@@ -8552,7 +8668,10 @@ if adata is provided, this will be ignored.</p>
 <span class="normal">553</span>
 <span class="normal">554</span>
 <span class="normal">555</span>
-<span class="normal">556</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">mmd_loss</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">):</span>
+<span class="normal">556</span>
+<span class="normal">557</span>
+<span class="normal">558</span>
+<span class="normal">559</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">mmd_loss</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Compute Maximum Mean Discrepancy (MMD) loss between two 2D embedding matrices.</span>
 

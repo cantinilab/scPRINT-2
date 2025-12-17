@@ -60,13 +60,6 @@
                 <li class="toctree-l1"><a class="reference internal" href="../umap/nice_umap_scprint2.html">350M subset umap</a>
                 </li>
               </ul>
-              <p class="caption"><span class="caption-text">example notebooks</span></p>
-              <ul>
-                  <li class="toctree-l1"><a class="reference internal" href="../notebooks/cancer_usecase/">scPRINT use case on BPH</a>
-                  </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../notebooks/cancer_usecase_part2/">scPRINT use case on BPH (part 2, GN analysis)</a>
-                  </li>
-              </ul>
               <p class="caption"><span class="caption-text">documentation</span></p>
               <ul class="current">
                   <li class="toctree-l1 current"><a class="reference internal current" href="#">model</a>
@@ -75,45 +68,45 @@
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#scprint2.model.model">model</a>
         <ul>
-    <li class="toctree-l3"><a class="reference internal" href="#scprint2.model.model.scPrint2">scPrint2</a>
+    <li class="toctree-l3"><a class="reference internal" href="#scprint2.model.model.scPRINT2">scPRINT2</a>
         <ul>
-    <li class="toctree-l4"><a class="reference internal" href="#scprint2.model.model.scPrint2--initialize-model">Initialize model</a>
+    <li class="toctree-l4"><a class="reference internal" href="#scprint2.model.model.scPRINT2--initialize-model">Initialize model</a>
     </li>
-    <li class="toctree-l4"><a class="reference internal" href="#scprint2.model.model.scPrint2--configure-training">Configure training</a>
+    <li class="toctree-l4"><a class="reference internal" href="#scprint2.model.model.scPRINT2--configure-training">Configure training</a>
     </li>
-    <li class="toctree-l4"><a class="reference internal" href="#scprint2.model.model.scPrint2--train-with-pytorch-lightning">Train with PyTorch Lightning</a>
+    <li class="toctree-l4"><a class="reference internal" href="#scprint2.model.model.scPRINT2--train-with-pytorch-lightning">Train with PyTorch Lightning</a>
     </li>
-    <li class="toctree-l4"><a class="reference internal" href="#scprint2.model.model.scPrint2--generate-embeddings">Generate embeddings</a>
+    <li class="toctree-l4"><a class="reference internal" href="#scprint2.model.model.scPRINT2--generate-embeddings">Generate embeddings</a>
     </li>
-    <li class="toctree-l4"><a class="reference internal" href="#scprint2.model.model.scPrint2.genes">genes</a>
+    <li class="toctree-l4"><a class="reference internal" href="#scprint2.model.model.scPRINT2.genes">genes</a>
     </li>
-    <li class="toctree-l4"><a class="reference internal" href="#scprint2.model.model.scPrint2.add_organism">add_organism</a>
+    <li class="toctree-l4"><a class="reference internal" href="#scprint2.model.model.scPRINT2.add_organism">add_organism</a>
     </li>
-    <li class="toctree-l4"><a class="reference internal" href="#scprint2.model.model.scPrint2.configure_optimizers">configure_optimizers</a>
+    <li class="toctree-l4"><a class="reference internal" href="#scprint2.model.model.scPRINT2.configure_optimizers">configure_optimizers</a>
     </li>
-    <li class="toctree-l4"><a class="reference internal" href="#scprint2.model.model.scPrint2.forward">forward</a>
+    <li class="toctree-l4"><a class="reference internal" href="#scprint2.model.model.scPRINT2.forward">forward</a>
     </li>
-    <li class="toctree-l4"><a class="reference internal" href="#scprint2.model.model.scPrint2.log_adata">log_adata</a>
+    <li class="toctree-l4"><a class="reference internal" href="#scprint2.model.model.scPRINT2.log_adata">log_adata</a>
     </li>
-    <li class="toctree-l4"><a class="reference internal" href="#scprint2.model.model.scPrint2.on_fit_start">on_fit_start</a>
+    <li class="toctree-l4"><a class="reference internal" href="#scprint2.model.model.scPRINT2.on_fit_start">on_fit_start</a>
     </li>
-    <li class="toctree-l4"><a class="reference internal" href="#scprint2.model.model.scPrint2.on_load_checkpoint">on_load_checkpoint</a>
+    <li class="toctree-l4"><a class="reference internal" href="#scprint2.model.model.scPRINT2.on_load_checkpoint">on_load_checkpoint</a>
     </li>
-    <li class="toctree-l4"><a class="reference internal" href="#scprint2.model.model.scPrint2.on_predict_epoch_end">on_predict_epoch_end</a>
+    <li class="toctree-l4"><a class="reference internal" href="#scprint2.model.model.scPRINT2.on_predict_epoch_end">on_predict_epoch_end</a>
     </li>
-    <li class="toctree-l4"><a class="reference internal" href="#scprint2.model.model.scPrint2.on_predict_epoch_start">on_predict_epoch_start</a>
+    <li class="toctree-l4"><a class="reference internal" href="#scprint2.model.model.scPRINT2.on_predict_epoch_start">on_predict_epoch_start</a>
     </li>
-    <li class="toctree-l4"><a class="reference internal" href="#scprint2.model.model.scPrint2.on_test_start">on_test_start</a>
+    <li class="toctree-l4"><a class="reference internal" href="#scprint2.model.model.scPRINT2.on_test_start">on_test_start</a>
     </li>
-    <li class="toctree-l4"><a class="reference internal" href="#scprint2.model.model.scPrint2.on_validation_epoch_end">on_validation_epoch_end</a>
+    <li class="toctree-l4"><a class="reference internal" href="#scprint2.model.model.scPRINT2.on_validation_epoch_end">on_validation_epoch_end</a>
     </li>
-    <li class="toctree-l4"><a class="reference internal" href="#scprint2.model.model.scPrint2.optimizer_step">optimizer_step</a>
+    <li class="toctree-l4"><a class="reference internal" href="#scprint2.model.model.scPRINT2.optimizer_step">optimizer_step</a>
     </li>
-    <li class="toctree-l4"><a class="reference internal" href="#scprint2.model.model.scPrint2.predict_step">predict_step</a>
+    <li class="toctree-l4"><a class="reference internal" href="#scprint2.model.model.scPRINT2.predict_step">predict_step</a>
     </li>
-    <li class="toctree-l4"><a class="reference internal" href="#scprint2.model.model.scPrint2.training_step">training_step</a>
+    <li class="toctree-l4"><a class="reference internal" href="#scprint2.model.model.scPRINT2.training_step">training_step</a>
     </li>
-    <li class="toctree-l4"><a class="reference internal" href="#scprint2.model.model.scPrint2.validation_step">validation_step</a>
+    <li class="toctree-l4"><a class="reference internal" href="#scprint2.model.model.scPRINT2.validation_step">validation_step</a>
     </li>
         </ul>
     </li>
@@ -363,7 +356,7 @@
       </thead>
       <tbody>
           <tr class="doc-section-item">
-            <td><code><a class="autorefs autorefs-internal" title="scPrint2 (scprint2.model.model.scPrint2)" href="#scprint2.model.model.scPrint2">scPrint2</a></code></td>
+            <td><code><a class="autorefs autorefs-internal" title="scPRINT2 (scprint2.model.model.scPRINT2)" href="#scprint2.model.model.scPRINT2">scPRINT2</a></code></td>
             <td>
               <div class="doc-md-description">
                 
@@ -393,8 +386,8 @@
 
 
 
-<h3 id="scprint2.model.model.scPrint2" class="doc doc-heading">
-              <code class="highlight language-python"><span class="n">scPrint2</span></code>
+<h3 id="scprint2.model.model.scPRINT2" class="doc doc-heading">
+              <code class="highlight language-python"><span class="n">scPRINT2</span></code>
 
 </h3>
 
@@ -947,7 +940,7 @@ pred_log_adata (bool): Whether to log predictions as AnnData.</p>
   <blockquote>
 <blockquote>
 <blockquote>
-<h4 id="scprint2.model.model.scPrint2--initialize-model">Initialize model</h4>
+<h4 id="scprint2.model.model.scPRINT2--initialize-model">Initialize model</h4>
 <p>model = scPrint2(
 ...     genes=gene_list,
 ...     organisms=["NCBITaxon:9606"],
@@ -955,13 +948,13 @@ pred_log_adata (bool): Whether to log predictions as AnnData.</p>
 ...     nlayers=12,
 ...     classes={"cell_type_ontology_term_id": 100},
 ... )</p>
-<h4 id="scprint2.model.model.scPrint2--configure-training">Configure training</h4>
+<h4 id="scprint2.model.model.scPRINT2--configure-training">Configure training</h4>
 <p>model.noise = [0.4, 0.6]
 model.mask_ratio = [0.15, 0.3]</p>
-<h4 id="scprint2.model.model.scPrint2--train-with-pytorch-lightning">Train with PyTorch Lightning</h4>
+<h4 id="scprint2.model.model.scPRINT2--train-with-pytorch-lightning">Train with PyTorch Lightning</h4>
 <p>trainer = L.Trainer(max_epochs=100)
 trainer.fit(model, datamodule)</p>
-<h4 id="scprint2.model.model.scPrint2--generate-embeddings">Generate embeddings</h4>
+<h4 id="scprint2.model.model.scPRINT2--generate-embeddings">Generate embeddings</h4>
 <p>model.pred_embedding = ["cell_type_ontology_term_id"]
 predictions = trainer.predict(model, datamodule)</p>
 </blockquote>
@@ -994,7 +987,7 @@ Gene order must match between model initialization and data loading.</p>
       </thead>
       <tbody>
             <tr class="doc-section-item">
-              <td><code><a class="autorefs autorefs-internal" title="add_organism (scprint2.model.model.scPrint2.add_organism)" href="#scprint2.model.model.scPrint2.add_organism">add_organism</a></code></td>
+              <td><code><a class="autorefs autorefs-internal" title="add_organism (scprint2.model.model.scPRINT2.add_organism)" href="#scprint2.model.model.scPRINT2.add_organism">add_organism</a></code></td>
               <td>
                 <div class="doc-md-description">
                   <p>Add a new organism to an existing model for transfer learning.</p>
@@ -1002,7 +995,7 @@ Gene order must match between model initialization and data loading.</p>
               </td>
             </tr>
             <tr class="doc-section-item">
-              <td><code><a class="autorefs autorefs-internal" title="configure_optimizers (scprint2.model.model.scPrint2.configure_optimizers)" href="#scprint2.model.model.scPrint2.configure_optimizers">configure_optimizers</a></code></td>
+              <td><code><a class="autorefs autorefs-internal" title="configure_optimizers (scprint2.model.model.scPRINT2.configure_optimizers)" href="#scprint2.model.model.scPRINT2.configure_optimizers">configure_optimizers</a></code></td>
               <td>
                 <div class="doc-md-description">
                   <p>@see pl.LightningModule</p>
@@ -1010,7 +1003,7 @@ Gene order must match between model initialization and data loading.</p>
               </td>
             </tr>
             <tr class="doc-section-item">
-              <td><code><a class="autorefs autorefs-internal" title="forward (scprint2.model.model.scPrint2.forward)" href="#scprint2.model.model.scPrint2.forward">forward</a></code></td>
+              <td><code><a class="autorefs autorefs-internal" title="forward (scprint2.model.model.scPRINT2.forward)" href="#scprint2.model.model.scPRINT2.forward">forward</a></code></td>
               <td>
                 <div class="doc-md-description">
                   <p>Complete forward pass through the scPRINT-2 model.</p>
@@ -1018,7 +1011,7 @@ Gene order must match between model initialization and data loading.</p>
               </td>
             </tr>
             <tr class="doc-section-item">
-              <td><code><a class="autorefs autorefs-internal" title="log_adata (scprint2.model.model.scPrint2.log_adata)" href="#scprint2.model.model.scPrint2.log_adata">log_adata</a></code></td>
+              <td><code><a class="autorefs autorefs-internal" title="log_adata (scprint2.model.model.scPRINT2.log_adata)" href="#scprint2.model.model.scPRINT2.log_adata">log_adata</a></code></td>
               <td>
                 <div class="doc-md-description">
                   <p>log_adata will log an adata from predictions.</p>
@@ -1026,7 +1019,7 @@ Gene order must match between model initialization and data loading.</p>
               </td>
             </tr>
             <tr class="doc-section-item">
-              <td><code><a class="autorefs autorefs-internal" title="on_fit_start (scprint2.model.model.scPrint2.on_fit_start)" href="#scprint2.model.model.scPrint2.on_fit_start">on_fit_start</a></code></td>
+              <td><code><a class="autorefs autorefs-internal" title="on_fit_start (scprint2.model.model.scPRINT2.on_fit_start)" href="#scprint2.model.model.scPRINT2.on_fit_start">on_fit_start</a></code></td>
               <td>
                 <div class="doc-md-description">
                   <p>@see pl.LightningModule</p>
@@ -1034,7 +1027,7 @@ Gene order must match between model initialization and data loading.</p>
               </td>
             </tr>
             <tr class="doc-section-item">
-              <td><code><a class="autorefs autorefs-internal" title="on_load_checkpoint (scprint2.model.model.scPrint2.on_load_checkpoint)" href="#scprint2.model.model.scPrint2.on_load_checkpoint">on_load_checkpoint</a></code></td>
+              <td><code><a class="autorefs autorefs-internal" title="on_load_checkpoint (scprint2.model.model.scPRINT2.on_load_checkpoint)" href="#scprint2.model.model.scPRINT2.on_load_checkpoint">on_load_checkpoint</a></code></td>
               <td>
                 <div class="doc-md-description">
                   <p>Handle checkpoint loading with backward compatibility.</p>
@@ -1042,7 +1035,7 @@ Gene order must match between model initialization and data loading.</p>
               </td>
             </tr>
             <tr class="doc-section-item">
-              <td><code><a class="autorefs autorefs-internal" title="on_predict_epoch_end (scprint2.model.model.scPrint2.on_predict_epoch_end)" href="#scprint2.model.model.scPrint2.on_predict_epoch_end">on_predict_epoch_end</a></code></td>
+              <td><code><a class="autorefs autorefs-internal" title="on_predict_epoch_end (scprint2.model.model.scPRINT2.on_predict_epoch_end)" href="#scprint2.model.model.scPRINT2.on_predict_epoch_end">on_predict_epoch_end</a></code></td>
               <td>
                 <div class="doc-md-description">
                   <p>@see pl.LightningModule will</p>
@@ -1050,7 +1043,7 @@ Gene order must match between model initialization and data loading.</p>
               </td>
             </tr>
             <tr class="doc-section-item">
-              <td><code><a class="autorefs autorefs-internal" title="on_predict_epoch_start (scprint2.model.model.scPrint2.on_predict_epoch_start)" href="#scprint2.model.model.scPrint2.on_predict_epoch_start">on_predict_epoch_start</a></code></td>
+              <td><code><a class="autorefs autorefs-internal" title="on_predict_epoch_start (scprint2.model.model.scPRINT2.on_predict_epoch_start)" href="#scprint2.model.model.scPRINT2.on_predict_epoch_start">on_predict_epoch_start</a></code></td>
               <td>
                 <div class="doc-md-description">
                   <p>@see pl.LightningModule</p>
@@ -1058,7 +1051,7 @@ Gene order must match between model initialization and data loading.</p>
               </td>
             </tr>
             <tr class="doc-section-item">
-              <td><code><a class="autorefs autorefs-internal" title="on_test_start (scprint2.model.model.scPrint2.on_test_start)" href="#scprint2.model.model.scPrint2.on_test_start">on_test_start</a></code></td>
+              <td><code><a class="autorefs autorefs-internal" title="on_test_start (scprint2.model.model.scPRINT2.on_test_start)" href="#scprint2.model.model.scPRINT2.on_test_start">on_test_start</a></code></td>
               <td>
                 <div class="doc-md-description">
                   <p>@see pl.LightningModule</p>
@@ -1066,7 +1059,7 @@ Gene order must match between model initialization and data loading.</p>
               </td>
             </tr>
             <tr class="doc-section-item">
-              <td><code><a class="autorefs autorefs-internal" title="on_validation_epoch_end (scprint2.model.model.scPrint2.on_validation_epoch_end)" href="#scprint2.model.model.scPrint2.on_validation_epoch_end">on_validation_epoch_end</a></code></td>
+              <td><code><a class="autorefs autorefs-internal" title="on_validation_epoch_end (scprint2.model.model.scPRINT2.on_validation_epoch_end)" href="#scprint2.model.model.scPRINT2.on_validation_epoch_end">on_validation_epoch_end</a></code></td>
               <td>
                 <div class="doc-md-description">
                   <p>@see pl.LightningModule</p>
@@ -1074,7 +1067,7 @@ Gene order must match between model initialization and data loading.</p>
               </td>
             </tr>
             <tr class="doc-section-item">
-              <td><code><a class="autorefs autorefs-internal" title="optimizer_step (scprint2.model.model.scPrint2.optimizer_step)" href="#scprint2.model.model.scPrint2.optimizer_step">optimizer_step</a></code></td>
+              <td><code><a class="autorefs autorefs-internal" title="optimizer_step (scprint2.model.model.scPRINT2.optimizer_step)" href="#scprint2.model.model.scPRINT2.optimizer_step">optimizer_step</a></code></td>
               <td>
                 <div class="doc-md-description">
                   <p>@see pl.LightningModule</p>
@@ -1082,7 +1075,7 @@ Gene order must match between model initialization and data loading.</p>
               </td>
             </tr>
             <tr class="doc-section-item">
-              <td><code><a class="autorefs autorefs-internal" title="predict_step (scprint2.model.model.scPrint2.predict_step)" href="#scprint2.model.model.scPrint2.predict_step">predict_step</a></code></td>
+              <td><code><a class="autorefs autorefs-internal" title="predict_step (scprint2.model.model.scPRINT2.predict_step)" href="#scprint2.model.model.scPRINT2.predict_step">predict_step</a></code></td>
               <td>
                 <div class="doc-md-description">
                   <p>embed given gene expression, encode the gene embedding and cell embedding.</p>
@@ -1090,7 +1083,7 @@ Gene order must match between model initialization and data loading.</p>
               </td>
             </tr>
             <tr class="doc-section-item">
-              <td><code><a class="autorefs autorefs-internal" title="training_step (scprint2.model.model.scPrint2.training_step)" href="#scprint2.model.model.scPrint2.training_step">training_step</a></code></td>
+              <td><code><a class="autorefs autorefs-internal" title="training_step (scprint2.model.model.scPRINT2.training_step)" href="#scprint2.model.model.scPRINT2.training_step">training_step</a></code></td>
               <td>
                 <div class="doc-md-description">
                   <p>training_step defines the train loop. It is independent of forward</p>
@@ -1098,7 +1091,7 @@ Gene order must match between model initialization and data loading.</p>
               </td>
             </tr>
             <tr class="doc-section-item">
-              <td><code><a class="autorefs autorefs-internal" title="validation_step (scprint2.model.model.scPrint2.validation_step)" href="#scprint2.model.model.scPrint2.validation_step">validation_step</a></code></td>
+              <td><code><a class="autorefs autorefs-internal" title="validation_step (scprint2.model.model.scPRINT2.validation_step)" href="#scprint2.model.model.scPRINT2.validation_step">validation_step</a></code></td>
               <td>
                 <div class="doc-md-description">
                   <p>validation_step defines the validation loop. It is independent of forward</p>
@@ -2020,7 +2013,7 @@ Gene order must match between model initialization and data loading.</p>
     <span class="bp">self</span><span class="o">.</span><span class="n">attention</span> <span class="o">=</span> <span class="n">attention</span>
 
     <span class="k">if</span> <span class="n">classes</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="n">classes</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">classes</span> <span class="o">=</span> <span class="p">{}</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">label_counts</span> <span class="o">=</span> <span class="n">classes</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">classes</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">classes</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
 
@@ -2355,7 +2348,7 @@ Gene order must match between model initialization and data loading.</p>
 
 
 
-<h4 id="scprint2.model.model.scPrint2.genes" class="doc doc-heading">
+<h4 id="scprint2.model.model.scPRINT2.genes" class="doc doc-heading">
             <code class="highlight language-python"><span class="n">genes</span></code>
 
   <span class="doc doc-labels">
@@ -2403,7 +2396,7 @@ in consistent order.</p>
 <div class="doc doc-object doc-function">
 
 
-<h4 id="scprint2.model.model.scPrint2.add_organism" class="doc doc-heading">
+<h4 id="scprint2.model.model.scPRINT2.add_organism" class="doc doc-heading">
             <code class="highlight language-python"><span class="n">add_organism</span></code>
 
 </h4>
@@ -2680,7 +2673,7 @@ will be added. The model's gene encoder is expanded in-place.</p>
 <div class="doc doc-object doc-function">
 
 
-<h4 id="scprint2.model.model.scPrint2.configure_optimizers" class="doc doc-heading">
+<h4 id="scprint2.model.model.scPRINT2.configure_optimizers" class="doc doc-heading">
             <code class="highlight language-python"><span class="n">configure_optimizers</span></code>
 
 </h4>
@@ -2891,7 +2884,7 @@ will be added. The model's gene encoder is expanded in-place.</p>
 <div class="doc doc-object doc-function">
 
 
-<h4 id="scprint2.model.model.scPrint2.forward" class="doc doc-heading">
+<h4 id="scprint2.model.model.scPRINT2.forward" class="doc doc-heading">
             <code class="highlight language-python"><span class="n">forward</span></code>
 
 </h4>
@@ -3484,7 +3477,7 @@ cell_types = output["cls_output_cell_type_ontology_term_id"].argmax(-1)</p>
 <div class="doc doc-object doc-function">
 
 
-<h4 id="scprint2.model.model.scPrint2.log_adata" class="doc doc-heading">
+<h4 id="scprint2.model.model.scPRINT2.log_adata" class="doc doc-heading">
             <code class="highlight language-python"><span class="n">log_adata</span></code>
 
 </h4>
@@ -3552,7 +3545,13 @@ It will log to tensorboard and wandb if available</p>
 <span class="normal">2679</span>
 <span class="normal">2680</span>
 <span class="normal">2681</span>
-<span class="normal">2682</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">log_adata</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">gtclass</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">):</span>
+<span class="normal">2682</span>
+<span class="normal">2683</span>
+<span class="normal">2684</span>
+<span class="normal">2685</span>
+<span class="normal">2686</span>
+<span class="normal">2687</span>
+<span class="normal">2688</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">log_adata</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">gtclass</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    log_adata will log an adata from predictions.</span>
 <span class="sd">    It will log to tensorboard and wandb if available</span>
@@ -3563,22 +3562,42 @@ It will log to tensorboard and wandb if available</p>
         <span class="n">mdir</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">save_dir</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">save_dir</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="s2">&quot;/tmp&quot;</span>
     <span class="k">except</span><span class="p">:</span>
         <span class="n">mdir</span> <span class="o">=</span> <span class="s2">&quot;data/&quot;</span>
-    <span class="c1"># mdir = &quot;/pasteur/appa/scratch/jkalfon/&quot; + mdir</span>
+    <span class="n">mdir</span> <span class="o">=</span> <span class="s2">&quot;/pasteur/appa/scratch/jkalfon/&quot;</span> <span class="o">+</span> <span class="n">mdir</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">mdir</span><span class="p">):</span>
         <span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">mdir</span><span class="p">)</span>
-    <span class="n">adata</span><span class="p">,</span> <span class="n">fig</span> <span class="o">=</span> <span class="n">utils</span><span class="o">.</span><span class="n">make_adata</span><span class="p">(</span>
-        <span class="n">genes</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">genes</span><span class="p">,</span>
-        <span class="n">embs</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">embs</span><span class="p">,</span>
-        <span class="n">pos</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">pos</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">save_expr</span> <span class="k">else</span> <span class="kc">None</span><span class="p">,</span>
-        <span class="n">expr_pred</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">expr_pred</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">save_expr</span> <span class="k">else</span> <span class="kc">None</span><span class="p">,</span>
-        <span class="n">classes</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">classes</span><span class="p">,</span>
-        <span class="n">pred</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">pred</span> <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">keep_all_labels_pred</span> <span class="k">else</span> <span class="kc">None</span><span class="p">,</span>
-        <span class="n">label_decoders</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">label_decoders</span><span class="p">,</span>
-        <span class="n">labels_hierarchy</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">labels_hierarchy</span><span class="p">,</span>
-        <span class="n">gtclass</span><span class="o">=</span><span class="n">gtclass</span><span class="p">,</span>
-        <span class="n">doplot</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">doplot</span><span class="p">,</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">embs</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="n">torch</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">v</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">embs</span><span class="o">.</span><span class="n">items</span><span class="p">()],</span> <span class="n">dim</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        <span class="o">.</span><span class="n">cpu</span><span class="p">()</span>
+        <span class="o">.</span><span class="n">numpy</span><span class="p">()</span>
+        <span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">float16</span><span class="p">)</span>
     <span class="p">)</span>
-    <span class="n">adata</span><span class="o">.</span><span class="n">write</span><span class="p">(</span>
+
+    <span class="n">count</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;cell_type_ontology_term_id&quot;</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span>
+        <span class="s2">&quot;tissue_ontology_term_id&quot;</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span>
+        <span class="s2">&quot;disease_ontology_term_id&quot;</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span>
+        <span class="s2">&quot;age_group&quot;</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span>
+        <span class="s2">&quot;assay_ontology_term_id&quot;</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span>
+        <span class="s2">&quot;self_reported_ethnicity_ontology_term_id&quot;</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span>
+        <span class="s2">&quot;sex_ontology_term_id&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+        <span class="s2">&quot;organism_ontology_term_id&quot;</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span>
+        <span class="s2">&quot;cell_culture&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="p">}</span>
+    <span class="n">tot</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">locs</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">predloc</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">val</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">classes</span><span class="p">:</span>
+        <span class="n">num</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">hparams</span><span class="p">[</span><span class="s2">&quot;classes&quot;</span><span class="p">][</span><span class="n">val</span><span class="p">]</span>
+        <span class="n">pred_slice</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">pred</span><span class="p">[:,</span> <span class="n">tot</span> <span class="p">:</span> <span class="n">tot</span> <span class="o">+</span> <span class="n">num</span><span class="p">]</span>
+        <span class="n">loc</span> <span class="o">=</span> <span class="n">pred_slice</span><span class="o">.</span><span class="n">argsort</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)[:,</span> <span class="o">-</span><span class="n">count</span><span class="p">[</span><span class="n">val</span><span class="p">]</span> <span class="p">:]</span><span class="o">.</span><span class="n">flip</span><span class="p">([</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+        <span class="n">top_k</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">gather</span><span class="p">(</span><span class="n">pred_slice</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">loc</span><span class="p">)</span>
+        <span class="n">predloc</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">top_k</span><span class="o">.</span><span class="n">cpu</span><span class="p">()</span><span class="o">.</span><span class="n">numpy</span><span class="p">()</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">float16</span><span class="p">))</span>
+        <span class="n">locs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">loc</span><span class="o">.</span><span class="n">cpu</span><span class="p">()</span><span class="o">.</span><span class="n">numpy</span><span class="p">()</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">uint16</span><span class="p">))</span>
+        <span class="n">tot</span> <span class="o">+=</span> <span class="n">num</span>
+
+    <span class="n">predloc</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">hstack</span><span class="p">(</span><span class="n">predloc</span><span class="p">)</span>
+    <span class="n">locs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">hstack</span><span class="p">(</span><span class="n">locs</span><span class="p">)</span>
+    <span class="n">save</span> <span class="o">=</span> <span class="p">(</span>
         <span class="nb">str</span><span class="p">(</span><span class="n">mdir</span><span class="p">)</span>
         <span class="o">+</span> <span class="s2">&quot;/step_&quot;</span>
         <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">global_step</span><span class="p">)</span>
@@ -3588,24 +3607,10 @@ It will log to tensorboard and wandb if available</p>
         <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
         <span class="o">+</span> <span class="s2">&quot;_&quot;</span>
         <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">global_rank</span><span class="p">)</span>
-        <span class="o">+</span> <span class="s2">&quot;.h5ad&quot;</span>
     <span class="p">)</span>
-    <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">doplot</span><span class="p">:</span>
-        <span class="n">logged</span> <span class="o">=</span> <span class="kc">False</span>
-        <span class="k">try</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">experiment</span><span class="o">.</span><span class="n">add_figure</span><span class="p">(</span><span class="n">fig</span><span class="p">)</span>
-            <span class="n">logged</span> <span class="o">=</span> <span class="kc">True</span>
-        <span class="k">except</span><span class="p">:</span>
-            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;couldn&#39;t log to tensorboard&quot;</span><span class="p">)</span>
-        <span class="k">try</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">log_image</span><span class="p">(</span><span class="n">key</span><span class="o">=</span><span class="s2">&quot;umaps&quot;</span><span class="p">,</span> <span class="n">images</span><span class="o">=</span><span class="p">[</span><span class="n">fig</span><span class="p">],</span> <span class="n">step</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">global_step</span><span class="p">)</span>
-            <span class="n">logged</span> <span class="o">=</span> <span class="kc">True</span>
-        <span class="k">except</span><span class="p">:</span>
-            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;couldn&#39;t log to wandb&quot;</span><span class="p">)</span>
-        <span class="k">if</span> <span class="ow">not</span> <span class="n">logged</span><span class="p">:</span>
-            <span class="n">fig</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="n">mdir</span> <span class="o">+</span> <span class="s2">&quot;/umap_&quot;</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">+</span> <span class="s2">&quot;_&quot;</span> <span class="o">+</span> <span class="n">name</span> <span class="o">+</span> <span class="s2">&quot;.png&quot;</span><span class="p">)</span>
-
-    <span class="k">return</span> <span class="n">adata</span>
+    <span class="n">np</span><span class="o">.</span><span class="n">savez</span><span class="p">(</span><span class="n">save</span> <span class="o">+</span> <span class="s2">&quot;_top3&quot;</span><span class="p">,</span> <span class="n">locs</span><span class="p">)</span>
+    <span class="n">np</span><span class="o">.</span><span class="n">savez</span><span class="p">(</span><span class="n">save</span> <span class="o">+</span> <span class="s2">&quot;_scores&quot;</span><span class="p">,</span> <span class="n">predloc</span><span class="p">)</span>
+    <span class="n">np</span><span class="o">.</span><span class="n">savez</span><span class="p">(</span><span class="n">save</span> <span class="o">+</span> <span class="s2">&quot;_embs&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">embs</span><span class="p">)</span>
 </code></pre></div></td></tr></table></div>
             </details>
     </div>
@@ -3615,7 +3620,7 @@ It will log to tensorboard and wandb if available</p>
 <div class="doc doc-object doc-function">
 
 
-<h4 id="scprint2.model.model.scPrint2.on_fit_start" class="doc doc-heading">
+<h4 id="scprint2.model.model.scPRINT2.on_fit_start" class="doc doc-heading">
             <code class="highlight language-python"><span class="n">on_fit_start</span></code>
 
 </h4>
@@ -3650,7 +3655,7 @@ It will log to tensorboard and wandb if available</p>
 <div class="doc doc-object doc-function">
 
 
-<h4 id="scprint2.model.model.scPrint2.on_load_checkpoint" class="doc doc-heading">
+<h4 id="scprint2.model.model.scPRINT2.on_load_checkpoint" class="doc doc-heading">
             <code class="highlight language-python"><span class="n">on_load_checkpoint</span></code>
 
 </h4>
@@ -4107,8 +4112,8 @@ current model. These should be reviewed to ensure expected behavior.</p>
                     <span class="p">][</span><span class="s2">&quot;stopped_epoch&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
 
     <span class="k">except</span> <span class="ne">RuntimeError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-        <span class="k">if</span> <span class="s2">&quot;scPrint2 is not attached to a `Trainer`.&quot;</span> <span class="ow">in</span> <span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">):</span>
-            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;FYI: scPrint2 is not attached to a `Trainer`.&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="s2">&quot;scPRINT2 is not attached to a `Trainer`.&quot;</span> <span class="ow">in</span> <span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">):</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;FYI: scPRINT2 is not attached to a `Trainer`.&quot;</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="k">raise</span> <span class="n">e</span>
     <span class="k">if</span> <span class="p">(</span>
@@ -4131,14 +4136,14 @@ current model. These should be reviewed to ensure expected behavior.</p>
         <span class="k">try</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">trainer</span><span class="o">.</span><span class="n">datamodule</span><span class="o">.</span><span class="n">organisms</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">organisms</span>
         <span class="k">except</span> <span class="ne">RuntimeError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-            <span class="k">if</span> <span class="s2">&quot;scPrint2 is not attached to a `Trainer`.&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">):</span>
+            <span class="k">if</span> <span class="s2">&quot;scPRINT2 is not attached to a `Trainer`.&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">):</span>
                 <span class="k">raise</span> <span class="n">e</span>
     <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_genes</span> <span class="o">!=</span> <span class="n">checkpoints</span><span class="p">[</span><span class="s2">&quot;hyper_parameters&quot;</span><span class="p">][</span><span class="s2">&quot;genes&quot;</span><span class="p">]:</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_genes</span> <span class="o">=</span> <span class="n">checkpoints</span><span class="p">[</span><span class="s2">&quot;hyper_parameters&quot;</span><span class="p">][</span><span class="s2">&quot;genes&quot;</span><span class="p">]</span>
     <span class="k">try</span><span class="p">:</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">trainer</span><span class="o">.</span><span class="n">datamodule</span><span class="o">.</span><span class="n">set_valid_genes_collator</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">genes</span><span class="p">)</span>
     <span class="k">except</span> <span class="ne">RuntimeError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-        <span class="k">if</span> <span class="s2">&quot;scPrint2 is not attached to a `Trainer`.&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">):</span>
+        <span class="k">if</span> <span class="s2">&quot;scPRINT2 is not attached to a `Trainer`.&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">):</span>
             <span class="k">raise</span> <span class="n">e</span>
 
     <span class="k">if</span> <span class="ow">not</span> <span class="n">is_interactive</span><span class="p">():</span>
@@ -4152,7 +4157,7 @@ current model. These should be reviewed to ensure expected behavior.</p>
 <div class="doc doc-object doc-function">
 
 
-<h4 id="scprint2.model.model.scPrint2.on_predict_epoch_end" class="doc doc-heading">
+<h4 id="scprint2.model.model.scPRINT2.on_predict_epoch_end" class="doc doc-heading">
             <code class="highlight language-python"><span class="n">on_predict_epoch_end</span></code>
 
 </h4>
@@ -4187,7 +4192,7 @@ current model. These should be reviewed to ensure expected behavior.</p>
 <div class="doc doc-object doc-function">
 
 
-<h4 id="scprint2.model.model.scPrint2.on_predict_epoch_start" class="doc doc-heading">
+<h4 id="scprint2.model.model.scPRINT2.on_predict_epoch_start" class="doc doc-heading">
             <code class="highlight language-python"><span class="n">on_predict_epoch_start</span></code>
 
 </h4>
@@ -4228,7 +4233,7 @@ current model. These should be reviewed to ensure expected behavior.</p>
 <div class="doc doc-object doc-function">
 
 
-<h4 id="scprint2.model.model.scPrint2.on_test_start" class="doc doc-heading">
+<h4 id="scprint2.model.model.scPRINT2.on_test_start" class="doc doc-heading">
             <code class="highlight language-python"><span class="n">on_test_start</span></code>
 
 </h4>
@@ -4259,7 +4264,7 @@ current model. These should be reviewed to ensure expected behavior.</p>
 <div class="doc doc-object doc-function">
 
 
-<h4 id="scprint2.model.model.scPrint2.on_validation_epoch_end" class="doc doc-heading">
+<h4 id="scprint2.model.model.scPRINT2.on_validation_epoch_end" class="doc doc-heading">
             <code class="highlight language-python"><span class="n">on_validation_epoch_end</span></code>
 
 </h4>
@@ -4372,7 +4377,7 @@ current model. These should be reviewed to ensure expected behavior.</p>
 <div class="doc doc-object doc-function">
 
 
-<h4 id="scprint2.model.model.scPrint2.optimizer_step" class="doc doc-heading">
+<h4 id="scprint2.model.model.scPRINT2.optimizer_step" class="doc doc-heading">
             <code class="highlight language-python"><span class="n">optimizer_step</span></code>
 
 </h4>
@@ -4451,7 +4456,7 @@ current model. These should be reviewed to ensure expected behavior.</p>
 <div class="doc doc-object doc-function">
 
 
-<h4 id="scprint2.model.model.scPrint2.predict_step" class="doc doc-heading">
+<h4 id="scprint2.model.model.scPRINT2.predict_step" class="doc doc-heading">
             <code class="highlight language-python"><span class="n">predict_step</span></code>
 
 </h4>
@@ -4536,7 +4541,7 @@ current model. These should be reviewed to ensure expected behavior.</p>
 <div class="doc doc-object doc-function">
 
 
-<h4 id="scprint2.model.model.scPrint2.training_step" class="doc doc-heading">
+<h4 id="scprint2.model.model.scPRINT2.training_step" class="doc doc-heading">
             <code class="highlight language-python"><span class="n">training_step</span></code>
 
 </h4>
@@ -4642,7 +4647,7 @@ current model. These should be reviewed to ensure expected behavior.</p>
 <div class="doc doc-object doc-function">
 
 
-<h4 id="scprint2.model.model.scPrint2.validation_step" class="doc doc-heading">
+<h4 id="scprint2.model.model.scPRINT2.validation_step" class="doc doc-heading">
             <code class="highlight language-python"><span class="n">validation_step</span></code>
 
 </h4>
@@ -14646,7 +14651,7 @@ c - number of codebook dim</p>
             </div>
           </div><footer>
     <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
-        <a href="../notebooks/cancer_usecase_part2/" class="btn btn-neutral float-left" title="scPRINT use case on BPH (part 2, GN analysis)"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../umap/nice_umap_scprint2.html" class="btn btn-neutral float-left" title="350M subset umap"><span class="icon icon-circle-arrow-left"></span> Previous</a>
         <a href="../tasks/" class="btn btn-neutral float-right" title="tasks">Next <span class="icon icon-circle-arrow-right"></span></a>
     </div>
 
@@ -14670,7 +14675,7 @@ c - number of codebook dim</p>
   <span class="rst-current-version" data-toggle="rst-current-version">
     
     
-      <span><a href="../notebooks/cancer_usecase_part2/" style="color: #fcfcfc">&laquo; Previous</a></span>
+      <span><a href="../umap/nice_umap_scprint2.html" style="color: #fcfcfc">&laquo; Previous</a></span>
     
     
       <span><a href="../tasks/" style="color: #fcfcfc">Next &raquo;</a></span>
