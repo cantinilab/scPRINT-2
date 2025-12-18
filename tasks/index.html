@@ -685,13 +685,15 @@ This is important to avoid memory issues.</p>
       <td class="field-body">
         <ul class="first simple">
             <li>
-<b><code>AnnData</code></b>              –
+<b><code>AnnData</code></b>(                  <code><span title="anndata.AnnData">AnnData</span></code>
+)              –
               <div class="doc-md-description">
                 <p>The annotated data matrix with embedded cell representations.</p>
               </div>
             </li>
             <li>
-<b><code>dict</code></b>              –
+<b><code>dict</code></b>(                  <code><span title="dict">dict</span></code>
+)              –
               <div class="doc-md-description">
                 <p>classification metrics results when some ground truth information was available in the anndata.</p>
               </div>
@@ -950,7 +952,7 @@ This is important to avoid memory issues.</p>
 <span class="normal">322</span>
 <span class="normal">323</span>
 <span class="normal">324</span>
-<span class="normal">325</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">model</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">,</span> <span class="n">adata</span><span class="p">:</span> <span class="n">AnnData</span><span class="p">):</span>
+<span class="normal">325</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">model</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">,</span> <span class="n">adata</span><span class="p">:</span> <span class="n">AnnData</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="n">AnnData</span><span class="p">,</span> <span class="nb">dict</span><span class="p">]:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    __call__ function to call the embedding</span>
 
@@ -1310,9 +1312,7 @@ This is important to avoid memory issues.</p>
 
             <details class="mkdocstrings-source">
               <summary>Source code in <code>scprint2/tasks/cell_emb.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">480</span>
-<span class="normal">481</span>
-<span class="normal">482</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">482</span>
 <span class="normal">483</span>
 <span class="normal">484</span>
 <span class="normal">485</span>
@@ -1374,7 +1374,9 @@ This is important to avoid memory issues.</p>
 <span class="normal">541</span>
 <span class="normal">542</span>
 <span class="normal">543</span>
-<span class="normal">544</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">compute_classification</span><span class="p">(</span>
+<span class="normal">544</span>
+<span class="normal">545</span>
+<span class="normal">546</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">compute_classification</span><span class="p">(</span>
     <span class="n">adata</span><span class="p">:</span> <span class="n">AnnData</span><span class="p">,</span>
     <span class="n">classes</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span>
     <span class="n">label_decoders</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">],</span>
@@ -1690,11 +1692,23 @@ This is important to avoid memory issues.</p>
               </div>
             </li>
             <li>
-              <b><code>default_dataset</code></b>
-                  (<code><span title="str">str</span></code>)
+              <b><code>folder_dir</code></b>
+                  (<code><span title="str">str</span></code>, default:
+                      <code><span title="scprint2.tasks.cell_emb.FILE_LOC">FILE_LOC</span> + &#39;/../../data/&#39;</code>
+)
               –
               <div class="doc-md-description">
-                <p>The default dataset to use for benchmarking. Options are "pancreas", "lung", or a path to a dataset. Defaults to "pancreas".</p>
+                <p>The directory containing data files.</p>
+              </div>
+            </li>
+            <li>
+              <b><code>dataset</code></b>
+                  (<code><span title="str">str</span></code>, default:
+                      <code><span title="scprint2.tasks.cell_emb.FILE_LOC">FILE_LOC</span> + &#39;/../../data/gNNpgpo6gATjuxTE7CCp.h5ad&#39;</code>
+)
+              –
+              <div class="doc-md-description">
+                <p>The dataset to use for benchmarking. Can be a path or URL.</p>
               </div>
             </li>
             <li>
@@ -1721,9 +1735,30 @@ This is important to avoid memory issues.</p>
       </td>
     </tr>
   </tbody>
-</table>        <p>Returns:
-    dict: A dictionary containing the benchmark metrics.</p>
+</table>
 
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Returns:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+<b><code>dict</code></b>(                  <code><span title="dict">dict</span></code>
+)              –
+              <div class="doc-md-description">
+                <p>A dictionary containing the benchmark metrics.</p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
 
             <details class="mkdocstrings-source">
               <summary>Source code in <code>scprint2/tasks/cell_emb.py</code></summary>
@@ -1821,7 +1856,9 @@ This is important to avoid memory issues.</p>
 <span class="normal">474</span>
 <span class="normal">475</span>
 <span class="normal">476</span>
-<span class="normal">477</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">default_benchmark</span><span class="p">(</span>
+<span class="normal">477</span>
+<span class="normal">478</span>
+<span class="normal">479</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">default_benchmark</span><span class="p">(</span>
     <span class="n">model</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">,</span>
     <span class="n">folder_dir</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">FILE_LOC</span> <span class="o">+</span> <span class="s2">&quot;/../../data/&quot;</span><span class="p">,</span>
     <span class="n">dataset</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">FILE_LOC</span> <span class="o">+</span> <span class="s2">&quot;/../../data/gNNpgpo6gATjuxTE7CCp.h5ad&quot;</span><span class="p">,</span>
@@ -1833,9 +1870,11 @@ This is important to avoid memory issues.</p>
 
 <span class="sd">    Args:</span>
 <span class="sd">        model (torch.nn.Module): The scPRINT model to be used for embedding and annotation.</span>
-<span class="sd">        default_dataset (str, optional): The default dataset to use for benchmarking. Options are &quot;pancreas&quot;, &quot;lung&quot;, or a path to a dataset. Defaults to &quot;pancreas&quot;.</span>
+<span class="sd">        folder_dir (str, optional): The directory containing data files.</span>
+<span class="sd">        dataset (str, optional): The dataset to use for benchmarking. Can be a path or URL.</span>
 <span class="sd">        do_class (bool, optional): Whether to perform classification. Defaults to True.</span>
 <span class="sd">        coarse (bool, optional): Whether to use coarse cell type annotations. Defaults to False.</span>
+
 <span class="sd">    Returns:</span>
 <span class="sd">        dict: A dictionary containing the benchmark metrics.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
@@ -1948,18 +1987,30 @@ This is important to avoid memory issues.</p>
         <ul class="first simple">
             <li>
               <b><code>nadata</code></b>
-                  (<code><span title="_type_">_type_</span></code>)
+                  (<code><span title="anndata.AnnData">AnnData</span></code>)
               –
               <div class="doc-md-description">
-                <p><em>description</em></p>
+                <p>Annotated data object containing predictions and ground truth.</p>
               </div>
             </li>
             <li>
-              <b><code>on</code></b>
-                  (<code><span title="str">str</span></code>)
+              <b><code>pred</code></b>
+                  (<code><span title="str">str</span></code>, default:
+                      <code>&#39;conv_pred_cell_type_ontology_term_id&#39;</code>
+)
               –
               <div class="doc-md-description">
-                <p>one of ['cell_type', 'disease', 'tissue'...]. Defaults to "cell_type".</p>
+                <p>Column name for predictions. Defaults to "conv_pred_cell_type_ontology_term_id".</p>
+              </div>
+            </li>
+            <li>
+              <b><code>true</code></b>
+                  (<code><span title="str">str</span></code>, default:
+                      <code>&#39;cell_type&#39;</code>
+)
+              –
+              <div class="doc-md-description">
+                <p>Column name for ground truth. Defaults to "cell_type".</p>
               </div>
             </li>
         </ul>
@@ -1970,9 +2021,7 @@ This is important to avoid memory issues.</p>
 
             <details class="mkdocstrings-source">
               <summary>Source code in <code>scprint2/tasks/cell_emb.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">637</span>
-<span class="normal">638</span>
-<span class="normal">639</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">639</span>
 <span class="normal">640</span>
 <span class="normal">641</span>
 <span class="normal">642</span>
@@ -2035,15 +2084,19 @@ This is important to avoid memory issues.</p>
 <span class="normal">699</span>
 <span class="normal">700</span>
 <span class="normal">701</span>
-<span class="normal">702</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">display_confusion_matrix</span><span class="p">(</span>
+<span class="normal">702</span>
+<span class="normal">703</span>
+<span class="normal">704</span>
+<span class="normal">705</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">display_confusion_matrix</span><span class="p">(</span>
     <span class="n">nadata</span><span class="p">,</span> <span class="n">pred</span><span class="o">=</span><span class="s2">&quot;conv_pred_cell_type_ontology_term_id&quot;</span><span class="p">,</span> <span class="n">true</span><span class="o">=</span><span class="s2">&quot;cell_type&quot;</span>
 <span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Display the confusion matrix for true vs predicted cell types.</span>
 
 <span class="sd">    Args:</span>
-<span class="sd">        nadata (_type_): _description_</span>
-<span class="sd">        on (str, optional): one of [&#39;cell_type&#39;, &#39;disease&#39;, &#39;tissue&#39;...]. Defaults to &quot;cell_type&quot;.</span>
+<span class="sd">        nadata (AnnData): Annotated data object containing predictions and ground truth.</span>
+<span class="sd">        pred (str): Column name for predictions. Defaults to &quot;conv_pred_cell_type_ontology_term_id&quot;.</span>
+<span class="sd">        true (str): Column name for ground truth. Defaults to &quot;cell_type&quot;.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">counts</span> <span class="o">=</span> <span class="kc">None</span>
     <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">nadata</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="n">true</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
@@ -2720,12 +2773,14 @@ It is required for mean_full head_agg. Defaults to False.</p>
       <td class="field-body">
         <ul class="first simple">
             <li>
-<b><code>AnnData</code></b>              –
+<b><code>AnnData</code></b>(                  <code><span title="anndata.AnnData">AnnData</span></code>
+)              –
               <div class="doc-md-description">
                 <p>Annotated data matrix with predictions and annotations.</p>
               </div>
             </li>
             <li>
+                  <code><span title="numpy.ndarray">ndarray</span></code>
               –
               <div class="doc-md-description">
                 <p>np.ndarray: Filtered adjacency matrix.</p>
@@ -2769,7 +2824,7 @@ It is required for mean_full head_agg. Defaults to False.</p>
 <span class="normal">147</span>
 <span class="normal">148</span>
 <span class="normal">149</span>
-<span class="normal">150</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">model</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">,</span> <span class="n">adata</span><span class="p">:</span> <span class="n">AnnData</span><span class="p">,</span> <span class="n">cell_type</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="normal">150</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">model</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">,</span> <span class="n">adata</span><span class="p">:</span> <span class="n">AnnData</span><span class="p">,</span> <span class="n">cell_type</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="n">AnnData</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">]:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    __call__ runs the method</span>
 
@@ -3490,7 +3545,7 @@ or do nothing if already done</p>
 )
               –
               <div class="doc-md-description">
-                <p>List of cell types to include in the benchmark. Defaults to [</p>
+                <p>List of cell types to include in the benchmark. Defaults to [].</p>
               </div>
             </li>
             <li>
@@ -3550,7 +3605,8 @@ or do nothing if already done</p>
       <td class="field-body">
         <ul class="first simple">
             <li>
-<b><code>dict</code></b>              –
+<b><code>dict</code></b>(                  <code><span title="dict">dict</span></code>
+)              –
               <div class="doc-md-description">
                 <p>A dictionary containing the benchmark metrics.</p>
               </div>
@@ -3952,8 +4008,7 @@ or do nothing if already done</p>
 <span class="normal">842</span>
 <span class="normal">843</span>
 <span class="normal">844</span>
-<span class="normal">845</span>
-<span class="normal">846</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">default_benchmark</span><span class="p">(</span>
+<span class="normal">845</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">default_benchmark</span><span class="p">(</span>
     <span class="n">model</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span>
     <span class="n">default_dataset</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;sroy&quot;</span><span class="p">,</span>
     <span class="n">cell_types</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="p">[],</span>
@@ -3961,15 +4016,14 @@ or do nothing if already done</p>
     <span class="n">maxgenes</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">5000</span><span class="p">,</span>
     <span class="n">batch_size</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">32</span><span class="p">,</span>
     <span class="n">maxcells</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">1024</span><span class="p">,</span>
-<span class="p">):</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    default_benchmark function to run the default scPRINT GRN benchmark</span>
 
 <span class="sd">    Args:</span>
 <span class="sd">        model (Any): The scPRINT model to be used for the benchmark.</span>
 <span class="sd">        default_dataset (str, optional): The default dataset to use for benchmarking. Defaults to &quot;sroy&quot;.</span>
-<span class="sd">        cell_types (List[str], optional): List of cell types to include in the benchmark. Defaults to [</span>
-<span class="sd">        ].</span>
+<span class="sd">        cell_types (List[str], optional): List of cell types to include in the benchmark. Defaults to [].</span>
 <span class="sd">        maxlayers (int, optional): Maximum number of layers to use from the model. Defaults to 16.</span>
 <span class="sd">        maxgenes (int, optional): Maximum number of genes to consider. Defaults to 5000.</span>
 <span class="sd">        batch_size (int, optional): Batch size for processing. Defaults to 32.</span>
@@ -4852,19 +4906,22 @@ applying zero inflation might give results closer to the specific biases of sequ
       <td class="field-body">
         <ul class="first simple">
             <li>
-<b><code>dict</code></b>              –
+<b><code>dict</code></b>(                  <code><span title="dict">dict</span></code>
+)              –
               <div class="doc-md-description">
                 <p>The benchmark metrics if downsampling is used.</p>
               </div>
             </li>
             <li>
+                  <code><span title="typing.Optional">Optional</span>[<span title="numpy.ndarray">ndarray</span>]</code>
               –
               <div class="doc-md-description">
                 <p>Optional[np.ndarray]: The random set of cells used if max_cells &lt; adata.shape[0].</p>
               </div>
             </li>
             <li>
-<b><code>AnnData</code></b>              –
+<b><code>AnnData</code></b>(                  <code><span title="anndata.AnnData">AnnData</span></code>
+)              –
               <div class="doc-md-description">
                 <p>The denoised annotated data matrix.</p>
               </div>
@@ -5140,7 +5197,7 @@ applying zero inflation might give results closer to the specific biases of sequ
 <span class="normal">347</span>
 <span class="normal">348</span>
 <span class="normal">349</span>
-<span class="normal">350</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">model</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">,</span> <span class="n">adata</span><span class="p">:</span> <span class="n">AnnData</span><span class="p">):</span>
+<span class="normal">350</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">model</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">,</span> <span class="n">adata</span><span class="p">:</span> <span class="n">AnnData</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">dict</span><span class="p">,</span> <span class="n">Optional</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">],</span> <span class="n">AnnData</span><span class="p">]:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    __call__ calling the function</span>
 
@@ -5453,19 +5510,23 @@ applying zero inflation might give results closer to the specific biases of sequ
               </div>
             </li>
             <li>
-              <b><code>default_dataset</code></b>
-                  (<code><span title="str">str</span></code>)
+              <b><code>folder_dir</code></b>
+                  (<code><span title="str">str</span></code>, default:
+                      <code><span title="scprint2.tasks.denoise.FILE_DIR">FILE_DIR</span> + &#39;/../../data/&#39;</code>
+)
               –
               <div class="doc-md-description">
-                <p>Path to the default dataset to use for benchmarking. Defaults to FILE_DIR + "/../../data/r4iCehg3Tw5IbCLiCIbl.h5ad".</p>
+                <p>Directory containing data files.</p>
               </div>
             </li>
             <li>
-              <b><code>max_len</code></b>
-                  (<code><span title="int">int</span></code>)
+              <b><code>dataset</code></b>
+                  (<code><span title="str">str</span></code>, default:
+                      <code><span title="scprint2.tasks.denoise.FILE_DIR">FILE_DIR</span> + &#39;/../../data/gNNpgpo6gATjuxTE7CCp.h5ad&#39;</code>
+)
               –
               <div class="doc-md-description">
-                <p>Maximum number of genes to consider. Defaults to 5000.</p>
+                <p>Path to the dataset to use for benchmarking.</p>
               </div>
             </li>
         </ul>
@@ -5485,7 +5546,8 @@ applying zero inflation might give results closer to the specific biases of sequ
       <td class="field-body">
         <ul class="first simple">
             <li>
-<b><code>dict</code></b>              –
+<b><code>dict</code></b>(                  <code><span title="dict">dict</span></code>
+)              –
               <div class="doc-md-description">
                 <p>A dictionary containing the benchmark metrics.</p>
               </div>
@@ -5557,14 +5619,14 @@ applying zero inflation might give results closer to the specific biases of sequ
     <span class="n">folder_dir</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">FILE_DIR</span> <span class="o">+</span> <span class="s2">&quot;/../../data/&quot;</span><span class="p">,</span>
     <span class="n">dataset</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">FILE_DIR</span>
     <span class="o">+</span> <span class="s2">&quot;/../../data/gNNpgpo6gATjuxTE7CCp.h5ad&quot;</span><span class="p">,</span>  <span class="c1"># r4iCehg3Tw5IbCLiCIbl</span>
-<span class="p">):</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    default_benchmark function used to run the default denoising benchmark of scPRINT</span>
 
 <span class="sd">    Args:</span>
 <span class="sd">        model (Any): The scPRINT model to be used for the benchmark.</span>
-<span class="sd">        default_dataset (str, optional): Path to the default dataset to use for benchmarking. Defaults to FILE_DIR + &quot;/../../data/r4iCehg3Tw5IbCLiCIbl.h5ad&quot;.</span>
-<span class="sd">        max_len (int, optional): Maximum number of genes to consider. Defaults to 5000.</span>
+<span class="sd">        folder_dir (str, optional): Directory containing data files.</span>
+<span class="sd">        dataset (str, optional): Path to the dataset to use for benchmarking.</span>
 
 <span class="sd">    Returns:</span>
 <span class="sd">        dict: A dictionary containing the benchmark metrics.</span>
@@ -5784,13 +5846,21 @@ applying zero inflation might give results closer to the specific biases of sequ
       <td class="field-body">
         <ul class="first simple">
             <li>
+              <b><code>genelist</code></b>
+                  (<code><span title="list">list</span></code>)
+              –
+              <div class="doc-md-description">
+                <p>List of genes to restrict to.</p>
+              </div>
+            </li>
+            <li>
               <b><code>batch_size</code></b>
                   (<code><span title="int">int</span></code>, default:
                       <code>64</code>
 )
               –
               <div class="doc-md-description">
-                <p>Batch size for the DataLoader.</p>
+                <p>Batch size for the DataLoader. Defaults to 64.</p>
               </div>
             </li>
             <li>
@@ -5800,27 +5870,7 @@ applying zero inflation might give results closer to the specific biases of sequ
 )
               –
               <div class="doc-md-description">
-                <p>Number of workers for DataLoader.</p>
-              </div>
-            </li>
-            <li>
-              <b><code>genelist</code></b>
-                  (<code><span title="list">list</span></code>)
-              –
-              <div class="doc-md-description">
-                <p>list of genes to restrict to.</p>
-              </div>
-            </li>
-            <li>
-              <b><code>how</code></b>
-                  (<code><span title="str">str</span></code>)
-              –
-              <div class="doc-md-description">
-                <p>Method to select genes for embedding extraction. Options:
-- "random expr": random expression
-- "most var": highly variable genes in the dataset
-- "some": specific genes (from genelist)
-- "most expr": most expressed genes in the cell</p>
+                <p>Number of workers for DataLoader. Defaults to 8.</p>
               </div>
             </li>
             <li>
@@ -5830,7 +5880,7 @@ applying zero inflation might give results closer to the specific biases of sequ
 )
               –
               <div class="doc-md-description">
-                <p>Save embeddings every <code>save_every</code> batches.</p>
+                <p>Save embeddings every <code>save_every</code> batches. Defaults to 4000.</p>
               </div>
             </li>
             <li>
@@ -5840,7 +5890,7 @@ applying zero inflation might give results closer to the specific biases of sequ
 )
               –
               <div class="doc-md-description">
-                <p>Whether to average embeddings across all cells.</p>
+                <p>Whether to average embeddings across all cells. Defaults to False.</p>
               </div>
             </li>
             <li>
@@ -5850,7 +5900,7 @@ applying zero inflation might give results closer to the specific biases of sequ
 )
               –
               <div class="doc-md-description">
-                <p>Directory to save embeddings. If None, embeddings are not saved to</p>
+                <p>Directory to save embeddings. If None, embeddings are not saved. Defaults to None.</p>
               </div>
             </li>
             <li>
@@ -5861,29 +5911,6 @@ applying zero inflation might give results closer to the specific biases of sequ
               –
               <div class="doc-md-description">
                 <p>Whether to use k-nearest neighbors information. Defaults to False.</p>
-              </div>
-            </li>
-        </ul>
-      </td>
-    </tr>
-  </tbody>
-</table>
-
-<table class="field-list">
-  <colgroup>
-    <col class="field-name" />
-    <col class="field-body" />
-  </colgroup>
-  <tbody valign="top">
-    <tr class="field">
-      <th class="field-name">Returns:</th>
-      <td class="field-body">
-        <ul class="first simple">
-            <li>
-<b><code>embeddings</code></b>(                  <code><span title="numpy.ndarray">ndarray</span></code>
-)              –
-              <div class="doc-md-description">
-                <p>A numpy array of shape (n_cells, n_genes, embedding_dim)</p>
               </div>
             </li>
         </ul>
@@ -5931,14 +5958,7 @@ applying zero inflation might give results closer to the specific biases of sequ
 <span class="normal">41</span>
 <span class="normal">42</span>
 <span class="normal">43</span>
-<span class="normal">44</span>
-<span class="normal">45</span>
-<span class="normal">46</span>
-<span class="normal">47</span>
-<span class="normal">48</span>
-<span class="normal">49</span>
-<span class="normal">50</span>
-<span class="normal">51</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
+<span class="normal">44</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
     <span class="bp">self</span><span class="p">,</span>
     <span class="n">genelist</span><span class="p">,</span>
     <span class="n">batch_size</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">64</span><span class="p">,</span>
@@ -5950,21 +5970,14 @@ applying zero inflation might give results closer to the specific biases of sequ
 <span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Args:</span>
-<span class="sd">        batch_size (int): Batch size for the DataLoader.</span>
-<span class="sd">        num_workers (int): Number of workers for DataLoader.</span>
-<span class="sd">        genelist (list): list of genes to restrict to.</span>
-<span class="sd">        how (str): Method to select genes for embedding extraction. Options:</span>
-<span class="sd">            - &quot;random expr&quot;: random expression</span>
-<span class="sd">            - &quot;most var&quot;: highly variable genes in the dataset</span>
-<span class="sd">            - &quot;some&quot;: specific genes (from genelist)</span>
-<span class="sd">            - &quot;most expr&quot;: most expressed genes in the cell</span>
-<span class="sd">        save_every (int): Save embeddings every `save_every` batches.</span>
-<span class="sd">        average (bool): Whether to average embeddings across all cells.</span>
-<span class="sd">        save_dir (str): Directory to save embeddings. If None, embeddings are not saved to</span>
+<span class="sd">        genelist (list): List of genes to restrict to.</span>
+<span class="sd">        batch_size (int): Batch size for the DataLoader. Defaults to 64.</span>
+<span class="sd">        num_workers (int): Number of workers for DataLoader. Defaults to 8.</span>
+<span class="sd">        save_every (int): Save embeddings every `save_every` batches. Defaults to 4000.</span>
+<span class="sd">        average (bool): Whether to average embeddings across all cells. Defaults to False.</span>
+<span class="sd">        save_dir (str): Directory to save embeddings. If None, embeddings are not saved. Defaults to None.</span>
 <span class="sd">        use_knn (bool): Whether to use k-nearest neighbors information. Defaults to False.</span>
 
-<span class="sd">    Returns:</span>
-<span class="sd">        embeddings (np.ndarray): A numpy array of shape (n_cells, n_genes, embedding_dim)</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">genelist</span> <span class="o">=</span> <span class="n">genelist</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">batch_size</span> <span class="o">=</span> <span class="n">batch_size</span>
@@ -6092,6 +6105,14 @@ applying zero inflation might give results closer to the specific biases of sequ
       <td class="field-body">
         <ul class="first simple">
             <li>
+              <b><code>genelist</code></b>
+                  (<code><span title="typing.List">List</span>[<span title="str">str</span>]</code>)
+              –
+              <div class="doc-md-description">
+                <p>The list of genes for which to generate expression data.</p>
+              </div>
+            </li>
+            <li>
               <b><code>batch_size</code></b>
                   (<code><span title="int">int</span></code>, default:
                       <code>64</code>
@@ -6102,46 +6123,13 @@ applying zero inflation might give results closer to the specific biases of sequ
               </div>
             </li>
             <li>
-              <b><code>num_workers</code></b>
-                  (<code><span title="int">int</span></code>)
-              –
-              <div class="doc-md-description">
-                <p>The number of worker processes to use for data loading. Defaults to 8.</p>
-              </div>
-            </li>
-            <li>
               <b><code>embedding_to_use</code></b>
                   (<code><span title="typing.List">List</span>[<span title="str">str</span>]</code>, default:
                       <code>[&#39;all&#39;]</code>
 )
               –
               <div class="doc-md-description">
-                <p>The list of embeddings to be used for generating expression. Defaults to [ "all" ].</p>
-              </div>
-            </li>
-            <li>
-              <b><code>doplot</code></b>
-                  (<code><span title="bool">bool</span></code>)
-              –
-              <div class="doc-md-description">
-                <p>Whether to generate plots. Defaults to True.</p>
-              </div>
-            </li>
-            <li>
-              <b><code>genelist</code></b>
-                  (<code><span title="typing.List">List</span>[<span title="str">str</span>]</code>)
-              –
-              <div class="doc-md-description">
-                <p>The list of genes for which to generate expression data</p>
-              </div>
-            </li>
-            <li>
-              <b><code>save_every</code></b>
-                  (<code><span title="int">int</span></code>)
-              –
-              <div class="doc-md-description">
-                <p>The number of cells to save at a time. Defaults to 40_000.
-This is important to avoid memory issues.</p>
+                <p>The list of embeddings to be used for generating expression. Defaults to ["all"].</p>
               </div>
             </li>
         </ul>
@@ -6201,11 +6189,7 @@ This is important to avoid memory issues.</p>
 <span class="normal">41</span>
 <span class="normal">42</span>
 <span class="normal">43</span>
-<span class="normal">44</span>
-<span class="normal">45</span>
-<span class="normal">46</span>
-<span class="normal">47</span>
-<span class="normal">48</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
+<span class="normal">44</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
     <span class="bp">self</span><span class="p">,</span>
     <span class="n">genelist</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span>
     <span class="n">batch_size</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">64</span><span class="p">,</span>
@@ -6217,13 +6201,9 @@ This is important to avoid memory issues.</p>
 <span class="sd">    Embedder a class to embed and annotate cells using a model</span>
 
 <span class="sd">    Args:</span>
+<span class="sd">        genelist (List[str]): The list of genes for which to generate expression data.</span>
 <span class="sd">        batch_size (int, optional): The size of the batches to be used in the DataLoader. Defaults to 64.</span>
-<span class="sd">        num_workers (int, optional): The number of worker processes to use for data loading. Defaults to 8.</span>
-<span class="sd">        embedding_to_use (List[str], optional): The list of embeddings to be used for generating expression. Defaults to [ &quot;all&quot; ].</span>
-<span class="sd">        doplot (bool, optional): Whether to generate plots. Defaults to True.</span>
-<span class="sd">        genelist (List[str]): The list of genes for which to generate expression data</span>
-<span class="sd">        save_every (int, optional): The number of cells to save at a time. Defaults to 40_000.</span>
-<span class="sd">            This is important to avoid memory issues.</span>
+<span class="sd">        embedding_to_use (List[str], optional): The list of embeddings to be used for generating expression. Defaults to [&quot;all&quot;].</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">batch_size</span> <span class="o">=</span> <span class="n">batch_size</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">embedding_to_use</span> <span class="o">=</span> <span class="n">embedding_to_use</span>
@@ -6331,25 +6311,29 @@ This is important to avoid memory issues.</p>
       <td class="field-body">
         <ul class="first simple">
             <li>
-<b><code>AnnData</code></b>              –
+<b><code>AnnData</code></b>(                  <code><span title="anndata.AnnData">AnnData</span></code>
+)              –
               <div class="doc-md-description">
                 <p>The annotated data matrix with embedded cell representations.</p>
               </div>
             </li>
             <li>
+                  <code><span title="typing.List">List</span>[<span title="str">str</span>]</code>
               –
               <div class="doc-md-description">
                 <p>List[str]: List of gene names used in the embedding.</p>
               </div>
             </li>
             <li>
+                  <code><span title="numpy.ndarray">ndarray</span></code>
               –
               <div class="doc-md-description">
                 <p>np.ndarray: The predicted expression values if sample"none".</p>
               </div>
             </li>
             <li>
-<b><code>dict</code></b>              –
+<b><code>dict</code></b>(                  <code><span title="dict">dict</span></code>
+)              –
               <div class="doc-md-description">
                 <p>Additional metrics and information from the embedding process.</p>
               </div>
@@ -6362,7 +6346,11 @@ This is important to avoid memory issues.</p>
 
             <details class="mkdocstrings-source">
               <summary>Source code in <code>scprint2/tasks/generate.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 50</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 46</span>
+<span class="normal"> 47</span>
+<span class="normal"> 48</span>
+<span class="normal"> 49</span>
+<span class="normal"> 50</span>
 <span class="normal"> 51</span>
 <span class="normal"> 52</span>
 <span class="normal"> 53</span>
@@ -6448,11 +6436,7 @@ This is important to avoid memory issues.</p>
 <span class="normal">133</span>
 <span class="normal">134</span>
 <span class="normal">135</span>
-<span class="normal">136</span>
-<span class="normal">137</span>
-<span class="normal">138</span>
-<span class="normal">139</span>
-<span class="normal">140</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">model</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">,</span> <span class="n">adata</span><span class="p">:</span> <span class="n">AnnData</span><span class="p">):</span>
+<span class="normal">136</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">model</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">,</span> <span class="n">adata</span><span class="p">:</span> <span class="n">AnnData</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="n">AnnData</span><span class="p">,</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="nb">dict</span><span class="p">]:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    __call__ function to call the embedding</span>
 
@@ -6966,13 +6950,15 @@ applying zero inflation might give results closer to the specific biases of sequ
       <td class="field-body">
         <ul class="first simple">
             <li>
+                  <code><span title="typing.Optional">Optional</span>[<span title="numpy.ndarray">ndarray</span>]</code>
               –
               <div class="doc-md-description">
                 <p>Optional[np.ndarray]: The random indices of the cells used when max_cells &lt; adata.shape[0].</p>
               </div>
             </li>
             <li>
-<b><code>AnnData</code></b>              –
+<b><code>AnnData</code></b>(                  <code><span title="anndata.AnnData">AnnData</span></code>
+)              –
               <div class="doc-md-description">
                 <p>The imputed anndata.</p>
               </div>
@@ -7185,7 +7171,7 @@ applying zero inflation might give results closer to the specific biases of sequ
 <span class="normal">269</span>
 <span class="normal">270</span>
 <span class="normal">271</span>
-<span class="normal">272</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">model</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">,</span> <span class="n">adata</span><span class="p">:</span> <span class="n">AnnData</span><span class="p">):</span>
+<span class="normal">272</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">model</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">,</span> <span class="n">adata</span><span class="p">:</span> <span class="n">AnnData</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="n">Optional</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">],</span> <span class="n">AnnData</span><span class="p">]:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    __call__ calling the function</span>
 
@@ -8561,6 +8547,7 @@ if adata is provided, this will be ignored.</p>
         <ul class="first simple">
             <li>
               <b><code>X</code></b>
+                  (<code><span title="torch.Tensor">Tensor</span></code>)
               –
               <div class="doc-md-description">
                 <p>Tensor of shape (n1, emb_dim) - first set of embeddings</p>
@@ -8568,6 +8555,7 @@ if adata is provided, this will be ignored.</p>
             </li>
             <li>
               <b><code>Y</code></b>
+                  (<code><span title="torch.Tensor">Tensor</span></code>)
               –
               <div class="doc-md-description">
                 <p>Tensor of shape (n2, emb_dim) - second set of embeddings</p>
@@ -8590,9 +8578,10 @@ if adata is provided, this will be ignored.</p>
       <td class="field-body">
         <ul class="first simple">
             <li>
+                  <code><span title="torch.Tensor">Tensor</span></code>
               –
               <div class="doc-md-description">
-                <p>MMD loss value (negative to encourage dissimilarity)</p>
+                <p>torch.Tensor: MMD loss value (negative to encourage dissimilarity)</p>
               </div>
             </li>
         </ul>
@@ -8667,16 +8656,16 @@ if adata is provided, this will be ignored.</p>
 <span class="normal">556</span>
 <span class="normal">557</span>
 <span class="normal">558</span>
-<span class="normal">559</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">mmd_loss</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">):</span>
+<span class="normal">559</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">mmd_loss</span><span class="p">(</span><span class="n">X</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">,</span> <span class="n">Y</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Compute Maximum Mean Discrepancy (MMD) loss between two 2D embedding matrices.</span>
 
 <span class="sd">    Args:</span>
-<span class="sd">        X: Tensor of shape (n1, emb_dim) - first set of embeddings</span>
-<span class="sd">        Y: Tensor of shape (n2, emb_dim) - second set of embeddings</span>
+<span class="sd">        X (torch.Tensor): Tensor of shape (n1, emb_dim) - first set of embeddings</span>
+<span class="sd">        Y (torch.Tensor): Tensor of shape (n2, emb_dim) - second set of embeddings</span>
 
 <span class="sd">    Returns:</span>
-<span class="sd">        MMD loss value (negative to encourage dissimilarity)</span>
+<span class="sd">        torch.Tensor: MMD loss value (negative to encourage dissimilarity)</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="k">def</span><span class="w"> </span><span class="nf">rbf_kernel</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">sigma</span><span class="p">):</span>

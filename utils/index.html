@@ -499,6 +499,7 @@
       <td class="field-body">
         <ul class="first simple">
             <li>
+                  <code><span title="torch.Tensor">Tensor</span></code>
               –
               <div class="doc-md-description">
                 <p>torch.Tensor: The computed Sinkhorn distance.</p>
@@ -587,7 +588,7 @@
 <span class="normal">94</span>
 <span class="normal">95</span>
 <span class="normal">96</span>
-<span class="normal">97</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">c</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">):</span>
+<span class="normal">97</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">c</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    forward Compute the Sinkhorn distance between two measures with cost matrix c</span>
 
@@ -889,9 +890,7 @@
 
             <details class="mkdocstrings-source">
               <summary>Source code in <code>scprint2/utils/utils.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">410</span>
-<span class="normal">411</span>
-<span class="normal">412</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">412</span>
 <span class="normal">413</span>
 <span class="normal">414</span>
 <span class="normal">415</span>
@@ -928,7 +927,9 @@
 <span class="normal">446</span>
 <span class="normal">447</span>
 <span class="normal">448</span>
-<span class="normal">449</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">add_points</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">df1</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;blue&quot;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">outline</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">maxvalue</span><span class="o">=</span><span class="mi">100</span><span class="p">):</span>
+<span class="normal">449</span>
+<span class="normal">450</span>
+<span class="normal">451</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">add_points</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">df1</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;blue&quot;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">outline</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">maxvalue</span><span class="o">=</span><span class="mi">100</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;parts of volcano plot&quot;&quot;&quot;</span>
     <span class="c1"># Define colors in a dictionary to access them with</span>
     <span class="c1"># the key from the pandas groupby funciton.</span>
@@ -1037,9 +1038,7 @@
 
             <details class="mkdocstrings-source">
               <summary>Source code in <code>scprint2/utils/utils.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">103</span>
-<span class="normal">104</span>
-<span class="normal">105</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">105</span>
 <span class="normal">106</span>
 <span class="normal">107</span>
 <span class="normal">108</span>
@@ -1049,7 +1048,9 @@
 <span class="normal">112</span>
 <span class="normal">113</span>
 <span class="normal">114</span>
-<span class="normal">115</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">category_str2int</span><span class="p">(</span><span class="n">category_strs</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">]:</span>
+<span class="normal">115</span>
+<span class="normal">116</span>
+<span class="normal">117</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">category_str2int</span><span class="p">(</span><span class="n">category_strs</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">]:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    category_str2int converts a list of category strings to a list of category integers.</span>
 
@@ -1103,9 +1104,7 @@
 
             <details class="mkdocstrings-source">
               <summary>Source code in <code>scprint2/utils/utils.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">475</span>
-<span class="normal">476</span>
-<span class="normal">477</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">477</span>
 <span class="normal">478</span>
 <span class="normal">479</span>
 <span class="normal">480</span>
@@ -1277,7 +1276,9 @@
 <span class="normal">646</span>
 <span class="normal">647</span>
 <span class="normal">648</span>
-<span class="normal">649</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">correlationMatrix</span><span class="p">(</span>
+<span class="normal">649</span>
+<span class="normal">650</span>
+<span class="normal">651</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">correlationMatrix</span><span class="p">(</span>
     <span class="n">data</span><span class="p">,</span>
     <span class="n">names</span><span class="p">,</span>
     <span class="n">colors</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
@@ -1474,15 +1475,15 @@
 
             <details class="mkdocstrings-source">
               <summary>Source code in <code>scprint2/utils/utils.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 92</span>
-<span class="normal"> 93</span>
-<span class="normal"> 94</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 94</span>
 <span class="normal"> 95</span>
 <span class="normal"> 96</span>
 <span class="normal"> 97</span>
 <span class="normal"> 98</span>
 <span class="normal"> 99</span>
-<span class="normal">100</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">createFoldersFor</span><span class="p">(</span><span class="n">filepath</span><span class="p">):</span>
+<span class="normal">100</span>
+<span class="normal">101</span>
+<span class="normal">102</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">createFoldersFor</span><span class="p">(</span><span class="n">filepath</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    will recursively create folders if needed until having all the folders required to save the file in this filepath</span>
 <span class="sd">    &quot;&quot;&quot;</span>
@@ -1522,11 +1523,21 @@
       <td class="field-body">
         <ul class="first simple">
             <li>
-              <b><code>input_str</code></b>
+              <b><code>filename</code></b>
                   (<code><span title="str">str</span></code>)
               –
               <div class="doc-md-description">
-                <p>The input string to be completed.</p>
+                <p>The path to the file to be loaded.</p>
+              </div>
+            </li>
+            <li>
+              <b><code>strconv</code></b>
+                  (<code><span title="callable">callable</span></code>, default:
+                      <code>lambda x: <span title="x">x</span></code>
+)
+              –
+              <div class="doc-md-description">
+                <p>Function to convert each line. Defaults to identity function.</p>
               </div>
             </li>
         </ul>
@@ -1546,10 +1557,10 @@
       <td class="field-body">
         <ul class="first simple">
             <li>
-<b><code>str</code></b>(                  <code><span title="list">list</span></code>
+<b><code>list</code></b>(                  <code><span title="list">list</span></code>
 )              –
               <div class="doc-md-description">
-                <p>The completed string with 'complete' appended.</p>
+                <p>The list of converted values from the file.</p>
               </div>
             </li>
         </ul>
@@ -1560,8 +1571,7 @@
 
             <details class="mkdocstrings-source">
               <summary>Source code in <code>scprint2/utils/utils.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">48</span>
-<span class="normal">49</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">49</span>
 <span class="normal">50</span>
 <span class="normal">51</span>
 <span class="normal">52</span>
@@ -1571,15 +1581,18 @@
 <span class="normal">56</span>
 <span class="normal">57</span>
 <span class="normal">58</span>
-<span class="normal">59</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">fileToList</span><span class="p">(</span><span class="n">filename</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">strconv</span><span class="p">:</span> <span class="nb">callable</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">:</span>
+<span class="normal">59</span>
+<span class="normal">60</span>
+<span class="normal">61</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">fileToList</span><span class="p">(</span><span class="n">filename</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">strconv</span><span class="p">:</span> <span class="nb">callable</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    loads an input file with a\\n b\\n.. into a list [a,b,..]</span>
 
 <span class="sd">    Args:</span>
-<span class="sd">        input_str (str): The input string to be completed.</span>
+<span class="sd">        filename (str): The path to the file to be loaded.</span>
+<span class="sd">        strconv (callable): Function to convert each line. Defaults to identity function.</span>
 
 <span class="sd">    Returns:</span>
-<span class="sd">        str: The completed string with &#39;complete&#39; appended.</span>
+<span class="sd">        list: The list of converted values from the file.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
         <span class="k">return</span> <span class="p">[</span><span class="n">strconv</span><span class="p">(</span><span class="n">val</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span> <span class="k">for</span> <span class="n">val</span> <span class="ow">in</span> <span class="n">f</span><span class="o">.</span><span class="n">readlines</span><span class="p">()]</span>
@@ -1614,7 +1627,8 @@
       <td class="field-body">
         <ul class="first simple">
             <li>
-<b><code>int</code></b>              –
+<b><code>int</code></b>(                  <code><span title="int">int</span></code>
+)              –
               <div class="doc-md-description">
                 <p>The index of the GPU with the most free memory.</p>
               </div>
@@ -1627,9 +1641,7 @@
 
             <details class="mkdocstrings-source">
               <summary>Source code in <code>scprint2/utils/utils.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">132</span>
-<span class="normal">133</span>
-<span class="normal">134</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">134</span>
 <span class="normal">135</span>
 <span class="normal">136</span>
 <span class="normal">137</span>
@@ -1655,7 +1667,9 @@
 <span class="normal">157</span>
 <span class="normal">158</span>
 <span class="normal">159</span>
-<span class="normal">160</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">get_free_gpu</span><span class="p">():</span>
+<span class="normal">160</span>
+<span class="normal">161</span>
+<span class="normal">162</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">get_free_gpu</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    get_free_gpu finds the GPU with the most free memory using nvidia-smi.</span>
 
@@ -1715,7 +1729,8 @@
       <td class="field-body">
         <ul class="first simple">
             <li>
-<b><code>str</code></b>              –
+<b><code>str</code></b>(                  <code><span title="str">str</span></code>
+)              –
               <div class="doc-md-description">
                 <p>The current git commit</p>
               </div>
@@ -1728,14 +1743,14 @@
 
             <details class="mkdocstrings-source">
               <summary>Source code in <code>scprint2/utils/utils.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">163</span>
-<span class="normal">164</span>
-<span class="normal">165</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">165</span>
 <span class="normal">166</span>
 <span class="normal">167</span>
 <span class="normal">168</span>
 <span class="normal">169</span>
-<span class="normal">170</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">get_git_commit</span><span class="p">():</span>
+<span class="normal">170</span>
+<span class="normal">171</span>
+<span class="normal">172</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">get_git_commit</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    get_git_commit gets the current git commit hash.</span>
 
@@ -1779,9 +1794,7 @@
 
             <details class="mkdocstrings-source">
               <summary>Source code in <code>scprint2/utils/utils.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">652</span>
-<span class="normal">653</span>
-<span class="normal">654</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">654</span>
 <span class="normal">655</span>
 <span class="normal">656</span>
 <span class="normal">657</span>
@@ -1935,7 +1948,9 @@
 <span class="normal">805</span>
 <span class="normal">806</span>
 <span class="normal">807</span>
-<span class="normal">808</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">heatmap</span><span class="p">(</span>
+<span class="normal">808</span>
+<span class="normal">809</span>
+<span class="normal">810</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">heatmap</span><span class="p">(</span>
     <span class="n">data</span><span class="p">,</span>
     <span class="n">colors</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
     <span class="n">title</span><span class="o">=</span><span class="s2">&quot;correlation Matrix&quot;</span><span class="p">,</span>
@@ -2114,10 +2129,10 @@
 
             <details class="mkdocstrings-source">
               <summary>Source code in <code>scprint2/utils/utils.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">191</span>
-<span class="normal">192</span>
-<span class="normal">193</span>
-<span class="normal">194</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">inf_loop</span><span class="p">(</span><span class="n">data_loader</span><span class="p">):</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">193</span>
+<span class="normal">194</span>
+<span class="normal">195</span>
+<span class="normal">196</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">inf_loop</span><span class="p">(</span><span class="n">data_loader</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;wrapper function for endless data loader.&quot;&quot;&quot;</span>
     <span class="k">for</span> <span class="n">loader</span> <span class="ow">in</span> <span class="n">repeat</span><span class="p">(</span><span class="n">data_loader</span><span class="p">):</span>
         <span class="k">yield from</span> <span class="n">loader</span>
@@ -2143,9 +2158,7 @@
 
             <details class="mkdocstrings-source">
               <summary>Source code in <code>scprint2/utils/utils.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">118</span>
-<span class="normal">119</span>
-<span class="normal">120</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">120</span>
 <span class="normal">121</span>
 <span class="normal">122</span>
 <span class="normal">123</span>
@@ -2154,7 +2167,9 @@
 <span class="normal">126</span>
 <span class="normal">127</span>
 <span class="normal">128</span>
-<span class="normal">129</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">isnotebook</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="normal">129</span>
+<span class="normal">130</span>
+<span class="normal">131</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">isnotebook</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;check whether excuting in jupyter notebook.&quot;&quot;&quot;</span>
     <span class="k">try</span><span class="p">:</span>
         <span class="n">shell</span> <span class="o">=</span> <span class="n">get_ipython</span><span class="p">()</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span>
@@ -2197,7 +2212,7 @@
       <td class="field-body">
         <ul class="first simple">
             <li>
-              <b><code>l</code></b>
+              <b><code>li</code></b>
                   (<code><span title="list">list</span></code>)
               –
               <div class="doc-md-description">
@@ -2253,9 +2268,7 @@
 
             <details class="mkdocstrings-source">
               <summary>Source code in <code>scprint2/utils/utils.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">62</span>
-<span class="normal">63</span>
-<span class="normal">64</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">64</span>
 <span class="normal">65</span>
 <span class="normal">66</span>
 <span class="normal">67</span>
@@ -2269,14 +2282,16 @@
 <span class="normal">75</span>
 <span class="normal">76</span>
 <span class="normal">77</span>
-<span class="normal">78</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">listToFile</span><span class="p">(</span>
+<span class="normal">78</span>
+<span class="normal">79</span>
+<span class="normal">80</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">listToFile</span><span class="p">(</span>
     <span class="n">li</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> <span class="n">filename</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">strconv</span><span class="p">:</span> <span class="nb">callable</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="nb">str</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    listToFile loads a list with [a,b,..] into an input file a\\n b\\n..</span>
 
 <span class="sd">    Args:</span>
-<span class="sd">        l (list): The list of elements to be written to the file.</span>
+<span class="sd">        li (list): The list of elements to be written to the file.</span>
 <span class="sd">        filename (str): The name of the file where the list will be written.</span>
 <span class="sd">        strconv (callable, optional): A function to convert each element of the list to a string. Defaults to str.</span>
 
@@ -2308,9 +2323,7 @@
 
             <details class="mkdocstrings-source">
               <summary>Source code in <code>scprint2/utils/utils.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">197</span>
-<span class="normal">198</span>
-<span class="normal">199</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">199</span>
 <span class="normal">200</span>
 <span class="normal">201</span>
 <span class="normal">202</span>
@@ -2327,7 +2340,9 @@
 <span class="normal">213</span>
 <span class="normal">214</span>
 <span class="normal">215</span>
-<span class="normal">216</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">prepare_device</span><span class="p">(</span><span class="n">n_gpu_use</span><span class="p">):</span>
+<span class="normal">216</span>
+<span class="normal">217</span>
+<span class="normal">218</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">prepare_device</span><span class="p">(</span><span class="n">n_gpu_use</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    setup GPU device if available. get gpu device indices which are used for DataParallel</span>
 <span class="sd">    &quot;&quot;&quot;</span>
@@ -2416,8 +2431,7 @@
 
             <details class="mkdocstrings-source">
               <summary>Source code in <code>scprint2/utils/utils.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">27</span>
-<span class="normal">28</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">28</span>
 <span class="normal">29</span>
 <span class="normal">30</span>
 <span class="normal">31</span>
@@ -2434,7 +2448,8 @@
 <span class="normal">42</span>
 <span class="normal">43</span>
 <span class="normal">44</span>
-<span class="normal">45</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">run_command</span><span class="p">(</span><span class="n">command</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+<span class="normal">45</span>
+<span class="normal">46</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">run_command</span><span class="p">(</span><span class="n">command</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    run_command runs a command in the shell and prints the output.</span>
 
@@ -2475,9 +2490,7 @@
 
             <details class="mkdocstrings-source">
               <summary>Source code in <code>scprint2/utils/utils.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">452</span>
-<span class="normal">453</span>
-<span class="normal">454</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">454</span>
 <span class="normal">455</span>
 <span class="normal">456</span>
 <span class="normal">457</span>
@@ -2495,7 +2508,9 @@
 <span class="normal">469</span>
 <span class="normal">470</span>
 <span class="normal">471</span>
-<span class="normal">472</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">selector</span><span class="p">(</span>
+<span class="normal">472</span>
+<span class="normal">473</span>
+<span class="normal">474</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">selector</span><span class="p">(</span>
     <span class="n">df</span><span class="p">,</span>
     <span class="n">valtoextract</span><span class="o">=</span><span class="p">[],</span>
     <span class="n">logfoldtohighlight</span><span class="o">=</span><span class="mf">0.15</span><span class="p">,</span>
@@ -2538,13 +2553,13 @@
 
             <details class="mkdocstrings-source">
               <summary>Source code in <code>scprint2/utils/utils.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">81</span>
-<span class="normal">82</span>
-<span class="normal">83</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">83</span>
 <span class="normal">84</span>
 <span class="normal">85</span>
 <span class="normal">86</span>
-<span class="normal">87</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">set_seed</span><span class="p">(</span><span class="n">seed</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">42</span><span class="p">):</span>
+<span class="normal">87</span>
+<span class="normal">88</span>
+<span class="normal">89</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">set_seed</span><span class="p">(</span><span class="n">seed</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">42</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;set random seed.&quot;&quot;&quot;</span>
     <span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="n">seed</span><span class="p">)</span>
     <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="n">seed</span><span class="p">)</span>
@@ -2589,9 +2604,7 @@ field_rename_dict -- A mapping between the slots of the source h5ad and the slot
 
             <details class="mkdocstrings-source">
               <summary>Source code in <code>scprint2/utils/utils.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">224</span>
-<span class="normal">225</span>
-<span class="normal">226</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">226</span>
 <span class="normal">227</span>
 <span class="normal">228</span>
 <span class="normal">229</span>
@@ -2654,7 +2667,9 @@ field_rename_dict -- A mapping between the slots of the source h5ad and the slot
 <span class="normal">286</span>
 <span class="normal">287</span>
 <span class="normal">288</span>
-<span class="normal">289</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">subset_h5ad_by_format</span><span class="p">(</span><span class="n">adata</span><span class="p">,</span> <span class="n">config</span><span class="p">,</span> <span class="n">arg_name</span><span class="p">,</span> <span class="n">field_rename_dict</span><span class="o">=</span><span class="p">{}):</span>
+<span class="normal">289</span>
+<span class="normal">290</span>
+<span class="normal">291</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">subset_h5ad_by_format</span><span class="p">(</span><span class="n">adata</span><span class="p">,</span> <span class="n">config</span><span class="p">,</span> <span class="n">arg_name</span><span class="p">,</span> <span class="n">field_rename_dict</span><span class="o">=</span><span class="p">{}):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Create new anndata object according to slot info specifications.</span>
 
 <span class="sd">    Arguments:</span>
@@ -2759,9 +2774,7 @@ showlabels: bool whether or not to show a text above each datapoint with its lab
 
             <details class="mkdocstrings-source">
               <summary>Source code in <code>scprint2/utils/utils.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">292</span>
-<span class="normal">293</span>
-<span class="normal">294</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">294</span>
 <span class="normal">295</span>
 <span class="normal">296</span>
 <span class="normal">297</span>
@@ -2874,7 +2887,9 @@ showlabels: bool whether or not to show a text above each datapoint with its lab
 <span class="normal">404</span>
 <span class="normal">405</span>
 <span class="normal">406</span>
-<span class="normal">407</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">volcano</span><span class="p">(</span>
+<span class="normal">407</span>
+<span class="normal">408</span>
+<span class="normal">409</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">volcano</span><span class="p">(</span>
     <span class="n">data</span><span class="p">,</span>
     <span class="n">folder</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span>
     <span class="n">tohighlight</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
@@ -4630,7 +4645,7 @@ for improving cell type predictions using graph structure.</p>
 )
               –
               <div class="doc-md-description">
-                <p>Key in adata.obsm for the representation to use</p>
+                <p>Key in adata.obsm for the representation to use. Defaults to "X_pca".</p>
               </div>
             </li>
             <li>
@@ -4640,7 +4655,7 @@ for improving cell type predictions using graph structure.</p>
 )
               –
               <div class="doc-md-description">
-                <p>Number of nearest neighbors</p>
+                <p>Number of nearest neighbors. Defaults to 15.</p>
               </div>
             </li>
             <li>
@@ -4650,15 +4665,7 @@ for improving cell type predictions using graph structure.</p>
 )
               –
               <div class="doc-md-description">
-                <p>Distance metric for nearest neighbor search</p>
-              </div>
-            </li>
-            <li>
-              <b><code>store_key</code></b>
-                  (<code><span title="str">str</span></code>)
-              –
-              <div class="doc-md-description">
-                <p>Key to store connectivity matrix in adata.obsp</p>
+                <p>Distance metric for nearest neighbor search. Defaults to "euclidean".</p>
               </div>
             </li>
         </ul>
@@ -4723,8 +4730,7 @@ for improving cell type predictions using graph structure.</p>
 <span class="normal">126</span>
 <span class="normal">127</span>
 <span class="normal">128</span>
-<span class="normal">129</span>
-<span class="normal">130</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">build_knn_graph</span><span class="p">(</span>
+<span class="normal">129</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">build_knn_graph</span><span class="p">(</span>
     <span class="n">adata</span><span class="p">:</span> <span class="n">anndata</span><span class="o">.</span><span class="n">AnnData</span><span class="p">,</span>
     <span class="n">representation_key</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;X_pca&quot;</span><span class="p">,</span>
     <span class="n">n_neighbors</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">15</span><span class="p">,</span>
@@ -4735,10 +4741,9 @@ for improving cell type predictions using graph structure.</p>
 
 <span class="sd">    Args:</span>
 <span class="sd">        adata (anndata.AnnData): AnnData object</span>
-<span class="sd">        representation_key (str): Key in adata.obsm for the representation to use</span>
-<span class="sd">        n_neighbors (int): Number of nearest neighbors</span>
-<span class="sd">        metric (str): Distance metric for nearest neighbor search</span>
-<span class="sd">        store_key (str): Key to store connectivity matrix in adata.obsp</span>
+<span class="sd">        representation_key (str): Key in adata.obsm for the representation to use. Defaults to &quot;X_pca&quot;.</span>
+<span class="sd">        n_neighbors (int): Number of nearest neighbors. Defaults to 15.</span>
+<span class="sd">        metric (str): Distance metric for nearest neighbor search. Defaults to &quot;euclidean&quot;.</span>
 
 <span class="sd">    Returns:</span>
 <span class="sd">        anndata.AnnData: Updated AnnData object with connectivity matrix</span>
@@ -5077,7 +5082,8 @@ the strength of regularization.</p>
 
             <details class="mkdocstrings-source">
               <summary>Source code in <code>scprint2/utils/graph_refinement.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">192</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">191</span>
+<span class="normal">192</span>
 <span class="normal">193</span>
 <span class="normal">194</span>
 <span class="normal">195</span>
@@ -5110,8 +5116,7 @@ the strength of regularization.</p>
 <span class="normal">222</span>
 <span class="normal">223</span>
 <span class="normal">224</span>
-<span class="normal">225</span>
-<span class="normal">226</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">test_graph_refinement</span><span class="p">():</span>
+<span class="normal">225</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">test_graph_refinement</span><span class="p">():</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Test function for graph refinement.&quot;&quot;&quot;</span>
 
     <span class="c1"># Create synthetic data</span>
@@ -5257,7 +5262,8 @@ then performs argmax to get final predictions.</p>
 
             <details class="mkdocstrings-source">
               <summary>Source code in <code>scprint2/utils/graph_refinement.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">133</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">132</span>
+<span class="normal">133</span>
 <span class="normal">134</span>
 <span class="normal">135</span>
 <span class="normal">136</span>
@@ -5311,8 +5317,7 @@ then performs argmax to get final predictions.</p>
 <span class="normal">184</span>
 <span class="normal">185</span>
 <span class="normal">186</span>
-<span class="normal">187</span>
-<span class="normal">188</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">zero_shot_annotation_with_refinement</span><span class="p">(</span>
+<span class="normal">187</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">zero_shot_annotation_with_refinement</span><span class="p">(</span>
     <span class="n">pred</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span>
     <span class="n">adata</span><span class="p">:</span> <span class="n">anndata</span><span class="o">.</span><span class="n">AnnData</span><span class="p">,</span>
     <span class="n">connectivity_key</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;connectivities&quot;</span><span class="p">,</span>
