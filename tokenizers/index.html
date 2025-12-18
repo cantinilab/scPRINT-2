@@ -3,9 +3,9 @@
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://www.jkobject.com/scPRINT-2/embedder/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://www.jkobject.com/scPRINT-2/tokenizers/" />
       <link rel="shortcut icon" href="../img/favicon.ico" />
-    <title>Documentation for the tokenizers module - scPRINT-2</title>
+    <title>tokenizers - scPRINT-2</title>
     <link rel="stylesheet" href="../css/theme.css" />
     <link rel="stylesheet" href="../css/theme_extra.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
@@ -13,9 +13,9 @@
     
       <script>
         // Current page data
-        var mkdocs_page_name = "Documentation for the tokenizers module";
-        var mkdocs_page_input_path = "embedder.md";
-        var mkdocs_page_url = "/scPRINT-2/embedder/";
+        var mkdocs_page_name = "tokenizers";
+        var mkdocs_page_input_path = "tokenizers.md";
+        var mkdocs_page_url = "/scPRINT-2/tokenizers/";
       </script>
     
     <!--[if lt IE 9]>
@@ -57,16 +57,36 @@
                 </li>
               </ul>
               <p class="caption"><span class="caption-text">documentation</span></p>
-              <ul>
+              <ul class="current">
                   <li class="toctree-l1"><a class="reference internal" href="../model/">model</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">tokenizers</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#scprint2.tokenizers.protein_embedder">protein_embedder</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#scprint2.tokenizers.protein_embedder.ESM2">ESM2</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#scprint2.tokenizers.protein_embedder.ESM2.__call__">__call__</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#scprint2.tokenizers.protein_embedder.ESM2.read_results">read_results</a>
+    </li>
+        </ul>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#scprint2.tokenizers.embedder">embedder</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#scprint2.tokenizers.embedder.protein_embeddings_generator">protein_embeddings_generator</a>
+    </li>
+        </ul>
+    </li>
+    </ul>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../tasks/">tasks</a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../cli/">cli</a>
-                  </li>
-                  <li class="toctree-l1"><a class="" href="../tokenizers.md">tokenizers</a>
-                  </li>
                   <li class="toctree-l1"><a class="reference internal" href="../utils/">utils</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../cli/">cli</a>
                   </li>
               </ul>
       </div>
@@ -83,7 +103,8 @@
         <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
     <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
-      <li class="breadcrumb-item active">Documentation for the tokenizers module</li>
+          <li class="breadcrumb-item">documentation</li>
+      <li class="breadcrumb-item active">tokenizers</li>
     <li class="wy-breadcrumbs-aside">
     </li>
   </ul>
@@ -526,7 +547,7 @@
 <span class="normal">79</span>
 <span class="normal">80</span>
 <span class="normal">81</span>
-<span class="normal">82</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">read_results</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">output_folder</span><span class="p">):</span>
+<span class="normal">82</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">read_results</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">output_folder</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Read multiple .pt files in a folder and convert them into a DataFrame.</span>
 
@@ -918,6 +939,10 @@
               
             </div>
           </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../model/" class="btn btn-neutral float-left" title="model"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../tasks/" class="btn btn-neutral float-right" title="tasks">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
 
   <hr/>
 
@@ -939,6 +964,10 @@
   <span class="rst-current-version" data-toggle="rst-current-version">
     
     
+      <span><a href="../model/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../tasks/" style="color: #fcfcfc">Next &raquo;</a></span>
     
   </span>
 </div>

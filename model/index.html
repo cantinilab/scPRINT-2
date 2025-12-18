@@ -284,13 +284,13 @@
     </li>
     </ul>
                   </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../tokenizers/">tokenizers</a>
+                  </li>
                   <li class="toctree-l1"><a class="reference internal" href="../tasks/">tasks</a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../cli/">cli</a>
-                  </li>
-                  <li class="toctree-l1"><a class="" href="../tokenizers.md">tokenizers</a>
-                  </li>
                   <li class="toctree-l1"><a class="reference internal" href="../utils/">utils</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../cli/">cli</a>
                   </li>
               </ul>
       </div>
@@ -6458,7 +6458,8 @@ MAE = mean absolute error</p>
       <td class="field-body">
         <ul class="first simple">
             <li>
-<b><code>Tensor</code></b>              –
+<b><code>Tensor</code></b>(                  <code><span title="torch.Tensor">Tensor</span></code>
+)              –
               <div class="doc-md-description">
                 <p>Negative binomial loss value.</p>
               </div>
@@ -6485,7 +6486,7 @@ MAE = mean absolute error</p>
 <span class="normal">103</span>
 <span class="normal">104</span>
 <span class="normal">105</span>
-<span class="normal">106</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">nb_dist</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="n">Tensor</span><span class="p">,</span> <span class="n">mu</span><span class="p">:</span> <span class="n">Tensor</span><span class="p">,</span> <span class="n">theta</span><span class="p">:</span> <span class="n">Tensor</span><span class="p">,</span> <span class="n">eps</span><span class="o">=</span><span class="mf">1e-4</span><span class="p">):</span>
+<span class="normal">106</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">nb_dist</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="n">Tensor</span><span class="p">,</span> <span class="n">mu</span><span class="p">:</span> <span class="n">Tensor</span><span class="p">,</span> <span class="n">theta</span><span class="p">:</span> <span class="n">Tensor</span><span class="p">,</span> <span class="n">eps</span><span class="o">=</span><span class="mf">1e-4</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tensor</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    nb_dist Computes the negative binomial distribution.</span>
 
@@ -6533,6 +6534,7 @@ using a combination of cosine and L2 distance</p>
         <ul class="first simple">
             <li>
               <b><code>cell_embs</code></b>
+                  (<code><span title="torch.Tensor">Tensor</span></code>)
               –
               <div class="doc-md-description">
                 <p>tensor of shape [batch_size, num_embeddings, embedding_dim]</p>
@@ -6575,7 +6577,7 @@ using a combination of cosine and L2 distance</p>
 <span class="normal">465</span>
 <span class="normal">466</span>
 <span class="normal">467</span>
-<span class="normal">468</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">within_sample</span><span class="p">(</span><span class="n">cell_embs</span><span class="p">):</span>
+<span class="normal">468</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">within_sample</span><span class="p">(</span><span class="n">cell_embs</span><span class="p">:</span> <span class="n">Tensor</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Compute dissimilarity between embeddings within each sample</span>
 <span class="sd">    using a combination of cosine and L2 distance</span>
@@ -6695,7 +6697,8 @@ using a combination of cosine and L2 distance</p>
       <td class="field-body">
         <ul class="first simple">
             <li>
-<b><code>Tensor</code></b>              –
+<b><code>Tensor</code></b>(                  <code><span title="torch.Tensor">Tensor</span></code>
+)              –
               <div class="doc-md-description">
                 <p>ZINB loss value.</p>
               </div>
@@ -6763,7 +6766,7 @@ using a combination of cosine and L2 distance</p>
     <span class="n">pi</span><span class="p">:</span> <span class="n">Tensor</span><span class="p">,</span>
     <span class="n">eps</span><span class="o">=</span><span class="mf">1e-4</span><span class="p">,</span>
     <span class="n">mask</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
-<span class="p">):</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tensor</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Computes zero-inflated negative binomial (ZINB) loss.</span>
 
@@ -9444,9 +9447,9 @@ the first is mu, the second theta, the third pi if present</p>
       <td class="field-body">
         <ul class="first simple">
             <li>
-              –
+<b><code>Tensor</code></b>              –
               <div class="doc-md-description">
-                <p>torch.Tensor: A tensor representing the encoded categorical values.</p>
+                <p>A tensor representing the encoded categorical values.</p>
               </div>
             </li>
         </ul>
@@ -9505,7 +9508,7 @@ the first is mu, the second theta, the third pi if present</p>
 <span class="sd">        padding_idx (int, optional): The index of the padding token. Defaults to None.</span>
 
 <span class="sd">    Returns:</span>
-<span class="sd">        torch.Tensor: A tensor representing the encoded categorical values.</span>
+<span class="sd">        Tensor: A tensor representing the encoded categorical values.</span>
 
 <span class="sd">    Note: not used in the current version of scprint-2.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
@@ -10349,6 +10352,9 @@ It is inspired from the DeepSets architecture to aggregate neighbor information.
         <ul class="first simple">
             <li>
               <b><code>expr</code></b>
+                  (<code><span title="typing.Optional">Optional</span>[<span title="torch.Tensor">Tensor</span>]</code>, default:
+                      <code>None</code>
+)
               –
               <div class="doc-md-description">
                 <p>Tensor of shape (batch, seq_len) representing expression values</p>
@@ -10356,6 +10362,9 @@ It is inspired from the DeepSets architecture to aggregate neighbor information.
             </li>
             <li>
               <b><code>neighbors</code></b>
+                  (<code><span title="typing.Optional">Optional</span>[<span title="torch.Tensor">Tensor</span>]</code>, default:
+                      <code>None</code>
+)
               –
               <div class="doc-md-description">
                 <p>Tensor of shape (batch, seq_len, n_neighbors) representing neighbor indices</p>
@@ -10363,6 +10372,9 @@ It is inspired from the DeepSets architecture to aggregate neighbor information.
             </li>
             <li>
               <b><code>edge_info</code></b>
+                  (<code><span title="typing.Optional">Optional</span>[<span title="torch.Tensor">Tensor</span>]</code>, default:
+                      <code>None</code>
+)
               –
               <div class="doc-md-description">
                 <p>Tensor of shape (batch, seq_len, n_neighbors) representing edge information</p>
@@ -10370,6 +10382,9 @@ It is inspired from the DeepSets architecture to aggregate neighbor information.
             </li>
             <li>
               <b><code>mask</code></b>
+                  (<code><span title="typing.Optional">Optional</span>[<span title="torch.Tensor">Tensor</span>]</code>, default:
+                      <code>None</code>
+)
               –
               <div class="doc-md-description">
                 <p>Tensor of shape (batch, seq_len) representing mask for the input</p>
@@ -10392,6 +10407,7 @@ It is inspired from the DeepSets architecture to aggregate neighbor information.
       <td class="field-body">
         <ul class="first simple">
             <li>
+                  <code><span title="torch.Tensor">Tensor</span></code>
               –
               <div class="doc-md-description">
                 <p>Tensor of shape (batch, seq_len, output_dim) representing the output features</p>
@@ -10446,7 +10462,19 @@ It is inspired from the DeepSets architecture to aggregate neighbor information.
 <span class="normal">516</span>
 <span class="normal">517</span>
 <span class="normal">518</span>
-<span class="normal">519</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">expr</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">neighbors</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">edge_info</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">mask</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="normal">519</span>
+<span class="normal">520</span>
+<span class="normal">521</span>
+<span class="normal">522</span>
+<span class="normal">523</span>
+<span class="normal">524</span>
+<span class="normal">525</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">forward</span><span class="p">(</span>
+    <span class="bp">self</span><span class="p">,</span>
+    <span class="n">expr</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Tensor</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">neighbors</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Tensor</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">edge_info</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Tensor</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">mask</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Tensor</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tensor</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Forward pass of the Easy Expression GNN</span>
 
@@ -11054,13 +11082,7 @@ Supports GCN, GAT, GraphSAGE, and DeepSets architectures.</p>
 
                   <details class="quote">
                     <summary>Source code in <code>scprint2/model/encoders.py</code></summary>
-                    <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">542</span>
-<span class="normal">543</span>
-<span class="normal">544</span>
-<span class="normal">545</span>
-<span class="normal">546</span>
-<span class="normal">547</span>
-<span class="normal">548</span>
+                    <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">548</span>
 <span class="normal">549</span>
 <span class="normal">550</span>
 <span class="normal">551</span>
@@ -11142,7 +11164,13 @@ Supports GCN, GAT, GraphSAGE, and DeepSets architectures.</p>
 <span class="normal">627</span>
 <span class="normal">628</span>
 <span class="normal">629</span>
-<span class="normal">630</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
+<span class="normal">630</span>
+<span class="normal">631</span>
+<span class="normal">632</span>
+<span class="normal">633</span>
+<span class="normal">634</span>
+<span class="normal">635</span>
+<span class="normal">636</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
     <span class="bp">self</span><span class="p">,</span>
     <span class="n">input_dim</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>  <span class="c1"># here, 1 or 2</span>
     <span class="n">merge_dim</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">32</span><span class="p">,</span>
@@ -11333,13 +11361,7 @@ Supports GCN, GAT, GraphSAGE, and DeepSets architectures.</p>
 
             <details class="mkdocstrings-source">
               <summary>Source code in <code>scprint2/model/encoders.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">632</span>
-<span class="normal">633</span>
-<span class="normal">634</span>
-<span class="normal">635</span>
-<span class="normal">636</span>
-<span class="normal">637</span>
-<span class="normal">638</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">638</span>
 <span class="normal">639</span>
 <span class="normal">640</span>
 <span class="normal">641</span>
@@ -11369,7 +11391,13 @@ Supports GCN, GAT, GraphSAGE, and DeepSets architectures.</p>
 <span class="normal">665</span>
 <span class="normal">666</span>
 <span class="normal">667</span>
-<span class="normal">668</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">neighbors</span><span class="p">,</span> <span class="n">edge_info</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">batch</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">mask</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="normal">668</span>
+<span class="normal">669</span>
+<span class="normal">670</span>
+<span class="normal">671</span>
+<span class="normal">672</span>
+<span class="normal">673</span>
+<span class="normal">674</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">neighbors</span><span class="p">,</span> <span class="n">edge_info</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">batch</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">mask</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Forward pass</span>
 
@@ -14648,7 +14676,7 @@ c - number of codebook dim</p>
           </div><footer>
     <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
         <a href="../umap/nice_umap_scprint2.html" class="btn btn-neutral float-left" title="350M subset umap"><span class="icon icon-circle-arrow-left"></span> Previous</a>
-        <a href="../tasks/" class="btn btn-neutral float-right" title="tasks">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../tokenizers/" class="btn btn-neutral float-right" title="tokenizers">Next <span class="icon icon-circle-arrow-right"></span></a>
     </div>
 
   <hr/>
@@ -14674,7 +14702,7 @@ c - number of codebook dim</p>
       <span><a href="../umap/nice_umap_scprint2.html" style="color: #fcfcfc">&laquo; Previous</a></span>
     
     
-      <span><a href="../tasks/" style="color: #fcfcfc">Next &raquo;</a></span>
+      <span><a href="../tokenizers/" style="color: #fcfcfc">Next &raquo;</a></span>
     
   </span>
 </div>

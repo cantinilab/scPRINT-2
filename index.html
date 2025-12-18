@@ -144,13 +144,13 @@
               <ul>
                   <li class="toctree-l1"><a class="reference internal" href="model/">model</a>
                   </li>
+                  <li class="toctree-l1"><a class="reference internal" href="tokenizers/">tokenizers</a>
+                  </li>
                   <li class="toctree-l1"><a class="reference internal" href="tasks/">tasks</a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="cli/">cli</a>
-                  </li>
-                  <li class="toctree-l1"><a class="" href="tokenizers.md">tokenizers</a>
-                  </li>
                   <li class="toctree-l1"><a class="reference internal" href="utils/">utils</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="cli/">cli</a>
                   </li>
               </ul>
       </div>
@@ -177,13 +177,13 @@
             <div class="section" itemprop="articleBody">
               
                 <h1 id="scprint-2-your-next-gen-single-cell-foundation-model">scPRINT-2: 🏃🏃Your next-gen single cell foundation model</h1>
-<p><img src="docs/fig.png" alt="logo" width="600" /></p>
-<p>scPRINT-2 is a single-cell RNA-seq foundation model built by Jérémie Kalfon in
-the Cantini Lab. It uses novel architecture, encoding, decoding, training
+<p><img src="./fig.png" alt="logo" width="600" /></p>
+<p><strong>scPRINT-2</strong> is a single-cell RNA-seq foundation model built by Jérémie Kalfon
+in the Cantini Lab. It uses novel architecture, encoding, decoding, training
 paradigms and losses.</p>
-<p>scPRINT-2 has been pretrained on more than 350 million cells from more than
+<p><strong>scPRINT-2</strong> has been pretrained on more than 350 million cells from more than
 22,000 datasets and 16 species.</p>
-<p>scPRINT-2 can be used to perform the following analyses in a zero-shot mode:</p>
+<p><strong>scPRINT-2</strong> can be used to perform the following analyses in a zero-shot mode:</p>
 <ul>
 <li><strong>expression denoising &amp; imputation</strong>: increase the resolution of your
   scRNAseq data and discover un-measured genes' expression</li>
@@ -194,8 +194,8 @@ paradigms and losses.</p>
   tissue of origin and ethnicity of your cells.</li>
 <li><strong>gene network inference</strong>: generate a gene network from any cell or cell
   cluster in your scRNAseq dataset</li>
-<li>cross species integration: scPRINT-2 has been trained on 16 species and can be
-  used to integrate data from different species.</li>
+<li><strong>cross species integration</strong>: scPRINT-2 has been trained on 16 species and
+  can be used to integrate data from different species.</li>
 </ul>
 <p>Example of scPRINT-2 finetuning exist for:</p>
 <ul>
@@ -208,7 +208,7 @@ paradigms and losses.</p>
 <p>scPRINT-2 is a foundation model and can be fine-tuned to perform many other
 analysis</p>
 <p><a href="https://www.biorxiv.org/content/10.64898/2025.12.11.693702v1">Read the manuscript!</a>
-if you would like to know more about scPRINT-2. Or have a look at some of my
+if you would like to know more about <strong>scPRINT-2</strong>. Or have a look at some of my
 <a href="https://twitter.com/jkobject">X-plainers</a>.</p>
 <p>🎊 test scPRINT and scDataloader on this simple example
 <a href="https://colab.research.google.com/drive/1CacoQDAwJn86tq2sBhUoZ6M-xAqsYFDI#scrollTo=Lb4E9IhQ7NK8">google collab</a></p>
@@ -263,9 +263,9 @@ if you would like to know more about scPRINT-2. Or have a look at some of my
 </li>
 </ul>
 <h2 id="use-scprint-2">Use <code>scPRINT-2</code></h2>
-<p>For the moment scPRINT-2 has been tested on MacOS and Linux (Ubuntu 20.04) with
-Python 3.10+. Its instalation takes on average 2 minutes in <code>uv</code> but much longer
-on <code>conda</code>. We highly recommend using <code>uv</code> to manage your python virtual
+<p>For the moment <strong>scPRINT-2</strong> has been tested on MacOS and Linux (Ubuntu 20.04)
+with Python 3.10+. Its instalation takes on average 2 minutes in <code>uv</code> but much
+longer on <code>conda</code>. We highly recommend using <code>uv</code> to manage your python virtual
 environments!!</p>
 <p>Here is a link to our --still maintained-- previous generation model which
 contains larger size models: <a href="https://github.com/cantinilab/scPRINT">scPRINT-1</a>
@@ -275,10 +275,10 @@ contains larger size models: <a href="https://github.com/cantinilab/scPRINT">scP
 <h3 id="try-scprint-1-on-a-google-colab-notebook">Try scPRINT-1 on a Google Colab notebook!</h3>
 <p><a href="https://colab.research.google.com/drive/1CacoQDAwJn86tq2sBhUoZ6M-xAqsYFDI#scrollTo=Vj73HINSzKHL"><img alt="Open In Colab" src="https://colab.research.google.com/assets/colab-badge.svg" /></a></p>
 <h3 id="to-know-about-laminai">To know about: lamin.ai</h3>
-<p>To use scPRINT-2, you will need to use <a href="https://lamin.ai/">lamin.ai</a>. This is
-required to load biological information like genes, cell types, organisms.. (but
-also to manage the pre-training datasets if this is something you want to set
-up)</p>
+<p>To use <strong>scPRINT-2</strong>, you will need to use <a href="https://lamin.ai/">lamin.ai</a>. This
+is required to load biological information like genes, cell types, organisms..
+(but also to manage the pre-training datasets if this is something you want to
+set up)</p>
 <h3 id="install">install</h3>
 <p><a href="https://docs.astral.sh/uv/getting-started/installation/">Here, is how to install uv</a></p>
 <pre><code class="language-bash">uv venv &lt;env-name&gt; --python 3.11
@@ -296,7 +296,7 @@ lamin connect anonymous/testdb
 store your data, this might get quite big as you use i,t and if you are on
 specific partition you want to consider this.</p>
 <p>If you start with lamin and have to do a <code>lamin init</code>, you will also need to
-populate your ontologies. This is because scPRINT-2 is using ontologies to
+populate your ontologies. This is because <strong>scPRINT-2</strong> is using ontologies to
 define its cell types, diseases, sexes, ethnicities, etc.
 (<a href="https://www.ebi.ac.uk/ols4/ontologies/cl/classes/http%253A%252F%252Fpurl.obolibrary.org%252Fobo%252FCL_0000057">link to view ontologies</a>)</p>
 <p>You can do it via the command:</p>
@@ -320,7 +320,7 @@ populate_my_ontology( #the minimum for scPRINT-1 to run some inferences (denoisi
 _adding_scbasecamp_genes()  #to add when using scPRINT-2
 </code></pre>
 <p>A notebook for setting-up scPRINT-2 and lamin is also available
-<a href="../notebooks/prepare_scprint2.ipynb">here</a></p>
+<a href="https://github.com/cantinilab/scPRINT-2/tree/main/notebooks/prepare_scprint2.ipynb">here</a></p>
 <p>We make use of some additional packages we developed alongside scPRINT-2 (they
 are also shipped with scprint-2 already).</p>
 <p>Please refer to their documentation for more information:</p>
@@ -395,7 +395,7 @@ doing a PCA and Umap so it might need a lot of RAM if run as is)</p>
 <p>find out more about the commands by running <code>scprint2 --help</code> or
 <code>scprint2 [command] --help</code>.</p>
 <p>more examples of using the command line are available in the
-<a href="[https://](https://cantinilab.github.io/scPRINT-2)">docs</a>.</p>
+<a href="https://cantinilab.github.io/scPRINT-2">docs</a>.</p>
 <h3 id="example-notebooks">Example notebooks</h3>
 <ol>
 <li><a href="https://github.com/cantinilab/scPRINT-2/tree/main/notebooks/prepare_scprint2.ipynb">get-started</a>:
@@ -442,9 +442,9 @@ benchmarked</p>
 <p>An installation of scPRINT-2 and a simple test of the denoiser is performed
 during each commit to the main branch with a
 <a href="https://github.com/cantinilab/scPRINT-2/actions">Github action</a> and
-<a href=".github/workflows/main.yml">pytest workflow</a>. It also provides an expected
-runtime for the installation and run of scPRINT-2. We now explore the different
-usages of scPRINT-2:</p>
+<a href="https://github.com/cantinilab/scPRINT-2/tree/main/.github/workflows/main.yml">pytest workflow</a>.
+It also provides an expected runtime for the installation and run of scPRINT-2.
+We now explore the different usages of scPRINT-2:</p>
 <h2 id="faq">FAQ</h2>
 <h3 id="i-have-a-dataset-and-want-a-quick-analysis">I have a dataset and want a quick analysis:</h3>
 <p>-&gt; use <a href="#try-scprint-1-in-superbioai">superbio</a></p>
@@ -473,7 +473,7 @@ scPRINT-2 via "precpt_gene_emb"</p>
 <p>-&gt; To generate this file please refer to the notebook
 <a href="https://github.com/cantinilab/scPRINT-2/tree/main/notebooks/generate_gene_embeddings.ipynb">generate_gene_embeddings</a>.</p>
 <h3 id="i-want-to-re-train-scprint-2-from-scratch-on-my-own-data">I want to re-train scPRINT-2 from scratch on my own data</h3>
-<p>-&gt; Refer to the documentation page <a href="docs/pretrain.md">pretrain scprint-2</a></p>
+<p>-&gt; Refer to the documentation page <a href="pretrain/">pretrain scprint-2</a></p>
 <h3 id="i-want-to-regenerate-the-scprint-2-training-corpus">I want to regenerate the scPRINT-2 training corpus</h3>
 <p>-&gt; Have a look at the
 <a href="https://github.com/cantinilab/scDataLoader">scDataLoader</a>'s README to
@@ -595,7 +595,9 @@ container with:</p>
 <p>Please note: When running the Docker container, ensure you mount any necessary
 folders using the -v option to access them inside the container.</p>
 <h3 id="participate">Participate</h3>
-<p>Read the <a href="CONTRIBUTING.md">CONTRIBUTING.md</a> file.</p>
+<p>Read the
+<a href="https://github.com/cantinilab/scPRINT-2/tree/main/CONTRIBUTING.md">CONTRIBUTING.md</a>
+file.</p>
 <p>Read the
 <a href="https://wandb.ai/ml4ig/scprint_ablation/reports/scPRINT-2-additive-benchmark--VmlldzoxNTIyOTYwNA?accessToken=0mzwwu64py309mds6zzbgcxllrgcdnd10laivhs3ykh9pqmbs0wxutcu60py2bld">training runs</a>
 document to know more about how pre-training was performed and the its behavior.</p>
@@ -653,5 +655,5 @@ now. &gt;50% of the code is covered by my current unit test.</p>
 
 <!--
 MkDocs version : 1.6.1
-Build Date UTC : 2025-12-17 18:22:58.957076+00:00
+Build Date UTC : 2025-12-18 12:44:41.313307+00:00
 -->
