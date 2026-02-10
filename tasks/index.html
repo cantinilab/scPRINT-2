@@ -952,7 +952,8 @@ This is important to avoid memory issues.</p>
 <span class="normal">322</span>
 <span class="normal">323</span>
 <span class="normal">324</span>
-<span class="normal">325</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">model</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">,</span> <span class="n">adata</span><span class="p">:</span> <span class="n">AnnData</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="n">AnnData</span><span class="p">,</span> <span class="nb">dict</span><span class="p">]:</span>
+<span class="normal">325</span>
+<span class="normal">326</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">model</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">,</span> <span class="n">adata</span><span class="p">:</span> <span class="n">AnnData</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="n">AnnData</span><span class="p">,</span> <span class="nb">dict</span><span class="p">]:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    __call__ function to call the embedding</span>
 
@@ -1088,6 +1089,7 @@ This is important to avoid memory issues.</p>
 
     <span class="k">try</span><span class="p">:</span>
         <span class="n">adata</span><span class="o">.</span><span class="n">obsm</span><span class="p">[</span><span class="s2">&quot;X_scprint_umap&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pred_adata</span><span class="o">.</span><span class="n">obsm</span><span class="p">[</span><span class="s2">&quot;X_umap&quot;</span><span class="p">]</span>
+        <span class="k">del</span> <span class="n">pred_adata</span><span class="o">.</span><span class="n">obsm</span><span class="p">[</span><span class="s2">&quot;X_umap&quot;</span><span class="p">]</span>
     <span class="k">except</span><span class="p">:</span>
         <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;too few cells to embed into a umap&quot;</span><span class="p">)</span>
     <span class="k">try</span><span class="p">:</span>
@@ -1312,8 +1314,7 @@ This is important to avoid memory issues.</p>
 
             <details class="mkdocstrings-source">
               <summary>Source code in <code>scprint2/tasks/cell_emb.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">482</span>
-<span class="normal">483</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">483</span>
 <span class="normal">484</span>
 <span class="normal">485</span>
 <span class="normal">486</span>
@@ -1376,7 +1377,10 @@ This is important to avoid memory issues.</p>
 <span class="normal">543</span>
 <span class="normal">544</span>
 <span class="normal">545</span>
-<span class="normal">546</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">compute_classification</span><span class="p">(</span>
+<span class="normal">546</span>
+<span class="normal">547</span>
+<span class="normal">548</span>
+<span class="normal">549</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">compute_classification</span><span class="p">(</span>
     <span class="n">adata</span><span class="p">:</span> <span class="n">AnnData</span><span class="p">,</span>
     <span class="n">classes</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span>
     <span class="n">label_decoders</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">],</span>
@@ -1407,7 +1411,9 @@ This is important to avoid memory issues.</p>
         <span class="k">if</span> <span class="n">clss</span> <span class="ow">in</span> <span class="n">labels_hierarchy</span><span class="p">:</span>
             <span class="n">parentdf</span> <span class="o">=</span> <span class="p">(</span>
                 <span class="n">bt</span><span class="o">.</span><span class="n">CellType</span><span class="o">.</span><span class="n">filter</span><span class="p">()</span>
-                <span class="o">.</span><span class="n">df</span><span class="p">(</span><span class="n">include</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;parents__ontology_id&quot;</span><span class="p">,</span> <span class="s2">&quot;ontology_id&quot;</span><span class="p">])</span>
+                <span class="o">.</span><span class="n">to_dataframe</span><span class="p">(</span>
+                    <span class="n">include</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;parents__ontology_id&quot;</span><span class="p">,</span> <span class="s2">&quot;ontology_id&quot;</span><span class="p">],</span> <span class="n">limit</span><span class="o">=</span><span class="kc">None</span>
+                <span class="p">)</span>
                 <span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s2">&quot;ontology_id&quot;</span><span class="p">)[[</span><span class="s2">&quot;parents__ontology_id&quot;</span><span class="p">]]</span>
             <span class="p">)</span>
             <span class="n">parentdf</span><span class="o">.</span><span class="n">parents__ontology_id</span> <span class="o">=</span> <span class="n">parentdf</span><span class="o">.</span><span class="n">parents__ontology_id</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span>
@@ -1548,8 +1554,7 @@ This is important to avoid memory issues.</p>
 
             <details class="mkdocstrings-source">
               <summary>Source code in <code>scprint2/tasks/cell_emb.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">328</span>
-<span class="normal">329</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">329</span>
 <span class="normal">330</span>
 <span class="normal">331</span>
 <span class="normal">332</span>
@@ -1600,7 +1605,8 @@ This is important to avoid memory issues.</p>
 <span class="normal">377</span>
 <span class="normal">378</span>
 <span class="normal">379</span>
-<span class="normal">380</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">compute_corr</span><span class="p">(</span>
+<span class="normal">380</span>
+<span class="normal">381</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">compute_corr</span><span class="p">(</span>
     <span class="n">out</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span>
     <span class="n">to</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span>
     <span class="n">doplot</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
@@ -1762,8 +1768,7 @@ This is important to avoid memory issues.</p>
 
             <details class="mkdocstrings-source">
               <summary>Source code in <code>scprint2/tasks/cell_emb.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">383</span>
-<span class="normal">384</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">384</span>
 <span class="normal">385</span>
 <span class="normal">386</span>
 <span class="normal">387</span>
@@ -1858,7 +1863,8 @@ This is important to avoid memory issues.</p>
 <span class="normal">476</span>
 <span class="normal">477</span>
 <span class="normal">478</span>
-<span class="normal">479</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">default_benchmark</span><span class="p">(</span>
+<span class="normal">479</span>
+<span class="normal">480</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">default_benchmark</span><span class="p">(</span>
     <span class="n">model</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">,</span>
     <span class="n">folder_dir</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">FILE_LOC</span> <span class="o">+</span> <span class="s2">&quot;/../../data/&quot;</span><span class="p">,</span>
     <span class="n">dataset</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">FILE_LOC</span> <span class="o">+</span> <span class="s2">&quot;/../../data/gNNpgpo6gATjuxTE7CCp.h5ad&quot;</span><span class="p">,</span>
@@ -2021,10 +2027,7 @@ This is important to avoid memory issues.</p>
 
             <details class="mkdocstrings-source">
               <summary>Source code in <code>scprint2/tasks/cell_emb.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">639</span>
-<span class="normal">640</span>
-<span class="normal">641</span>
-<span class="normal">642</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">642</span>
 <span class="normal">643</span>
 <span class="normal">644</span>
 <span class="normal">645</span>
@@ -2087,7 +2090,10 @@ This is important to avoid memory issues.</p>
 <span class="normal">702</span>
 <span class="normal">703</span>
 <span class="normal">704</span>
-<span class="normal">705</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">display_confusion_matrix</span><span class="p">(</span>
+<span class="normal">705</span>
+<span class="normal">706</span>
+<span class="normal">707</span>
+<span class="normal">708</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">display_confusion_matrix</span><span class="p">(</span>
     <span class="n">nadata</span><span class="p">,</span> <span class="n">pred</span><span class="o">=</span><span class="s2">&quot;conv_pred_cell_type_ontology_term_id&quot;</span><span class="p">,</span> <span class="n">true</span><span class="o">=</span><span class="s2">&quot;cell_type&quot;</span>
 <span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
@@ -2338,7 +2344,7 @@ if less than total number of cells, only the top <code>max_cells</code> cells wi
             <li>
               <b><code>how</code></b>
                   (<code><span title="str">str</span></code>, default:
-                      <code>&#39;random expr&#39;</code>
+                      <code>&#39;most var within&#39;</code>
 )
               –
               <div class="doc-md-description">
@@ -2424,7 +2430,7 @@ if less than total number of cells, only the top <code>max_cells</code> cells wi
             <li>
               <b><code>precomp_attn</code></b>
                   (<code><span title="bool">bool</span></code>, default:
-                      <code>False</code>
+                      <code>True</code>
 )
               –
               <div class="doc-md-description">
@@ -2616,7 +2622,7 @@ It is required for mean_full head_agg. Defaults to False.</p>
     <span class="n">num_genes</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">3000</span><span class="p">,</span>
     <span class="n">max_cells</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
     <span class="n">cell_type_col</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;cell_type&quot;</span><span class="p">,</span>
-    <span class="n">how</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;random expr&quot;</span><span class="p">,</span>  <span class="c1"># random expr, most var within, most var across, some</span>
+    <span class="n">how</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;most var within&quot;</span><span class="p">,</span>  <span class="c1"># random expr, most var within, most var across, some</span>
     <span class="n">genelist</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="n">layer</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="n">preprocess</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;softmax&quot;</span><span class="p">,</span>  <span class="c1"># sinkhorn, softmax, none</span>
@@ -2624,7 +2630,7 @@ It is required for mean_full head_agg. Defaults to False.</p>
     <span class="n">filtration</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;thresh&quot;</span><span class="p">,</span>  <span class="c1"># thresh, top-k, mst, known, none</span>
     <span class="n">k</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">10</span><span class="p">,</span>
     <span class="n">known_grn</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Any</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-    <span class="n">precomp_attn</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+    <span class="n">precomp_attn</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
     <span class="n">symmetrize</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
     <span class="n">loc</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;./&quot;</span><span class="p">,</span>
     <span class="n">use_knn</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
@@ -2824,7 +2830,11 @@ It is required for mean_full head_agg. Defaults to False.</p>
 <span class="normal">147</span>
 <span class="normal">148</span>
 <span class="normal">149</span>
-<span class="normal">150</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">model</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">,</span> <span class="n">adata</span><span class="p">:</span> <span class="n">AnnData</span><span class="p">,</span> <span class="n">cell_type</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="n">AnnData</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">]:</span>
+<span class="normal">150</span>
+<span class="normal">151</span>
+<span class="normal">152</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="fm">__call__</span><span class="p">(</span>
+    <span class="bp">self</span><span class="p">,</span> <span class="n">model</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">,</span> <span class="n">adata</span><span class="p">:</span> <span class="n">AnnData</span><span class="p">,</span> <span class="n">cell_type</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="n">AnnData</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">]:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    __call__ runs the method</span>
 
@@ -2879,8 +2889,7 @@ or do nothing if already done</p>
 
             <details class="mkdocstrings-source">
               <summary>Source code in <code>scprint2/tasks/grn.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">314</span>
-<span class="normal">315</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">315</span>
 <span class="normal">316</span>
 <span class="normal">317</span>
 <span class="normal">318</span>
@@ -2961,7 +2970,8 @@ or do nothing if already done</p>
 <span class="normal">393</span>
 <span class="normal">394</span>
 <span class="normal">395</span>
-<span class="normal">396</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">aggregate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">model</span><span class="p">):</span>
+<span class="normal">396</span>
+<span class="normal">397</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">aggregate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">model</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    part to aggregate the qks and compute the attns</span>
 <span class="sd">    or to aggregate the attns</span>
@@ -3066,8 +3076,7 @@ or do nothing if already done</p>
 
             <details class="mkdocstrings-source">
               <summary>Source code in <code>scprint2/tasks/grn.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">398</span>
-<span class="normal">399</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">399</span>
 <span class="normal">400</span>
 <span class="normal">401</span>
 <span class="normal">402</span>
@@ -3101,7 +3110,8 @@ or do nothing if already done</p>
 <span class="normal">430</span>
 <span class="normal">431</span>
 <span class="normal">432</span>
-<span class="normal">433</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">filter</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">adj</span><span class="p">,</span> <span class="n">gt</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="normal">433</span>
+<span class="normal">434</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">filter</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">adj</span><span class="p">,</span> <span class="n">gt</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    part to filter the attn matrix given user inputs</span>
 <span class="sd">    &quot;&quot;&quot;</span>
@@ -3159,9 +3169,7 @@ or do nothing if already done</p>
 
             <details class="mkdocstrings-source">
               <summary>Source code in <code>scprint2/tasks/grn.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">152</span>
-<span class="normal">153</span>
-<span class="normal">154</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">154</span>
 <span class="normal">155</span>
 <span class="normal">156</span>
 <span class="normal">157</span>
@@ -3319,7 +3327,8 @@ or do nothing if already done</p>
 <span class="normal">309</span>
 <span class="normal">310</span>
 <span class="normal">311</span>
-<span class="normal">312</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">predict</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">model</span><span class="p">,</span> <span class="n">adata</span><span class="p">,</span> <span class="n">layer</span><span class="p">,</span> <span class="n">cell_type</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="normal">312</span>
+<span class="normal">313</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">predict</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">model</span><span class="p">,</span> <span class="n">adata</span><span class="p">,</span> <span class="n">layer</span><span class="p">,</span> <span class="n">cell_type</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    part to predict the qks or attns matrices from the adata with the model</span>
 <span class="sd">    &quot;&quot;&quot;</span>
@@ -3447,7 +3456,6 @@ or do nothing if already done</p>
             <span class="s2">&quot;full attention (i.e. precomp_attn=True) is not supported for random expr&quot;</span>
         <span class="p">)</span>
     <span class="n">device</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">device</span><span class="o">.</span><span class="n">type</span>
-    <span class="c1"># this is a debugger line</span>
     <span class="n">dtype</span> <span class="o">=</span> <span class="p">(</span>
         <span class="n">torch</span><span class="o">.</span><span class="n">float16</span>
         <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">transformer</span><span class="p">,</span> <span class="n">FlashTransformer</span><span class="p">)</span>
@@ -3619,8 +3627,7 @@ or do nothing if already done</p>
 
             <details class="mkdocstrings-source">
               <summary>Source code in <code>scprint2/tasks/grn.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">456</span>
-<span class="normal">457</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">457</span>
 <span class="normal">458</span>
 <span class="normal">459</span>
 <span class="normal">460</span>
@@ -4008,7 +4015,8 @@ or do nothing if already done</p>
 <span class="normal">842</span>
 <span class="normal">843</span>
 <span class="normal">844</span>
-<span class="normal">845</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">default_benchmark</span><span class="p">(</span>
+<span class="normal">845</span>
+<span class="normal">846</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">default_benchmark</span><span class="p">(</span>
     <span class="n">model</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span>
     <span class="n">default_dataset</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;sroy&quot;</span><span class="p">,</span>
     <span class="n">cell_types</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="p">[],</span>
@@ -5847,7 +5855,7 @@ applying zero inflation might give results closer to the specific biases of sequ
         <ul class="first simple">
             <li>
               <b><code>genelist</code></b>
-                  (<code><span title="list">list</span></code>)
+                  (<code><span title="list">list</span>[<span title="str">str</span>]</code>)
               –
               <div class="doc-md-description">
                 <p>List of genes to restrict to.</p>
@@ -5960,7 +5968,7 @@ applying zero inflation might give results closer to the specific biases of sequ
 <span class="normal">43</span>
 <span class="normal">44</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
     <span class="bp">self</span><span class="p">,</span>
-    <span class="n">genelist</span><span class="p">,</span>
+    <span class="n">genelist</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span>
     <span class="n">batch_size</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">64</span><span class="p">,</span>
     <span class="n">num_workers</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">8</span><span class="p">,</span>
     <span class="n">save_every</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">4_000</span><span class="p">,</span>
@@ -5970,7 +5978,7 @@ applying zero inflation might give results closer to the specific biases of sequ
 <span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Args:</span>
-<span class="sd">        genelist (list): List of genes to restrict to.</span>
+<span class="sd">        genelist (list[str]): List of genes to restrict to.</span>
 <span class="sd">        batch_size (int): Batch size for the DataLoader. Defaults to 64.</span>
 <span class="sd">        num_workers (int): Number of workers for DataLoader. Defaults to 8.</span>
 <span class="sd">        save_every (int): Save embeddings every `save_every` batches. Defaults to 4000.</span>
@@ -6699,9 +6707,7 @@ This will artificially increase the sequencing depth (or number of counts) to 4 
             </li>
             <li>
               <b><code>genes_to_use</code></b>
-                  (<code><span title="typing.Optional">Optional</span>[<span title="typing.List">List</span>[<span title="str">str</span>]]</code>, default:
-                      <code>None</code>
-)
+                  (<code><span title="typing.List">List</span>[<span title="str">str</span>]</code>)
               –
               <div class="doc-md-description">
                 <p>List of genes to use for imputation. Defaults to None.</p>
@@ -6709,9 +6715,7 @@ This will artificially increase the sequencing depth (or number of counts) to 4 
             </li>
             <li>
               <b><code>genes_to_impute</code></b>
-                  (<code><span title="typing.Optional">Optional</span>[<span title="typing.List">List</span>[<span title="str">str</span>]]</code>, default:
-                      <code>None</code>
-)
+                  (<code><span title="typing.List">List</span>[<span title="str">str</span>]</code>)
               –
               <div class="doc-md-description">
                 <p>List of genes to impute. Defaults to None.</p>
@@ -6834,14 +6838,14 @@ applying zero inflation might give results closer to the specific biases of sequ
 <span class="normal">69</span>
 <span class="normal">70</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
     <span class="bp">self</span><span class="p">,</span>
+    <span class="n">genes_to_use</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span>
+    <span class="n">genes_to_impute</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span>
     <span class="n">batch_size</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">10</span><span class="p">,</span>
     <span class="n">num_workers</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
     <span class="n">max_cells</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">500_000</span><span class="p">,</span>
     <span class="n">doplot</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
     <span class="n">method</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;generative&quot;</span><span class="p">,</span>
     <span class="n">predict_depth_mult</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">4</span><span class="p">,</span>
-    <span class="n">genes_to_use</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-    <span class="n">genes_to_impute</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="n">save_every</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">100_000</span><span class="p">,</span>
     <span class="n">apply_zero_pred</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
     <span class="n">use_knn</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
@@ -6858,8 +6862,8 @@ applying zero inflation might give results closer to the specific biases of sequ
 <span class="sd">        method (str, optional): Imputation method, either &#39;masking&#39; or &#39;generative&#39;. Defaults to &#39;generative&#39;.</span>
 <span class="sd">        predict_depth_mult (int, optional): Multiplier for prediction depth. Defaults to 4.</span>
 <span class="sd">            This will artificially increase the sequencing depth (or number of counts) to 4 times the original depth.</span>
-<span class="sd">        genes_to_use (Optional[List[str]], optional): List of genes to use for imputation. Defaults to None.</span>
-<span class="sd">        genes_to_impute (Optional[List[str]], optional): List of genes to impute. Defaults to None.</span>
+<span class="sd">        genes_to_use (List[str]): List of genes to use for imputation. Defaults to None.</span>
+<span class="sd">        genes_to_impute (List[str]): List of genes to impute. Defaults to None.</span>
 <span class="sd">        save_every (int, optional): The number of cells to save at a time. Defaults to 100_000.</span>
 <span class="sd">            This is important to avoid memory issues.</span>
 <span class="sd">        apply_zero_pred (bool, optional): Whether to apply zero prediction adjustment. Defaults to True.</span>
@@ -7171,7 +7175,14 @@ applying zero inflation might give results closer to the specific biases of sequ
 <span class="normal">269</span>
 <span class="normal">270</span>
 <span class="normal">271</span>
-<span class="normal">272</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">model</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">,</span> <span class="n">adata</span><span class="p">:</span> <span class="n">AnnData</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="n">Optional</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">],</span> <span class="n">AnnData</span><span class="p">]:</span>
+<span class="normal">272</span>
+<span class="normal">273</span>
+<span class="normal">274</span>
+<span class="normal">275</span>
+<span class="normal">276</span>
+<span class="normal">277</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="fm">__call__</span><span class="p">(</span>
+    <span class="bp">self</span><span class="p">,</span> <span class="n">model</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">,</span> <span class="n">adata</span><span class="p">:</span> <span class="n">AnnData</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="n">Optional</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">],</span> <span class="n">AnnData</span><span class="p">]:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    __call__ calling the function</span>
 
@@ -7253,6 +7264,8 @@ applying zero inflation might give results closer to the specific biases of sequ
         <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">transformer</span><span class="p">)</span> <span class="ow">is</span> <span class="n">FlashTransformer</span>
         <span class="k">else</span> <span class="n">model</span><span class="o">.</span><span class="n">dtype</span>
     <span class="p">)</span>
+    <span class="n">save_expr</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">save_expr</span>
+    <span class="n">model</span><span class="o">.</span><span class="n">save_expr</span> <span class="o">=</span> <span class="kc">True</span>
     <span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">empty_cache</span><span class="p">()</span>
     <span class="k">with</span> <span class="n">torch</span><span class="o">.</span><span class="n">no_grad</span><span class="p">(),</span> <span class="n">torch</span><span class="o">.</span><span class="n">autocast</span><span class="p">(</span><span class="n">device_type</span><span class="o">=</span><span class="n">device</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">dtype</span><span class="p">):</span>
         <span class="k">for</span> <span class="n">batch</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="p">(</span><span class="n">dataloader</span><span class="p">):</span>
@@ -7306,6 +7319,7 @@ applying zero inflation might give results closer to the specific biases of sequ
     <span class="n">pred_adata</span> <span class="o">=</span> <span class="n">concat</span><span class="p">(</span><span class="n">pred_adata</span><span class="p">)</span>
 
     <span class="n">model</span><span class="o">.</span><span class="n">doplot</span> <span class="o">=</span> <span class="n">prevplot</span>
+    <span class="n">model</span><span class="o">.</span><span class="n">save_expr</span> <span class="o">=</span> <span class="n">save_expr</span>
 
     <span class="c1"># pred_adata.X = adata.X if random_indices is None else adata.X[random_indices]</span>
     <span class="n">true_imp</span> <span class="o">=</span> <span class="n">pred_adata</span><span class="o">.</span><span class="n">X</span><span class="p">[:,</span> <span class="n">pred_adata</span><span class="o">.</span><span class="n">var</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">genes_to_impute</span><span class="p">)]</span><span class="o">.</span><span class="n">toarray</span><span class="p">()</span>
