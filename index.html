@@ -197,7 +197,7 @@ paradigms and losses.</p>
 <li><strong>cross species integration</strong>: scPRINT-2 has been trained on 16 species and
   can be used to integrate data from different species.</li>
 </ul>
-<p>Example of scPRINT-2 finetuning exist for:</p>
+<p>Example of <strong>scPRINT-2</strong> finetuning exist for:</p>
 <ul>
 <li><strong>new species</strong>: finetune scPRINT-2 on a new organism</li>
 <li><strong>classification</strong>: finetune scPRINT-2 on your own cell type /disease / age
@@ -205,7 +205,7 @@ paradigms and losses.</p>
 <li><strong>batch correction of your datasets / atlas</strong>: finetune scPRINT-2 to integrate
   data across species, technologies, and labs.</li>
 </ul>
-<p>scPRINT-2 is a foundation model and can be fine-tuned to perform many other
+<p><strong>scPRINT-2</strong> is a foundation model and can be fine-tuned to perform many other
 analysis</p>
 <p><a href="https://www.biorxiv.org/content/10.64898/2025.12.11.693702v1">Read the manuscript!</a>
 if you would like to know more about <strong>scPRINT-2</strong>. Or have a look at some of my
@@ -289,21 +289,22 @@ uv pip install scprint2
 # OR uv pip install scprint2[flash] # to use flashattention2 with triton: only if you have a compatible gpu (e.g. not available for apple GPUs for now, see https://github.com/triton-lang/triton?tab=readme-ov-file#compatibility)
 #OR pip install scprint2[dev,flash]
 
-lamin init --storage ./testdb --name test --modules bionty
-lamin connect anonymous/testdb
+lamin init --storage ./testdb --name testdb --modules bionty
+scprint2 easy_setup
 </code></pre>
 <p>⚠️ <code>./testdb</code> is set in this example, but be mindful about where you want to
 store your data, this might get quite big as you use i,t and if you are on
 specific partition you want to consider this.</p>
-<p>If you start with lamin and have to do a <code>lamin init</code>, you will also need to
-populate your ontologies. This is because <strong>scPRINT-2</strong> is using ontologies to
-define its cell types, diseases, sexes, ethnicities, etc.
+<p>If you start with lamin and have to do a <code>lamin init</code>, you will also do a
+<code>scprint2 easy_setup</code>. This populates your ontologies and adds some additional
+gene names. This is because scPRINT-2 is using ontologies to define its cell
+types, diseases, sexes, ethnicities, etc.
 (<a href="https://www.ebi.ac.uk/ols4/ontologies/cl/classes/http%253A%252F%252Fpurl.obolibrary.org%252Fobo%252FCL_0000057">link to view ontologies</a>)</p>
 <p>You can do it via the command:</p>
 <p><code>scdataloader populate all</code></p>
 <p>⚠️ It is ok to get warnings with this function</p>
 <p>or with this function:</p>
-<pre><code class="language-python">from scdataloader.utils import populate_my_ontology
+<pre><code class="language-python">from scdataloader.utils import populate_my_ontology, _adding_scbasecamp_genes
 
 populate_my_ontology() #to populate everything (can take 2-10mns)
 
@@ -318,6 +319,11 @@ populate_my_ontology( #the minimum for scPRINT-1 to run some inferences (denoisi
     dev_stages = None,
 )
 _adding_scbasecamp_genes()  #to add when using scPRINT-2
+</code></pre>
+<p>It will also download the default checkpoint of a pretrain scprint2 model from
+<a href="https://huggingface.co/jkobject/scPRINT-2/">our hugging face page</a>. But you can
+use other ones if you prefer:</p>
+<pre><code class="language-bash">$ hf download jkobject/scPRINT v2-medium.ckpt --local-dir .
 </code></pre>
 <p>A notebook for setting-up scPRINT-2 and lamin is also available
 <a href="https://github.com/cantinilab/scPRINT-2/tree/main/notebooks/prepare_scprint2.ipynb">here</a></p>
@@ -343,17 +349,15 @@ recommended to use a GPU for inference.</p>
 <p>Most of the time, everything works out of the box; otherwise, please send an
 issue</p>
 <pre><code class="language-python">model = scPRINT2.load_from_checkpoint(
-    '../data/temp/last.ckpt', precpt_gene_emb=None, )
+    '../data/temp/last.ckpt', precpt_gene_emb=None, gene_pos_file=None,)
 </code></pre>
-<p>You will know more about scPRINT-1 and scPRINT-2 in general by following the
-<a href="https://cantinilab.github.io/scPRINT/notebooks/cancer_usecase/">get-started</a>
+<p>You will know more by following the
+<a href="https://cantinilab.github.io/scPRINT-2/notebooks/cancer_usecase/">get-started</a>
 notebook.</p>
 <h2 id="usage">Usage</h2>
-<p>To start you will also need to download a checkpoint of a pretrain model like
-18hebyht-final-small or some others from
-<a href="https://huggingface.co/jkobject/scPRINT-2/">hugging face</a></p>
-<pre><code class="language-bash">$ hf download jkobject/scPRINT 18hebyht-final-small.ckpt --local-dir .
-</code></pre>
+<p>To get a sense of how scPRINT-2 works, have a look at our
+<a href="https://cantinilab.github.io/scPRINT-2/notebooks/cancer_usecase/">get-started</a>
+notebook.</p>
 <h3 id="scprint-2s-basic-commands">scPRINT-2's basic commands</h3>
 <p>This is a template of how you would go and use scPRINT most of the time:</p>
 <pre><code class="language-py"># import stuff
@@ -544,6 +548,7 @@ in the model weights. You just need to load the weights like this:</p>
 <pre><code class="language-python">model = scPRINT2.load_from_checkpoint(
     '../../data/temp/last.ckpt',
     precpt_gene_emb=None,
+    gene_pos_file=None,
 )
 </code></pre>
 <p>But if you want to, you can also recreate the gene embedding file through
@@ -585,7 +590,7 @@ command from the root directory of this repository:</p>
 <p>If you don't want to build the image yourself, you can pull it directly from
 Docker Hub:</p>
 <pre><code class="language-bash">docker pull jkobject/scprint2:1.0.0
-docker tag jkobject/scprint2:1.0.0 scprint2:latest
+docker tag scprint2:latest jkobject/scprint2:1.0.0
 </code></pre>
 <h3 id="running-the-docker-container">Running the Docker Container</h3>
 <p>Once you have the image (either by building it or pulling it), you can start a
@@ -655,5 +660,5 @@ now. &gt;50% of the code is covered by my current unit test.</p>
 
 <!--
 MkDocs version : 1.6.1
-Build Date UTC : 2026-02-11 16:17:44.266239+00:00
+Build Date UTC : 2026-02-11 16:54:50.524892+00:00
 -->
