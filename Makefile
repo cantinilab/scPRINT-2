@@ -83,6 +83,10 @@ release:          ## Create a new tag for release.
 	@mkdocs gh-deploy --remote-name $${REMOTE}
 	@echo "Documentation deployed to https://jkobject.github.io/scPRINT-2/"
 
+.PHONY: clean-notebooks
+clean-notebooks:  ## Re-inject the title/description/TOC header at the top of example notebooks.
+	@$(ENV_PREFIX)python tools/clean_notebooks.py
+
 .PHONY: docs
 docs:             ## Build the documentation.
 	@echo "building documentation ..."
