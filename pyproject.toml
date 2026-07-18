@@ -5,7 +5,7 @@ description = "scPRINT-2 is a Large Cell Model for Gene Network Inference, Denoi
 authors = [
     {name = "jeremie kalfon", email = "jkobject@gmail.com"}
 ]
-license = "MIT"
+license = "GPL-3.0-or-later"
 readme = "README.md"
 requires-python = ">=3.10, <3.13"
 keywords = ["scRNAseq", "transformer", "GRN", "gene regulatory network", "scPRINT-2", "large cell model", "foundation model"]
