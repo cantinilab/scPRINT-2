@@ -125,7 +125,9 @@ def _extract_existing_toc_entries(cells: Iterable[dict]) -> list[tuple[int, str]
     return entries
 
 
-def _build_header_cell(title: str, description: str, toc: list[tuple[int, str]]) -> dict:
+def _build_header_cell(
+    title: str, description: str, toc: list[tuple[int, str]]
+) -> dict:
     lines = [
         HEADER_BEGIN,
         f"# {title}",
@@ -136,11 +138,17 @@ def _build_header_cell(title: str, description: str, toc: list[tuple[int, str]])
     if toc:
         lines.append("## Contents")
         lines.append("")
-        # normalise indent to the top-most observed heading level
-        min_level = min(level for level, _ in toc)
+        # Start at the first heading's level so the TOC cannot begin with an
+        # indented bullet when a shallower heading appears later.
+        base_level = toc[0][0]
+        slug_counts: dict[str, int] = {}
         for level, text in toc:
-            indent = "  " * (level - min_level)
+            indent = "  " * max(0, level - base_level)
             slug = _slugify(text)
+            occurrence = slug_counts.get(slug, 0)
+            slug_counts[slug] = occurrence + 1
+            if occurrence:
+                slug = f"{slug}-{occurrence}"
             lines.append(f"{indent}- [{text}](#{slug})")
         lines.append("")
     lines.append(
@@ -176,7 +184,7 @@ def _has_literal_nonascii(text: str) -> bool:
 
 def update_notebook(path: Path, title: str, description: str) -> bool:
     """Update the header of a single notebook. Returns True if changed."""
-    raw_text = path.read_text()
+    raw_text = path.read_text(encoding="utf-8")
     nb = json.loads(raw_text)
     cells = nb.get("cells", [])
     stripped = _strip_existing_header(cells)
@@ -195,7 +203,8 @@ def update_notebook(path: Path, title: str, description: str) -> bool:
     else:
         ensure_ascii = True
     path.write_text(
-        json.dumps(nb, indent=1, ensure_ascii=ensure_ascii) + "\n"
+        json.dumps(nb, indent=1, ensure_ascii=ensure_ascii) + "\n",
+        encoding="utf-8",
     )
     return True
 
@@ -208,7 +217,11 @@ def main(argv: list[str]) -> int:
             if not p.is_absolute():
                 p = REPO_ROOT / p
             # find the configured title/description if available
-            rel = p.relative_to(REPO_ROOT).as_posix()
+            try:
+                rel = p.relative_to(REPO_ROOT).as_posix()
+            except ValueError:
+                print(f"[skip] outside repository: {p}", file=sys.stderr)
+                continue
             match = next(((t, d) for (q, t, d) in NOTEBOOKS if q == rel), None)
             if match is None:
                 print(f"[skip] no header config for {rel}", file=sys.stderr)
