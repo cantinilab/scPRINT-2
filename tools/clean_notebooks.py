@@ -112,7 +112,24 @@ def _extract_existing_toc_entries(cells: Iterable[dict]) -> list[tuple[int, str]
         src = "".join(cell.get("source", []))
         if HEADER_BEGIN in src:
             continue
+        fence_char: str | None = None
+        fence_length = 0
         for line in src.splitlines():
+            if fence_char is not None:
+                closing_fence = re.match(
+                    rf"^ {{0,3}}({re.escape(fence_char)}{{{fence_length},}})\s*$",
+                    line,
+                )
+                if closing_fence:
+                    fence_char = None
+                    fence_length = 0
+                continue
+            opening_fence = re.match(r"^ {0,3}(`{3,}|~{3,})", line)
+            if opening_fence:
+                marker = opening_fence.group(1)
+                fence_char = marker[0]
+                fence_length = len(marker)
+                continue
             m = re.match(r"^(#{1,4})\s+(.+?)\s*#*\s*$", line)
             if not m:
                 continue

@@ -29,6 +29,29 @@ def test_toc_first_entry_is_never_indented_when_later_heading_is_shallower():
     assert toc_lines == ["- [Setup](#setup)", "- [Results](#results)"]
 
 
+def test_extract_toc_ignores_headings_inside_fenced_code_blocks():
+    cells = [
+        {
+            "cell_type": "markdown",
+            "source": [
+                "# Visible heading\n",
+                "```python\n",
+                "# Python comment, not a heading\n",
+                "```\n",
+                "~~~text\n",
+                "## Also not a heading\n",
+                "~~~~\n",
+                "## Visible subheading\n",
+            ],
+        }
+    ]
+
+    assert clean_notebooks._extract_existing_toc_entries(cells) == [
+        (1, "Visible heading"),
+        (2, "Visible subheading"),
+    ]
+
+
 def test_update_notebook_reads_and_writes_utf8(tmp_path, monkeypatch):
     path = tmp_path / "notebook.ipynb"
     path.write_text(json.dumps({"cells": []}), encoding="utf-8")
