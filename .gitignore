@@ -221,3 +221,4 @@ fine_tuned_emb_task3.h5ad
 notebooks/data/results_batch.json
 data/main/gene_embs_esm2/
 .dca-env/
+.worktrees/
