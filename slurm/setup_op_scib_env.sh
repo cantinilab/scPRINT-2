@@ -4,9 +4,10 @@ set -euo pipefail
 source /etc/profile.d/proxy.sh
 
 WORK_ROOT="${WORK:-/lustre/fswork/projects/rech/xeg/${USER}}"
+SCRATCH_ROOT="${SCRATCH:-/lustre/fsn1/projects/rech/xeg/${USER}}"
 REPO_ROOT="${REPO_ROOT:-${WORK_ROOT}/scPRINT}"
 R_ENV="${OP_SCIB_R_ENV:-${WORK_ROOT}/venvs/op-scib-r}"
-TF_ENV="${TF_ENV:-${WORK_ROOT}/venvs/transcriptformer-0.6.1}"
+TF_ENV="${TF_ENV:-${SCRATCH_ROOT}/venvs/transcriptformer-h100-0.6.1}"
 UV="${UV:-${HOME}/.local/bin/uv}"
 
 export R_HOME="${R_ENV}/lib/R"
@@ -28,10 +29,10 @@ fi
 cd "${REPO_ROOT}"
 
 "${UV}" pip install --python .venv/bin/python \
-  rpy2 'anndata2ri==1.3.1'
+  'jax[cuda12]==0.7.0' rpy2 'anndata2ri==1.3.1'
 
 "${UV}" pip install --python "${TF_ENV}/bin/python" \
-  'scib==1.1.7' rpy2 'anndata2ri==1.3.1'
+  'scib==1.1.7' 'jax[cuda12]==0.10.2' rpy2 'anndata2ri==1.3.1'
 
 R_HOME="${R_HOME}" .venv/bin/python -c \
   'from op_scib import prepare_op_scib_environment; print(prepare_op_scib_environment())'

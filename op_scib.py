@@ -221,6 +221,8 @@ def compute_op_scib_metrics(
     method_id: str | None = None,
     n_neighbors: int = 15,
     lisi_n_neighbors: int = 90,
+    silhouette_backend: str = "jax",
+    silhouette_chunk_size: int = 1024,
     lisi_cache_dir: str | os.PathLike[str] | None = None,
     compute_kbet: bool = True,
     compute_expression_metrics: bool = True,
@@ -281,20 +283,57 @@ def compute_op_scib_metrics(
             raise
         warnings.warn(f"ari/nmi could not be computed: {errors['ari/nmi']}", stacklevel=2)
 
-    values["asw_label"] = _metric(
-        "asw_label",
-        lambda: scib_metrics.silhouette(work, label_key="cell_type", embed="X_emb"),
-        errors,
-        strict=strict,
-    )
-    values["asw_batch"] = _metric(
-        "asw_batch",
-        lambda: scib_metrics.silhouette_batch(
-            work, batch_key="batch", label_key="cell_type", embed="X_emb", verbose=verbose
-        ),
-        errors,
-        strict=strict,
-    )
+    if silhouette_backend == "jax":
+        from scib_metrics import silhouette_batch as jax_silhouette_batch
+        from scib_metrics import silhouette_label as jax_silhouette_label
+
+        embedding = np.asarray(work.obsm["X_emb"], dtype=np.float32)
+        labels = work.obs["cell_type"].to_numpy()
+        batches = work.obs["batch"].to_numpy()
+        values["asw_label"] = _metric(
+            "asw_label",
+            lambda: jax_silhouette_label(
+                embedding,
+                labels,
+                rescale=True,
+                chunk_size=silhouette_chunk_size,
+            ),
+            errors,
+            strict=strict,
+        )
+        values["asw_batch"] = _metric(
+            "asw_batch",
+            lambda: jax_silhouette_batch(
+                embedding,
+                labels,
+                batches,
+                rescale=True,
+                chunk_size=silhouette_chunk_size,
+            ),
+            errors,
+            strict=strict,
+        )
+    elif silhouette_backend == "scib":
+        values["asw_label"] = _metric(
+            "asw_label",
+            lambda: scib_metrics.silhouette(work, label_key="cell_type", embed="X_emb"),
+            errors,
+            strict=strict,
+        )
+        values["asw_batch"] = _metric(
+            "asw_batch",
+            lambda: scib_metrics.silhouette_batch(
+                work,
+                batch_key="batch",
+                label_key="cell_type",
+                embed="X_emb",
+                verbose=verbose,
+            ),
+            errors,
+            strict=strict,
+        )
+    else:
+        raise ValueError("silhouette_backend must be 'jax' or 'scib'")
     values["graph_connectivity"] = _metric(
         "graph_connectivity",
         lambda: scib_metrics.graph_connectivity(work, label_key="cell_type"),
@@ -411,6 +450,8 @@ def compute_op_scib_metrics(
     result.attrs["parameters"] = {
         "neighbors": n_neighbors,
         "lisi_neighbors": lisi_n_neighbors,
+        "silhouette_backend": silhouette_backend,
+        "silhouette_chunk_size": silhouette_chunk_size,
         "resolutions": list(OP_RESOLUTIONS),
         "embedding_key": embedding_key,
         "batch_key": batch_key,
