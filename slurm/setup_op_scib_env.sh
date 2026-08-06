@@ -30,7 +30,7 @@ export SCIB_NATIVE_CACHE="${SCIB_NATIVE_CACHE:-${WORK_ROOT}/.cache/scib-native}"
 mkdir -p "${R_LIBS_USER}" "${UV_CACHE_DIR}" "${SCIB_NATIVE_CACHE}"
 
 Rscript -e \
-  'if (!requireNamespace("remotes", quietly=TRUE)) install.packages("remotes", repos="https://cloud.r-project.org"); if (!requireNamespace("kBET", quietly=TRUE)) remotes::install_github("theislab/kBET", ref="0.99.6", dependencies=TRUE)'
+  'if (!requireNamespace("remotes", quietly=TRUE)) install.packages("remotes", repos="https://cloud.r-project.org"); if (!requireNamespace("kBET", quietly=TRUE)) remotes::install_url("https://codeload.github.com/theislab/kBET/tar.gz/refs/heads/master", dependencies=TRUE)'
 
 cd "${REPO_ROOT}"
 
