@@ -53,10 +53,10 @@ Rscript -e \
 cd "${REPO_ROOT}"
 
 "${UV}" pip install --python .venv/bin/python \
-  'jax[cuda12]==0.7.0' rpy2 'anndata2ri==1.3.1'
+  'jax[cuda12]==0.7.0' 'rpy2==3.5.17' 'anndata2ri==1.3.1'
 
 "${UV}" pip install --python "${TF_ENV}/bin/python" \
-  'scib==1.1.7' 'jax[cuda12]==0.10.2' rpy2 'anndata2ri==1.3.1'
+  'scib==1.1.7' 'jax[cuda12]==0.10.2' 'rpy2==3.5.17' 'anndata2ri==1.3.1'
 
 R_HOME="${R_HOME}" .venv/bin/python -c \
   'from op_scib import prepare_op_scib_environment; print(prepare_op_scib_environment())'
