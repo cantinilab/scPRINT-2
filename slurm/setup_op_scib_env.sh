@@ -56,11 +56,11 @@ cd "${REPO_ROOT}"
 # downgrading to the R-4.4-compatible monolithic 3.5 release, otherwise their
 # files shadow the matching modules installed by rpy2 3.5.
 "${UV}" pip uninstall --python .venv/bin/python rpy2-rinterface rpy2-robjects || true
-"${UV}" pip install --python .venv/bin/python \
+"${UV}" pip install --python .venv/bin/python --reinstall-package rpy2 \
   'jax[cuda12]==0.7.0' 'rpy2==3.5.17' 'anndata2ri==1.3.1'
 
 "${UV}" pip uninstall --python "${TF_ENV}/bin/python" rpy2-rinterface rpy2-robjects || true
-"${UV}" pip install --python "${TF_ENV}/bin/python" \
+"${UV}" pip install --python "${TF_ENV}/bin/python" --reinstall-package rpy2 \
   'scib==1.1.7' 'jax[cuda12]==0.10.2' 'rpy2==3.5.17' 'anndata2ri==1.3.1'
 
 R_HOME="${R_HOME}" .venv/bin/python -c \
