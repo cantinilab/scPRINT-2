@@ -3,6 +3,11 @@ set -euo pipefail
 
 if [[ -f /etc/profile.d/proxy.sh ]]; then
   source /etc/profile.d/proxy.sh
+elif [[ -z "${https_proxy:-}" ]]; then
+  export http_proxy="http://prodprox.idris.fr:3128"
+  export https_proxy="${http_proxy}"
+  export HTTP_PROXY="${http_proxy}"
+  export HTTPS_PROXY="${https_proxy}"
 fi
 
 WORK_ROOT="${WORK:-/lustre/fswork/projects/rech/xeg/${USER}}"
