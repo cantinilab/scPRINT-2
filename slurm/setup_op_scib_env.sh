@@ -1,7 +1,9 @@
 #!/bin/bash
 set -euo pipefail
 
-source /etc/profile.d/proxy.sh
+if [[ -f /etc/profile.d/proxy.sh ]]; then
+  source /etc/profile.d/proxy.sh
+fi
 
 WORK_ROOT="${WORK:-/lustre/fswork/projects/rech/xeg/${USER}}"
 SCRATCH_ROOT="${SCRATCH:-/lustre/fsn1/projects/rech/xeg/${USER}}"
