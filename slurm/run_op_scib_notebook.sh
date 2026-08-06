@@ -18,7 +18,7 @@ module load r/4.4.1
 export R_HOME="$(R RHOME)"
 export R_LIBS_USER="${R_LIBS_USER:-${WORK_ROOT}/R/library/4.4}"
 export SCIB_NATIVE_CACHE="${SCIB_NATIVE_CACHE:-${WORK_ROOT}/.cache/scib-native}"
-export JAX_PLATFORMS=gpu
+export JAX_PLATFORMS=cuda
 export XLA_PYTHON_CLIENT_PREALLOCATE=false
 export OMP_NUM_THREADS="${SLURM_CPUS_PER_TASK:-1}"
 export MKL_NUM_THREADS="${SLURM_CPUS_PER_TASK:-1}"
