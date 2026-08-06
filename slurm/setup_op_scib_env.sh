@@ -38,7 +38,7 @@ if [[ ! -s "${KBET_ARCHIVE}" ]]; then
 fi
 
 Rscript -e \
-  'if (!requireNamespace("remotes", quietly=TRUE)) install.packages("remotes", repos="https://cloud.r-project.org"); if (!requireNamespace("kBET", quietly=TRUE)) remotes::install_local(Sys.getenv("KBET_ARCHIVE"), dependencies=TRUE)'
+  'if (!requireNamespace("remotes", quietly=TRUE)) install.packages("remotes", repos="https://cloud.r-project.org"); if (!requireNamespace("kBET", quietly=TRUE)) remotes::install_local(Sys.getenv("KBET_ARCHIVE"), dependencies=NA)'
 
 cd "${REPO_ROOT}"
 
