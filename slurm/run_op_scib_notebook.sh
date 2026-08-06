@@ -12,7 +12,11 @@ WORK_ROOT="${WORK:-/lustre/fswork/projects/rech/xeg/${USER}}"
 SCRATCH_ROOT="${SCRATCH:-/lustre/fsn1/projects/rech/xeg/${USER}}"
 REPO_ROOT="${REPO_ROOT:-${WORK_ROOT}/scPRINT}"
 
+# Some Jean Zay profile fragments probe optional unset variables. Keep strict
+# mode for this script, but disable nounset only while the site profile loads.
+set +u
 source /etc/profile
+set -u
 module load r/4.4.1
 
 export R_HOME="$(R RHOME)"
