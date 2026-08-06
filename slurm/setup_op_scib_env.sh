@@ -13,25 +13,24 @@ fi
 WORK_ROOT="${WORK:-/lustre/fswork/projects/rech/xeg/${USER}}"
 SCRATCH_ROOT="${SCRATCH:-/lustre/fsn1/projects/rech/xeg/${USER}}"
 REPO_ROOT="${REPO_ROOT:-${WORK_ROOT}/scPRINT}"
-R_ENV="${OP_SCIB_R_ENV:-${WORK_ROOT}/venvs/op-scib-r}"
 TF_ENV="${TF_ENV:-${SCRATCH_ROOT}/venvs/transcriptformer-h100-0.6.1}"
 UV="${UV:-${HOME}/.local/bin/uv}"
 
-export R_HOME="${R_ENV}/lib/R"
-export PATH="${R_ENV}/bin:${HOME}/.local/bin:${PATH}"
+if ! command -v R >/dev/null 2>&1; then
+  echo "R is unavailable. Run 'module load r/4.4.1' on the submit node first." >&2
+  exit 1
+fi
+
+export R_HOME="${R_HOME:-$(R RHOME)}"
+export R_LIBS_USER="${R_LIBS_USER:-${WORK_ROOT}/R/library/4.4}"
+export PATH="${HOME}/.local/bin:${PATH}"
 export UV_CACHE_DIR="${UV_CACHE_DIR:-${WORK_ROOT}/.cache/uv}"
 export SCIB_NATIVE_CACHE="${SCIB_NATIVE_CACHE:-${WORK_ROOT}/.cache/scib-native}"
 
-mkdir -p "${WORK_ROOT}/venvs" "${UV_CACHE_DIR}" "${SCIB_NATIVE_CACHE}"
+mkdir -p "${R_LIBS_USER}" "${UV_CACHE_DIR}" "${SCIB_NATIVE_CACHE}"
 
-if [[ ! -x "${R_ENV}/bin/R" ]]; then
-  /gpfslocalsup/pub/anaconda-py3/2023.09/bin/conda create -y \
-    -p "${R_ENV}" -c conda-forge \
-    r-base=4.3 r-remotes r-fnn r-matrix
-fi
-
-"${R_ENV}/bin/Rscript" -e \
-  'if (!requireNamespace("kBET", quietly=TRUE)) remotes::install_github("theislab/kBET", ref="0.99.6")'
+Rscript -e \
+  'if (!requireNamespace("remotes", quietly=TRUE)) install.packages("remotes", repos="https://cloud.r-project.org"); if (!requireNamespace("kBET", quietly=TRUE)) remotes::install_github("theislab/kBET", ref="0.99.6", dependencies=TRUE)'
 
 cd "${REPO_ROOT}"
 
