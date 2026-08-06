@@ -29,8 +29,16 @@ export SCIB_NATIVE_CACHE="${SCIB_NATIVE_CACHE:-${WORK_ROOT}/.cache/scib-native}"
 
 mkdir -p "${R_LIBS_USER}" "${UV_CACHE_DIR}" "${SCIB_NATIVE_CACHE}"
 
+KBET_ARCHIVE="${UV_CACHE_DIR}/kBET-master.tar.gz"
+export KBET_ARCHIVE
+if [[ ! -s "${KBET_ARCHIVE}" ]]; then
+  curl -L --fail --retry 3 \
+    'https://codeload.github.com/theislab/kBET/tar.gz/refs/heads/master' \
+    -o "${KBET_ARCHIVE}"
+fi
+
 Rscript -e \
-  'if (!requireNamespace("remotes", quietly=TRUE)) install.packages("remotes", repos="https://cloud.r-project.org"); if (!requireNamespace("kBET", quietly=TRUE)) remotes::install_url("https://codeload.github.com/theislab/kBET/tar.gz/refs/heads/master", dependencies=TRUE)'
+  'if (!requireNamespace("remotes", quietly=TRUE)) install.packages("remotes", repos="https://cloud.r-project.org"); if (!requireNamespace("kBET", quietly=TRUE)) remotes::install_local(Sys.getenv("KBET_ARCHIVE"), dependencies=TRUE)'
 
 cd "${REPO_ROOT}"
 
