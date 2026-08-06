@@ -27,6 +27,16 @@ export PATH="${HOME}/.local/bin:${PATH}"
 export UV_CACHE_DIR="${UV_CACHE_DIR:-${WORK_ROOT}/.cache/uv}"
 export SCIB_NATIVE_CACHE="${SCIB_NATIVE_CACHE:-${WORK_ROOT}/.cache/scib-native}"
 
+# The Jean Zay R module records transitive libraries (notably libiconv and ICU)
+# in libR.so's runtime paths, but `R CMD config --ldflags` does not expose their
+# directories. rpy2 performs a fresh link test, so make those directories visible
+# to the compiler as well as to the runtime loader.
+R_DEP_LIBRARY_PATH="$({
+  ldd "${R_HOME}/lib/libR.so" | awk '/=> \// { path=$3; sub("/[^/]+$", "", path); print path }'
+} | sort -u | paste -sd: -)"
+export LIBRARY_PATH="${R_DEP_LIBRARY_PATH}${LIBRARY_PATH:+:${LIBRARY_PATH}}"
+export LD_LIBRARY_PATH="${R_DEP_LIBRARY_PATH}${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}"
+
 mkdir -p "${R_LIBS_USER}" "${UV_CACHE_DIR}" "${SCIB_NATIVE_CACHE}"
 
 KBET_ARCHIVE="${UV_CACHE_DIR}/kBET-master.tar.gz"
@@ -38,7 +48,7 @@ if [[ ! -s "${KBET_ARCHIVE}" ]]; then
 fi
 
 Rscript -e \
-  'if (!requireNamespace("remotes", quietly=TRUE)) install.packages("remotes", repos="https://cloud.r-project.org"); if (!requireNamespace("kBET", quietly=TRUE)) remotes::install_local(Sys.getenv("KBET_ARCHIVE"), dependencies=NA)'
+  'repo <- "https://cloud.r-project.org"; required <- c("remotes", "withr", "ggplot2"); missing <- required[!vapply(required, requireNamespace, logical(1), quietly=TRUE)]; if (length(missing)) install.packages(missing, repos=repo, dependencies=NA); stopifnot(all(vapply(required, requireNamespace, logical(1), quietly=TRUE))); if (!requireNamespace("kBET", quietly=TRUE)) remotes::install_local(Sys.getenv("KBET_ARCHIVE"), dependencies=NA)'
 
 cd "${REPO_ROOT}"
 
