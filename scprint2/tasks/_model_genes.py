@@ -5,8 +5,15 @@ from typing import Any
 import pandas as pd
 
 
-def model_gene_dataframe(model: Any) -> pd.DataFrame:
-    """Build the Collator gene table from the vocabulary stored in a checkpoint."""
+def model_gene_dataframe(
+    model: Any, input_var: pd.DataFrame | None = None
+) -> pd.DataFrame:
+    """Build the full Collator gene table without querying LaminDB."""
+    if input_var is not None and "organism" in input_var:
+        if input_var["organism"].isna().any():
+            raise ValueError("The input gene table contains missing organism values")
+        return input_var[["organism"]].copy()
+
     organisms = list(model.organisms)
     genes = model._genes
     if isinstance(genes, dict):

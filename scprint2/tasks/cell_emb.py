@@ -156,7 +156,7 @@ class Embedder:
             add_zero_genes=0,
             genelist=self.genelist if self.how in ["most var", "some"] else [],
             n_bins=model.n_input_bins if model.expr_emb_style == "binned" else 0,
-            genedf=model_gene_dataframe(model),
+            genedf=model_gene_dataframe(model, adata.var),
         )
         set_collator_organism_ids(col, model.organisms)
         dataloader = DataLoader(

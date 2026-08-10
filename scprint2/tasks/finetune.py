@@ -208,7 +208,7 @@ class FinetuneBatchClass:
             how="random expr",  # or "all expr" for full expression
             max_len=self.max_len,
             org_to_id=mencoders.get("organism_ontology_term_id", {}),
-            genedf=model_gene_dataframe(model),
+            genedf=model_gene_dataframe(model, train_data.var),
         )
         set_collator_organism_ids(
             collator,
