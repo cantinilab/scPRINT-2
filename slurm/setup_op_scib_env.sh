@@ -76,6 +76,12 @@ cd "${REPO_ROOT}"
 "${UV}" pip install --python "${TF_ENV}/bin/python" --reinstall-package rpy2 \
   'scib==1.1.7' 'jax[cuda12]==0.10.2' 'rpy2==3.5.17' 'anndata2ri==2.0.1'
 
+# Compute nodes have no outbound network access. Populate the read-only Cell
+# Ontology fallback cache here on the submit node before the heavier validation
+# imports below, which may be killed by submit-node resource limits.
+.venv/bin/python -c \
+  'from bionty.base import CellType; print(CellType(source="cl", version="2024-05-15").df().shape)'
+
 R_HOME="${R_HOME}" .venv/bin/python -c \
   'from op_scib import prepare_op_scib_environment; print(prepare_op_scib_environment())'
 

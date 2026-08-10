@@ -32,9 +32,18 @@ def _cell_type_parent_dataframe() -> pd.DataFrame:
             .set_index("ontology_id")[["parents__ontology_id"]]
         )
     except (OperationalError, ProgrammingError):
-        from bionty.base import CellType as PublicCellType
+        from bionty.base import settings as bionty_settings
 
-        public = PublicCellType(source="cl", version="2024-05-15").df()
+        cache_path = (
+            bionty_settings.dynamicdir
+            / "df_all__cl__2024-05-15__CellType.parquet"
+        )
+        if not cache_path.is_file():
+            raise FileNotFoundError(
+                "The Cell Ontology cache is missing. Run the scIB environment "
+                "setup on the submit node before starting Slurm jobs."
+            )
+        public = pd.read_parquet(cache_path).set_index("ontology_id")
         if "parents" not in public.columns:
             raise RuntimeError("The cached Cell Ontology has no parent relationships.")
         parentdf = public[["parents"]].rename(
