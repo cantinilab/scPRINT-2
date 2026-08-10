@@ -28,9 +28,7 @@ def _cell_type_parent_dataframe() -> pd.DataFrame:
     try:
         parentdf = (
             bt.CellType.filter()
-            .to_dataframe(
-                include=["parents__ontology_id", "ontology_id"], limit=None
-            )
+            .df(include=["parents__ontology_id", "ontology_id"])
             .set_index("ontology_id")[["parents__ontology_id"]]
         )
     except (OperationalError, ProgrammingError):
