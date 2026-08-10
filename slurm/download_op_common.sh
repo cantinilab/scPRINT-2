@@ -48,7 +48,9 @@ for dataset in "${datasets[@]}"; do
     continue
   fi
   echo "Downloading ${dataset} to ${destination}"
-  curl -L --fail --retry 5 --retry-delay 5 --continue-at - --progress-bar \
+  curl -L --fail --retry 20 --retry-all-errors --retry-delay 5 \
+    --connect-timeout 30 --speed-limit 1024 --speed-time 60 \
+    --continue-at - --progress-bar \
     "${BASE_URL}/${dataset}/log_cp10k/dataset.h5ad" \
     -o "${partial}"
   mv "${partial}" "${destination}"
