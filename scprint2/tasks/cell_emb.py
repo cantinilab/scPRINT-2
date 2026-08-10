@@ -43,7 +43,9 @@ def _cell_type_parent_dataframe() -> pd.DataFrame:
                 "The Cell Ontology cache is missing. Run the scIB environment "
                 "setup on the submit node before starting Slurm jobs."
             )
-        public = pd.read_parquet(cache_path).set_index("ontology_id")
+        public = pd.read_parquet(cache_path)
+        if public.index.name != "ontology_id":
+            public = public.set_index("ontology_id")
         if "parents" not in public.columns:
             raise RuntimeError("The cached Cell Ontology has no parent relationships.")
         parentdf = public[["parents"]].rename(
