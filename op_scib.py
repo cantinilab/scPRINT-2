@@ -558,6 +558,8 @@ def compute_op_scib_metrics(
             cluster_function=sc.tl.leiden,
             resolutions=list(OP_RESOLUTIONS),
             verbose=verbose,
+            flavor="igraph",
+            n_iterations=2,
         )
         return (
             scib_metrics.ari(work, cluster_key="leiden", label_key="cell_type"),
