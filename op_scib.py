@@ -610,6 +610,14 @@ def compute_op_scib_metrics(
 
     if compute_expression_metrics and solution_aligned is not None:
         pre = solution_aligned.copy()
+        if "normalized" not in pre.layers:
+            raise KeyError(
+                "solution.layers is missing 'normalized', required for PCR and "
+                "cell-cycle conservation"
+            )
+        # OpenProblems' partial H5AD reader maps layers/normalized to X before
+        # calling these expression-aware scIB metrics.
+        pre.X = pre.layers["normalized"].copy()
         pre.obs["batch"] = pre.obs[batch_key].astype("category")
         post = work.copy()
         post.obs["batch"] = post.obs[batch_key].astype("category")
