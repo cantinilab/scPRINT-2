@@ -24,7 +24,7 @@ import scanpy as sc
 import scib
 from scib import metrics as scib_metrics
 from scib.metrics.lisi import lisi_graph_py
-
+from scipy import sparse
 
 OP_RESOLUTIONS = (0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8)
 OP_COLUMNS = (
@@ -42,6 +42,207 @@ OP_COLUMNS = (
     "nmi",
     "pcr",
 )
+
+OP_LOG_CP10K_TARGET_SUM = 10_000.0
+OP_BATCH_HVGS = 2_000
+
+# Published OpenProblems batch-integration values, rounded to four decimals.
+# These are used only as a validation target; they are never used to construct
+# the reconstructed reference or any metric input.
+OP_NO_INTEGRATION_EXPECTED = {
+    "dkd": {
+        "ari": 0.5999,
+        "asw_batch": 0.8913,
+        "asw_label": 0.6276,
+        "cell_cycle_conservation": 0.8248,
+        "clisi": 0.9998,
+        "graph_connectivity": 0.9701,
+        "hvg_overlap": np.nan,
+        "ilisi": 0.0754,
+        "isolated_label_asw": np.nan,
+        "isolated_label_f1": np.nan,
+        "kbet": 0.1529,
+        "nmi": 0.7735,
+        "pcr": 0.0,
+    }
+}
+
+
+def _matrix_max_abs(matrix: Any) -> float:
+    """Return the largest absolute entry without densifying sparse matrices."""
+    if sparse.issparse(matrix):
+        return float(np.max(np.abs(matrix.data))) if matrix.nnz else 0.0
+    values = np.asarray(matrix)
+    return float(np.max(np.abs(values))) if values.size else 0.0
+
+
+def normalize_log_cp10k_from_counts(
+    adata: ad.AnnData,
+    *,
+    counts_layer: str = "counts",
+    target_sum: float = OP_LOG_CP10K_TARGET_SUM,
+) -> tuple[Any, np.ndarray]:
+    """Reproduce the OpenProblems ``log_cp10k`` normalization from counts.
+
+    This deliberately ignores any existing normalized layer. It matches the
+    OpenProblems common-dataset processor: ``scanpy.pp.normalize_total`` on
+    ``layers['counts']`` followed by ``scanpy.pp.log1p``.
+    """
+    if counts_layer not in adata.layers:
+        raise KeyError(f"adata.layers is missing {counts_layer!r}")
+    normalized = sc.pp.normalize_total(
+        adata,
+        target_sum=target_sum,
+        layer=counts_layer,
+        inplace=False,
+    )
+    log_normalized = sc.pp.log1p(normalized["X"])
+    return log_normalized, np.asarray(normalized["norm_factor"])
+
+
+def reconstruct_op_batch_reference(
+    common: ad.AnnData,
+    *,
+    n_hvgs: int = OP_BATCH_HVGS,
+    target_sum: float = OP_LOG_CP10K_TARGET_SUM,
+    verify_published_normalized: bool = True,
+) -> tuple[ad.AnnData, dict[str, Any]]:
+    """Rebuild an OpenProblems batch-integration reference from raw counts.
+
+    The input is the public OpenProblems *common dataset*, not the task
+    solution. The function reruns log-CP10k normalization, batch-aware HVG
+    selection, PCA and the 30-neighbour dataset graph using the v2.0.0 task
+    processor's calls. The returned AnnData has the fields needed by PCR and
+    cell-cycle conservation.
+    """
+    required_obs = {"batch", "cell_type"}
+    missing_obs = required_obs.difference(common.obs)
+    if missing_obs:
+        raise KeyError(f"common.obs is missing: {sorted(missing_obs)}")
+    if "counts" not in common.layers:
+        raise KeyError("common.layers is missing 'counts'")
+
+    reference = common.copy()
+    published_normalized = reference.layers.get("normalized")
+    normalized, size_factors = normalize_log_cp10k_from_counts(
+        reference, target_sum=target_sum
+    )
+
+    normalization_check: dict[str, Any] = {
+        "target_sum": float(target_sum),
+        "published_layer_present": published_normalized is not None,
+    }
+    if published_normalized is not None and verify_published_normalized:
+        delta = normalized - published_normalized
+        normalization_check.update(
+            {
+                "published_max_abs": _matrix_max_abs(published_normalized),
+                "recomputed_max_abs": _matrix_max_abs(normalized),
+                "max_abs_difference": _matrix_max_abs(delta),
+            }
+        )
+
+    reference.layers["normalized"] = normalized
+    reference.obs["size_factors"] = size_factors
+    reference.uns["normalization_id"] = "log_cp10k"
+
+    n_hvgs = min(int(n_hvgs), reference.n_vars)
+    if n_hvgs == reference.n_vars:
+        hvg_list = reference.var_names.tolist()
+    else:
+        scib_adata = reference.copy()
+        del scib_adata.layers["counts"]
+        scib_adata.X = scib_adata.layers["normalized"].copy()
+        hvg_list = scib.pp.hvg_batch(
+            scib_adata,
+            batch_key="batch",
+            target_genes=n_hvgs,
+            adataOut=False,
+        )
+        del scib_adata
+    reference.var["batch_hvg"] = reference.var_names.isin(hvg_list)
+
+    n_components = (
+        int(common.obsm["X_pca"].shape[1]) if "X_pca" in common.obsm else 50
+    )
+    x_pca, loadings, variance, variance_ratio = sc.pp.pca(
+        reference.layers["normalized"],
+        n_comps=n_components,
+        mask_var=reference.var["batch_hvg"],
+        return_info=True,
+    )
+    reference.obsm["X_pca"] = x_pca
+    reference.varm["pca_loadings"] = np.zeros(
+        (reference.n_vars, n_components), dtype=np.asarray(loadings).dtype
+    )
+    reference.varm["pca_loadings"][reference.var["batch_hvg"], :] = loadings.T
+    reference.uns["pca_variance"] = {
+        "variance": variance,
+        "variance_ratio": variance_ratio,
+    }
+
+    reference.uns.pop("knn", None)
+    reference.obsp.pop("knn_connectivities", None)
+    reference.obsp.pop("knn_distances", None)
+    sc.pp.neighbors(reference, use_rep="X_pca", n_neighbors=30, key_added="knn")
+
+    hvg = sc.pp.highly_variable_genes(
+        reference,
+        layer="normalized",
+        n_top_genes=n_hvgs,
+        flavor="cell_ranger",
+        inplace=False,
+    )
+    reference.var["hvg"] = hvg["highly_variable"].values
+    reference.var["hvg_score"] = hvg["dispersions_norm"].values
+
+    normalization_check.update(
+        {
+            "n_obs": reference.n_obs,
+            "n_vars": reference.n_vars,
+            "n_batch_hvgs": int(reference.var["batch_hvg"].sum()),
+            "n_components": n_components,
+        }
+    )
+    return reference, normalization_check
+
+
+def make_op_no_integration(reference: ad.AnnData) -> ad.AnnData:
+    """Create the exact OpenProblems no-integration embedding (task PCA)."""
+    if "X_pca" not in reference.obsm:
+        raise KeyError("reference.obsm is missing 'X_pca'")
+    output = ad.AnnData(obs=pd.DataFrame(index=reference.obs_names.copy()))
+    output.obsm["X_emb"] = np.asarray(reference.obsm["X_pca"])
+    output.uns.update(
+        {
+            key: reference.uns[key]
+            for key in ("dataset_id", "normalization_id")
+            if key in reference.uns
+        }
+    )
+    output.uns["method_id"] = "no_integration"
+    return output
+
+
+def compare_op_scores(
+    observed: pd.DataFrame,
+    expected: dict[str, float],
+) -> pd.DataFrame:
+    """Return a metric-by-metric comparison against rounded OP scores."""
+    row = observed.iloc[0]
+    comparison = pd.DataFrame(
+        {
+            "expected": pd.Series(expected, dtype=float),
+            "observed": row.reindex(expected).astype(float),
+        }
+    )
+    comparison["absolute_difference"] = (
+        comparison["observed"] - comparison["expected"]
+    ).abs()
+    comparison["matches_published_4dp"] = (
+        comparison["observed"].round(4) == comparison["expected"].round(4)
+    ) | (comparison["observed"].isna() & comparison["expected"].isna())
+    return comparison
 
 
 def check_op_scib_environment(*, require_kbet: bool = True) -> dict[str, str]:

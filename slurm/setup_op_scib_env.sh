@@ -52,6 +52,12 @@ Rscript -e \
 
 cd "${REPO_ROOT}"
 
+# Make the checkout an installed editable package. Importing from the repository
+# directory alone is insufficient because scprint2/__init__.py reads package
+# metadata via importlib.metadata.version(). This is intentionally done with uv
+# in the already-existing scPRINT environment and does not create a new env.
+"${UV}" pip install --python .venv/bin/python --no-deps -e .
+
 # rpy2 3.6 split these modules into separate distributions. Remove them before
 # downgrading to the R-4.4-compatible monolithic 3.5 release, otherwise their
 # files shadow the matching modules installed by rpy2 3.5.
