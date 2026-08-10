@@ -408,8 +408,71 @@ def _align_solution(
 
     missing = result.obs_names.difference(solution.obs_names)
     if len(missing):
-        raise ValueError(f"{len(missing)} integrated cells are absent from the solution")
-    aligned = solution[result.obs_names].copy()
+        if result.n_obs != solution.n_obs:
+            raise ValueError(
+                f"{len(missing)} integrated cells are absent from the solution "
+                f"and observation counts differ ({result.n_obs} != {solution.n_obs})"
+            )
+
+        identity_columns = [
+            batch_key,
+            label_key,
+            "cell_type_ontology_term_id",
+            "assay_ontology_term_id",
+            "disease_ontology_term_id",
+            "sex_ontology_term_id",
+            "tissue_ontology_term_id",
+        ]
+        compared = []
+        for key in dict.fromkeys(identity_columns):
+            if key not in result.obs or key not in solution.obs:
+                continue
+            compared.append(key)
+            left = result.obs[key].astype("string").fillna("<NA>").to_numpy()
+            right = solution.obs[key].astype("string").fillna("<NA>").to_numpy()
+            if not np.array_equal(left, right):
+                raise ValueError(
+                    "Integrated and solution observation names differ, and "
+                    f"positional identity check failed for obs[{key!r}]"
+                )
+        if batch_key not in compared or label_key not in compared:
+            raise ValueError(
+                "Integrated and solution observation names differ without shared "
+                "batch and label columns for positional validation"
+            )
+
+        if "size_factors" not in solution.obs:
+            raise ValueError(
+                "Integrated and solution observation names differ, and the solution "
+                "has no size_factors fingerprint for positional validation"
+            )
+        reference_totals = (
+            solution.obs["size_factors"].to_numpy(dtype=float)
+            * OP_LOG_CP10K_TARGET_SUM
+        )
+        correlations = {}
+        for key in ("nCount_RNA", "total_counts"):
+            if key not in result.obs:
+                continue
+            candidate = result.obs[key].to_numpy(dtype=float)
+            correlation = float(np.corrcoef(candidate, reference_totals)[0, 1])
+            if np.isfinite(correlation):
+                correlations[key] = correlation
+        if not correlations or max(correlations.values()) < 0.999:
+            raise ValueError(
+                "Integrated and solution observation names differ, and library-size "
+                f"fingerprints do not prove positional identity: {correlations}"
+            )
+
+        aligned = solution.copy()
+        aligned.obs_names = result.obs_names.copy()
+        warnings.warn(
+            "Aligned solution by position after exact metadata and library-size "
+            f"validation (best correlation={max(correlations.values()):.8f}).",
+            stacklevel=2,
+        )
+    else:
+        aligned = solution[result.obs_names].copy()
     for key in (batch_key, label_key):
         if key not in aligned.obs:
             raise KeyError(f"solution.obs is missing {key!r}")
