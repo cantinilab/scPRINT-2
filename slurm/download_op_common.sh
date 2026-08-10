@@ -17,12 +17,26 @@ export HTTPS_PROXY="${HTTPS_PROXY:-${https_proxy}}"
 # deliberately recomputes normalization from counts instead of trusting that
 # layer. Downloads must run on the Jean Zay submit node because compute nodes
 # have no outbound network access.
-datasets=(
-  dkd
-  gtex_v9
-  hypomap
-  mouse_pancreas_atlas
-)
+if [[ $# -gt 0 ]]; then
+  datasets=("$@")
+else
+  datasets=(
+    dkd
+    gtex_v9
+    hypomap
+    mouse_pancreas_atlas
+  )
+fi
+
+for dataset in "${datasets[@]}"; do
+  case "${dataset}" in
+    dkd | gtex_v9 | hypomap | mouse_pancreas_atlas) ;;
+    *)
+      echo "Unsupported dataset: ${dataset}" >&2
+      exit 2
+      ;;
+  esac
+done
 
 for dataset in "${datasets[@]}"; do
   destination_dir="${OUTPUT_ROOT}/cellxgene_census/${dataset}/log_cp10k"
