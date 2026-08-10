@@ -9,6 +9,7 @@ not implement several metrics in the same way.
 from __future__ import annotations
 
 import contextlib
+import importlib.metadata
 import os
 import platform
 import shutil
@@ -66,6 +67,30 @@ OP_NO_INTEGRATION_EXPECTED = {
         "pcr": 0.0,
     }
 }
+
+
+def _software_versions() -> dict[str, str]:
+    packages = (
+        "anndata",
+        "igraph",
+        "leidenalg",
+        "numpy",
+        "pandas",
+        "pynndescent",
+        "scanpy",
+        "scib",
+        "scib-metrics",
+        "scikit-learn",
+        "scipy",
+        "umap-learn",
+    )
+    versions: dict[str, str] = {"python": platform.python_version()}
+    for package in packages:
+        try:
+            versions[package] = importlib.metadata.version(package)
+        except importlib.metadata.PackageNotFoundError:
+            versions[package] = "not-installed"
+    return versions
 
 
 def _matrix_max_abs(matrix: Any) -> float:
@@ -666,6 +691,7 @@ def compute_op_scib_metrics(
         "batch_key": batch_key,
         "label_key": label_key,
     }
+    result.attrs["software_versions"] = _software_versions()
     return result
 
 
@@ -681,6 +707,7 @@ def save_op_scib_result(result: pd.DataFrame, path: str | os.PathLike[str]) -> P
         json.dumps(
             {
                 "parameters": result.attrs.get("parameters", {}),
+                "software_versions": result.attrs.get("software_versions", {}),
                 "errors": result.attrs.get("errors", {}),
             },
             indent=2,
