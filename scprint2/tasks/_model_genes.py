@@ -5,6 +5,18 @@ from typing import Any
 import pandas as pd
 
 
+def active_model_organisms(model: Any, obs: pd.DataFrame) -> list[str]:
+    """Return model organisms actually represented in an input dataset."""
+    column = "organism_ontology_term_id"
+    if column not in obs:
+        raise KeyError(f"The input observations have no {column!r} column")
+    organisms = list(pd.unique(obs[column].astype(str)))
+    unsupported = sorted(set(organisms) - set(model.organisms))
+    if unsupported:
+        raise ValueError(f"The model does not support organisms {unsupported}")
+    return organisms
+
+
 def model_gene_dataframe(
     model: Any, input_var: pd.DataFrame | None = None
 ) -> pd.DataFrame:

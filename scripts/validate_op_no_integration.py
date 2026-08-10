@@ -38,6 +38,11 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--silhouette-chunk-size", type=int, default=1024)
     parser.add_argument("--skip-kbet", action="store_true")
     parser.add_argument("--skip-write-reference", action="store_true")
+    parser.add_argument(
+        "--reference-only",
+        action="store_true",
+        help="write the reconstructed reference without benchmarking no_integration",
+    )
     return parser.parse_args()
 
 
@@ -62,6 +67,10 @@ def main() -> None:
         reference_path = output_dir / "output_solution.h5ad"
         print(f"Writing reconstructed reference: {reference_path}", flush=True)
         reference.write_h5ad(reference_path, compression="gzip")
+
+    if args.reference_only:
+        print("Reference-only mode: skipping no_integration metrics.", flush=True)
+        return
 
     integrated = make_op_no_integration(reference)
     print("Computing scIB metrics for no_integration...", flush=True)

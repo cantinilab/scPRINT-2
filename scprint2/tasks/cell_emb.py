@@ -21,6 +21,7 @@ from torch.utils.data import DataLoader
 from tqdm import tqdm
 
 from scprint2.tasks._model_genes import (
+    active_model_organisms,
     model_gene_dataframe,
     set_collator_organism_ids,
 )
@@ -148,8 +149,9 @@ class Embedder:
             obs_to_output=["organism_ontology_term_id"],
             get_knn_cells=model.expr_emb_style == "metacell" and self.use_knn,
         )
+        active_organisms = active_model_organisms(model, adata.obs)
         col = Collator(
-            organisms=model.organisms,
+            organisms=active_organisms,
             valid_genes=model.genes,
             how=self.how if self.how != "most var" else "some",
             max_len=self.max_len,
@@ -158,7 +160,7 @@ class Embedder:
             n_bins=model.n_input_bins if model.expr_emb_style == "binned" else 0,
             genedf=model_gene_dataframe(model, adata.var),
         )
-        set_collator_organism_ids(col, model.organisms)
+        set_collator_organism_ids(col, active_organisms)
         dataloader = DataLoader(
             adataset,
             collate_fn=col,
