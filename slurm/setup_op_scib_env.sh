@@ -1,6 +1,13 @@
 #!/bin/bash
 set -euo pipefail
 
+# Jean Zay exposes R through environment modules. Load the site profile outside
+# nounset mode because optional variables in the profile are not always defined.
+set +u
+source /etc/profile
+set -u
+module load r/4.4.1
+
 if [[ -f /etc/profile.d/proxy.sh ]]; then
   source /etc/profile.d/proxy.sh
 elif [[ -z "${https_proxy:-}" ]]; then
@@ -16,10 +23,10 @@ REPO_ROOT="${REPO_ROOT:-${WORK_ROOT}/scPRINT}"
 TF_ENV="${TF_ENV:-${SCRATCH_ROOT}/venvs/transcriptformer-h100-0.6.1}"
 UV="${UV:-${HOME}/.local/bin/uv}"
 
-if ! command -v R >/dev/null 2>&1; then
-  echo "R is unavailable. Run 'module load r/4.4.1' on the submit node first." >&2
+command -v R >/dev/null 2>&1 || {
+  echo "R is unavailable after loading the Jean Zay r/4.4.1 module." >&2
   exit 1
-fi
+}
 
 export R_HOME="${R_HOME:-$(R RHOME)}"
 export R_LIBS_USER="${R_LIBS_USER:-${WORK_ROOT}/R/library/4.4}"
