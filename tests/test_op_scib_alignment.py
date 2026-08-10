@@ -48,11 +48,39 @@ def test_align_solution_validates_positional_identity():
     assert aligned.obs["donor_id"].tolist() == ["a", "a", "b", "b"]
 
 
-def test_align_solution_rejects_positional_metadata_mismatch():
+def test_align_solution_accepts_label_drift_and_uses_reference_labels():
     integrated, solution = _alignment_inputs()
     solution.obs.iloc[1, solution.obs.columns.get_loc("cell_type")] = "x"
 
+    with pytest.warns(UserWarning, match="labels are taken from"):
+        result, _ = _align_solution(
+            integrated,
+            solution,
+            batch_key="donor_id",
+            label_key="cell_type",
+        )
+
+    assert result.obs["cell_type"].tolist() == ["x", "x", "x", "y"]
+
+
+def test_align_solution_rejects_positional_batch_mismatch():
+    integrated, solution = _alignment_inputs()
+    solution.obs.iloc[1, solution.obs.columns.get_loc("donor_id")] = "b"
+
     with pytest.raises(ValueError, match="positional identity check failed"):
+        _align_solution(
+            integrated,
+            solution,
+            batch_key="donor_id",
+            label_key="cell_type",
+        )
+
+
+def test_align_solution_rejects_library_size_reordering_within_batch():
+    integrated, solution = _alignment_inputs()
+    solution.obs["size_factors"] = solution.obs["size_factors"].iloc[::-1].to_numpy()
+
+    with pytest.raises(ValueError, match="library-size fingerprints"):
         _align_solution(
             integrated,
             solution,

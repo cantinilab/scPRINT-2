@@ -416,8 +416,6 @@ def _align_solution(
 
         identity_columns = [
             batch_key,
-            label_key,
-            "cell_type_ontology_term_id",
             "assay_ontology_term_id",
             "disease_ontology_term_id",
             "sex_ontology_term_id",
@@ -435,10 +433,10 @@ def _align_solution(
                     "Integrated and solution observation names differ, and "
                     f"positional identity check failed for obs[{key!r}]"
                 )
-        if batch_key not in compared or label_key not in compared:
+        if batch_key not in compared:
             raise ValueError(
                 "Integrated and solution observation names differ without shared "
-                "batch and label columns for positional validation"
+                "batch metadata for positional validation"
             )
 
         if "size_factors" not in solution.obs:
@@ -467,8 +465,9 @@ def _align_solution(
         aligned = solution.copy()
         aligned.obs_names = result.obs_names.copy()
         warnings.warn(
-            "Aligned solution by position after exact metadata and library-size "
-            f"validation (best correlation={max(correlations.values()):.8f}).",
+            "Aligned solution by position after exact non-label metadata and "
+            "library-size validation; labels are taken from the OpenProblems "
+            f"reference (best correlation={max(correlations.values()):.8f}).",
             stacklevel=2,
         )
     else:
