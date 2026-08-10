@@ -20,6 +20,11 @@ from sklearn.metrics import f1_score
 from torch.utils.data import DataLoader
 from tqdm import tqdm
 
+from scprint2.tasks._model_genes import (
+    model_gene_dataframe,
+    set_collator_organism_ids,
+)
+
 FILE_LOC = os.path.dirname(os.path.realpath(__file__))
 
 
@@ -151,7 +156,9 @@ class Embedder:
             add_zero_genes=0,
             genelist=self.genelist if self.how in ["most var", "some"] else [],
             n_bins=model.n_input_bins if model.expr_emb_style == "binned" else 0,
+            genedf=model_gene_dataframe(model),
         )
+        set_collator_organism_ids(col, model.organisms)
         dataloader = DataLoader(
             adataset,
             collate_fn=col,

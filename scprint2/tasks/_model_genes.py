@@ -1,0 +1,42 @@
+"""Gene metadata helpers that do not require a live LaminDB registry."""
+
+from typing import Any
+
+import pandas as pd
+
+
+def model_gene_dataframe(model: Any) -> pd.DataFrame:
+    """Build the Collator gene table from the vocabulary stored in a checkpoint."""
+    organisms = list(model.organisms)
+    genes = model._genes
+    if isinstance(genes, dict):
+        missing = [organism for organism in organisms if organism not in genes]
+        if missing:
+            raise KeyError(f"The model checkpoint has no genes for {missing}")
+        genes_by_organism = {organism: genes[organism] for organism in organisms}
+    else:
+        if len(organisms) != 1:
+            raise ValueError(
+                "A flat checkpoint gene vocabulary is only unambiguous for one organism"
+            )
+        genes_by_organism = {organisms[0]: genes}
+
+    return pd.concat(
+        [
+            pd.DataFrame(
+                {"organism": organism},
+                index=pd.Index(organism_genes, name="ensembl_gene_id"),
+            )
+            for organism, organism_genes in genes_by_organism.items()
+        ]
+    )
+
+
+def set_collator_organism_ids(
+    collator: Any, organisms: list[str], org_to_id: dict[str, int] | None = None
+) -> None:
+    """Set IDs omitted by scDataLoader when a prebuilt gene table is supplied."""
+    collator.organism_ids = {
+        org_to_id[organism] if org_to_id is not None else organism
+        for organism in organisms
+    }

@@ -21,6 +21,10 @@ from torch.utils.data import DataLoader
 from tqdm import tqdm
 
 from scprint2.model import loss
+from scprint2.tasks._model_genes import (
+    model_gene_dataframe,
+    set_collator_organism_ids,
+)
 
 FILE_LOC = os.path.dirname(os.path.realpath(__file__))
 
@@ -204,6 +208,12 @@ class FinetuneBatchClass:
             how="random expr",  # or "all expr" for full expression
             max_len=self.max_len,
             org_to_id=mencoders.get("organism_ontology_term_id", {}),
+            genedf=model_gene_dataframe(model),
+        )
+        set_collator_organism_ids(
+            collator,
+            model.organisms,
+            mencoders.get("organism_ontology_term_id", {}),
         )
 
         # Create data loaders

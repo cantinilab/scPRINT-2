@@ -14,6 +14,7 @@ REPO_ROOT="${REPO_ROOT:-${WORK_ROOT}/scPRINT}"
 export WORK="${WORK_ROOT}"
 export SCRATCH="${SCRATCH_ROOT}"
 export REPO_ROOT
+export OP_SOLUTION_ROOT="${OP_SOLUTION_ROOT:-${SCRATCH_ROOT}/openproblems_reconstructed}"
 
 # Some Jean Zay profile fragments probe optional unset variables. Keep strict
 # mode for this script, but disable nounset only while the site profile loads.
