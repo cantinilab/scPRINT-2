@@ -11,6 +11,10 @@ NOTEBOOK="$2"
 WORK_ROOT="${WORK:-/lustre/fswork/projects/rech/xeg/${USER}}"
 SCRATCH_ROOT="${SCRATCH:-/lustre/fsn1/projects/rech/xeg/${USER}}"
 REPO_ROOT="${REPO_ROOT:-${WORK_ROOT}/scPRINT}"
+export WORK="${WORK_ROOT}"
+export SCRATCH="${SCRATCH_ROOT}"
+export REPO_ROOT
+export OP_SOLUTION_ROOT="${OP_SOLUTION_ROOT:-${SCRATCH_ROOT}/openproblems_reconstructed}"
 
 # Some Jean Zay profile fragments probe optional unset variables. Keep strict
 # mode for this script, but disable nounset only while the site profile loads.
@@ -33,6 +37,10 @@ case "${ENV_KIND}" in
     PYTHON="${REPO_ROOT}/.venv/bin/python"
     ;;
   transcriptformer)
+    # any_sub.sh loads the site CUDA 12.2 module. TranscriptFormer's pinned
+    # PyTorch 2.5.1 wheel ships CUDA 12.4 libraries, so the site module would
+    # shadow its matching nvJitLink and make torch fail before notebook startup.
+    module unload cuda/12.2.0 || true
     TF_ENV="${TF_ENV:-${SCRATCH_ROOT}/venvs/transcriptformer-h100-0.6.1}"
     PYTHON="${TF_ENV}/bin/python"
     export PYTHONPATH="${SCRATCH_ROOT}/scprint_data/setuptools-overlay${PYTHONPATH:+:${PYTHONPATH}}"

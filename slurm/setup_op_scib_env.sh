@@ -1,6 +1,13 @@
 #!/bin/bash
 set -euo pipefail
 
+# Jean Zay exposes R through environment modules. Load the site profile outside
+# nounset mode because optional variables in the profile are not always defined.
+set +u
+source /etc/profile
+set -u
+module load r/4.4.1
+
 if [[ -f /etc/profile.d/proxy.sh ]]; then
   source /etc/profile.d/proxy.sh
 elif [[ -z "${https_proxy:-}" ]]; then
@@ -16,10 +23,10 @@ REPO_ROOT="${REPO_ROOT:-${WORK_ROOT}/scPRINT}"
 TF_ENV="${TF_ENV:-${SCRATCH_ROOT}/venvs/transcriptformer-h100-0.6.1}"
 UV="${UV:-${HOME}/.local/bin/uv}"
 
-if ! command -v R >/dev/null 2>&1; then
-  echo "R is unavailable. Run 'module load r/4.4.1' on the submit node first." >&2
+command -v R >/dev/null 2>&1 || {
+  echo "R is unavailable after loading the Jean Zay r/4.4.1 module." >&2
   exit 1
-fi
+}
 
 export R_HOME="${R_HOME:-$(R RHOME)}"
 export R_LIBS_USER="${R_LIBS_USER:-${WORK_ROOT}/R/library/4.4}"
@@ -52,6 +59,12 @@ Rscript -e \
 
 cd "${REPO_ROOT}"
 
+# Make the checkout an installed editable package. Importing from the repository
+# directory alone is insufficient because scprint2/__init__.py reads package
+# metadata via importlib.metadata.version(). This is intentionally done with uv
+# in the already-existing scPRINT environment and does not create a new env.
+"${UV}" pip install --python .venv/bin/python --no-deps -e .
+
 # rpy2 3.6 split these modules into separate distributions. Remove them before
 # downgrading to the R-4.4-compatible monolithic 3.5 release, otherwise their
 # files shadow the matching modules installed by rpy2 3.5.
@@ -62,6 +75,12 @@ cd "${REPO_ROOT}"
 "${UV}" pip uninstall --python "${TF_ENV}/bin/python" rpy2-rinterface rpy2-robjects || true
 "${UV}" pip install --python "${TF_ENV}/bin/python" --reinstall-package rpy2 \
   'scib==1.1.7' 'jax[cuda12]==0.10.2' 'rpy2==3.5.17' 'anndata2ri==2.0.1'
+
+# Compute nodes have no outbound network access. Populate the read-only Cell
+# Ontology fallback cache here on the submit node before the heavier validation
+# imports below, which may be killed by submit-node resource limits.
+.venv/bin/python -c \
+  'from bionty.base import CellType; print(CellType(source="cl", version="2024-05-15").df().shape)'
 
 R_HOME="${R_HOME}" .venv/bin/python -c \
   'from op_scib import prepare_op_scib_environment; print(prepare_op_scib_environment())'

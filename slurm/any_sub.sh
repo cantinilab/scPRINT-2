@@ -4,6 +4,7 @@
 #SBATCH --requeue
 ulimit -c 0
 echo "Running $1"
+source /etc/profile
 module load cuda/12.2.0
 export TRITON_CACHE_DIR=$TMPDIR/triton_cache
 mkdir -p $TRITON_CACHE_DIR

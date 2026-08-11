@@ -9,6 +9,7 @@ import scanpy as sc
 import seaborn as sns
 import torch
 from anndata import AnnData, concat
+from django.db import OperationalError, ProgrammingError
 from scdataloader import Collator, Preprocessor
 from scdataloader.data import SimpleAnnDataset
 from scdataloader.utils import get_descendants, random_str
@@ -19,7 +20,47 @@ from sklearn.metrics import f1_score
 from torch.utils.data import DataLoader
 from tqdm import tqdm
 
+from scprint2.tasks._model_genes import (
+    active_model_organisms,
+    model_gene_dataframe,
+    set_collator_organism_ids,
+)
+
 FILE_LOC = os.path.dirname(os.path.realpath(__file__))
+
+
+def _cell_type_parent_dataframe() -> pd.DataFrame:
+    """Return Cell Ontology parents without requiring a writable LaminDB instance."""
+    try:
+        parentdf = (
+            bt.CellType.filter()
+            .df(include=["parents__ontology_id", "ontology_id"])
+            .set_index("ontology_id")[["parents__ontology_id"]]
+        )
+    except (OperationalError, ProgrammingError):
+        from bionty.base import settings as bionty_settings
+
+        cache_path = (
+            bionty_settings.dynamicdir
+            / "df_all__cl__2024-05-15__CellType.parquet"
+        )
+        if not cache_path.is_file():
+            raise FileNotFoundError(
+                "The Cell Ontology cache is missing. Run the scIB environment "
+                "setup on the submit node before starting Slurm jobs."
+            )
+        public = pd.read_parquet(cache_path)
+        if public.index.name != "ontology_id":
+            public = public.set_index("ontology_id")
+        if "parents" not in public.columns:
+            raise RuntimeError("The cached Cell Ontology has no parent relationships.")
+        parentdf = public[["parents"]].rename(
+            columns={"parents": "parents__ontology_id"}
+        )
+    parentdf["parents__ontology_id"] = parentdf[
+        "parents__ontology_id"
+    ].astype(str)
+    return parentdf
 
 
 class Embedder:
@@ -108,15 +149,18 @@ class Embedder:
             obs_to_output=["organism_ontology_term_id"],
             get_knn_cells=model.expr_emb_style == "metacell" and self.use_knn,
         )
+        active_organisms = active_model_organisms(model, adata.obs)
         col = Collator(
-            organisms=model.organisms,
+            organisms=active_organisms,
             valid_genes=model.genes,
             how=self.how if self.how != "most var" else "some",
             max_len=self.max_len,
             add_zero_genes=0,
             genelist=self.genelist if self.how in ["most var", "some"] else [],
             n_bins=model.n_input_bins if model.expr_emb_style == "binned" else 0,
+            genedf=model_gene_dataframe(model, adata.var),
         )
+        set_collator_organism_ids(col, active_organisms)
         dataloader = DataLoader(
             adataset,
             collate_fn=col,
@@ -509,14 +553,7 @@ def compute_classification(
             continue
         labels_topred = label_decoders[clss].values()
         if clss in labels_hierarchy:
-            parentdf = (
-                bt.CellType.filter()
-                .to_dataframe(
-                    include=["parents__ontology_id", "ontology_id"], limit=None
-                )
-                .set_index("ontology_id")[["parents__ontology_id"]]
-            )
-            parentdf.parents__ontology_id = parentdf.parents__ontology_id.astype(str)
+            parentdf = _cell_type_parent_dataframe()
             class_groupings = {
                 k: get_descendants(k, parentdf) for k in set(adata.obs[clss].unique())
             }

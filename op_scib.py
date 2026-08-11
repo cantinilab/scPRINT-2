@@ -9,6 +9,7 @@ not implement several metrics in the same way.
 from __future__ import annotations
 
 import contextlib
+import importlib.metadata
 import os
 import platform
 import shutil
@@ -24,7 +25,7 @@ import scanpy as sc
 import scib
 from scib import metrics as scib_metrics
 from scib.metrics.lisi import lisi_graph_py
-
+from scipy import sparse
 
 OP_RESOLUTIONS = (0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8)
 OP_COLUMNS = (
@@ -42,6 +43,252 @@ OP_COLUMNS = (
     "nmi",
     "pcr",
 )
+
+OP_LOG_CP10K_TARGET_SUM = 10_000.0
+OP_BATCH_HVGS = 2_000
+PYTHON_KBET_MIN_CELLS = 250_000
+
+# Published OpenProblems batch-integration values, rounded to four decimals.
+# These are used only as a validation target; they are never used to construct
+# the reconstructed reference or any metric input.
+OP_NO_INTEGRATION_EXPECTED = {
+    "dkd": {
+        "ari": 0.5999,
+        "asw_batch": 0.8913,
+        "asw_label": 0.6276,
+        "cell_cycle_conservation": 0.8248,
+        "clisi": 0.9998,
+        "graph_connectivity": 0.9701,
+        "hvg_overlap": np.nan,
+        "ilisi": 0.0754,
+        "isolated_label_asw": np.nan,
+        "isolated_label_f1": np.nan,
+        "kbet": 0.1529,
+        "nmi": 0.7735,
+        "pcr": 0.0,
+    }
+}
+
+
+def select_op_datasets(datasets: dict[str, Any]) -> dict[str, Any]:
+    """Filter notebook datasets using optional comma-separated ``OP_DATASETS``."""
+    requested_raw = os.environ.get("OP_DATASETS", "").strip()
+    if not requested_raw:
+        return dict(datasets)
+    requested = {item.strip() for item in requested_raw.split(",") if item.strip()}
+    selected = {
+        name: value
+        for name, value in datasets.items()
+        if name in requested or name.rsplit("/", 1)[-1] in requested
+    }
+    matched = set(selected) | {name.rsplit("/", 1)[-1] for name in selected}
+    unknown = sorted(requested - matched)
+    if unknown:
+        raise ValueError(f"OP_DATASETS contains unknown datasets: {unknown}")
+    if not selected:
+        raise ValueError("OP_DATASETS selected no datasets")
+    return selected
+
+
+def _software_versions() -> dict[str, str]:
+    packages = (
+        "anndata",
+        "igraph",
+        "leidenalg",
+        "numpy",
+        "pandas",
+        "pynndescent",
+        "scanpy",
+        "scib",
+        "scib-metrics",
+        "scikit-learn",
+        "scipy",
+        "umap-learn",
+    )
+    versions: dict[str, str] = {"python": platform.python_version()}
+    for package in packages:
+        try:
+            versions[package] = importlib.metadata.version(package)
+        except importlib.metadata.PackageNotFoundError:
+            versions[package] = "not-installed"
+    return versions
+
+
+def _matrix_max_abs(matrix: Any) -> float:
+    """Return the largest absolute entry without densifying sparse matrices."""
+    if sparse.issparse(matrix):
+        return float(np.max(np.abs(matrix.data))) if matrix.nnz else 0.0
+    values = np.asarray(matrix)
+    return float(np.max(np.abs(values))) if values.size else 0.0
+
+
+def normalize_log_cp10k_from_counts(
+    adata: ad.AnnData,
+    *,
+    counts_layer: str = "counts",
+    target_sum: float = OP_LOG_CP10K_TARGET_SUM,
+) -> tuple[Any, np.ndarray]:
+    """Reproduce the OpenProblems ``log_cp10k`` normalization from counts.
+
+    This deliberately ignores any existing normalized layer. It matches the
+    OpenProblems common-dataset processor: ``scanpy.pp.normalize_total`` on
+    ``layers['counts']`` followed by ``scanpy.pp.log1p``.
+    """
+    if counts_layer not in adata.layers:
+        raise KeyError(f"adata.layers is missing {counts_layer!r}")
+    normalized = sc.pp.normalize_total(
+        adata,
+        target_sum=target_sum,
+        layer=counts_layer,
+        inplace=False,
+    )
+    log_normalized = sc.pp.log1p(normalized["X"])
+    return log_normalized, np.asarray(normalized["norm_factor"])
+
+
+def reconstruct_op_batch_reference(
+    common: ad.AnnData,
+    *,
+    n_hvgs: int = OP_BATCH_HVGS,
+    target_sum: float = OP_LOG_CP10K_TARGET_SUM,
+    verify_published_normalized: bool = True,
+) -> tuple[ad.AnnData, dict[str, Any]]:
+    """Rebuild an OpenProblems batch-integration reference from raw counts.
+
+    The input is the public OpenProblems *common dataset*, not the task
+    solution. The function reruns log-CP10k normalization, batch-aware HVG
+    selection, PCA and the 30-neighbour dataset graph using the v2.0.0 task
+    processor's calls. The returned AnnData has the fields needed by PCR and
+    cell-cycle conservation.
+    """
+    required_obs = {"batch", "cell_type"}
+    missing_obs = required_obs.difference(common.obs)
+    if missing_obs:
+        raise KeyError(f"common.obs is missing: {sorted(missing_obs)}")
+    if "counts" not in common.layers:
+        raise KeyError("common.layers is missing 'counts'")
+
+    reference = common.copy()
+    published_normalized = reference.layers.get("normalized")
+    normalized, size_factors = normalize_log_cp10k_from_counts(
+        reference, target_sum=target_sum
+    )
+
+    normalization_check: dict[str, Any] = {
+        "target_sum": float(target_sum),
+        "published_layer_present": published_normalized is not None,
+    }
+    if published_normalized is not None and verify_published_normalized:
+        delta = normalized - published_normalized
+        normalization_check.update(
+            {
+                "published_max_abs": _matrix_max_abs(published_normalized),
+                "recomputed_max_abs": _matrix_max_abs(normalized),
+                "max_abs_difference": _matrix_max_abs(delta),
+            }
+        )
+
+    reference.layers["normalized"] = normalized
+    reference.obs["size_factors"] = size_factors
+    reference.uns["normalization_id"] = "log_cp10k"
+
+    n_hvgs = min(int(n_hvgs), reference.n_vars)
+    if n_hvgs == reference.n_vars:
+        hvg_list = reference.var_names.tolist()
+    else:
+        scib_adata = reference.copy()
+        del scib_adata.layers["counts"]
+        scib_adata.X = scib_adata.layers["normalized"].copy()
+        hvg_list = scib.pp.hvg_batch(
+            scib_adata,
+            batch_key="batch",
+            target_genes=n_hvgs,
+            adataOut=False,
+        )
+        del scib_adata
+    reference.var["batch_hvg"] = reference.var_names.isin(hvg_list)
+
+    n_components = (
+        int(common.obsm["X_pca"].shape[1]) if "X_pca" in common.obsm else 50
+    )
+    x_pca, loadings, variance, variance_ratio = sc.pp.pca(
+        reference.layers["normalized"],
+        n_comps=n_components,
+        mask_var=reference.var["batch_hvg"],
+        return_info=True,
+    )
+    reference.obsm["X_pca"] = x_pca
+    reference.varm["pca_loadings"] = np.zeros(
+        (reference.n_vars, n_components), dtype=np.asarray(loadings).dtype
+    )
+    reference.varm["pca_loadings"][reference.var["batch_hvg"], :] = loadings.T
+    reference.uns["pca_variance"] = {
+        "variance": variance,
+        "variance_ratio": variance_ratio,
+    }
+
+    reference.uns.pop("knn", None)
+    reference.obsp.pop("knn_connectivities", None)
+    reference.obsp.pop("knn_distances", None)
+    sc.pp.neighbors(reference, use_rep="X_pca", n_neighbors=30, key_added="knn")
+
+    hvg = sc.pp.highly_variable_genes(
+        reference,
+        layer="normalized",
+        n_top_genes=n_hvgs,
+        flavor="cell_ranger",
+        inplace=False,
+    )
+    reference.var["hvg"] = hvg["highly_variable"].values
+    reference.var["hvg_score"] = hvg["dispersions_norm"].values
+
+    normalization_check.update(
+        {
+            "n_obs": reference.n_obs,
+            "n_vars": reference.n_vars,
+            "n_batch_hvgs": int(reference.var["batch_hvg"].sum()),
+            "n_components": n_components,
+        }
+    )
+    return reference, normalization_check
+
+
+def make_op_no_integration(reference: ad.AnnData) -> ad.AnnData:
+    """Create the exact OpenProblems no-integration embedding (task PCA)."""
+    if "X_pca" not in reference.obsm:
+        raise KeyError("reference.obsm is missing 'X_pca'")
+    output = ad.AnnData(obs=pd.DataFrame(index=reference.obs_names.copy()))
+    output.obsm["X_emb"] = np.asarray(reference.obsm["X_pca"])
+    output.uns.update(
+        {
+            key: reference.uns[key]
+            for key in ("dataset_id", "normalization_id")
+            if key in reference.uns
+        }
+    )
+    output.uns["method_id"] = "no_integration"
+    return output
+
+
+def compare_op_scores(
+    observed: pd.DataFrame,
+    expected: dict[str, float],
+) -> pd.DataFrame:
+    """Return a metric-by-metric comparison against rounded OP scores."""
+    row = observed.iloc[0]
+    comparison = pd.DataFrame(
+        {
+            "expected": pd.Series(expected, dtype=float),
+            "observed": row.reindex(expected).astype(float),
+        }
+    )
+    comparison["absolute_difference"] = (
+        comparison["observed"] - comparison["expected"]
+    ).abs()
+    comparison["matches_published_4dp"] = (
+        comparison["observed"].round(4) == comparison["expected"].round(4)
+    ) | (comparison["observed"].isna() & comparison["expected"].isna())
+    return comparison
 
 
 def check_op_scib_environment(*, require_kbet: bool = True) -> dict[str, str]:
@@ -182,8 +429,70 @@ def _align_solution(
 
     missing = result.obs_names.difference(solution.obs_names)
     if len(missing):
-        raise ValueError(f"{len(missing)} integrated cells are absent from the solution")
-    aligned = solution[result.obs_names].copy()
+        if result.n_obs != solution.n_obs:
+            raise ValueError(
+                f"{len(missing)} integrated cells are absent from the solution "
+                f"and observation counts differ ({result.n_obs} != {solution.n_obs})"
+            )
+
+        identity_columns = [
+            batch_key,
+            "assay_ontology_term_id",
+            "disease_ontology_term_id",
+            "sex_ontology_term_id",
+            "tissue_ontology_term_id",
+        ]
+        compared = []
+        for key in dict.fromkeys(identity_columns):
+            if key not in result.obs or key not in solution.obs:
+                continue
+            compared.append(key)
+            left = result.obs[key].astype("string").fillna("<NA>").to_numpy()
+            right = solution.obs[key].astype("string").fillna("<NA>").to_numpy()
+            if not np.array_equal(left, right):
+                raise ValueError(
+                    "Integrated and solution observation names differ, and "
+                    f"positional identity check failed for obs[{key!r}]"
+                )
+        if batch_key not in compared:
+            raise ValueError(
+                "Integrated and solution observation names differ without shared "
+                "batch metadata for positional validation"
+            )
+
+        if "size_factors" not in solution.obs:
+            raise ValueError(
+                "Integrated and solution observation names differ, and the solution "
+                "has no size_factors fingerprint for positional validation"
+            )
+        reference_totals = (
+            solution.obs["size_factors"].to_numpy(dtype=float)
+            * OP_LOG_CP10K_TARGET_SUM
+        )
+        correlations = {}
+        for key in ("nCount_RNA", "total_counts"):
+            if key not in result.obs:
+                continue
+            candidate = result.obs[key].to_numpy(dtype=float)
+            correlation = float(np.corrcoef(candidate, reference_totals)[0, 1])
+            if np.isfinite(correlation):
+                correlations[key] = correlation
+        if not correlations or max(correlations.values()) < 0.999:
+            raise ValueError(
+                "Integrated and solution observation names differ, and library-size "
+                f"fingerprints do not prove positional identity: {correlations}"
+            )
+
+        aligned = solution.copy()
+        aligned.obs_names = result.obs_names.copy()
+        warnings.warn(
+            "Aligned solution by position after exact non-label metadata and "
+            "library-size validation; labels are taken from the OpenProblems "
+            f"reference (best correlation={max(correlations.values()):.8f}).",
+            stacklevel=2,
+        )
+    else:
+        aligned = solution[result.obs_names].copy()
     for key in (batch_key, label_key):
         if key not in aligned.obs:
             raise KeyError(f"solution.obs is missing {key!r}")
@@ -210,6 +519,44 @@ def _metric(
         return np.nan
 
 
+def _scanpy_distances_as_neighbors(adata: ad.AnnData):
+    """Convert Scanpy's fixed-width distance graph for scib-metrics kBET."""
+    from scib_metrics.nearest_neighbors import NeighborsResults
+
+    if "distances" not in adata.obsp:
+        raise KeyError("adata.obsp is missing 'distances'")
+    graph = sparse.csr_matrix(adata.obsp["distances"])
+    row_sizes = np.diff(graph.indptr)
+    if not len(row_sizes) or np.any(row_sizes != row_sizes[0]):
+        raise ValueError(
+            "Python kBET requires a fixed-width Scanpy distance graph; "
+            f"observed row sizes {np.unique(row_sizes).tolist()}"
+        )
+    indices = graph.indices.reshape(adata.n_obs, row_sizes[0])
+    distances = graph.data.reshape(adata.n_obs, row_sizes[0])
+    self_indices = np.arange(adata.n_obs, dtype=indices.dtype)[:, None]
+    return NeighborsResults(
+        indices=np.concatenate([self_indices, indices], axis=1),
+        distances=np.concatenate(
+            [np.zeros((adata.n_obs, 1), dtype=distances.dtype), distances], axis=1
+        ),
+    )
+
+
+def _python_kbet_per_label(adata: ad.AnnData) -> float:
+    """Run the bounded-memory Python approximation of scIB's per-label kBET."""
+    from scib_metrics import kbet_per_label
+
+    neighbors = _scanpy_distances_as_neighbors(adata)
+    return float(
+        kbet_per_label(
+            neighbors,
+            batches=adata.obs["batch"].to_numpy(),
+            labels=adata.obs["cell_type"].to_numpy(),
+        )
+    )
+
+
 def compute_op_scib_metrics(
     integrated: ad.AnnData,
     *,
@@ -225,6 +572,7 @@ def compute_op_scib_metrics(
     silhouette_chunk_size: int = 1024,
     lisi_cache_dir: str | os.PathLike[str] | None = None,
     compute_kbet: bool = True,
+    kbet_backend: str = "auto",
     compute_expression_metrics: bool = True,
     strict: bool = False,
     verbose: bool = True,
@@ -269,6 +617,8 @@ def compute_op_scib_metrics(
             cluster_function=sc.tl.leiden,
             resolutions=list(OP_RESOLUTIONS),
             verbose=verbose,
+            flavor="igraph",
+            n_iterations=2,
         )
         return (
             scib_metrics.ari(work, cluster_key="leiden", label_key="cell_type"),
@@ -391,10 +741,23 @@ def compute_op_scib_metrics(
             raise
         warnings.warn(f"ilisi/clisi could not be computed: {errors['ilisi/clisi']}", stacklevel=2)
 
+    if kbet_backend not in {"auto", "scib", "python"}:
+        raise ValueError("kbet_backend must be 'auto', 'scib', or 'python'")
+    resolved_kbet_backend = kbet_backend
+    if resolved_kbet_backend == "auto":
+        resolved_kbet_backend = (
+            "python" if work.n_obs >= PYTHON_KBET_MIN_CELLS else "scib"
+        )
     if compute_kbet:
-        values["kbet"] = _metric(
-            "kbet",
-            lambda: scib_metrics.kBET(
+        if resolved_kbet_backend == "python":
+            warnings.warn(
+                "Using scib-metrics Python kBET for bounded memory; this "
+                "approximates rather than exactly reproduces R kBET.",
+                stacklevel=2,
+            )
+            kbet_fn = lambda: _python_kbet_per_label(work)
+        else:
+            kbet_fn = lambda: scib_metrics.kBET(
                 work,
                 batch_key="batch",
                 label_key="cell_type",
@@ -402,13 +765,24 @@ def compute_op_scib_metrics(
                 embed="X_emb",
                 scaled=True,
                 verbose=verbose,
-            ),
+            )
+        values["kbet"] = _metric(
+            "kbet",
+            kbet_fn,
             errors,
             strict=strict,
         )
 
     if compute_expression_metrics and solution_aligned is not None:
         pre = solution_aligned.copy()
+        if "normalized" not in pre.layers:
+            raise KeyError(
+                "solution.layers is missing 'normalized', required for PCR and "
+                "cell-cycle conservation"
+            )
+        # OpenProblems' partial H5AD reader maps layers/normalized to X before
+        # calling these expression-aware scIB metrics.
+        pre.X = pre.layers["normalized"].copy()
         pre.obs["batch"] = pre.obs[batch_key].astype("category")
         post = work.copy()
         post.obs["batch"] = post.obs[batch_key].astype("category")
@@ -452,11 +826,13 @@ def compute_op_scib_metrics(
         "lisi_neighbors": lisi_n_neighbors,
         "silhouette_backend": silhouette_backend,
         "silhouette_chunk_size": silhouette_chunk_size,
+        "kbet_backend": resolved_kbet_backend if compute_kbet else "disabled",
         "resolutions": list(OP_RESOLUTIONS),
         "embedding_key": embedding_key,
         "batch_key": batch_key,
         "label_key": label_key,
     }
+    result.attrs["software_versions"] = _software_versions()
     return result
 
 
@@ -472,6 +848,7 @@ def save_op_scib_result(result: pd.DataFrame, path: str | os.PathLike[str]) -> P
         json.dumps(
             {
                 "parameters": result.attrs.get("parameters", {}),
+                "software_versions": result.attrs.get("software_versions", {}),
                 "errors": result.attrs.get("errors", {}),
             },
             indent=2,

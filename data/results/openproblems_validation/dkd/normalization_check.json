@@ -1,0 +1,11 @@
+{
+  "max_abs_difference": 9.5367431640625e-07,
+  "n_batch_hvgs": 2000,
+  "n_components": 50,
+  "n_obs": 39176,
+  "n_vars": 27980,
+  "published_layer_present": true,
+  "published_max_abs": 8.19043254852295,
+  "recomputed_max_abs": 8.190433502197266,
+  "target_sum": 10000.0
+}

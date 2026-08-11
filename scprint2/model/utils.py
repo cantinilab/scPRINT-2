@@ -142,13 +142,19 @@ def make_adata(
         labels_hierarchy = {}
     if pred is not None:
         for clss in classes:
-            if gtclass is not None:
+            # Human-readable ontology names are only needed by the plots. Avoid
+            # querying LaminDB during headless embedding runs, where the stable
+            # ontology IDs are already the desired output.
+            if doplot and gtclass is not None:
                 tr = translate(set(adata.obs[clss]), clss)
                 if tr is not None:
                     adata.obs["conv_" + clss] = adata.obs[clss].replace(tr)
-            tr = translate(set(adata.obs["pred_" + clss]), clss)
-            if tr is not None:
-                adata.obs["conv_pred_" + clss] = adata.obs["pred_" + clss].replace(tr)
+            if doplot:
+                tr = translate(set(adata.obs["pred_" + clss]), clss)
+                if tr is not None:
+                    adata.obs["conv_pred_" + clss] = adata.obs[
+                        "pred_" + clss
+                    ].replace(tr)
             res = []
             if label_decoders is not None and gtclass is not None:
                 class_topred = label_decoders[clss].values()
