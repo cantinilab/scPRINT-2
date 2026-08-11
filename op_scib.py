@@ -46,6 +46,7 @@ OP_COLUMNS = (
 
 OP_LOG_CP10K_TARGET_SUM = 10_000.0
 OP_BATCH_HVGS = 2_000
+PYTHON_KBET_MIN_CELLS = 250_000
 
 # Published OpenProblems batch-integration values, rounded to four decimals.
 # These are used only as a validation target; they are never used to construct
@@ -67,6 +68,26 @@ OP_NO_INTEGRATION_EXPECTED = {
         "pcr": 0.0,
     }
 }
+
+
+def select_op_datasets(datasets: dict[str, Any]) -> dict[str, Any]:
+    """Filter notebook datasets using optional comma-separated ``OP_DATASETS``."""
+    requested_raw = os.environ.get("OP_DATASETS", "").strip()
+    if not requested_raw:
+        return dict(datasets)
+    requested = {item.strip() for item in requested_raw.split(",") if item.strip()}
+    selected = {
+        name: value
+        for name, value in datasets.items()
+        if name in requested or name.rsplit("/", 1)[-1] in requested
+    }
+    matched = set(selected) | {name.rsplit("/", 1)[-1] for name in selected}
+    unknown = sorted(requested - matched)
+    if unknown:
+        raise ValueError(f"OP_DATASETS contains unknown datasets: {unknown}")
+    if not selected:
+        raise ValueError("OP_DATASETS selected no datasets")
+    return selected
 
 
 def _software_versions() -> dict[str, str]:
@@ -498,6 +519,44 @@ def _metric(
         return np.nan
 
 
+def _scanpy_distances_as_neighbors(adata: ad.AnnData):
+    """Convert Scanpy's fixed-width distance graph for scib-metrics kBET."""
+    from scib_metrics.nearest_neighbors import NeighborsResults
+
+    if "distances" not in adata.obsp:
+        raise KeyError("adata.obsp is missing 'distances'")
+    graph = sparse.csr_matrix(adata.obsp["distances"])
+    row_sizes = np.diff(graph.indptr)
+    if not len(row_sizes) or np.any(row_sizes != row_sizes[0]):
+        raise ValueError(
+            "Python kBET requires a fixed-width Scanpy distance graph; "
+            f"observed row sizes {np.unique(row_sizes).tolist()}"
+        )
+    indices = graph.indices.reshape(adata.n_obs, row_sizes[0])
+    distances = graph.data.reshape(adata.n_obs, row_sizes[0])
+    self_indices = np.arange(adata.n_obs, dtype=indices.dtype)[:, None]
+    return NeighborsResults(
+        indices=np.concatenate([self_indices, indices], axis=1),
+        distances=np.concatenate(
+            [np.zeros((adata.n_obs, 1), dtype=distances.dtype), distances], axis=1
+        ),
+    )
+
+
+def _python_kbet_per_label(adata: ad.AnnData) -> float:
+    """Run the bounded-memory Python approximation of scIB's per-label kBET."""
+    from scib_metrics import kbet_per_label
+
+    neighbors = _scanpy_distances_as_neighbors(adata)
+    return float(
+        kbet_per_label(
+            neighbors,
+            batches=adata.obs["batch"].to_numpy(),
+            labels=adata.obs["cell_type"].to_numpy(),
+        )
+    )
+
+
 def compute_op_scib_metrics(
     integrated: ad.AnnData,
     *,
@@ -513,6 +572,7 @@ def compute_op_scib_metrics(
     silhouette_chunk_size: int = 1024,
     lisi_cache_dir: str | os.PathLike[str] | None = None,
     compute_kbet: bool = True,
+    kbet_backend: str = "auto",
     compute_expression_metrics: bool = True,
     strict: bool = False,
     verbose: bool = True,
@@ -681,10 +741,23 @@ def compute_op_scib_metrics(
             raise
         warnings.warn(f"ilisi/clisi could not be computed: {errors['ilisi/clisi']}", stacklevel=2)
 
+    if kbet_backend not in {"auto", "scib", "python"}:
+        raise ValueError("kbet_backend must be 'auto', 'scib', or 'python'")
+    resolved_kbet_backend = kbet_backend
+    if resolved_kbet_backend == "auto":
+        resolved_kbet_backend = (
+            "python" if work.n_obs >= PYTHON_KBET_MIN_CELLS else "scib"
+        )
     if compute_kbet:
-        values["kbet"] = _metric(
-            "kbet",
-            lambda: scib_metrics.kBET(
+        if resolved_kbet_backend == "python":
+            warnings.warn(
+                "Using scib-metrics Python kBET for bounded memory; this "
+                "approximates rather than exactly reproduces R kBET.",
+                stacklevel=2,
+            )
+            kbet_fn = lambda: _python_kbet_per_label(work)
+        else:
+            kbet_fn = lambda: scib_metrics.kBET(
                 work,
                 batch_key="batch",
                 label_key="cell_type",
@@ -692,7 +765,10 @@ def compute_op_scib_metrics(
                 embed="X_emb",
                 scaled=True,
                 verbose=verbose,
-            ),
+            )
+        values["kbet"] = _metric(
+            "kbet",
+            kbet_fn,
             errors,
             strict=strict,
         )
@@ -750,6 +826,7 @@ def compute_op_scib_metrics(
         "lisi_neighbors": lisi_n_neighbors,
         "silhouette_backend": silhouette_backend,
         "silhouette_chunk_size": silhouette_chunk_size,
+        "kbet_backend": resolved_kbet_backend if compute_kbet else "disabled",
         "resolutions": list(OP_RESOLUTIONS),
         "embedding_key": embedding_key,
         "batch_key": batch_key,

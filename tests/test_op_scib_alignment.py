@@ -3,7 +3,11 @@ import numpy as np
 import pandas as pd
 import pytest
 
-from op_scib import _align_solution
+from op_scib import (
+    _align_solution,
+    _scanpy_distances_as_neighbors,
+    select_op_datasets,
+)
 
 
 def _alignment_inputs():
@@ -87,3 +91,34 @@ def test_align_solution_rejects_library_size_reordering_within_batch():
             batch_key="donor_id",
             label_key="cell_type",
         )
+
+
+def test_scanpy_distances_as_neighbors_adds_self_edges():
+    adata = ad.AnnData(X=np.zeros((3, 1)))
+    adata.obsp["distances"] = np.array(
+        [
+            [0.0, 0.2, 0.4],
+            [0.2, 0.0, 0.3],
+            [0.4, 0.3, 0.0],
+        ]
+    )
+
+    neighbors = _scanpy_distances_as_neighbors(adata)
+
+    assert neighbors.indices.shape == (3, 3)
+    assert neighbors.indices[:, 0].tolist() == [0, 1, 2]
+    assert neighbors.distances[:, 0].tolist() == [0.0, 0.0, 0.0]
+
+
+def test_select_op_datasets_accepts_slugs(monkeypatch):
+    monkeypatch.setenv("OP_DATASETS", "hypomap,mouse_pancreas_atlas")
+    datasets = {
+        "cellxgene_census/dkd": 1,
+        "cellxgene_census/hypomap": 2,
+        "cellxgene_census/mouse_pancreas_atlas": 3,
+    }
+
+    assert select_op_datasets(datasets) == {
+        "cellxgene_census/hypomap": 2,
+        "cellxgene_census/mouse_pancreas_atlas": 3,
+    }
