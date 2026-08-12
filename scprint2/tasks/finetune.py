@@ -25,6 +25,7 @@ from scprint2.tasks._model_genes import (
     active_model_organisms,
     model_gene_dataframe,
     set_collator_organism_ids,
+    validate_collator_gene_offsets,
 )
 
 FILE_LOC = os.path.dirname(os.path.realpath(__file__))
@@ -214,6 +215,12 @@ class FinetuneBatchClass:
         )
         set_collator_organism_ids(
             collator,
+            active_organisms,
+            mencoders.get("organism_ontology_term_id", {}),
+        )
+        validate_collator_gene_offsets(
+            collator,
+            model,
             active_organisms,
             mencoders.get("organism_ontology_term_id", {}),
         )
