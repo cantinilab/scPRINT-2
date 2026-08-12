@@ -24,6 +24,7 @@ from scprint2.tasks._model_genes import (
     active_model_organisms,
     model_gene_dataframe,
     set_collator_organism_ids,
+    validate_collator_gene_offsets,
 )
 
 FILE_LOC = os.path.dirname(os.path.realpath(__file__))
@@ -161,6 +162,7 @@ class Embedder:
             genedf=model_gene_dataframe(model, adata.var),
         )
         set_collator_organism_ids(col, active_organisms)
+        validate_collator_gene_offsets(col, model, active_organisms)
         dataloader = DataLoader(
             adataset,
             collate_fn=col,
