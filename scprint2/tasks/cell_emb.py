@@ -33,11 +33,13 @@ FILE_LOC = os.path.dirname(os.path.realpath(__file__))
 def _cell_type_parent_dataframe() -> pd.DataFrame:
     """Return Cell Ontology parents without requiring a writable LaminDB instance."""
     try:
-        parentdf = (
-            bt.CellType.filter()
-            .to_dataframe(include=["parents__ontology_id", "ontology_id"], limit=None)
-            .set_index("ontology_id")[["parents__ontology_id"]]
-        )
+        query = bt.CellType.filter()
+        include = ["parents__ontology_id", "ontology_id"]
+        if hasattr(query, "to_dataframe"):
+            records = query.to_dataframe(include=include, limit=None)
+        else:
+            records = query.all().df(include=include)
+        parentdf = records.set_index("ontology_id")[["parents__ontology_id"]]
     except (OperationalError, ProgrammingError):
         from bionty.base import settings as bionty_settings
 
@@ -59,7 +61,9 @@ def _cell_type_parent_dataframe() -> pd.DataFrame:
             columns={"parents": "parents__ontology_id"}
         )
     parentdf["parents__ontology_id"] = [
-        ", ".join(sorted(str(x) for x in s if x is not None)) if isinstance(s, set) else str(s)
+        ", ".join(sorted(str(x) for x in s if x is not None))
+        if isinstance(s, set)
+        else str(s)
         for s in parentdf["parents__ontology_id"]
     ]
     return parentdf
