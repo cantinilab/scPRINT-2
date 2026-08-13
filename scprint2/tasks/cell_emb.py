@@ -35,7 +35,7 @@ def _cell_type_parent_dataframe() -> pd.DataFrame:
     try:
         parentdf = (
             bt.CellType.filter()
-            .df(include=["parents__ontology_id", "ontology_id"])
+            .to_dataframe(include=["parents__ontology_id", "ontology_id"], limit=None)
             .set_index("ontology_id")[["parents__ontology_id"]]
         )
     except (OperationalError, ProgrammingError):
@@ -58,9 +58,10 @@ def _cell_type_parent_dataframe() -> pd.DataFrame:
         parentdf = public[["parents"]].rename(
             columns={"parents": "parents__ontology_id"}
         )
-    parentdf["parents__ontology_id"] = parentdf[
-        "parents__ontology_id"
-    ].astype(str)
+    parentdf["parents__ontology_id"] = [
+        ", ".join(sorted(str(x) for x in s if x is not None)) if isinstance(s, set) else str(s)
+        for s in parentdf["parents__ontology_id"]
+    ]
     return parentdf
 
 
