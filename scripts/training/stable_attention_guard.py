@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 """Fail closed unless scPRINT uses PyTorch native SDPA attention."""
+
 from __future__ import annotations
 
 import json
@@ -11,6 +12,7 @@ from typing import Any
 try:
     from lightning.pytorch.callbacks import Callback
 except ImportError:  # pragma: no cover - dependency-free unit imports
+
     class Callback:  # type: ignore[no-redef]
         pass
 
@@ -83,7 +85,6 @@ class StableAttentionGuard(Callback):
             **assert_native_sdpa_attention(pl_module),
         }
         rank_path = self.receipt_path.with_name(
-            f"{self.receipt_path.stem}.rank_{payload['rank']}"
-            f"{self.receipt_path.suffix}"
+            f"{self.receipt_path.stem}.rank_{payload['rank']}{self.receipt_path.suffix}"
         )
         _atomic_json(rank_path, payload)

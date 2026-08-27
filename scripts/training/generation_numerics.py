@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 """Deterministic, JSON-safe numerical evidence for generation tensors."""
+
 from __future__ import annotations
 
 import hashlib

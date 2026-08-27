@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 """Append immutable hourly online W&B readbacks for one exact lineage."""
+
 from __future__ import annotations
 
 import argparse

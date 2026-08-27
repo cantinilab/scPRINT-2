@@ -39,5 +39,19 @@ def test_launchers_are_current_main_immutable_and_do_not_rebuild_cache():
     assert "GPUTelemetryGuard" in smoke
     assert "fallback/gpu_count" in smoke
     assert "WANDB_DIR=$TMPBASE/wandb" in smoke
+    assert "WANDB_MODE=online" in smoke
+    assert "WANDB_RESUME=never" in smoke
+    assert "verify_online_smoke_wandb.py" in smoke
+    assert "--trainer.max_steps 300" in smoke
+    assert "--trainer.max_steps 200" in smoke
+    assert (
+        "fallback/trainer_global_step"
+        in (ROOT / "scripts" / "training" / "gpu_telemetry_guard.py").read_text()
+    )
+    verifier = (
+        ROOT / "scripts" / "training" / "verify_online_smoke_wandb.py"
+    ).read_text()
+    assert "trainer_step_parity" in verifier
+    assert "fallback/gpu0/" in verifier and "fallback/gpu1/" in verifier
     long = (ROOT / "slurm" / "scprint2_r3_primary_long.sbatch").read_text()
     assert "WANDB_DIR=$TMPBASE/wandb" in long

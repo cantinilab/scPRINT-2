@@ -58,11 +58,11 @@ TCLSH=/lustre/fshomisc/sup/spack_soft/tcl/8.6.12/gcc-11.3.1-q2dfxcqelx36bbjbos7m
 MODULECMD=/lustre/fshomisc/sup/spack_soft/environment-modules/4.3.1/gcc-11.3.1-wf7m7j6whgecysm2fm5n73sm4jg7txup/libexec/modulecmd.tcl
 export MODULEPATH=/lustre/fshomisc/sup/hpe/pub/module-rh/modulefiles
 eval "$("$TCLSH" "$MODULECMD" bash load cuda/12.8.0)"
-export WANDB_MODE=offline WANDB_RESUME=never WANDB_RUN_ID=p${SLURM_JOB_ID} WANDB_DIR=$TMPBASE/wandb
-LOGGER="[{\"class_path\":\"lightning.pytorch.loggers.WandbLogger\",\"init_args\":{\"project\":\"scprint_v2\",\"entity\":\"ml4ig\",\"save_dir\":\"$WANDB_DIR\",\"offline\":true,\"name\":\"r3-primary-smoke-${SLURM_JOB_ID}\",\"group\":\"r3-primary-t_6cff2510\"}}]"
+export WANDB_MODE=online WANDB_RESUME=never WANDB_RUN_ID=p${SLURM_JOB_ID} WANDB_DIR=$TMPBASE/wandb
+LOGGER="[{\"class_path\":\"lightning.pytorch.loggers.WandbLogger\",\"init_args\":{\"project\":\"scprint_v2\",\"entity\":\"ml4ig\",\"save_dir\":\"$WANDB_DIR\",\"offline\":false,\"name\":\"r3-primary-smoke-${SLURM_JOB_ID}\",\"group\":\"r3-primary-t_6cff2510\"}}]"
 CALLBACKS="[{\"class_path\":\"lightning.pytorch.callbacks.ModelCheckpoint\",\"init_args\":{\"save_top_k\":0,\"save_last\":false}},{\"class_path\":\"finite_training_guard.FiniteTrainingGuard\",\"init_args\":{\"receipt_path\":\"$ROOT/finite.json\",\"required_train_steps\":300}},{\"class_path\":\"stable_attention_guard.StableAttentionGuard\",\"init_args\":{\"receipt_path\":\"$ROOT/stable_attention.json\"}},{\"class_path\":\"generation_intermediate_guard.GenerationIntermediateGuard\",\"init_args\":{\"receipt_path\":\"$ROOT/generation.json\",\"batch_trace_path\":\"$ROOT/batch_order.jsonl\",\"instrument_from_step\":0,\"stop_after_steps\":300}},{\"class_path\":\"gpu_telemetry_guard.GPUTelemetryGuard\",\"init_args\":{\"receipt_path\":\"$ROOT/gpu.jsonl\",\"every_n_steps\":100}}]"
 BASE=("$ENV/bin/scprint2" fit --config "$P/config/base_v3_ntv3_primary.yml" --seed_everything 42 --data.store_location "$CACHE" --data.gene_embeddings "$NTV3" --data.weight_scaler 500 --data.batch_size 50 --data.n_samples_per_epoch 1000000 --model.gene_pos_file "$GENE_LOCS" --trainer.precision bf16-mixed --trainer.num_sanity_val_steps 0)
-CMD=("${BASE[@]}" --trainer.logger "$LOGGER" --trainer.callbacks "$CALLBACKS" --trainer.limit_train_batches 300 --trainer.limit_val_batches 10 --trainer.log_every_n_steps 10 --trainer.default_root_dir "$ROOT")
+CMD=("${BASE[@]}" --trainer.logger "$LOGGER" --trainer.callbacks "$CALLBACKS" --trainer.limit_train_batches 300 --trainer.max_steps 300 --trainer.limit_val_batches 10 --trainer.log_every_n_steps 10 --trainer.default_root_dir "$ROOT")
 printf -v SERIALIZED '%q ' "${CMD[@]}"; [[ "$SERIALIZED" != *--ckpt_path* ]]; [[ "$SERIALIZED" == *base_v3_ntv3_primary.yml* ]]
 printf 'PRIMARY_SMOKE_START %s job=%s commit=%s scd=%s random_init=true ranks=2 guarded_steps=300 validation=10 wandb_ipc=%q\n' "$(date -Is)" "$SLURM_JOB_ID" "$EXPECTED_SCPRINT_COMMIT" "$SCD_COMMIT" "$WANDB_DIR"
 srun --label --kill-on-bad-exit=1 "${CMD[@]}"
@@ -78,9 +78,10 @@ assert len(rows)>=4
 assert all(row['metrics']['fallback/gpu_count']==2 for row in rows)
 print('PRIMARY_SMOKE_GUARDS_PASS telemetry_rows='+str(len(rows)))
 PY
+"$ENV/bin/python" "$CONTROL/verify_online_smoke_wandb.py" "$WANDB_RUN_ID" "$ROOT/gpu.jsonl" "$ROOT/wandb_online_receipt.json" --entity ml4ig --project scprint_v2 --required-step 300
 unset WANDB_RUN_ID WANDB_DIR
 TP_CALLBACKS="[{\"class_path\":\"throughput_guard.ThroughputGuard\",\"init_args\":{\"receipt_path\":\"$THROUGHPUT_ROOT/throughput.json\",\"expected_steps\":200,\"max_seconds_per_step\":0.7776,\"batch_size\":50,\"world_size\":2}}]"
-TP_CMD=("${BASE[@]}" --trainer.logger false --trainer.callbacks "$TP_CALLBACKS" --trainer.limit_train_batches 200 --trainer.limit_val_batches 0 --trainer.log_every_n_steps 200 --trainer.default_root_dir "$THROUGHPUT_ROOT")
+TP_CMD=("${BASE[@]}" --trainer.logger false --trainer.callbacks "$TP_CALLBACKS" --trainer.limit_train_batches 200 --trainer.max_steps 200 --trainer.limit_val_batches 0 --trainer.log_every_n_steps 200 --trainer.default_root_dir "$THROUGHPUT_ROOT")
 srun --label --kill-on-bad-exit=1 "${TP_CMD[@]}"
 "$ENV/bin/python" - "$THROUGHPUT_ROOT" <<'PY'
 import json,pathlib,sys

@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 """Finish and adopt an interrupted primary cache without rebuilding its nine files."""
+
 from __future__ import annotations
 
 import argparse
@@ -34,7 +35,9 @@ def sha256(path: Path) -> str:
     return digest.hexdigest()
 
 
-def snapshot_cache(cache: Path, names: Iterable[str]) -> dict[str, dict[str, int | str]]:
+def snapshot_cache(
+    cache: Path, names: Iterable[str]
+) -> dict[str, dict[str, int | str]]:
     result: dict[str, dict[str, int | str]] = {}
     for name in names:
         path = cache / name
@@ -46,11 +49,19 @@ def snapshot_cache(cache: Path, names: Iterable[str]) -> dict[str, dict[str, int
 
 def assert_snapshot_unchanged(before: dict, after: dict) -> None:
     if before != after:
-        changed = sorted(name for name in set(before) | set(after) if before.get(name) != after.get(name))
-        raise RuntimeError(f"pre-existing cache files mutated during adoption: {changed}")
+        changed = sorted(
+            name
+            for name in set(before) | set(after)
+            if before.get(name) != after.get(name)
+        )
+        raise RuntimeError(
+            f"pre-existing cache files mutated during adoption: {changed}"
+        )
 
 
-def derive_train_weights(labels: np.ndarray, weight_scaler: float, chunk_size: int = 10_000_000) -> np.ndarray:
+def derive_train_weights(
+    labels: np.ndarray, weight_scaler: float, chunk_size: int = 10_000_000
+) -> np.ndarray:
     """Derive the current LabelWeightedSampler class weights in bounded memory."""
     max_label = int(labels.max())
     counts = np.zeros(max_label + 1, dtype=np.int64)
@@ -85,18 +96,25 @@ def accepted_datamodule_parameters(DataModule: type, DataLoader: type) -> set[st
     explicit = {
         name
         for name, parameter in inspect.signature(DataModule.__init__).parameters.items()
-        if name != "self" and parameter.kind not in {parameter.VAR_KEYWORD, parameter.VAR_POSITIONAL}
+        if name != "self"
+        and parameter.kind not in {parameter.VAR_KEYWORD, parameter.VAR_POSITIONAL}
     }
     dataloader = {
         name
         for name, parameter in inspect.signature(DataLoader.__init__).parameters.items()
-        if name != "self" and parameter.kind not in {parameter.VAR_KEYWORD, parameter.VAR_POSITIONAL}
+        if name != "self"
+        and parameter.kind not in {parameter.VAR_KEYWORD, parameter.VAR_POSITIONAL}
     }
-    return explicit | (dataloader - {"dataset", "sampler", "batch_sampler", "collate_fn"})
+    return explicit | (
+        dataloader - {"dataset", "sampler", "batch_sampler", "collate_fn"}
+    )
 
 
 def batch_shapes(batch: dict[str, Any]) -> dict[str, Any]:
-    return {key: list(value.shape) if hasattr(value, "shape") else type(value).__name__ for key, value in batch.items()}
+    return {
+        key: list(value.shape) if hasattr(value, "shape") else type(value).__name__
+        for key, value in batch.items()
+    }
 
 
 def main() -> None:
@@ -134,16 +152,29 @@ def main() -> None:
     labels = np.load(args.cache / "train_labels.npy", mmap_mode="r")
     weights = derive_train_weights(labels, data["weight_scaler"])
     if len(weights) != expected["sampler_classes"]:
-        raise RuntimeError(f"train_weights cardinality mismatch: {len(weights)} != {expected['sampler_classes']}")
+        raise RuntimeError(
+            f"train_weights cardinality mismatch: {len(weights)} != {expected['sampler_classes']}"
+        )
     weight_path = args.cache / TRAIN_WEIGHTS
     if weight_path.exists():
         existing = np.load(weight_path, mmap_mode="r")
-        if existing.dtype != np.float32 or existing.shape != weights.shape or not np.array_equal(existing, weights):
-            raise RuntimeError("existing train_weights does not match current sampler formula")
+        if (
+            existing.dtype != np.float32
+            or existing.shape != weights.shape
+            or not np.array_equal(existing, weights)
+        ):
+            raise RuntimeError(
+                "existing train_weights does not match current sampler formula"
+            )
     else:
         atomic_save_npy(weight_path, weights)
 
-    data.update(store_location=str(args.cache), gene_embeddings=str(args.ntv3), force_recompute_indices=False, sampler_workers=44)
+    data.update(
+        store_location=str(args.cache),
+        gene_embeddings=str(args.ntv3),
+        force_recompute_indices=False,
+        sampler_workers=44,
+    )
     kwargs = {
         key: value
         for key, value in data.items()
@@ -167,8 +198,12 @@ def main() -> None:
         "artifacts": len(datamodule.dataset.mapped_dataset.storages),
     }
     if actual != expected:
-        raise RuntimeError(f"cache identity mismatch: actual={actual}, expected={expected}")
-    categories = torch.load(args.cache / "categories", map_location="cpu", weights_only=False)
+        raise RuntimeError(
+            f"cache identity mismatch: actual={actual}, expected={expected}"
+        )
+    categories = torch.load(
+        args.cache / "categories", map_location="cpu", weights_only=False
+    )
     category_lengths = {key: len(value) for key, value in categories.items()}
     if set(category_lengths.values()) != {expected["artifacts"]}:
         raise RuntimeError(f"category length mismatch: {category_lengths}")
@@ -184,9 +219,16 @@ def main() -> None:
         "category_lengths": category_lengths,
         "train_batch": batch_shapes(train_batch),
         "validation_batch": batch_shapes(validation_batch),
-        "train_weights": {"cardinality": len(weights), "dtype": str(weights.dtype), "min": float(weights.min()), "max": float(weights.max())},
+        "train_weights": {
+            "cardinality": len(weights),
+            "dtype": str(weights.dtype),
+            "min": float(weights.min()),
+            "max": float(weights.max()),
+        },
         "cache": str(args.cache.resolve()),
-        "cache_files": [{"path": name, **metadata} for name, metadata in all_files.items()],
+        "cache_files": [
+            {"path": name, **metadata} for name, metadata in all_files.items()
+        ],
         "cache_bytes": sum(int(metadata["size"]) for metadata in all_files.values()),
         "source_config": str(args.config.resolve()),
         "source_config_sha256": sha256(args.config),

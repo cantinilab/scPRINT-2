@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 """Fail-fast finite checks for scPRINT training and validation."""
+
 from __future__ import annotations
 
 import json
@@ -17,6 +18,7 @@ except ImportError:  # pragma: no cover - production environment has torch
 try:  # Lightning is only required when the callback is instantiated remotely.
     from lightning.pytorch.callbacks import Callback
 except ImportError:  # pragma: no cover - dependency-free unit tests
+
     class Callback:  # type: ignore[no-redef]
         pass
 
@@ -99,7 +101,9 @@ def batch_has_empty_reduction_domain(batch: Any) -> bool:
     expression = batch.get("x")
     return bool(
         isinstance(expression, torch.Tensor)
-        and (expression.ndim < 2 or expression.shape[0] == 0 or expression.shape[1] == 0)
+        and (
+            expression.ndim < 2 or expression.shape[0] == 0 or expression.shape[1] == 0
+        )
     )
 
 
@@ -150,7 +154,6 @@ def import_scprint_loss() -> Any:
     except ImportError:
         from scprint.model import loss as scprint_loss
     return scprint_loss
-
 
 
 def _atomic_json(path: Path, payload: dict[str, Any]) -> None:
@@ -213,7 +216,10 @@ class FiniteTrainingGuard(Callback):
                         .sum()
                         .item()
                     )
-            if key in {"dataset", "depth", "class", "is_meta"} and detached.numel() <= 512:
+            if (
+                key in {"dataset", "depth", "class", "is_meta"}
+                and detached.numel() <= 512
+            ):
                 item["values"] = detached.tolist()
             summary[key] = item
         return summary
@@ -241,7 +247,6 @@ class FiniteTrainingGuard(Callback):
             "coordinated_skipped_batches": self.coordinated_skipped_batches,
             "required_train_steps": self.required_train_steps,
             "world_size": int(getattr(trainer, "world_size", 1)),
-
             "root_causes": [
                 "failed revision 1 used float16 AMP; ExprDecoder computes dispersion as exp(clamp(raw_variance,max=15)), above float16 log-max 11.09, and W&B persisted 200/200 non-finite train-loss rows",
                 "upstream scprint.model.loss.mse divides each log-expression row by its exact row sum, so biologically valid all-zero non-empty rows produce NaN without a denominator floor",
@@ -263,23 +268,28 @@ class FiniteTrainingGuard(Callback):
             raise RuntimeError("FiniteTrainingGuard requires torch")
         scprint_loss = import_scprint_loss()
 
-
         if not getattr(scprint_loss.zinb, "_revision2_finite_guard", False):
             original_zinb = scprint_loss.zinb
 
-            def guarded_zinb(*, target: Any, mu: Any, theta: Any, pi: Any, eps: float = 1e-8) -> Any:
+            def guarded_zinb(
+                *, target: Any, mu: Any, theta: Any, pi: Any, eps: float = 1e-8
+            ) -> Any:
                 global _ZINB_CALL_INDEX
                 _ZINB_CALL_INDEX += 1
-                rank = torch.distributed.get_rank() if torch.distributed.is_initialized() else 0
+                rank = (
+                    torch.distributed.get_rank()
+                    if torch.distributed.is_initialized()
+                    else 0
+                )
                 call_names = {1: "mask", 2: "denoise", 3: "generation"}
                 call = call_names.get(_ZINB_CALL_INDEX, f"call_{_ZINB_CALL_INDEX}")
                 tensors = {"target": target, "mu": mu, "theta": theta, "pi": pi}
-                assert_nonempty_tensors(
-                    tensors, stage="zinb", rank=rank, call=call
-                )
+                assert_nonempty_tensors(tensors, stage="zinb", rank=rank, call=call)
                 for name, tensor in tensors.items():
                     assert_finite_tree(tensor, stage=f"zinb.rank_{rank}.{call}.{name}")
-                result = original_zinb(target=target, mu=mu, theta=theta, pi=pi, eps=eps)
+                result = original_zinb(
+                    target=target, mu=mu, theta=theta, pi=pi, eps=eps
+                )
                 assert_finite_tree(result, stage=f"zinb.rank_{rank}.{call}.loss")
                 return result
 
@@ -291,7 +301,9 @@ class FiniteTrainingGuard(Callback):
 
         original_training_step = pl_module.training_step
 
-        def guarded_training_step(batch: Any, batch_idx: int, *args: Any, **kwargs: Any) -> Any:
+        def guarded_training_step(
+            batch: Any, batch_idx: int, *args: Any, **kwargs: Any
+        ) -> Any:
             local_empty = batch_has_empty_reduction_domain(batch)
             expression = batch.get("x") if isinstance(batch, dict) else None
             device = (
@@ -323,7 +335,11 @@ class FiniteTrainingGuard(Callback):
         def guarded_full_training(*args: Any, **kwargs: Any) -> Any:
             stage = "validation" if trainer.validating else "train"
             step = int(getattr(trainer, "global_step", 0))
-            batch = kwargs.get("batch") if "batch" in kwargs else (args[0] if args else None)
+            batch = (
+                kwargs.get("batch")
+                if "batch" in kwargs
+                else (args[0] if args else None)
+            )
             try:
                 global _MSE_CALL_INDEX, _ZINB_CALL_INDEX
                 _MSE_CALL_INDEX = 0
@@ -378,9 +394,13 @@ class FiniteTrainingGuard(Callback):
         metrics = {
             key: value
             for key, value in trainer.callback_metrics.items()
-            if any(token in key.lower() for token in ("loss", "expr", "cce", "ecs", "vae"))
+            if any(
+                token in key.lower() for token in ("loss", "expr", "cce", "ecs", "vae")
+            )
         }
-        assert_finite_tree(metrics, stage=f"train.step_{trainer.global_step}.components")
+        assert_finite_tree(
+            metrics, stage=f"train.step_{trainer.global_step}.components"
+        )
         self.train_batches += 1
         if self.train_batches == 1 or self.train_batches % 10 == 0:
             self._write(trainer, "training_finite")
@@ -403,7 +423,9 @@ class FiniteTrainingGuard(Callback):
         self.validation_embeddings_checked = True
 
     def on_validation_epoch_end(self, trainer: Any, pl_module: Any) -> None:
-        assert_finite_tree(getattr(pl_module, "embs", None), stage="validation.embeddings")
+        assert_finite_tree(
+            getattr(pl_module, "embs", None), stage="validation.embeddings"
+        )
         self.validation_embeddings_checked = True
         status = (
             "accepted"
@@ -412,7 +434,9 @@ class FiniteTrainingGuard(Callback):
         )
         self._write(trainer, status)
 
-    def on_exception(self, trainer: Any, pl_module: Any, exception: BaseException) -> None:
+    def on_exception(
+        self, trainer: Any, pl_module: Any, exception: BaseException
+    ) -> None:
         self._write(
             trainer,
             "failed",

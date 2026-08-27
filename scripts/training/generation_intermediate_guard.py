@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 """Fail-fast, stage-ordered instrumentation for scPRINT generation."""
+
 from __future__ import annotations
 
 import hashlib
@@ -18,6 +19,7 @@ from generation_numerics import (
 try:
     from lightning.pytorch.callbacks import Callback
 except ImportError:  # pragma: no cover - dependency-free import on the Mac
+
     class Callback:  # type: ignore[no-redef]
         pass
 
@@ -251,7 +253,9 @@ class GenerationIntermediateGuard(Callback):
         )
         dataset = batch.get("dataset") if isinstance(batch, dict) else None
         dataset_fingerprint = (
-            batch_fingerprint(batch, keys=("dataset",)) if isinstance(batch, dict) else {}
+            batch_fingerprint(batch, keys=("dataset",))
+            if isinstance(batch, dict)
+            else {}
         )
         trace: dict[str, Any] = {
             "rank": self._rank(),
@@ -392,8 +396,12 @@ class GenerationIntermediateGuard(Callback):
             value = output[0] if isinstance(output, tuple) else output
             self._record_active("transformer.output", value)
 
-        self._hooks.append(pl_module.transformer.register_forward_pre_hook(transformer_pre))
-        self._hooks.append(pl_module.transformer.register_forward_hook(transformer_post))
+        self._hooks.append(
+            pl_module.transformer.register_forward_pre_hook(transformer_pre)
+        )
+        self._hooks.append(
+            pl_module.transformer.register_forward_hook(transformer_post)
+        )
 
         # The outer transformer boundary identified the active failure, so retain
         # execution-ordered boundaries around every operation that can first
@@ -445,7 +453,9 @@ class GenerationIntermediateGuard(Callback):
             if len(inputs) > 1:
                 self._record_active("req_depth_log2", inputs[1])
 
-        self._hooks.append(pl_module.expr_decoder.register_forward_pre_hook(decoder_pre))
+        self._hooks.append(
+            pl_module.expr_decoder.register_forward_pre_hook(decoder_pre)
+        )
         for index, layer in enumerate(pl_module.expr_decoder.fc):
             stage = f"expr_decoder.fc.{index}.{type(layer).__name__}"
 
@@ -473,7 +483,9 @@ class GenerationIntermediateGuard(Callback):
                 torch.exp(torch.clamp(var_value, max=15)),
             )
 
-        self._hooks.append(pl_module.expr_decoder.pred_var_zero.register_forward_hook(logits_post))
+        self._hooks.append(
+            pl_module.expr_decoder.pred_var_zero.register_forward_hook(logits_post)
+        )
 
     def on_train_batch_end(
         self,
