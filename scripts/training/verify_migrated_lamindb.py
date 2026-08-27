@@ -109,6 +109,116 @@ def collection_membership(path: Path, key: str) -> dict:
     }
 
 
+def verify_duplicate_hash_canonicalization(
+    original: Path, candidate: Path, audit: dict, protected_collection_key: str
+) -> dict:
+    expected_ranking = [
+        "collection_link_count_desc",
+        "is_latest_desc",
+        "active_branch_desc",
+        "id_asc",
+    ]
+    groups = audit.get("groups")
+    if (
+        audit.get("mode") != "candidate-only-exact-identity-shadow-hash-null"
+        or audit.get("protected_collection_key") != protected_collection_key
+        or audit.get("ranking") != expected_ranking
+        or not isinstance(groups, list)
+        or audit.get("duplicate_group_count") != len(groups)
+        or audit.get("duplicate_row_count") != 2 * len(groups)
+        or audit.get("canonicalized_shadow_count") != len(groups)
+    ):
+        raise RuntimeError("invalid duplicate hash canonicalization audit contract")
+
+    original_connection = sqlite3.connect(f"file:{original}?mode=ro", uri=True, timeout=30)
+    candidate_connection = sqlite3.connect(f"file:{candidate}?mode=ro", uri=True, timeout=30)
+    original_connection.row_factory = sqlite3.Row
+    candidate_connection.row_factory = sqlite3.Row
+    try:
+        original_columns = {
+            row[1] for row in original_connection.execute("pragma table_info(lamindb_artifact)")
+        }
+        candidate_columns = {
+            row[1] for row in candidate_connection.execute("pragma table_info(lamindb_artifact)")
+        }
+        if "hash" not in original_columns or "hash" not in candidate_columns:
+            if groups:
+                raise RuntimeError("duplicate hash audit requires Artifact.hash")
+            return {
+                "duplicate_group_count": 0,
+                "canonicalized_shadow_count": 0,
+            }
+        observed_hashes = [
+            row["hash"]
+            for row in original_connection.execute(
+                """select hash from lamindb_artifact where hash is not null
+                group by hash having count(*) > 1 order by hash"""
+            )
+        ]
+        if observed_hashes != [group.get("hash") for group in groups]:
+            raise RuntimeError("original duplicate hashes do not match canonicalization audit")
+        recorded_ids = set()
+        for group in groups:
+            rows_before = group.get("rows_before")
+            if not isinstance(rows_before, list) or len(rows_before) != 2:
+                raise RuntimeError("canonicalization audit rows_before is invalid")
+            original_rows = original_connection.execute(
+                """select id, uid, hash, key, size, _hash_type from lamindb_artifact
+                where hash = ? order by id""",
+                (group["hash"],),
+            ).fetchall()
+            expected_rows = [
+                {
+                    key: row[key]
+                    for key in ("id", "uid", "hash", "key", "size", "_hash_type")
+                }
+                for row in rows_before
+            ]
+            if [dict(row) for row in original_rows] != expected_rows:
+                raise RuntimeError("original duplicate rows do not match canonicalization audit")
+            keeper_id = group.get("keeper_id")
+            shadow_id = group.get("shadow_id")
+            if keeper_id == shadow_id or {keeper_id, shadow_id} != {
+                row["id"] for row in original_rows
+            }:
+                raise RuntimeError("canonicalization keeper/shadow IDs are invalid")
+            if recorded_ids.intersection({keeper_id, shadow_id}):
+                raise RuntimeError("canonicalization audit repeats an artifact ID")
+            recorded_ids.update({keeper_id, shadow_id})
+            candidate_rows = candidate_connection.execute(
+                """select id, uid, hash, key, size, _hash_type from lamindb_artifact
+                where id in (?, ?) order by id""",
+                (keeper_id, shadow_id),
+            ).fetchall()
+            if len(candidate_rows) != 2:
+                raise RuntimeError("canonicalization candidate rows are missing")
+            candidate_by_id = {row["id"]: row for row in candidate_rows}
+            if candidate_by_id[keeper_id]["hash"] != group["hash"]:
+                raise RuntimeError("canonicalization keeper hash mismatch")
+            if candidate_by_id[shadow_id]["hash"] is not None:
+                raise RuntimeError("canonicalization shadow hash mismatch")
+            for original_row in original_rows:
+                candidate_row = candidate_by_id[original_row["id"]]
+                for field in ("uid", "key", "size", "_hash_type"):
+                    if candidate_row[field] != original_row[field]:
+                        raise RuntimeError(
+                            f"canonicalization changed non-hash field {field}"
+                        )
+        remaining = candidate_connection.execute(
+            """select hash from lamindb_artifact where hash is not null
+            group by hash having count(*) > 1"""
+        ).fetchall()
+        if remaining:
+            raise RuntimeError("candidate retains duplicate Artifact.hash values")
+    finally:
+        original_connection.close()
+        candidate_connection.close()
+    return {
+        "duplicate_group_count": len(groups),
+        "canonicalized_shadow_count": len(groups),
+    }
+
+
 def create_receipt(
     original: Path,
     candidate: Path,
@@ -153,6 +263,12 @@ def create_receipt(
         raise RuntimeError("original SHA-256 does not match migration receipt")
     if migration.get("candidate_sha256") != candidate_sha:
         raise RuntimeError("candidate SHA-256 does not match migration receipt")
+    duplicate_hash_verification = verify_duplicate_hash_canonicalization(
+        original,
+        candidate,
+        migration.get("duplicate_hash_canonicalization", {}),
+        EXPECTED_COLLECTION_KEY,
+    )
 
     if contract.get("collection") != EXPECTED_COLLECTION_KEY:
         raise RuntimeError("membership contract collection key mismatch")
@@ -228,6 +344,10 @@ def create_receipt(
         "membership_contract_sha256": sha256(membership_contract_path),
         "filtered_cell_count": expected_cells,
         "membership": public_membership,
+        "duplicate_hash_canonicalization": migration[
+            "duplicate_hash_canonicalization"
+        ],
+        "duplicate_hash_verification": duplicate_hash_verification,
         "before_data_table_counts": before_counts,
         "before_data_table_counts_sha256": before["data_table_counts_sha256"],
         "candidate_data_table_counts": after_counts,
@@ -261,6 +381,12 @@ def verify(receipt_path: Path, database: Path) -> dict:
     observed_sha = sha256(database)
     if receipt.get("candidate_sha256") != observed_sha:
         raise RuntimeError("database SHA-256 does not match verification receipt")
+    duplicate_hash_verification = verify_duplicate_hash_canonicalization(
+        Path(receipt.get("original", "")).resolve(),
+        database,
+        receipt.get("duplicate_hash_canonicalization", {}),
+        EXPECTED_COLLECTION_KEY,
+    )
     snapshot = database_snapshot(database, full_integrity=False)
     if snapshot["integrity"] != "ok":
         raise RuntimeError(f"database quick_check failed: {snapshot['integrity']}")
@@ -282,6 +408,7 @@ def verify(receipt_path: Path, database: Path) -> dict:
         "data_table_counts_sha256": snapshot["data_table_counts_sha256"],
         "migrations": snapshot["migrations"],
         "membership": membership,
+        "duplicate_hash_verification": duplicate_hash_verification,
         "integrity": snapshot["integrity"],
     }
 

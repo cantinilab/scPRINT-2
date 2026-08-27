@@ -22,6 +22,15 @@ def load_verifier():
     return module
 
 
+def load_migrator():
+    path = ROOT / "scripts" / "training" / "migrate_lamindb2_offline.py"
+    spec = importlib.util.spec_from_file_location("migrate_lamindb2_offline", path)
+    assert spec is not None and spec.loader is not None
+    module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(module)
+    return module
+
+
 def sha256(path: Path) -> str:
     return hashlib.sha256(path.read_bytes()).hexdigest()
 
@@ -105,6 +114,21 @@ def make_contract(tmp_path: Path) -> dict[str, Path]:
                 "candidate": str(candidate.resolve()),
                 "original_sha256": sha256(original),
                 "candidate_sha256": sha256(candidate),
+                "duplicate_hash_canonicalization": {
+                    "mode": "candidate-only-exact-identity-shadow-hash-null",
+                    "protected_collection_key": COLLECTION_KEY,
+                    "protected_collection_id": 29,
+                    "ranking": [
+                        "collection_link_count_desc",
+                        "is_latest_desc",
+                        "active_branch_desc",
+                        "id_asc",
+                    ],
+                    "duplicate_group_count": 0,
+                    "duplicate_row_count": 0,
+                    "canonicalized_shadow_count": 0,
+                    "groups": [],
+                },
             }
         )
     )
@@ -213,3 +237,142 @@ def test_migration_helper_checks_every_preexisting_data_table_and_membership():
     assert "REGISTRY_MANIFEST" in launcher
     assert "MEMBERSHIP_CONTRACT" in launcher
     assert "EXPECTED_ORIGINAL_SHA256" in launcher
+
+
+def make_duplicate_hash_database(tmp_path: Path) -> Path:
+    database = tmp_path / "duplicate-hashes.lndb"
+    connection = sqlite3.connect(database)
+    connection.execute(
+        """create table lamindb_artifact (
+        id integer primary key, uid text not null, hash text, key text,
+        size integer, _hash_type text, is_latest bool not null, _branch_code integer not null
+        )"""
+    )
+    connection.executemany(
+        "insert into lamindb_artifact values (?, ?, ?, ?, ?, ?, ?, ?)",
+        [
+            (1, "uid-1", "hash-1", "key-1", 10, "md5-n", 1, -1),
+            (2, "uid-2", "hash-1", "key-1", 10, "md5-n", 0, 1),
+            (3, "uid-3", "hash-2", "key-2", 20, "md5-n", 1, -1),
+            (4, "uid-4", "hash-2", "key-2", 20, "md5-n", 1, 1),
+            (5, "uid-5", "hash-3", "key-3", 30, "md5-n", 1, 1),
+            (6, "uid-6", "hash-3", "key-3", 30, "md5-n", 1, 1),
+            (7, "filtered", "unique", "filtered", 40, "md5-n", 1, 1),
+        ],
+    )
+    connection.execute(
+        "create table lamindb_collection (id integer primary key, uid text, key text)"
+    )
+    connection.execute(
+        "insert into lamindb_collection values (29, 'collection-uid', ?)",
+        (COLLECTION_KEY,),
+    )
+    connection.execute(
+        "create table lamindb_collectionartifact (id integer primary key, artifact_id integer, collection_id integer)"
+    )
+    connection.executemany(
+        "insert into lamindb_collectionartifact values (?, ?, ?)",
+        [(1, 2, 30), (2, 7, 29)],
+    )
+    connection.commit()
+    connection.close()
+    return database
+
+
+def test_candidate_duplicate_hash_canonicalization_is_deterministic_and_audited(tmp_path):
+    module = load_migrator()
+    database = make_duplicate_hash_database(tmp_path)
+
+    audit = module.canonicalize_duplicate_artifact_hashes(database, COLLECTION_KEY)
+
+    assert audit["duplicate_group_count"] == 3
+    assert audit["duplicate_row_count"] == 6
+    assert audit["canonicalized_shadow_count"] == 3
+    assert audit["ranking"] == [
+        "collection_link_count_desc",
+        "is_latest_desc",
+        "active_branch_desc",
+        "id_asc",
+    ]
+    assert [(item["keeper_id"], item["shadow_id"]) for item in audit["groups"]] == [
+        (2, 1),
+        (4, 3),
+        (5, 6),
+    ]
+    connection = sqlite3.connect(database)
+    observed = connection.execute(
+        "select id, hash from lamindb_artifact where id <= 6 order by id"
+    ).fetchall()
+    protected = connection.execute(
+        "select artifact_id from lamindb_collectionartifact where collection_id = 29"
+    ).fetchall()
+    connection.close()
+    assert observed == [
+        (1, None),
+        (2, "hash-1"),
+        (3, None),
+        (4, "hash-2"),
+        (5, "hash-3"),
+        (6, None),
+    ]
+    assert protected == [(7,)]
+
+
+def test_candidate_duplicate_hash_canonicalization_rejects_nonidentical_identity(tmp_path):
+    module = load_migrator()
+    database = make_duplicate_hash_database(tmp_path)
+    connection = sqlite3.connect(database)
+    connection.execute("update lamindb_artifact set size = 11 where id = 2")
+    connection.commit()
+    connection.close()
+
+    with pytest.raises(RuntimeError, match="content identity"):
+        module.canonicalize_duplicate_artifact_hashes(database, COLLECTION_KEY)
+
+
+def test_candidate_duplicate_hash_canonicalization_rejects_protected_membership(tmp_path):
+    module = load_migrator()
+    database = make_duplicate_hash_database(tmp_path)
+    connection = sqlite3.connect(database)
+    connection.execute(
+        "insert into lamindb_collectionartifact values (3, 1, 29)"
+    )
+    connection.commit()
+    connection.close()
+
+    with pytest.raises(RuntimeError, match="protected collection"):
+        module.canonicalize_duplicate_artifact_hashes(database, COLLECTION_KEY)
+
+
+def test_independent_verifier_replays_duplicate_hash_audit(tmp_path):
+    migrator = load_migrator()
+    verifier = load_verifier()
+    original = make_duplicate_hash_database(tmp_path)
+    candidate = tmp_path / "candidate.lndb"
+    shutil.copy2(original, candidate)
+    audit = migrator.canonicalize_duplicate_artifact_hashes(candidate, COLLECTION_KEY)
+
+    verified = verifier.verify_duplicate_hash_canonicalization(
+        original, candidate, audit, COLLECTION_KEY
+    )
+
+    assert verified["duplicate_group_count"] == 3
+    assert verified["canonicalized_shadow_count"] == 3
+
+
+def test_independent_verifier_rejects_unrecorded_shadow_hash(tmp_path):
+    migrator = load_migrator()
+    verifier = load_verifier()
+    original = make_duplicate_hash_database(tmp_path)
+    candidate = tmp_path / "candidate.lndb"
+    shutil.copy2(original, candidate)
+    audit = migrator.canonicalize_duplicate_artifact_hashes(candidate, COLLECTION_KEY)
+    connection = sqlite3.connect(candidate)
+    connection.execute("update lamindb_artifact set hash = 'tampered' where id = 1")
+    connection.commit()
+    connection.close()
+
+    with pytest.raises(RuntimeError, match="shadow hash"):
+        verifier.verify_duplicate_hash_canonicalization(
+            original, candidate, audit, COLLECTION_KEY
+        )

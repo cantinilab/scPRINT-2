@@ -94,6 +94,126 @@ def create_candidate(original: Path, candidate: Path) -> None:
         temporary.unlink(missing_ok=True)
 
 
+def canonicalize_duplicate_artifact_hashes(
+    candidate: Path, protected_collection_key: str
+) -> dict:
+    """Null only exact-identity shadow hashes in the new candidate.
+
+    LaminDB 2 makes ``Artifact.hash`` unique. Legacy registries may contain two
+    records for the same bytes, so rank each exact pair deterministically and
+    retain the hash on one canonical record. No protected training-collection
+    member is eligible for this compatibility repair.
+    """
+    connection = sqlite3.connect(candidate, timeout=30)
+    connection.row_factory = sqlite3.Row
+    try:
+        connection.execute("begin immediate")
+        collections = connection.execute(
+            "select id from lamindb_collection where key = ? order by id",
+            (protected_collection_key,),
+        ).fetchall()
+        if len(collections) != 1:
+            raise RuntimeError(
+                f"expected exactly one protected collection, got {len(collections)}"
+            )
+        protected_collection_id = collections[0]["id"]
+        duplicate_hashes = [
+            row["hash"]
+            for row in connection.execute(
+                """select hash from lamindb_artifact where hash is not null
+                group by hash having count(*) > 1 order by hash"""
+            )
+        ]
+        groups = []
+        for artifact_hash in duplicate_hashes:
+            rows = connection.execute(
+                """select artifact.id, artifact.uid, artifact.hash, artifact.key,
+                artifact.size, artifact._hash_type, artifact.is_latest,
+                artifact._branch_code,
+                (select count(*) from lamindb_collectionartifact as link
+                 where link.artifact_id = artifact.id) as collection_link_count,
+                (select count(*) from lamindb_collectionartifact as link
+                 where link.artifact_id = artifact.id and link.collection_id = ?)
+                 as protected_collection_link_count
+                from lamindb_artifact as artifact
+                where artifact.hash = ? order by artifact.id""",
+                (protected_collection_id, artifact_hash),
+            ).fetchall()
+            if len(rows) != 2:
+                raise RuntimeError(
+                    f"duplicate hash group must be an exact pair: {artifact_hash}"
+                )
+            identities = {(row["key"], row["size"], row["_hash_type"]) for row in rows}
+            if len(identities) != 1:
+                raise RuntimeError(
+                    f"duplicate hash group does not have exact content identity: {artifact_hash}"
+                )
+            if any(row["protected_collection_link_count"] for row in rows):
+                raise RuntimeError(
+                    f"duplicate hash group intersects protected collection: {artifact_hash}"
+                )
+            ranked = sorted(
+                rows,
+                key=lambda row: (
+                    -row["collection_link_count"],
+                    -int(row["is_latest"]),
+                    -int(row["_branch_code"] == 1),
+                    row["id"],
+                ),
+            )
+            keeper, shadow = ranked
+            before = [dict(row) for row in rows]
+            cursor = connection.execute(
+                "update lamindb_artifact set hash = null where id = ? and hash = ?",
+                (shadow["id"], artifact_hash),
+            )
+            if cursor.rowcount != 1:
+                raise RuntimeError(f"failed to canonicalize shadow row {shadow['id']}")
+            groups.append(
+                {
+                    "hash": artifact_hash,
+                    "content_identity": {
+                        "key": keeper["key"],
+                        "size": keeper["size"],
+                        "hash_type": keeper["_hash_type"],
+                    },
+                    "keeper_id": keeper["id"],
+                    "keeper_uid": keeper["uid"],
+                    "shadow_id": shadow["id"],
+                    "shadow_uid": shadow["uid"],
+                    "rows_before": before,
+                    "shadow_hash_after": None,
+                }
+            )
+        remaining = connection.execute(
+            """select hash, count(*) from lamindb_artifact where hash is not null
+            group by hash having count(*) > 1"""
+        ).fetchall()
+        if remaining:
+            raise RuntimeError(f"duplicate hashes remain after canonicalization: {remaining}")
+        connection.commit()
+    except Exception:
+        connection.rollback()
+        raise
+    finally:
+        connection.close()
+    return {
+        "mode": "candidate-only-exact-identity-shadow-hash-null",
+        "protected_collection_key": protected_collection_key,
+        "protected_collection_id": protected_collection_id,
+        "ranking": [
+            "collection_link_count_desc",
+            "is_latest_desc",
+            "active_branch_desc",
+            "id_asc",
+        ],
+        "duplicate_group_count": len(groups),
+        "duplicate_row_count": sum(len(group["rows_before"]) for group in groups),
+        "canonicalized_shadow_count": len(groups),
+        "groups": groups,
+    }
+
+
 def deploy_offline(candidate: Path) -> None:
     # Construct a local-only instance explicitly. This avoids importing lamindb,
     # loading user credentials, refreshing a hub token, or syncing cloud SQLite.
@@ -162,6 +282,9 @@ def main() -> None:
     if copied_sha != original_sha:
         raise RuntimeError(f"candidate copy SHA-256 mismatch: {copied_sha} != {original_sha}")
 
+    duplicate_hash_audit = canonicalize_duplicate_artifact_hashes(
+        candidate, EXPECTED_COLLECTION_KEY
+    )
     deploy_offline(candidate)
     after = snapshot(candidate)
     if after["integrity"] != "ok":
@@ -241,6 +364,7 @@ def main() -> None:
         "before_data_table_counts": before["counts"],
         "candidate_data_table_counts": after["counts"],
         "membership": public_membership,
+        "duplicate_hash_canonicalization": duplicate_hash_audit,
         "filtered_cell_count": expected_cells,
         "registry_manifest": str(registry_manifest),
         "registry_manifest_sha256": sha256(registry_manifest),
