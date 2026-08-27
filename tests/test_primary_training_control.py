@@ -73,3 +73,6 @@ def test_launchers_are_current_main_immutable_and_do_not_rebuild_cache():
 
     long = (ROOT / "slurm" / "scprint2_r3_primary_long.sbatch").read_text()
     assert "WANDB_DIR=$TMPBASE/wandb" in long
+    assert "GenerationIntermediateGuard" in long
+    assert r'\"instrument_until_step\":300' in long
+    assert r'\"stop_training\":false' in long

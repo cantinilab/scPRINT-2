@@ -92,13 +92,17 @@ class GenerationIntermediateGuard(Callback):
         receipt_path: str,
         batch_trace_path: str,
         instrument_from_step: int = 0,
+        instrument_until_step: int | None = None,
         stop_after_steps: int = 220,
+        stop_training: bool = True,
     ):
         super().__init__()
         self.receipt_path = Path(receipt_path)
         self.batch_trace_path = Path(batch_trace_path)
         self.instrument_from_step = instrument_from_step
+        self.instrument_until_step = instrument_until_step
         self.stop_after_steps = stop_after_steps
+        self.stop_training = stop_training
         self.current_batch: Any = None
         self.current_batch_idx = -1
         self.recorder: GenerationNumericsRecorder | None = None
@@ -112,6 +116,11 @@ class GenerationIntermediateGuard(Callback):
         self._trainer: Any = None
         self._module: Any = None
         self._vae_calls: dict[str, int] = {}
+
+    def _instrumentation_active(self, step: int) -> bool:
+        return step >= self.instrument_from_step and (
+            self.instrument_until_step is None or step < self.instrument_until_step
+        )
 
     def _rank(self) -> int:
         import torch
@@ -248,8 +257,8 @@ class GenerationIntermediateGuard(Callback):
         self.upstream_recorder = GenerationNumericsRecorder()
         self._vae_calls = {}
         self._forward_call = 0
-        self.instrument_enabled = (
-            int(getattr(trainer, "global_step", -1)) >= self.instrument_from_step
+        self.instrument_enabled = self._instrumentation_active(
+            int(getattr(trainer, "global_step", -1))
         )
         dataset = batch.get("dataset") if isinstance(batch, dict) else None
         dataset_fingerprint = (
@@ -495,7 +504,9 @@ class GenerationIntermediateGuard(Callback):
         batch: Any,
         batch_idx: int,
     ) -> None:
-        if int(getattr(trainer, "global_step", 0)) >= self.stop_after_steps:
+        if self.stop_training and int(
+            getattr(trainer, "global_step", 0)
+        ) >= self.stop_after_steps:
             trainer.should_stop = True
 
     def on_fit_end(self, trainer: Any, pl_module: Any) -> None:

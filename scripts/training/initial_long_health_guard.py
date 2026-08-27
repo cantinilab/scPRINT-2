@@ -1,9 +1,11 @@
 from __future__ import annotations
+
 import json
 import os
 import time
 from pathlib import Path
 from typing import Any
+
 from finite_training_guard import assert_finite_tree
 
 try:
