@@ -3,19 +3,14 @@ from __future__ import annotations
 import hashlib
 import importlib.util
 import json
+import shutil
 import sqlite3
 from pathlib import Path
 
 import pytest
 
 ROOT = Path(__file__).resolve().parents[1]
-PRESERVED = (
-    "lamindb_artifact",
-    "lamindb_collection",
-    "lamindb_storage",
-    "lamindb_transform",
-    "lamindb_user",
-)
+COLLECTION_KEY = "scPRINT-V2 (all+tahoe+scbase) filtered"
 
 
 def load_verifier():
@@ -31,60 +26,169 @@ def sha256(path: Path) -> str:
     return hashlib.sha256(path.read_bytes()).hexdigest()
 
 
-def make_candidate(tmp_path: Path) -> tuple[Path, Path]:
-    database = tmp_path / "candidate.lndb"
-    connection = sqlite3.connect(database)
-    for name in PRESERVED:
-        connection.execute(f"create table {name} (id integer primary key)")
-        connection.execute(f"insert into {name} values (1)")
-    connection.execute("create table lamindb_branch (id integer primary key)")
+def make_contract(tmp_path: Path) -> dict[str, Path]:
+    original = tmp_path / "original.lndb"
+    connection = sqlite3.connect(original)
+    connection.execute(
+        "create table lamindb_artifact (id integer primary key, uid text, n_observations integer)"
+    )
+    connection.executemany(
+        "insert into lamindb_artifact values (?, ?, ?)",
+        [(1, "artifact-a", 50), (2, "artifact-b", 73)],
+    )
+    connection.execute(
+        "create table lamindb_collection (id integer primary key, uid text, key text)"
+    )
+    connection.execute(
+        "insert into lamindb_collection values (?, ?, ?)",
+        (29, "collection-uid", COLLECTION_KEY),
+    )
+    connection.execute(
+        "create table lamindb_collectionartifact (id integer primary key, artifact_id integer, collection_id integer)"
+    )
+    connection.executemany(
+        "insert into lamindb_collectionartifact values (?, ?, 29)", [(1, 1), (2, 2)]
+    )
+    connection.execute("create table lamindb_user (id integer primary key)")
+    connection.execute("insert into lamindb_user values (1)")
+    connection.execute("create table bionty_gene (id integer primary key)")
+    connection.execute("insert into bionty_gene values (1)")
     connection.execute(
         "create table django_migrations (id integer primary key, app text, name text)"
     )
     connection.execute("insert into django_migrations values (1, 'lamindb', '0001')")
     connection.commit()
     connection.close()
-    receipt = tmp_path / "receipt.json"
-    receipt.write_text(
+
+    candidate = tmp_path / "candidate.lndb"
+    shutil.copy2(original, candidate)
+    connection = sqlite3.connect(candidate)
+    connection.execute("create table lamindb_branch (id integer primary key)")
+    connection.execute("insert into django_migrations values (2, 'lamindb', '0002')")
+    connection.commit()
+    connection.close()
+
+    uids = ["artifact-a", "artifact-b"]
+    uid_digest = hashlib.sha256(("\n".join(uids) + "\n").encode()).hexdigest()
+    membership = tmp_path / "membership.json"
+    membership.write_text(
+        json.dumps(
+            {
+                "collection": COLLECTION_KEY,
+                "filtered_artifact_count": 2,
+                "filtered_cell_count": 123,
+                "filtered_artifact_uids_sha256": uid_digest,
+                "excluded_artifacts": [],
+            }
+        )
+    )
+    registry = tmp_path / "registry.json"
+    registry.write_text(
+        json.dumps(
+            {
+                "output": str(original.resolve()),
+                "output_sha256": sha256(original),
+                "filtered_collection_id": 29,
+                "kept_count": 2,
+                "kept_uids_sha256": uid_digest,
+                "inferred_cells": 123,
+            }
+        )
+    )
+    migration = tmp_path / "migration.json"
+    migration.write_text(
         json.dumps(
             {
                 "status": "accepted_candidate",
                 "swapped": False,
-                "candidate": str(database.resolve()),
-                "candidate_sha256": sha256(database),
-                "branch_table_added": True,
-                "after_migrations": 1,
-                "row_counts": {name: 1 for name in PRESERVED},
+                "original": str(original.resolve()),
+                "candidate": str(candidate.resolve()),
+                "original_sha256": sha256(original),
+                "candidate_sha256": sha256(candidate),
             }
         )
     )
-    return database, receipt
+    return {
+        "original": original,
+        "candidate": candidate,
+        "membership": membership,
+        "registry": registry,
+        "migration": migration,
+        "verification": tmp_path / "verification.json",
+    }
 
 
-def test_verifier_accepts_exact_unswapped_candidate(tmp_path):
+def test_create_and_verify_exact_migration_receipt(tmp_path):
     module = load_verifier()
-    database, receipt = make_candidate(tmp_path)
+    paths = make_contract(tmp_path)
 
-    result = module.verify(receipt, database)
+    created = module.create_receipt(
+        paths["original"],
+        paths["candidate"],
+        paths["migration"],
+        paths["registry"],
+        paths["membership"],
+        paths["verification"],
+    )
+    verified = module.verify(paths["verification"], paths["candidate"])
 
-    assert result["status"] == "accepted"
-    assert result["database_sha256"] == sha256(database)
-    assert result["migrations"] == 1
+    assert created["status"] == "accepted_migrated_lamindb"
+    assert created["filtered_cell_count"] == 123
+    assert created["membership"]["artifact_count"] == 2
+    assert created["before_data_table_counts"] == {
+        "bionty_gene": 1,
+        "lamindb_artifact": 2,
+        "lamindb_collection": 1,
+        "lamindb_collectionartifact": 2,
+        "lamindb_user": 1,
+    }
+    assert verified["status"] == "accepted"
+    assert verified["database_sha256"] == sha256(paths["candidate"])
 
 
-def test_verifier_rejects_candidate_mutated_after_receipt(tmp_path):
+def test_create_rejects_changed_preexisting_link_or_data_table(tmp_path):
     module = load_verifier()
-    database, receipt = make_candidate(tmp_path)
-    connection = sqlite3.connect(database)
-    connection.execute("insert into lamindb_artifact values (2)")
+    paths = make_contract(tmp_path)
+    connection = sqlite3.connect(paths["candidate"])
+    connection.execute("insert into bionty_gene values (2)")
+    connection.commit()
+    connection.close()
+    migration = json.loads(paths["migration"].read_text())
+    migration["candidate_sha256"] = sha256(paths["candidate"])
+    paths["migration"].write_text(json.dumps(migration))
+
+    with pytest.raises(RuntimeError, match="table parity"):
+        module.create_receipt(
+            paths["original"],
+            paths["candidate"],
+            paths["migration"],
+            paths["registry"],
+            paths["membership"],
+            paths["verification"],
+        )
+
+
+def test_verify_rejects_candidate_mutated_after_receipt(tmp_path):
+    module = load_verifier()
+    paths = make_contract(tmp_path)
+    module.create_receipt(
+        paths["original"],
+        paths["candidate"],
+        paths["migration"],
+        paths["registry"],
+        paths["membership"],
+        paths["verification"],
+    )
+    connection = sqlite3.connect(paths["candidate"])
+    connection.execute("delete from lamindb_collectionartifact where id = 2")
     connection.commit()
     connection.close()
 
     with pytest.raises(RuntimeError, match="SHA-256"):
-        module.verify(receipt, database)
+        module.verify(paths["verification"], paths["candidate"])
 
 
-def test_launchers_require_and_verify_migrated_database():
+def test_launchers_require_independent_migration_verification():
     for name in (
         "scprint2_r3_cache_adopt.sbatch",
         "scprint2_r3_primary_smoke.sbatch",
@@ -92,6 +196,20 @@ def test_launchers_require_and_verify_migrated_database():
     ):
         source = (ROOT / "slurm" / name).read_text()
         assert "LAMINDB_DATABASE_PATH" in source
-        assert "LAMINDB_MIGRATION_RECEIPT" in source
-        assert "verify_migrated_lamindb.py" in source
+        assert "LAMINDB_VERIFICATION_RECEIPT" in source
+        assert "verify_migrated_lamindb.py\" verify" in source
         assert "DB=$R/scprint2_base_v3_filt_esi_t_6cff2510.lndb" not in source
+
+
+def test_migration_helper_checks_every_preexisting_data_table_and_membership():
+    source = (
+        ROOT / "scripts" / "training" / "migrate_lamindb2_offline.py"
+    ).read_text()
+    assert 'DATA_PREFIXES = ("lamindb_", "bionty_")' in source
+    assert "for name, count in before[\"counts\"].items()" in source
+    assert "collection_membership" in source
+    assert "filtered_cell_count" in source
+    launcher = (ROOT / "slurm" / "scprint2_r3_migrate_lamindb.sbatch").read_text()
+    assert "REGISTRY_MANIFEST" in launcher
+    assert "MEMBERSHIP_CONTRACT" in launcher
+    assert "EXPECTED_ORIGINAL_SHA256" in launcher

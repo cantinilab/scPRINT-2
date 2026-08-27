@@ -20,7 +20,7 @@ RUNTIME_MANIFEST=$RUNTIME_ROOT/runtime_manifest.json
 ENV=$RUNTIME_ROOT/.venv
 CACHE=/lustre/fsn1/projects/rech/xeg/uat95fg/base_v3_filt_esi_t_6cff2510
 DB=${LAMINDB_DATABASE_PATH:?submitter must bind the accepted migrated SQLite}
-DB_MIGRATION_RECEIPT=${LAMINDB_MIGRATION_RECEIPT:?submitter must bind its accepted migration receipt}
+DB_VERIFICATION_RECEIPT=${LAMINDB_VERIFICATION_RECEIPT:?submitter must bind its independent verification receipt}
 NTV3=/lustre/fsn1/projects/rech/xeg/uat95fg/scprint2_inputs/t_2bbe0ae6/ntv3-full/gene_embeddings.parquet
 REGISTRY_MANIFEST=$E/primary_filtered_registry_manifest.json
 RECEIPT=$E/primary_filtered_cache_manifest.json
@@ -31,7 +31,7 @@ test "$(git -C "$S" rev-parse HEAD)" = "$EXPECTED_SCDATALOADER_COMMIT"
 test -z "$(git -C "$P" status --porcelain)"; test -z "$(git -C "$S" status --porcelain)"
 test -s "$RUNTIME_MANIFEST"
 python3 "$P/scripts/training/verify_frozen_runtime.py" verify "$RUNTIME_ROOT" "$P" "$S" "$EXPECTED_SCPRINT_COMMIT" "$EXPECTED_SCDATALOADER_COMMIT"
-"$ENV/bin/python" "$P/scripts/training/verify_migrated_lamindb.py" "$DB_MIGRATION_RECEIPT" "$DB"
+"$ENV/bin/python" "$P/scripts/training/verify_migrated_lamindb.py" verify "$DB_VERIFICATION_RECEIPT" "$DB"
 test ! -e "$RECEIPT"
 for name in categories idx_full.npy klass_indices.pt klass_indices_offsets.pt nnz.npy test_datasets.txt test_idx.npy train_labels.npy valid_idx.npy; do test -s "$CACHE/$name"; done
 export PYTHONPATH="$P/scripts/training:$P:$S:$R" LAMIN_CURRENT_INSTANCE=jkobject/scprint2 LAMINDB_DJANGO_DATABASE_URL="sqlite:///$DB"

@@ -23,7 +23,7 @@ RUNTIME_MANIFEST=$RUNTIME_ROOT/runtime_manifest.json
 ENV=$RUNTIME_ROOT/.venv
 CONTROL=$P/scripts/training
 DB=${LAMINDB_DATABASE_PATH:?submitter must bind the accepted migrated SQLite}
-DB_MIGRATION_RECEIPT=${LAMINDB_MIGRATION_RECEIPT:?submitter must bind its accepted migration receipt}
+DB_VERIFICATION_RECEIPT=${LAMINDB_VERIFICATION_RECEIPT:?submitter must bind its independent verification receipt}
 CACHE=/lustre/fsn1/projects/rech/xeg/uat95fg/base_v3_filt_esi_t_6cff2510
 NTV3=/lustre/fsn1/projects/rech/xeg/uat95fg/scprint2_inputs/t_2bbe0ae6/ntv3-full/gene_embeddings.parquet
 GENE_LOCS=$R/scPRINT/data/main/gene_locs/all_locs.parquet
@@ -41,7 +41,7 @@ test "$(git -C "$S" rev-parse HEAD)" = "$SCD_COMMIT"
 test -z "$(git -C "$P" status --porcelain)"; test -z "$(git -C "$S" status --porcelain)"
 test -s "$RUNTIME_MANIFEST"
 python3 "$CONTROL/verify_frozen_runtime.py" verify "$RUNTIME_ROOT" "$P" "$S" "$EXPECTED_SCPRINT_COMMIT" "$SCD_COMMIT"
-"$ENV/bin/python" "$CONTROL/verify_migrated_lamindb.py" "$DB_MIGRATION_RECEIPT" "$DB"
+"$ENV/bin/python" "$CONTROL/verify_migrated_lamindb.py" verify "$DB_VERIFICATION_RECEIPT" "$DB"
 test ! -e "$ROOT"; test ! -e "$THROUGHPUT_ROOT"
 "$ENV/bin/python" - "$CACHE_RECEIPT" <<'PY'
 import json,sys

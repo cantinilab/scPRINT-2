@@ -13,13 +13,8 @@ import sys
 from pathlib import Path
 from uuid import UUID
 
-PRESERVED_TABLES = (
-    "lamindb_artifact",
-    "lamindb_collection",
-    "lamindb_storage",
-    "lamindb_transform",
-    "lamindb_user",
-)
+DATA_PREFIXES = ("lamindb_", "bionty_")
+EXPECTED_COLLECTION_KEY = "scPRINT-V2 (all+tahoe+scbase) filtered"
 
 
 def sha256(path: Path) -> str:
@@ -39,9 +34,12 @@ def snapshot(path: Path) -> dict:
                 "select name from sqlite_master where type='table' order by name"
             )
         ]
+        data_tables = [
+            name for name in tables if any(name.startswith(p) for p in DATA_PREFIXES)
+        ]
         counts = {
             name: connection.execute(f"select count(*) from {name}").fetchone()[0]
-            for name in PRESERVED_TABLES
+            for name in data_tables
         }
         integrity = connection.execute("pragma integrity_check").fetchone()[0]
         migrations = connection.execute(
@@ -129,17 +127,23 @@ def main() -> None:
     parser.add_argument("candidate", type=Path)
     parser.add_argument("receipt", type=Path)
     parser.add_argument("expected_original_sha256")
+    parser.add_argument("registry_manifest", type=Path)
+    parser.add_argument("membership_contract", type=Path)
     args = parser.parse_args()
 
     original = args.original.resolve()
     candidate = args.candidate.resolve()
     receipt = args.receipt.resolve()
+    registry_manifest = args.registry_manifest.resolve()
+    membership_contract = args.membership_contract.resolve()
     if not original.is_file() or original.stat().st_size == 0:
         raise FileNotFoundError(original)
     if candidate.exists():
         raise FileExistsError(candidate)
     if receipt.exists():
         raise FileExistsError(receipt)
+    if not registry_manifest.is_file() or not membership_contract.is_file():
+        raise FileNotFoundError([str(registry_manifest), str(membership_contract)])
 
     original_stat = original.stat()
     original_sha = sha256(original)
@@ -162,9 +166,14 @@ def main() -> None:
     after = snapshot(candidate)
     if after["integrity"] != "ok":
         raise RuntimeError(f"candidate integrity check failed: {after['integrity']}")
-    if before["counts"] != after["counts"]:
+    changed_counts = {
+        name: {"before": count, "after": after["counts"].get(name)}
+        for name, count in before["counts"].items()
+        if after["counts"].get(name) != count
+    }
+    if changed_counts:
         raise RuntimeError(
-            f"preserved row counts changed: before={before['counts']} after={after['counts']}"
+            f"pre-existing LaminDB/Bionty row counts changed: {changed_counts}"
         )
     if "lamindb_branch" not in after["tables"]:
         raise RuntimeError("migration did not add lamindb_branch")
@@ -172,6 +181,37 @@ def main() -> None:
         raise RuntimeError("migration did not increase the table count")
     if after["migrations"] <= before["migrations"]:
         raise RuntimeError("migration did not advance django_migrations")
+
+    from verify_migrated_lamindb import collection_membership
+
+    registry = json.loads(registry_manifest.read_text())
+    contract = json.loads(membership_contract.read_text())
+    expected_count = contract["filtered_artifact_count"]
+    expected_digest = contract["filtered_artifact_uids_sha256"]
+    expected_cells = contract["filtered_cell_count"]
+    if contract["collection"] != EXPECTED_COLLECTION_KEY:
+        raise RuntimeError("membership contract collection mismatch")
+    if (
+        registry["kept_count"] != expected_count
+        or registry["kept_uids_sha256"] != expected_digest
+        or registry["inferred_cells"] != expected_cells
+    ):
+        raise RuntimeError("registry and membership contracts disagree")
+    before_membership = collection_membership(original, EXPECTED_COLLECTION_KEY)
+    after_membership = collection_membership(candidate, EXPECTED_COLLECTION_KEY)
+    for observed in (before_membership, after_membership):
+        if (
+            observed["collection_id"] != registry["filtered_collection_id"]
+            or observed["artifact_count"] != expected_count
+            or observed["unique_artifact_count"] != expected_count
+            or observed["link_count"] != expected_count
+            or observed["artifact_uids_sha256"] != expected_digest
+        ):
+            raise RuntimeError("filtered collection identity/membership mismatch")
+    if before_membership != after_membership:
+        raise RuntimeError("filtered collection membership changed during migration")
+    public_membership = dict(after_membership)
+    public_membership.pop("artifact_uids")
 
     final_original_stat = original.stat()
     final_original_sha = sha256(original)
@@ -198,7 +238,14 @@ def main() -> None:
         "after_table_count": len(after["tables"]),
         "before_migrations": before["migrations"],
         "after_migrations": after["migrations"],
-        "row_counts": after["counts"],
+        "before_data_table_counts": before["counts"],
+        "candidate_data_table_counts": after["counts"],
+        "membership": public_membership,
+        "filtered_cell_count": expected_cells,
+        "registry_manifest": str(registry_manifest),
+        "registry_manifest_sha256": sha256(registry_manifest),
+        "membership_contract": str(membership_contract),
+        "membership_contract_sha256": sha256(membership_contract),
         "integrity": after["integrity"],
         "branch_table_added": True,
         "python": sys.version,
