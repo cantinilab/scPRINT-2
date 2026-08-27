@@ -5295,7 +5295,7 @@ wheels = [
 [[package]]
 name = "scdataloader"
 version = "2.1.3"
-source = { git = "https://github.com/jkobject/scDataLoader.git?rev=13dac4c1198a58b98c95ff0b3703b4bec9a0037c#13dac4c1198a58b98c95ff0b3703b4bec9a0037c" }
+source = { git = "https://github.com/jkobject/scDataLoader.git?rev=0a2fb2080dd2bf471c1532c04ee0789ce06441c2#0a2fb2080dd2bf471c1532c04ee0789ce06441c2" }
 dependencies = [
     { name = "anndata" },
     { name = "biomart" },
@@ -5647,7 +5647,7 @@ requires-dist = [
     { name = "rich", specifier = ">=10.0.0" },
     { name = "ruff", marker = "extra == 'dev'", specifier = ">=0.6.4" },
     { name = "s3fs", specifier = ">=2024.10.0" },
-    { name = "scdataloader", git = "https://github.com/jkobject/scDataLoader.git?rev=13dac4c1198a58b98c95ff0b3703b4bec9a0037c" },
+    { name = "scdataloader", git = "https://github.com/jkobject/scDataLoader.git?rev=0a2fb2080dd2bf471c1532c04ee0789ce06441c2" },
     { name = "scib", specifier = ">=1.1.7" },
     { name = "scib-metrics", specifier = ">=0.5.1" },
     { name = "scikit-learn", specifier = "==1.6.0" },
