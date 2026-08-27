@@ -6,7 +6,6 @@
 #SBATCH --nodes=1
 #SBATCH --ntasks=1
 #SBATCH --cpus-per-task=8
-#SBATCH --mem=50G
 #SBATCH --time=02:00:00
 #SBATCH --hint=nomultithread
 #SBATCH --output=/lustre/fswork/projects/rech/xeg/uat95fg/scprint2-r3-runtime-%j.out
