@@ -14,8 +14,10 @@ set -euo pipefail
 R=/lustre/fswork/projects/rech/xeg/uat95fg
 P=$R/scPRINT-esi-primary-t_6cff2510
 S=$R/scDataLoader-esi-primary-t_6cff2510
-ENV=$R/scPRINT/.venv
 E=$R/scprint2_basev3_revision3_t_6cff2510
+RUNTIME_ROOT=${RUNTIME_ROOT:?submitter must bind an accepted frozen runtime}
+RUNTIME_MANIFEST=$RUNTIME_ROOT/runtime_manifest.json
+ENV=$RUNTIME_ROOT/.venv
 CACHE=/lustre/fsn1/projects/rech/xeg/uat95fg/base_v3_filt_esi_t_6cff2510
 DB=$R/scprint2_base_v3_filt_esi_t_6cff2510.lndb
 NTV3=/lustre/fsn1/projects/rech/xeg/uat95fg/scprint2_inputs/t_2bbe0ae6/ntv3-full/gene_embeddings.parquet
@@ -26,6 +28,8 @@ EXPECTED_SCDATALOADER_COMMIT=0a2fb2080dd2bf471c1532c04ee0789ce06441c2
 test "$(git -C "$P" rev-parse HEAD)" = "$EXPECTED_SCPRINT_COMMIT"
 test "$(git -C "$S" rev-parse HEAD)" = "$EXPECTED_SCDATALOADER_COMMIT"
 test -z "$(git -C "$P" status --porcelain)"; test -z "$(git -C "$S" status --porcelain)"
+test -s "$RUNTIME_MANIFEST"
+python3 "$P/scripts/training/verify_frozen_runtime.py" verify "$RUNTIME_ROOT" "$P" "$S" "$EXPECTED_SCPRINT_COMMIT" "$EXPECTED_SCDATALOADER_COMMIT"
 test ! -e "$RECEIPT"
 for name in categories idx_full.npy klass_indices.pt klass_indices_offsets.pt nnz.npy test_datasets.txt test_idx.npy train_labels.npy valid_idx.npy; do test -s "$CACHE/$name"; done
 export PYTHONPATH="$P/scripts/training:$P:$S:$R" LAMIN_CURRENT_INSTANCE=jkobject/scprint2 LAMINDB_DJANGO_DATABASE_URL="sqlite:///$DB"

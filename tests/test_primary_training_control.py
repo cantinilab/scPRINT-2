@@ -53,5 +53,23 @@ def test_launchers_are_current_main_immutable_and_do_not_rebuild_cache():
     ).read_text()
     assert "trainer_step_parity" in verifier
     assert "fallback/gpu0/" in verifier and "fallback/gpu1/" in verifier
+    for name in (
+        "scprint2_r3_cache_adopt.sbatch",
+        "scprint2_r3_primary_smoke.sbatch",
+        "scprint2_r3_primary_long.sbatch",
+    ):
+        source = (ROOT / "slurm" / name).read_text()
+        assert "RUNTIME_ROOT" in source
+        assert "runtime_manifest.json" in source
+        assert "verify_frozen_runtime.py" in source
+        assert "scPRINT/.venv" not in source
+
+    runtime_verifier = (
+        ROOT / "scripts" / "training" / "verify_frozen_runtime.py"
+    ).read_text()
+    assert '"lamindb": "2.1.1"' in runtime_verifier
+    assert "package_inventory_sha256" in runtime_verifier
+    assert "uv_lock_sha256" in runtime_verifier
+
     long = (ROOT / "slurm" / "scprint2_r3_primary_long.sbatch").read_text()
     assert "WANDB_DIR=$TMPBASE/wandb" in long
