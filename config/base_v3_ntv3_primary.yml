@@ -45,8 +45,7 @@ scprint_early_stopping:
 model:
   dropout: 0.02
   nhead: 4
-  # The launch wrapper must supply exact immutable NT-v3 and gene-location paths.
-  precpt_gene_emb: null
+  # Linked from data.gene_embeddings by scprint2.cli.MyCLI.
   gene_pos_file: null
   num_heads_kv: 4
   nlayers: 8
@@ -83,6 +82,8 @@ model:
     cell_culture: 2
 data:
   collection_name: scPRINT-V2 (all+tahoe+scbase) filtered
+  # The launch wrapper must supply the exact immutable NT-v3 parquet path.
+  gene_embeddings: null
   how: random expr
   max_len: 3200
   pin_memory: true

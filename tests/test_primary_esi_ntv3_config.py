@@ -2,10 +2,13 @@ from __future__ import annotations
 
 import hashlib
 import importlib.util
+import inspect
 import json
 from pathlib import Path
 
 import yaml
+
+from scprint2.cli import MyCLI
 
 ROOT = Path(__file__).parents[1]
 CONFIG = ROOT / "config" / "base_v3_ntv3_primary.yml"
@@ -22,17 +25,24 @@ def test_primary_config_preserves_reference_recipe_without_cluster_paths():
     assert config["model"]["dropout"] == 0.02
     assert config["model"]["expr_encoder_layers"] == 1
     assert config["model"]["layers_cls"] == [256]
-    assert config["model"]["precpt_gene_emb"] is None
+    assert "precpt_gene_emb" not in config["model"]
     assert config["model"]["gene_pos_file"] is None
     assert config["scprint_training"]["noise"] == [0.8, 1.0]
     assert config["scprint_training"]["mask_ratio"] == []
     assert config["scprint_training"]["vae_kl_scale"] == 0.0002
     assert config["data"]["collection_name"].endswith(" filtered")
+    assert config["data"]["gene_embeddings"] is None
     assert config["data"]["max_len"] == 3200
     assert config["data"]["weight_scaler"] == 500
     assert config["data"]["batch_size"] == 50
     assert config["data"]["n_samples_per_epoch"] == 1_000_000
     assert "/lustre/" not in CONFIG.read_text()
+
+
+def test_cli_pairs_embedding_vocabulary_into_the_model():
+    source = inspect.getsource(MyCLI.add_arguments_to_parser)
+    assert '"data.gene_embeddings", "model.precpt_gene_emb"' in source
+    assert 'apply_on="parse"' in source
 
 
 def test_filtered_membership_matches_historical_counts_and_digest():
@@ -66,6 +76,7 @@ def test_cache_builder_uses_reviewed_config_instead_of_redefining_recipe():
     for name in (
         "collection_name",
         "store_location",
+        "gene_embeddings",
         "weight_scaler",
         "batch_size",
         "n_samples_per_epoch",

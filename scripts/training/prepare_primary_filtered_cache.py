@@ -82,6 +82,7 @@ def main() -> None:
         raise ValueError("config and membership collection identities disagree")
     data.update(
         store_location=str(args.cache),
+        gene_embeddings=str(args.ntv3),
         force_recompute_indices=False,
         sampler_workers=44,
     )
