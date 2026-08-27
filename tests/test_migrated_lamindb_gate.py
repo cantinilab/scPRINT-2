@@ -129,6 +129,14 @@ def make_contract(tmp_path: Path) -> dict[str, Path]:
                     "canonicalized_shadow_count": 0,
                     "groups": [],
                 },
+                "artifact_schema_slot_canonicalization": {
+                    "mode": "candidate-only-strict-subset-artifact-schema-slot-null",
+                    "protected_collection_key": COLLECTION_KEY,
+                    "duplicate_group_count": 0,
+                    "duplicate_row_count": 0,
+                    "canonicalized_shadow_count": 0,
+                    "groups": [],
+                },
             }
         )
     )
@@ -374,5 +382,168 @@ def test_independent_verifier_rejects_unrecorded_shadow_hash(tmp_path):
 
     with pytest.raises(RuntimeError, match="shadow hash"):
         verifier.verify_duplicate_hash_canonicalization(
+            original, candidate, audit, COLLECTION_KEY
+        )
+
+
+def make_duplicate_artifact_schema_database(tmp_path: Path) -> Path:
+    database = tmp_path / "duplicate-artifact-schema-slots.lndb"
+    connection = sqlite3.connect(database)
+    connection.execute(
+        "create table lamindb_artifact (id integer primary key, uid text not null)"
+    )
+    connection.executemany(
+        "insert into lamindb_artifact values (?, ?)",
+        [(1, "artifact-1"), (2, "artifact-2"), (3, "filtered")],
+    )
+    connection.execute(
+        "create table lamindb_collection (id integer primary key, uid text, key text)"
+    )
+    connection.execute(
+        "insert into lamindb_collection values (29, 'collection-uid', ?)",
+        (COLLECTION_KEY,),
+    )
+    connection.execute(
+        "create table lamindb_collectionartifact (id integer primary key, artifact_id integer, collection_id integer)"
+    )
+    connection.execute("insert into lamindb_collectionartifact values (1, 3, 29)")
+    connection.execute(
+        "create table lamindb_schema (id integer primary key, uid text, n integer)"
+    )
+    connection.executemany(
+        "insert into lamindb_schema values (?, ?, ?)",
+        [(14, "schema-subset", 2), (181, "schema-superset", 3), (200, "other", 1)],
+    )
+    connection.execute(
+        "create table lamindb_schemafeature (id integer primary key, schema_id integer, feature_id integer)"
+    )
+    connection.executemany(
+        "insert into lamindb_schemafeature values (?, ?, ?)",
+        [(1, 14, 5), (2, 14, 6), (3, 181, 5), (4, 181, 6), (5, 181, 7), (6, 200, 9)],
+    )
+    connection.execute(
+        """create table lamindb_artifactschema (
+        id integer primary key, artifact_id integer not null, schema_id integer not null,
+        slot text, feature_ref_is_semantic bool, run_id integer, created_by_id integer,
+        created_at text
+        )"""
+    )
+    connection.executemany(
+        "insert into lamindb_artifactschema values (?, ?, ?, ?, ?, ?, ?, ?)",
+        [
+            (10, 1, 14, "obs", 1, 4, 1, "2023-01-01"),
+            (11, 1, 181, "obs", 1, 4, 1, "2023-01-02"),
+            (12, 2, 14, "obs", 1, None, 1, "2023-01-01"),
+            (13, 2, 181, "obs", 1, None, 1, "2023-01-02"),
+            (14, 2, 200, "var", 0, None, 1, "2023-01-03"),
+        ],
+    )
+    connection.commit()
+    connection.close()
+    return database
+
+
+def test_candidate_artifact_schema_slot_canonicalization_keeps_strict_superset(tmp_path):
+    module = load_migrator()
+    database = make_duplicate_artifact_schema_database(tmp_path)
+
+    audit = module.canonicalize_duplicate_artifact_schema_slots(database, COLLECTION_KEY)
+
+    assert audit["duplicate_group_count"] == 2
+    assert audit["duplicate_row_count"] == 4
+    assert audit["canonicalized_shadow_count"] == 2
+    assert [(group["keeper_schema_id"], group["shadow_schema_id"]) for group in audit["groups"]] == [
+        (181, 14),
+        (181, 14),
+    ]
+    connection = sqlite3.connect(database)
+    observed = connection.execute(
+        "select id, artifact_id, schema_id, slot from lamindb_artifactschema order by id"
+    ).fetchall()
+    connection.close()
+    assert observed == [
+        (10, 1, 14, None),
+        (11, 1, 181, "obs"),
+        (12, 2, 14, None),
+        (13, 2, 181, "obs"),
+        (14, 2, 200, "var"),
+    ]
+
+
+def test_candidate_artifact_schema_slot_canonicalization_rejects_non_subset(tmp_path):
+    module = load_migrator()
+    database = make_duplicate_artifact_schema_database(tmp_path)
+    connection = sqlite3.connect(database)
+    connection.execute("delete from lamindb_schemafeature where schema_id = 181 and feature_id = 6")
+    connection.commit()
+    connection.close()
+
+    with pytest.raises(RuntimeError, match="strict feature subset"):
+        module.canonicalize_duplicate_artifact_schema_slots(database, COLLECTION_KEY)
+
+
+def test_candidate_artifact_schema_slot_canonicalization_rejects_protected_membership(tmp_path):
+    module = load_migrator()
+    database = make_duplicate_artifact_schema_database(tmp_path)
+    connection = sqlite3.connect(database)
+    connection.execute("insert into lamindb_collectionartifact values (2, 1, 29)")
+    connection.commit()
+    connection.close()
+
+    with pytest.raises(RuntimeError, match="protected collection"):
+        module.canonicalize_duplicate_artifact_schema_slots(database, COLLECTION_KEY)
+
+
+def test_independent_verifier_replays_artifact_schema_slot_audit(tmp_path):
+    migrator = load_migrator()
+    verifier = load_verifier()
+    original = make_duplicate_artifact_schema_database(tmp_path)
+    candidate = tmp_path / "candidate-artifact-schema.lndb"
+    shutil.copy2(original, candidate)
+    audit = migrator.canonicalize_duplicate_artifact_schema_slots(candidate, COLLECTION_KEY)
+
+    verified = verifier.verify_artifact_schema_slot_canonicalization(
+        original, candidate, audit, COLLECTION_KEY
+    )
+
+    assert verified == {
+        "duplicate_group_count": 2,
+        "canonicalized_shadow_count": 2,
+    }
+
+
+def test_independent_verifier_rejects_unrecorded_artifact_schema_slot_change(tmp_path):
+    migrator = load_migrator()
+    verifier = load_verifier()
+    original = make_duplicate_artifact_schema_database(tmp_path)
+    candidate = tmp_path / "candidate-artifact-schema.lndb"
+    shutil.copy2(original, candidate)
+    audit = migrator.canonicalize_duplicate_artifact_schema_slots(candidate, COLLECTION_KEY)
+    connection = sqlite3.connect(candidate)
+    connection.execute("update lamindb_artifactschema set slot = 'tampered' where id = 10")
+    connection.commit()
+    connection.close()
+
+    with pytest.raises(RuntimeError, match="shadow slot"):
+        verifier.verify_artifact_schema_slot_canonicalization(
+            original, candidate, audit, COLLECTION_KEY
+        )
+
+
+def test_independent_verifier_rejects_protected_artifact_schema_canonicalization(tmp_path):
+    migrator = load_migrator()
+    verifier = load_verifier()
+    original = make_duplicate_artifact_schema_database(tmp_path)
+    candidate = tmp_path / "candidate-artifact-schema.lndb"
+    shutil.copy2(original, candidate)
+    audit = migrator.canonicalize_duplicate_artifact_schema_slots(candidate, COLLECTION_KEY)
+    for database in (original, candidate):
+        connection = sqlite3.connect(database)
+        connection.execute("insert into lamindb_collectionartifact values (2, 1, 29)")
+        connection.commit()
+        connection.close()
+
+    with pytest.raises(RuntimeError, match="protected collection"):
+        verifier.verify_artifact_schema_slot_canonicalization(
             original, candidate, audit, COLLECTION_KEY
         )

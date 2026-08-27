@@ -219,6 +219,194 @@ def verify_duplicate_hash_canonicalization(
     }
 
 
+def verify_artifact_schema_slot_canonicalization(
+    original: Path, candidate: Path, audit: dict, protected_collection_key: str
+) -> dict:
+    groups = audit.get("groups")
+    if (
+        audit.get("mode")
+        != "candidate-only-strict-subset-artifact-schema-slot-null"
+        or audit.get("protected_collection_key") != protected_collection_key
+        or not isinstance(groups, list)
+        or audit.get("duplicate_group_count") != len(groups)
+        or audit.get("duplicate_row_count") != 2 * len(groups)
+        or audit.get("canonicalized_shadow_count") != len(groups)
+    ):
+        raise RuntimeError("invalid artifact-schema slot canonicalization audit contract")
+
+    original_connection = sqlite3.connect(
+        f"file:{original}?mode=ro", uri=True, timeout=30
+    )
+    candidate_connection = sqlite3.connect(
+        f"file:{candidate}?mode=ro", uri=True, timeout=30
+    )
+    original_connection.row_factory = sqlite3.Row
+    candidate_connection.row_factory = sqlite3.Row
+    try:
+        original_tables = {
+            row[0]
+            for row in original_connection.execute(
+                "select name from sqlite_master where type='table'"
+            )
+        }
+        candidate_tables = {
+            row[0]
+            for row in candidate_connection.execute(
+                "select name from sqlite_master where type='table'"
+            )
+        }
+        required = {"lamindb_artifactschema", "lamindb_schemafeature"}
+        if not required.issubset(original_tables) or not required.issubset(candidate_tables):
+            if groups or required.intersection(original_tables | candidate_tables):
+                raise RuntimeError(
+                    "artifact-schema slot audit requires matching link and feature tables"
+                )
+            return {
+                "duplicate_group_count": 0,
+                "canonicalized_shadow_count": 0,
+            }
+        protected_collections = original_connection.execute(
+            "select id from lamindb_collection where key = ? order by id",
+            (protected_collection_key,),
+        ).fetchall()
+        if len(protected_collections) != 1:
+            raise RuntimeError(
+                f"expected exactly one protected collection, got {len(protected_collections)}"
+            )
+        protected_collection_id = protected_collections[0][0]
+        if audit.get("protected_collection_id") not in (None, protected_collection_id):
+            raise RuntimeError("artifact-schema audit protected collection ID mismatch")
+        observed_groups = [
+            dict(row)
+            for row in original_connection.execute(
+                """select artifact_id, slot, count(*) as row_count
+                from lamindb_artifactschema where slot is not null
+                group by artifact_id, slot having count(*) > 1
+                order by artifact_id, slot"""
+            )
+        ]
+        expected_group_keys = [
+            {
+                "artifact_id": group.get("artifact_id"),
+                "slot": group.get("slot"),
+                "row_count": 2,
+            }
+            for group in groups
+        ]
+        if observed_groups != expected_group_keys:
+            raise RuntimeError(
+                "original duplicate artifact-schema slots do not match canonicalization audit"
+            )
+        recorded_link_ids = set()
+        row_fields = (
+            "id",
+            "artifact_id",
+            "schema_id",
+            "slot",
+            "feature_ref_is_semantic",
+            "run_id",
+            "created_by_id",
+            "created_at",
+        )
+        for group in groups:
+            protected_links = original_connection.execute(
+                """select count(*) from lamindb_collectionartifact
+                where artifact_id = ? and collection_id = ?""",
+                (group["artifact_id"], protected_collection_id),
+            ).fetchone()[0]
+            if protected_links:
+                raise RuntimeError(
+                    "artifact-schema canonicalization intersects protected collection"
+                )
+            rows_before = group.get("rows_before")
+            if not isinstance(rows_before, list) or len(rows_before) != 2:
+                raise RuntimeError("artifact-schema audit rows_before is invalid")
+            original_rows = original_connection.execute(
+                """select id, artifact_id, schema_id, slot, feature_ref_is_semantic,
+                run_id, created_by_id, created_at from lamindb_artifactschema
+                where artifact_id = ? and slot = ? order by id""",
+                (group["artifact_id"], group["slot"]),
+            ).fetchall()
+            if [dict(row) for row in original_rows] != rows_before:
+                raise RuntimeError(
+                    "original artifact-schema rows do not match canonicalization audit"
+                )
+            keeper_id = group.get("keeper_link_id")
+            shadow_id = group.get("shadow_link_id")
+            if keeper_id == shadow_id or {keeper_id, shadow_id} != {
+                row["id"] for row in original_rows
+            }:
+                raise RuntimeError("artifact-schema keeper/shadow link IDs are invalid")
+            if recorded_link_ids.intersection({keeper_id, shadow_id}):
+                raise RuntimeError("artifact-schema audit repeats a link ID")
+            recorded_link_ids.update({keeper_id, shadow_id})
+            by_id = {row["id"]: row for row in original_rows}
+            keeper = by_id[keeper_id]
+            shadow = by_id[shadow_id]
+            keeper_features = {
+                row[0]
+                for row in original_connection.execute(
+                    "select feature_id from lamindb_schemafeature where schema_id = ?",
+                    (keeper["schema_id"],),
+                )
+            }
+            shadow_features = {
+                row[0]
+                for row in original_connection.execute(
+                    "select feature_id from lamindb_schemafeature where schema_id = ?",
+                    (shadow["schema_id"],),
+                )
+            }
+            if not shadow_features < keeper_features:
+                raise RuntimeError(
+                    "artifact-schema shadow is not a strict feature subset of keeper"
+                )
+            if (
+                group.get("keeper_schema_id") != keeper["schema_id"]
+                or group.get("shadow_schema_id") != shadow["schema_id"]
+                or group.get("keeper_feature_ids") != sorted(keeper_features)
+                or group.get("shadow_feature_ids") != sorted(shadow_features)
+                or group.get("strict_superset_feature_ids")
+                != sorted(keeper_features - shadow_features)
+            ):
+                raise RuntimeError("artifact-schema feature-set audit mismatch")
+            candidate_rows = candidate_connection.execute(
+                """select id, artifact_id, schema_id, slot, feature_ref_is_semantic,
+                run_id, created_by_id, created_at from lamindb_artifactschema
+                where id in (?, ?) order by id""",
+                (keeper_id, shadow_id),
+            ).fetchall()
+            if len(candidate_rows) != 2:
+                raise RuntimeError("artifact-schema candidate rows are missing")
+            candidate_by_id = {row["id"]: row for row in candidate_rows}
+            if candidate_by_id[keeper_id]["slot"] != group["slot"]:
+                raise RuntimeError("artifact-schema keeper slot mismatch")
+            if candidate_by_id[shadow_id]["slot"] is not None:
+                raise RuntimeError("artifact-schema shadow slot mismatch")
+            for original_row in original_rows:
+                candidate_row = candidate_by_id[original_row["id"]]
+                for field in row_fields:
+                    if field == "slot" and original_row["id"] == shadow_id:
+                        continue
+                    if candidate_row[field] != original_row[field]:
+                        raise RuntimeError(
+                            f"artifact-schema canonicalization changed non-shadow-slot field {field}"
+                        )
+        remaining = candidate_connection.execute(
+            """select artifact_id, slot, count(*) from lamindb_artifactschema
+            where slot is not null group by artifact_id, slot having count(*) > 1"""
+        ).fetchall()
+        if remaining:
+            raise RuntimeError("candidate retains duplicate artifact-schema slots")
+    finally:
+        original_connection.close()
+        candidate_connection.close()
+    return {
+        "duplicate_group_count": len(groups),
+        "canonicalized_shadow_count": len(groups),
+    }
+
+
 def create_receipt(
     original: Path,
     candidate: Path,
@@ -267,6 +455,12 @@ def create_receipt(
         original,
         candidate,
         migration.get("duplicate_hash_canonicalization", {}),
+        EXPECTED_COLLECTION_KEY,
+    )
+    artifact_schema_slot_verification = verify_artifact_schema_slot_canonicalization(
+        original,
+        candidate,
+        migration.get("artifact_schema_slot_canonicalization", {}),
         EXPECTED_COLLECTION_KEY,
     )
 
@@ -348,6 +542,10 @@ def create_receipt(
             "duplicate_hash_canonicalization"
         ],
         "duplicate_hash_verification": duplicate_hash_verification,
+        "artifact_schema_slot_canonicalization": migration[
+            "artifact_schema_slot_canonicalization"
+        ],
+        "artifact_schema_slot_verification": artifact_schema_slot_verification,
         "before_data_table_counts": before_counts,
         "before_data_table_counts_sha256": before["data_table_counts_sha256"],
         "candidate_data_table_counts": after_counts,
@@ -387,6 +585,12 @@ def verify(receipt_path: Path, database: Path) -> dict:
         receipt.get("duplicate_hash_canonicalization", {}),
         EXPECTED_COLLECTION_KEY,
     )
+    artifact_schema_slot_verification = verify_artifact_schema_slot_canonicalization(
+        Path(receipt.get("original", "")).resolve(),
+        database,
+        receipt.get("artifact_schema_slot_canonicalization", {}),
+        EXPECTED_COLLECTION_KEY,
+    )
     snapshot = database_snapshot(database, full_integrity=False)
     if snapshot["integrity"] != "ok":
         raise RuntimeError(f"database quick_check failed: {snapshot['integrity']}")
@@ -409,6 +613,7 @@ def verify(receipt_path: Path, database: Path) -> dict:
         "migrations": snapshot["migrations"],
         "membership": membership,
         "duplicate_hash_verification": duplicate_hash_verification,
+        "artifact_schema_slot_verification": artifact_schema_slot_verification,
         "integrity": snapshot["integrity"],
     }
 

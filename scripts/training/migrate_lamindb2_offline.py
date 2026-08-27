@@ -214,6 +214,141 @@ def canonicalize_duplicate_artifact_hashes(
     }
 
 
+def canonicalize_duplicate_artifact_schema_slots(
+    candidate: Path, protected_collection_key: str
+) -> dict:
+    """Null only strict-subset schema slots that block LaminDB's new uniqueness.
+
+    LaminDB 2 requires one non-null ``ArtifactSchema.slot`` per artifact. Legacy
+    registries can link both an older schema and a strict feature superset at the
+    same slot. Preserve both links and schema identities, retain the superset as
+    the authoritative slotted link, and make only the subset link slotless.
+    """
+    connection = sqlite3.connect(candidate, timeout=30)
+    connection.row_factory = sqlite3.Row
+    try:
+        connection.execute("begin immediate")
+        collections = connection.execute(
+            "select id from lamindb_collection where key = ? order by id",
+            (protected_collection_key,),
+        ).fetchall()
+        if len(collections) != 1:
+            raise RuntimeError(
+                f"expected exactly one protected collection, got {len(collections)}"
+            )
+        protected_collection_id = collections[0]["id"]
+        duplicate_groups = connection.execute(
+            """select artifact_id, slot, count(*) as row_count
+            from lamindb_artifactschema where slot is not null
+            group by artifact_id, slot having count(*) > 1
+            order by artifact_id, slot"""
+        ).fetchall()
+        groups = []
+        row_fields = (
+            "id",
+            "artifact_id",
+            "schema_id",
+            "slot",
+            "feature_ref_is_semantic",
+            "run_id",
+            "created_by_id",
+            "created_at",
+        )
+        for duplicate in duplicate_groups:
+            artifact_id = duplicate["artifact_id"]
+            slot = duplicate["slot"]
+            if duplicate["row_count"] != 2:
+                raise RuntimeError(
+                    f"duplicate artifact-schema slot must be an exact pair: artifact={artifact_id} slot={slot}"
+                )
+            protected_links = connection.execute(
+                """select count(*) from lamindb_collectionartifact
+                where artifact_id = ? and collection_id = ?""",
+                (artifact_id, protected_collection_id),
+            ).fetchone()[0]
+            if protected_links:
+                raise RuntimeError(
+                    f"duplicate artifact-schema slot intersects protected collection: artifact={artifact_id} slot={slot}"
+                )
+            rows = connection.execute(
+                """select id, artifact_id, schema_id, slot, feature_ref_is_semantic,
+                run_id, created_by_id, created_at from lamindb_artifactschema
+                where artifact_id = ? and slot = ? order by id""",
+                (artifact_id, slot),
+            ).fetchall()
+            features = {
+                row["schema_id"]: {
+                    feature[0]
+                    for feature in connection.execute(
+                        "select feature_id from lamindb_schemafeature where schema_id = ?",
+                        (row["schema_id"],),
+                    )
+                }
+                for row in rows
+            }
+            first, second = rows
+            first_features = features[first["schema_id"]]
+            second_features = features[second["schema_id"]]
+            if first_features < second_features:
+                shadow, keeper = first, second
+            elif second_features < first_features:
+                shadow, keeper = second, first
+            else:
+                raise RuntimeError(
+                    f"duplicate artifact-schema slot schemas are not a strict feature subset: artifact={artifact_id} slot={slot}"
+                )
+            cursor = connection.execute(
+                "update lamindb_artifactschema set slot = null where id = ? and slot = ?",
+                (shadow["id"], slot),
+            )
+            if cursor.rowcount != 1:
+                raise RuntimeError(
+                    f"failed to canonicalize artifact-schema shadow row {shadow['id']}"
+                )
+            groups.append(
+                {
+                    "artifact_id": artifact_id,
+                    "slot": slot,
+                    "keeper_link_id": keeper["id"],
+                    "keeper_schema_id": keeper["schema_id"],
+                    "keeper_feature_ids": sorted(features[keeper["schema_id"]]),
+                    "shadow_link_id": shadow["id"],
+                    "shadow_schema_id": shadow["schema_id"],
+                    "shadow_feature_ids": sorted(features[shadow["schema_id"]]),
+                    "strict_superset_feature_ids": sorted(
+                        features[keeper["schema_id"]] - features[shadow["schema_id"]]
+                    ),
+                    "rows_before": [
+                        {field: row[field] for field in row_fields} for row in rows
+                    ],
+                    "shadow_slot_after": None,
+                }
+            )
+        remaining = connection.execute(
+            """select artifact_id, slot, count(*) from lamindb_artifactschema
+            where slot is not null group by artifact_id, slot having count(*) > 1"""
+        ).fetchall()
+        if remaining:
+            raise RuntimeError(
+                f"duplicate artifact-schema slots remain after canonicalization: {remaining}"
+            )
+        connection.commit()
+    except Exception:
+        connection.rollback()
+        raise
+    finally:
+        connection.close()
+    return {
+        "mode": "candidate-only-strict-subset-artifact-schema-slot-null",
+        "protected_collection_key": protected_collection_key,
+        "protected_collection_id": protected_collection_id,
+        "duplicate_group_count": len(groups),
+        "duplicate_row_count": 2 * len(groups),
+        "canonicalized_shadow_count": len(groups),
+        "groups": groups,
+    }
+
+
 def deploy_offline(candidate: Path) -> None:
     # Construct a local-only instance explicitly. This avoids importing lamindb,
     # loading user credentials, refreshing a hub token, or syncing cloud SQLite.
@@ -283,6 +418,9 @@ def main() -> None:
         raise RuntimeError(f"candidate copy SHA-256 mismatch: {copied_sha} != {original_sha}")
 
     duplicate_hash_audit = canonicalize_duplicate_artifact_hashes(
+        candidate, EXPECTED_COLLECTION_KEY
+    )
+    artifact_schema_slot_audit = canonicalize_duplicate_artifact_schema_slots(
         candidate, EXPECTED_COLLECTION_KEY
     )
     deploy_offline(candidate)
@@ -365,6 +503,7 @@ def main() -> None:
         "candidate_data_table_counts": after["counts"],
         "membership": public_membership,
         "duplicate_hash_canonicalization": duplicate_hash_audit,
+        "artifact_schema_slot_canonicalization": artifact_schema_slot_audit,
         "filtered_cell_count": expected_cells,
         "registry_manifest": str(registry_manifest),
         "registry_manifest_sha256": sha256(registry_manifest),
