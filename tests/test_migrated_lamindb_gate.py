@@ -547,3 +547,57 @@ def test_independent_verifier_rejects_protected_artifact_schema_canonicalization
         verifier.verify_artifact_schema_slot_canonicalization(
             original, candidate, audit, COLLECTION_KEY
         )
+
+
+def test_historical_bionty_source_uid_compatibility_preserves_encoder_semantics():
+    module = load_migrator()
+
+    class Meta:
+        app_label = "bionty"
+        object_name = "Source"
+
+    class HistoricalSource:
+        _meta = Meta()
+
+    def upstream_encoder(*, registry, kwargs):
+        return {
+            **kwargs,
+            "uid": registry.__get_name_with_module__()
+            + ":"
+            + kwargs["entity"]
+            + kwargs["name"]
+            + kwargs["organism"]
+            + kwargs["version"],
+        }
+
+    result = module.migration_compatible_bionty_encode_uid(
+        upstream_encoder,
+        registry=HistoricalSource,
+        kwargs={
+            "entity": "bionty.Gene",
+            "name": "ensembl",
+            "organism": "human",
+            "version": "112",
+        },
+    )
+
+    assert result["uid"] == "bionty.Source:bionty.Geneensemblhuman112"
+    assert not hasattr(HistoricalSource, "__get_name_with_module__")
+
+
+def test_historical_bionty_uid_compatibility_rejects_unexpected_registry():
+    module = load_migrator()
+
+    class Meta:
+        app_label = "bionty"
+        object_name = "Gene"
+
+    class HistoricalGene:
+        _meta = Meta()
+
+    with pytest.raises(RuntimeError, match="unexpected historical registry"):
+        module.migration_compatible_bionty_encode_uid(
+            lambda **kwargs: kwargs,
+            registry=HistoricalGene,
+            kwargs={"name": "TP53"},
+        )

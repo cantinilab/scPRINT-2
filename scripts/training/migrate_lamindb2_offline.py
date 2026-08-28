@@ -349,9 +349,42 @@ def canonicalize_duplicate_artifact_schema_slots(
     }
 
 
+def migration_compatible_bionty_encode_uid(
+    upstream_encoder, *, registry, kwargs: dict
+) -> dict:
+    """Adapt Bionty's Source UID encoder to a Django historical model.
+
+    Bionty migration 0050 passes ``apps.get_model('bionty', 'Source')`` to the
+    current encoder. Django historical models intentionally omit custom class
+    methods, while the encoder requires ``__get_name_with_module__``. Add only
+    that exact identity method for the duration of the upstream call so the
+    migration retains Bionty's own deterministic UID algorithm.
+    """
+    if hasattr(registry, "__get_name_with_module__"):
+        return upstream_encoder(registry=registry, kwargs=kwargs)
+    meta = getattr(registry, "_meta", None)
+    if (
+        getattr(meta, "app_label", None) != "bionty"
+        or getattr(meta, "object_name", None) != "Source"
+    ):
+        raise RuntimeError(
+            "unexpected historical registry requested Bionty UID compatibility"
+        )
+    setattr(
+        registry,
+        "__get_name_with_module__",
+        classmethod(lambda cls: "bionty.Source"),
+    )
+    try:
+        return upstream_encoder(registry=registry, kwargs=kwargs)
+    finally:
+        delattr(registry, "__get_name_with_module__")
+
+
 def deploy_offline(candidate: Path) -> None:
     # Construct a local-only instance explicitly. This avoids importing lamindb,
     # loading user credentials, refreshing a hub token, or syncing cloud SQLite.
+    import bionty._biorecord as bionty_biorecord
     from django.core.management import call_command
     from django.db import connections
     from lamindb_setup._check_setup import disable_auto_connect
@@ -359,21 +392,32 @@ def deploy_offline(candidate: Path) -> None:
     from lamindb_setup.core._settings_instance import InstanceSettings
     from lamindb_setup.core.django import setup_django
 
-    os.environ["LAMINDB_DJANGO_DATABASE_URL"] = f"sqlite:///{candidate.resolve()}"
-    instance = InstanceSettings(
-        id=UUID("00000000-0000-0000-0000-000000000000"),
-        owner="none",
-        name="none",
-        storage=None,
-        db=None,
-        modules="bionty",
-        is_on_hub=False,
-        api_url=None,
-    )
-    settings._instance_settings = instance
-    disable_auto_connect(setup_django)(instance, configure_only=True)
-    call_command("migrate", verbosity=2, interactive=False)
-    connections.close_all()
+    upstream_encoder = bionty_biorecord.encode_uid
+
+    def compatible_encoder(*, registry, kwargs):
+        return migration_compatible_bionty_encode_uid(
+            upstream_encoder, registry=registry, kwargs=kwargs
+        )
+
+    bionty_biorecord.encode_uid = compatible_encoder
+    try:
+        os.environ["LAMINDB_DJANGO_DATABASE_URL"] = f"sqlite:///{candidate.resolve()}"
+        instance = InstanceSettings(
+            id=UUID("00000000-0000-0000-0000-000000000000"),
+            owner="none",
+            name="none",
+            storage=None,
+            db=None,
+            modules="bionty",
+            is_on_hub=False,
+            api_url=None,
+        )
+        settings._instance_settings = instance
+        disable_auto_connect(setup_django)(instance, configure_only=True)
+        call_command("migrate", verbosity=2, interactive=False)
+    finally:
+        bionty_biorecord.encode_uid = upstream_encoder
+        connections.close_all()
 
 
 def main() -> None:
