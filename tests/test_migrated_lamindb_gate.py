@@ -601,3 +601,16 @@ def test_historical_bionty_uid_compatibility_rejects_unexpected_registry():
             registry=HistoricalGene,
             kwargs={"name": "TP53"},
         )
+
+
+def test_bionty_compatibility_is_installed_only_after_offline_django_setup():
+    source = (
+        ROOT / "scripts" / "training" / "migrate_lamindb2_offline.py"
+    ).read_text()
+
+    setup_position = source.index("disable_auto_connect(setup_django)(instance")
+    bionty_import_position = source.index(
+        'importlib.import_module("bionty._biorecord")'
+    )
+
+    assert setup_position < bionty_import_position
