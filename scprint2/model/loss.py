@@ -247,73 +247,55 @@ def hierarchical_classification(
         Tensor: The computed binary cross entropy loss for the given batch.
     """
     maxsize = pred.shape[1]
-    newcl = torch.zeros(
-        (pred.shape[0], maxsize), device=cl.device
-    )  # batchsize * n_labels
+    newcl = torch.zeros((cl.shape[0], maxsize), device=cl.device)
     # if we don't know the label we set the weight to 0 else to 1
     valid_indices = (cl != -1) & (cl < maxsize)
     valid_cl = cl[valid_indices]
     newcl[valid_indices, valid_cl] = 1
 
     weight = torch.ones_like(newcl, device=cl.device)
-    # if we don't know the label we set the weight to 0 for all labels
     weight[cl == -1, :] = 0
     # if we have non leaf values, we don't know so we don't compute grad and set weight to 0
     # and add labels that won't be counted but so that we can still use them
     if labels_hierarchy is not None and (cl >= maxsize).any():
+        hierarchy = labels_hierarchy.to(device=pred.device, dtype=torch.bool)
+        children_per_parent = hierarchy.sum(1)
+        if (children_per_parent == 0).any():
+            raise ValueError("labels_hierarchy contains a parent without children")
+
         is_parent = cl >= maxsize
-        subset_parent_weight = weight[is_parent]
-        # we set the weight of the leaf elements for pred where we don't know the leaf, to 0
-        # i.e. the elements where we will compute the max
-        # in cl, parents are values past the maxsize
-        # (if there is 10 leafs labels, the label 10,14, or 15 is a parent at position
-        # row 0, 4, or 5 in the hierarchy matrix
-        subset_parent_weight[labels_hierarchy[cl[is_parent] - maxsize]] = 0
-        weight[is_parent] = subset_parent_weight
+        parent_weight = weight[is_parent]
+        # We do not know the exact leaf for parent labels, so mask their children.
+        parent_weight[hierarchy[cl[is_parent] - maxsize]] = 0
+        weight[is_parent] = parent_weight
 
-        # we set their lead to 1 (since the weight will be zero, not really usefull..)
-        subset_parent_newcl = newcl[is_parent]
-        subset_parent_newcl[labels_hierarchy[cl[is_parent] - maxsize]] = 1
-        newcl[is_parent] = subset_parent_newcl
+        parent_newcl = newcl[is_parent]
+        parent_newcl[hierarchy[cl[is_parent] - maxsize]] = 1
+        newcl[is_parent] = parent_newcl
 
-        # all parental nodes that have a 1 in the labels_hierarchy matrix are set to 1
-        # for each parent label / row in labels_hierarchy matrix, the addnewcl is
-        # the max of the newcl values where the parent label is 1
-        newcl_expanded = newcl.unsqueeze(-1).expand(-1, -1, labels_hierarchy.shape[0])
-        addnewcl = torch.max(newcl_expanded * labels_hierarchy.T, dim=1)[0]
+        newcl_expanded = newcl.unsqueeze(-1).expand(-1, -1, hierarchy.shape[0])
+        addnewcl = torch.max(newcl_expanded * hierarchy.T, dim=1)[0]
+        addweight = addnewcl.clone() / (children_per_parent**0.5)
 
-        # for their weight, it is decreasing based on number of children they have
-        # it is the same here as for parental labels, we don't want to compute
-        # gradients when they are 0 meaning not parents of the true leaf label.
-        # for now we weight related to how many labels they contain.
-        addweight = addnewcl.clone() / (labels_hierarchy.sum(1) ** 0.5)
-
-        # except if it is the cl label we know about?
-        subset_parent_weight = addweight[is_parent]
-        subset_parent_weight[:, cl[is_parent] - maxsize] = 1
-        addweight[is_parent] = subset_parent_weight
-
-        # we apply the same mask to the pred but now we want to compute
-        # logsumexp instead of max since we want to keep the gradients
-        # we also set to -inf since it is a more neutral element for logsumexp
-        pred_expanded = (
-            pred.clone().unsqueeze(-1).expand(-1, -1, labels_hierarchy.shape[0])
+        # Mask by hierarchy membership, not by numerical value. The previous
+        # implementation treated every legitimate zero logit as masked and replaced it
+        # with the dtype minimum, which can overflow BF16 hierarchical BCE to +inf.
+        pred_float = pred.float()
+        pred_expanded = pred_float.unsqueeze(-1).expand(-1, -1, hierarchy.shape[0])
+        pred_expanded = pred_expanded.masked_fill(
+            ~hierarchy.T.unsqueeze(0), float("-inf")
         )
-        pred_expanded = pred_expanded * labels_hierarchy.T
-        pred_expanded[pred_expanded == 0] = torch.finfo(pred.dtype).min
         addpred = torch.logsumexp(pred_expanded, dim=1)
 
-        # we add the new labels to the cl
         newcl = torch.cat([newcl, addnewcl], dim=1)
         weight = torch.cat([weight, addweight], dim=1)
-        pred = torch.cat([pred, addpred], dim=1)
+        pred = torch.cat([pred_float, addpred], dim=1)
     elif labels_hierarchy is None and (cl >= maxsize).any():
         raise ValueError("need to use labels_hierarchy for this usecase")
 
-    myloss = torch.nn.functional.binary_cross_entropy_with_logits(
-        pred, target=newcl, weight=weight
+    return torch.nn.functional.binary_cross_entropy_with_logits(
+        pred.float(), target=newcl.float(), weight=weight.float()
     )
-    return myloss
 
 
 class AdversarialDiscriminatorLoss(nn.Module):

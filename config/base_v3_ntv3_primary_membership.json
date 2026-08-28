@@ -1,0 +1,42 @@
+{
+  "collection": "scPRINT-V2 (all+tahoe+scbase) filtered",
+  "source_artifact_count": 26337,
+  "filtered_artifact_count": 26332,
+  "filtered_cell_count": 347557928,
+  "expected_sampler_classes": 138734,
+  "filtered_artifact_uids_sha256": "50443e22451aaad1c317a9866b86b1b0f2b5d6c27fc4d394e2357a73457a6482",
+  "excluded_artifacts": [
+    {
+      "name": "lung_smart",
+      "uid": "NwFOBmT6emiJaeyrEc66",
+      "n_obs": 9409
+    },
+    {
+      "name": "intestine",
+      "uid": "R4ZHoQegxXdSFNFYMaIQ",
+      "n_obs": 12590
+    },
+    {
+      "name": "kidney",
+      "uid": "d0JqVUfPuonxM3K3USwN",
+      "n_obs": 20215
+    },
+    {
+      "name": "retina",
+      "uid": "gNNpgpo6gATjuxTEW2mj",
+      "n_obs": 51567
+    },
+    {
+      "name": "glio_smart_highdepth",
+      "uid": "s8x0Idi587LQtXCo0Pif",
+      "n_obs": 3572
+    }
+  ],
+  "provenance": {
+    "reference_run": "esi8eu9g",
+    "reference_commit": "e7c8e323bb7f8c9b38fb7d811602e5d25ed8a1ed",
+    "filter_introducing_commit": "7b01bcc6249f2d62411a2e1fb31daf47615c9437",
+    "filter_introducing_commit_subject": "issue with test datasets, removing",
+    "source_axis_audit_sha256": "8edb32c97df028b2a389daf4f19562dedb430aefdfcf252cb929e67dceecedcd"
+  }
+}

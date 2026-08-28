@@ -1,0 +1,128 @@
+project: scprint_v2
+seed_everything: 42
+set_float32_matmul_precision: true
+# Model watching is intentionally disabled: it materially slowed the rejected lineage.
+wandblog: ""
+trainer:
+  precision: bf16-mixed
+  strategy: ddp_find_unused_parameters_true
+  use_distributed_sampler: false
+  gradient_clip_val: 40
+  gradient_clip_algorithm: norm
+  log_every_n_steps: 100
+  limit_train_batches: 20000
+  limit_val_batches: 20000
+  limit_test_batches: 1
+  accumulate_grad_batches: 1
+  logger:
+    - class_path: lightning.pytorch.loggers.WandbLogger
+      init_args:
+        project: ${project}
+        save_dir: .
+        offline: true
+        log_model: false
+  callbacks:
+    - class_path: lightning.pytorch.callbacks.ModelCheckpoint
+      init_args:
+        monitor: val_loss
+        save_top_k: 5
+        save_last: true
+scprint_training:
+  run_full_forward: true
+  mask_ratio: []
+  noise: [0.8, 1.0]
+  do_generate: true
+  test_every: 10
+  zinb_and_mse: true
+  var_context_length: true
+  cce_scale: 0.2
+  class_embd_diss_scale: 0.3
+  class_scale: 1
+  ecs_scale: 0.2
+  vae_kl_scale: 0.0002
+scprint_early_stopping:
+  patience: 6
+model:
+  dropout: 0.02
+  nhead: 4
+  # Linked from data.gene_embeddings by scprint2.cli.MyCLI.
+  gene_pos_file: null
+  num_heads_kv: 4
+  nlayers: 8
+  d_model: 256
+  expr_encoder_layers: 1
+  expr_emb_style: metacell
+  attention: normal
+  residual_in_fp32: true
+  checkpointing: true
+  layers_cls: [256]
+  cell_specific_blocks: true
+  d_model_cell: 256
+  nhead_cell: 4
+  nlayers_cell: 6
+  num_heads_kv_cell: 4
+  fused_dropout_add_ln: false
+  fused_mlp: false
+  fused_bias_fc: false
+  drop_path_rate: 0
+  freeze_embeddings: true
+  finetune_gene_emb: true
+  normalization: log
+  pred_embedding:
+    - cell_type_ontology_term_id
+  compress_class_dim:
+    cell_type_ontology_term_id: 64
+    tissue_ontology_term_id: 32
+    disease_ontology_term_id: 32
+    age_group: 8
+    assay_ontology_term_id: 12
+    self_reported_ethnicity_ontology_term_id: 8
+    sex_ontology_term_id: 2
+    organism_ontology_term_id: 8
+    cell_culture: 2
+data:
+  collection_name: scPRINT-V2 (all+tahoe+scbase) filtered
+  # The launch wrapper must supply the exact immutable NT-v3 parquet path.
+  gene_embeddings: null
+  how: random expr
+  max_len: 3200
+  pin_memory: true
+  prefetch_factor: 3
+  persistent_workers: false
+  metacell_mode: 0
+  get_knn_cells: true
+  weight_scaler: 500
+  n_samples_per_epoch: 1000000
+  validation_split: 0.05
+  test_split: 0.02
+  batch_size: 50
+  curiculum: 20
+  num_workers: 16
+  hierarchical_clss:
+    - cell_type_ontology_term_id
+    - tissue_ontology_term_id
+    - disease_ontology_term_id
+    - age_group
+    - assay_ontology_term_id
+    - self_reported_ethnicity_ontology_term_id
+  clss_to_weight:
+    - clust_cell_type
+    - tissue_ontology_term_id
+    - disease_ontology_term_id
+    - age_group
+    - assay_ontology_term_id
+    - self_reported_ethnicity_ontology_term_id
+    - sex_ontology_term_id
+    - organism_ontology_term_id
+    - cell_culture
+    - nnz
+  clss_to_predict:
+    - cell_type_ontology_term_id
+    - tissue_ontology_term_id
+    - disease_ontology_term_id
+    - age_group
+    - assay_ontology_term_id
+    - self_reported_ethnicity_ontology_term_id
+    - sex_ontology_term_id
+    - organism_ontology_term_id
+    - cell_culture

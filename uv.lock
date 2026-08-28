@@ -5295,7 +5295,7 @@ wheels = [
 [[package]]
 name = "scdataloader"
 version = "2.1.3"
-source = { registry = "https://pypi.org/simple" }
+source = { git = "https://github.com/jkobject/scDataLoader.git?rev=0a2fb2080dd2bf471c1532c04ee0789ce06441c2#0a2fb2080dd2bf471c1532c04ee0789ce06441c2" }
 dependencies = [
     { name = "anndata" },
     { name = "biomart" },
@@ -5315,10 +5315,6 @@ dependencies = [
     { name = "torch" },
     { name = "torchdata" },
     { name = "zarr" },
-]
-sdist = { url = "https://files.pythonhosted.org/packages/65/2a/4f0979ae349e4bdd5bc23483176ca098f9b5a6036ae93939cdf59801ac97/scdataloader-2.1.3.tar.gz", hash = "sha256:c127a3f9fba9dc147b53cf3db564af606a75b816dba8569988a139559c212e30", size = 59533, upload-time = "2026-05-20T08:42:50.255Z" }
-wheels = [
-    { url = "https://files.pythonhosted.org/packages/36/8a/eeedefddba9e51f8aa5ab4e88a483a89b33a7b6124599d09329340e8acc2/scdataloader-2.1.3-py3-none-any.whl", hash = "sha256:6baa2c14bc3a0fa0c02f23962729a213c46fb6878fdb3dd813d1510afc5416fb", size = 62876, upload-time = "2026-05-20T08:42:51.182Z" },
 ]
 
 [[package]]
@@ -5651,7 +5647,7 @@ requires-dist = [
     { name = "rich", specifier = ">=10.0.0" },
     { name = "ruff", marker = "extra == 'dev'", specifier = ">=0.6.4" },
     { name = "s3fs", specifier = ">=2024.10.0" },
-    { name = "scdataloader", specifier = ">=2.1.3" },
+    { name = "scdataloader", git = "https://github.com/jkobject/scDataLoader.git?rev=0a2fb2080dd2bf471c1532c04ee0789ce06441c2" },
     { name = "scib", specifier = ">=1.1.7" },
     { name = "scib-metrics", specifier = ">=0.5.1" },
     { name = "scikit-learn", specifier = "==1.6.0" },

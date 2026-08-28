@@ -55,6 +55,12 @@ class MyCLI(LightningCLI):
         )
         parser.set_defaults({"scprint_learning_rate_monitor.logging_interval": "epoch"})
         parser.add_lightning_class_args(TrainingMode, "scprint_training")
+        # Keep one source of truth for the embedding vocabulary.  The DataModule
+        # needs the parquet index to map heterogeneous native VAR axes, while the
+        # model needs the same file for its pretrained gene vectors.
+        parser.link_arguments(
+            "data.gene_embeddings", "model.precpt_gene_emb", apply_on="parse"
+        )
         parser.link_arguments("data.genes_dict", "model.genes", apply_on="instantiate")
         parser.link_arguments(
             "data.decoders", "model.label_decoders", apply_on="instantiate"

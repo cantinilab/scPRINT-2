@@ -127,6 +127,9 @@ only-include = [
 [tool.uv]
 override-dependencies = ["tokenizers>=0.15,<0.21.0"]
 
+[tool.uv.sources]
+scdataloader = { git = "https://github.com/jkobject/scDataLoader.git", rev = "0a2fb2080dd2bf471c1532c04ee0789ce06441c2" }
+
 [build-system]
 requires = ["hatchling"]
 build-backend = "hatchling.build"
