@@ -6,7 +6,7 @@
 #SBATCH --nodes=1
 #SBATCH --ntasks=1
 #SBATCH --cpus-per-task=4
-#SBATCH --time=00:30:00
+#SBATCH --time=00:45:00
 #SBATCH --hint=nomultithread
 #SBATCH --output=/lustre/fswork/projects/rech/xeg/uat95fg/scprint2-r3-db-migrate-%j.out
 #SBATCH --error=/lustre/fswork/projects/rech/xeg/uat95fg/scprint2-r3-db-migrate-%j.err

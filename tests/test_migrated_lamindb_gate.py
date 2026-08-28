@@ -614,3 +614,9 @@ def test_bionty_compatibility_is_installed_only_after_offline_django_setup():
     )
 
     assert setup_position < bionty_import_position
+
+
+def test_migration_launcher_budgets_observed_full_schema_upgrade_runtime():
+    source = (ROOT / "slurm" / "scprint2_r3_migrate_lamindb.sbatch").read_text()
+
+    assert "#SBATCH --time=00:45:00" in source
