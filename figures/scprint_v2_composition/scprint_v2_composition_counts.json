@@ -1,0 +1,6730 @@
+{
+  "collection": "scPRINT-V2 (all+tahoe+scbase) filtered",
+  "collection_artifact_count": 26332,
+  "total_cells": 347557928,
+  "generated_at": "2026-08-18T17:46:41.486997+00:00",
+  "aggregation": "Exact per-cell categorical counts from every artifact in the live LaminDB collection; ontology IDs resolved through the connected Bionty registries.",
+  "fields": {
+    "cell_type": {
+      "source_column": "cell_type_ontology_term_id",
+      "category_count": 803,
+      "resolved_category_count": 803,
+      "unresolved_ontology_ids": [],
+      "counts": {
+        "unknown": 284738754,
+        "neuron": 3831426,
+        "glutamatergic neuron": 2599351,
+        "neural cell": 2063265,
+        "L2/3-6 intratelencephalic projecting glutamatergic neuron": 1894072,
+        "fibroblast": 1587992,
+        "mesodermal cell": 1539949,
+        "CD4-positive, alpha-beta T cell": 1534477,
+        "oligodendrocyte": 1514149,
+        "CD8-positive, alpha-beta T cell": 1480832,
+        "B cell": 1136898,
+        "erythroid progenitor cell": 1051808,
+        "classical monocyte": 1047514,
+        "macrophage": 969638,
+        "natural killer cell": 939248,
+        "GABAergic neuron": 899142,
+        "endothelial cell": 877212,
+        "astrocyte": 870896,
+        "retinal rod cell": 751113,
+        "lateral mesodermal cell": 745494,
+        "naive thymus-derived CD4-positive, alpha-beta T cell": 729826,
+        "central memory CD4-positive, alpha-beta T cell": 701971,
+        "malignant cell": 698380,
+        "cerebral cortex GABAergic interneuron": 675897,
+        "cultured cell": 663216,
+        "CD14-positive monocyte": 580914,
+        "cerebellar granule cell": 572106,
+        "T cell": 483674,
+        "microglial cell": 479699,
+        "stromal cell": 441470,
+        "epithelial cell": 420867,
+        "Purkinje cell": 415477,
+        "alveolar macrophage": 405850,
+        "kidney proximal convoluted tubule epithelial cell": 397117,
+        "oligodendrocyte precursor cell": 386080,
+        "monocyte": 366569,
+        "naive B cell": 365783,
+        "L4/5 intratelencephalic projecting glutamatergic neuron of the primary motor cortex": 347109,
+        "plasma cell": 335537,
+        "hepatocyte": 329347,
+        "vip GABAergic cortical interneuron": 307319,
+        "naive thymus-derived CD8-positive, alpha-beta T cell": 300028,
+        "pvalb GABAergic cortical interneuron": 299296,
+        "epithelial cell of proximal tubule": 298219,
+        "CD16-positive, CD56-dim natural killer cell, human": 297304,
+        "kidney loop of Henle thick ascending limb epithelial cell": 296741,
+        "chondrocyte": 290867,
+        "luminal adaptive secretory precursor cell of mammary gland": 289758,
+        "effector memory CD8-positive, alpha-beta T cell": 279696,
+        "keratinocyte": 276518,
+        "fibroblast of mammary gland": 270739,
+        "cardiac muscle cell": 270518,
+        "mesenchymal cell": 266236,
+        "sst GABAergic cortical interneuron": 263267,
+        "CD14-positive, CD16-negative classical monocyte": 261782,
+        "mature alpha-beta T cell": 261056,
+        "cortical cell of adrenal gland": 257713,
+        "pericyte": 249675,
+        "type II pneumocyte": 246598,
+        "myeloid cell": 232962,
+        "regular ventricular cardiac myocyte": 232423,
+        "fibroblast of cardiac tissue": 225100,
+        "GABAergic amacrine cell": 220544,
+        "lamp5 GABAergic cortical interneuron": 220524,
+        "regulatory T cell": 203762,
+        "basal cell": 202186,
+        "luminal hormone-sensing cell of mammary gland": 197952,
+        "vein endothelial cell": 195498,
+        "neural progenitor cell": 194999,
+        "inhibitory interneuron": 191301,
+        "luminal epithelial cell of mammary gland": 188335,
+        "myoblast": 185780,
+        "enterocyte": 185401,
+        "capillary endothelial cell": 184617,
+        "memory B cell": 184506,
+        "non-classical monocyte": 176012,
+        "astrocyte of the cerebral cortex": 175095,
+        "Mueller cell": 171599,
+        "mural cell": 171164,
+        "blood vessel endothelial cell": 170582,
+        "skin fibroblast": 164753,
+        "central nervous system macrophage": 162259,
+        "CD8-positive, alpha-beta memory T cell": 160228,
+        "L6 corticothalamic-projecting glutamatergic cortical neuron": 158801,
+        "leukocyte": 149150,
+        "perivascular cell": 147775,
+        "retinal ganglion cell": 147388,
+        "erythrocyte": 145008,
+        "basal-myoepithelial cell of mammary gland": 141821,
+        "kidney collecting duct principal cell": 138591,
+        "osteoblast": 136233,
+        "double-positive, alpha-beta thymocyte": 135144,
+        "amacrine cell": 131736,
+        "gamma-delta T cell": 130449,
+        "type B pancreatic cell": 130275,
+        "mature NK T cell": 128858,
+        "adipocyte": 125332,
+        "endothelial cell of lymphatic vessel": 124438,
+        "preadipocyte": 123955,
+        "neutrophil": 123221,
+        "endothelial cell of vascular tree": 122389,
+        "CD4-positive, alpha-beta memory T cell": 120970,
+        "cell in vitro": 118672,
+        "respiratory basal cell": 115461,
+        "mast cell": 114512,
+        "retinal bipolar neuron": 110850,
+        "myofibroblast cell": 110523,
+        "retinal progenitor cell": 110254,
+        "primitive erythroid progenitor": 108613,
+        "mucosal invariant T cell": 107458,
+        "dendritic cell": 107147,
+        "ciliated columnar cell of tracheobronchial tree": 105156,
+        "endo-epithelial cell": 105092,
+        "cardiac muscle myoblast": 103999,
+        "conventional dendritic cell": 102105,
+        "mature T cell": 101514,
+        "effector memory CD4-positive, alpha-beta T cell": 101184,
+        "corticothalamic-projecting glutamatergic cortical neuron": 100269,
+        "placental villous trophoblast": 99913,
+        "CD8-positive, alpha-beta cytotoxic T cell": 99602,
+        "rod bipolar cell": 98992,
+        "mesothelial cell": 98040,
+        "club cell": 97961,
+        "granulosa cell": 97314,
+        "progenitor cell": 94421,
+        "retinal cone cell": 94386,
+        "double negative thymocyte": 90857,
+        "L6b glutamatergic cortical neuron": 90765,
+        "CD4-positive helper T cell": 90280,
+        "endothelial cell of artery": 90229,
+        "epithelial cell of lower respiratory tract": 90130,
+        "kidney distal convoluted tubule epithelial cell": 89884,
+        "midbrain dopaminergic neuron": 89125,
+        "periportal region hepatocyte": 88152,
+        "L6 intratelencephalic projecting glutamatergic neuron of the primary motor cortex": 88108,
+        "smooth muscle cell": 87680,
+        "CD14-low, CD16-positive monocyte": 87511,
+        "intestinal epithelial cell": 86893,
+        "glycinergic amacrine cell": 86679,
+        "granule cell": 86414,
+        "regular atrial cardiac myocyte": 84718,
+        "glial cell": 84224,
+        "Cajal-Retzius cell": 82529,
+        "brown adipocyte": 82146,
+        "premigratory neural crest cell": 81937,
+        "thalamic excitatory neuron": 81788,
+        "elicited macrophage": 81652,
+        "hematopoietic stem cell": 77947,
+        "secretory cell": 76804,
+        "epithelial cell of lung": 76398,
+        "mesenchymal stem cell": 75719,
+        "nasal mucosa goblet cell": 74800,
+        "vascular associated smooth muscle cell": 74345,
+        "midget ganglion cell of retina": 74066,
+        "flat midget bipolar cell": 73551,
+        "macroglial cell": 72549,
+        "CD1c-positive myeloid dendritic cell": 72159,
+        "sncg GABAergic cortical interneuron": 70600,
+        "Schwann cell precursor": 70165,
+        "tracheal goblet cell": 69798,
+        "effector CD8-positive, alpha-beta T cell": 69340,
+        "cardiac valve cell": 68788,
+        "thymocyte": 68377,
+        "hypothalamus cell": 67989,
+        "goblet cell": 66367,
+        "pancreatic A cell": 65779,
+        "stem cell": 65687,
+        "neoplastic cell": 65325,
+        "hippocampal neuron": 63766,
+        "absorptive cell": 63161,
+        "mammary gland epithelial cell": 62847,
+        "type I pneumocyte": 62743,
+        "ciliated cell": 61434,
+        "endothelial cell of umbilical vein": 59605,
+        "plasmacytoid dendritic cell": 58921,
+        "peripheral nervous system neuron": 57713,
+        "stratified epithelial cell": 56932,
+        "Kupffer cell": 55995,
+        "kidney collecting duct intercalated cell": 55739,
+        "neuron associated cell (sensu Vertebrata)": 55462,
+        "stellate neuron": 54976,
+        "blood cell": 54241,
+        "endothelial tip cell": 54153,
+        "lymphocyte": 54116,
+        "primitive red blood cell": 53461,
+        "near-projecting glutamatergic cortical neuron": 53193,
+        "Hofbauer cell": 52614,
+        "platelet": 51157,
+        "helper T cell": 50865,
+        "IgA plasma cell": 49887,
+        "obsolete native cell": 49539,
+        "kidney interstitial fibroblast": 48920,
+        "cardiac endothelial cell": 48688,
+        "megakaryocyte": 48494,
+        "forebrain radial glial cell": 48079,
+        "basal cell of epidermis": 47873,
+        "splanchnic mesodermal cell": 47752,
+        "CD16-negative, CD56-bright natural killer cell, human": 47657,
+        "central memory CD8-positive, alpha-beta T cell": 47367,
+        "basal cell of prostate epithelium": 47270,
+        "abnormal cell": 46876,
+        "spinal cord interneuron": 46819,
+        "plasmablast": 46128,
+        "extravillous trophoblast": 46064,
+        "centrilobular region hepatocyte": 45892,
+        "T follicular helper cell": 45829,
+        "hematopoietic cell": 45009,
+        "syncytiotrophoblast cell": 44941,
+        "hepatoblast": 44899,
+        "precursor B cell": 44716,
+        "erythroblast": 43784,
+        "stromal cell of ovary": 43510,
+        "myotube": 43264,
+        "transit amplifying cell": 43242,
+        "innate lymphoid cell": 42607,
+        "myelinating Schwann cell": 42433,
+        "CD4-positive, alpha-beta cytotoxic T cell": 42119,
+        "mesangial cell": 41884,
+        "L2/3 intratelencephalic projecting glutamatergic neuron": 41418,
+        "olfactory epithelial cell": 41300,
+        "neuronal brush cell": 41057,
+        "choroid plexus epithelial cell": 40213,
+        "myeloid suppressor cell": 40123,
+        "olfactory receptor cell": 40019,
+        "interstitial cell of ovary": 39885,
+        "L5/6 near-projecting glutamatergic neuron of the primary motor cortex": 39824,
+        "paraxial cell": 39794,
+        "L5 extratelencephalic projecting glutamatergic cortical neuron": 39430,
+        "luminal cell of prostate epithelium": 39013,
+        "decidual natural killer cell, human": 38636,
+        "diffuse bipolar 2 cell": 38050,
+        "Sertoli cell": 37968,
+        "immature innate lymphoid cell": 37699,
+        "interneuron": 36647,
+        "ependymal cell": 36242,
+        "melanocyte": 36034,
+        "pancreatic acinar cell": 35913,
+        "mononuclear phagocyte": 35508,
+        "kidney loop of Henle thin descending limb epithelial cell": 34589,
+        "alpha-beta T cell": 34587,
+        "uterine smooth muscle cell": 34493,
+        "endothelial cell of hepatic sinusoid": 33616,
+        "chandelier pvalb GABAergic cortical interneuron": 33238,
+        "glioblast": 32771,
+        "basal cell of epithelium of trachea": 32681,
+        "early pro-B cell": 32293,
+        "transitional stage B cell": 32293,
+        "muscle precursor cell": 32288,
+        "invaginating midget bipolar cell": 32155,
+        "fibro/adipogenic progenitor cell": 32042,
+        "foveolar cell of stomach": 31636,
+        "spinal cord motor neuron": 31398,
+        "Bergmann glial cell": 31105,
+        "kidney epithelial cell": 31029,
+        "supporting cell": 30432,
+        "pancreatic D cell": 29739,
+        "basal cell of epithelium of bronchus": 29387,
+        "auditory epithelial cell": 29337,
+        "diffuse bipolar 1 cell": 29329,
+        "alveolar type 1 fibroblast cell": 29108,
+        "pancreatic ductal cell": 28824,
+        "enteric smooth muscle cell": 28672,
+        "epithelial cell of esophagus": 28359,
+        "endocardial cell": 27915,
+        "pyramidal neuron": 27903,
+        "kidney connecting tubule epithelial cell": 27633,
+        "corneal epithelial cell": 27171,
+        "neuroplacodal cell": 27017,
+        "metanephric mesenchyme stem cell": 26565,
+        "granulocyte": 26443,
+        "cortical interneuron": 26397,
+        "prickle cell": 26321,
+        "germ cell": 26098,
+        "pancreatic stellate cell": 25927,
+        "brown preadipocyte": 25549,
+        "ciliated cell of the bronchus": 25460,
+        "enterocyte of colon": 25398,
+        "pro-B cell": 25185,
+        "pigmented epithelial cell": 25000,
+        "endothelial cell of placenta": 24984,
+        "naive T cell": 24725,
+        "lung macrophage": 24077,
+        "cranial motor neuron": 23754,
+        "epithelial cell of alveolus of lung": 23572,
+        "diffuse bipolar 4 cell": 23556,
+        "skeletal muscle fiber": 23463,
+        "CD8-positive, alpha-beta memory T cell, CD45RO-positive": 23397,
+        "caudal ganglionic eminence derived GABAergic cortical interneuron": 22857,
+        "activated CD8-positive, alpha-beta T cell": 22155,
+        "neuroblast (sensu Vertebrata)": 21937,
+        "ON-bipolar cell": 21613,
+        "effector CD4-positive, alpha-beta T cell": 21320,
+        "sympathetic neuron": 21275,
+        "podocyte": 21205,
+        "glomerular endothelial cell": 21176,
+        "midzonal region hepatocyte": 21052,
+        "cerebral cortex endothelial cell": 20823,
+        "effector memory CD8-positive, alpha-beta T cell, terminally differentiated": 20649,
+        "alveolar type 2 fibroblast cell": 20629,
+        "type 6 cone bipolar cell (sensu Mus)": 20289,
+        "diffuse bipolar 3b cell": 20230,
+        "blood vessel smooth muscle cell": 20055,
+        "CD14-positive, CD16-positive monocyte": 20045,
+        "retina horizontal cell": 20001,
+        "CD4-positive, alpha-beta thymocyte": 19965,
+        "mature B cell": 19649,
+        "follicular B cell": 19039,
+        "activated CD4-positive, alpha-beta T cell": 18885,
+        "type 5a cone bipolar cell": 18843,
+        "ciliary muscle cell": 18535,
+        "T-helper 22 cell": 18379,
+        "class switched memory B cell": 17683,
+        "transit amplifying cell of colon": 17677,
+        "fibroblast of lung": 17668,
+        "immature B cell": 17266,
+        "multi-ciliated epithelial cell": 17172,
+        "chromaffin cell": 16911,
+        "OFF-bipolar cell": 16849,
+        "astrocyte of the cerebellum": 16717,
+        "B-2 B cell": 16370,
+        "acinar cell": 16283,
+        "mature gamma-delta T cell": 16149,
+        "alternatively activated macrophage": 16059,
+        "lactocyte": 15973,
+        "type 7 cone bipolar cell (sensu Mus)": 15854,
+        "endothelial cell of venule": 15819,
+        "endothelial cell of pericentral hepatic sinusoid": 15728,
+        "cytotoxic T cell": 15534,
+        "tracheobronchial smooth muscle cell": 15197,
+        "pigmented ciliary epithelial cell": 15163,
+        "pulmonary artery endothelial cell": 15147,
+        "skeletal muscle satellite cell": 15071,
+        "neuroendocrine cell": 14931,
+        "neurectodermal cell": 14916,
+        "giant bipolar cell": 14776,
+        "endothelial cell of uterus": 14496,
+        "bronchus fibroblast of lung": 14467,
+        "cell of skeletal muscle": 14398,
+        "promonocyte": 14386,
+        "vascular leptomeningeal cell": 14290,
+        "exhausted T cell": 14072,
+        "glandular epithelial cell": 14001,
+        "squamous epithelial cell": 13981,
+        "L2/3 intratelencephalic projecting glutamatergic neuron of the primary motor cortex": 13955,
+        "prostate gland microvascular endothelial cell": 13954,
+        "colon epithelial cell": 13944,
+        "progenitor cell of mammary luminal epithelium": 13702,
+        "Langerhans cell": 13475,
+        "intermediate mesodermal cell": 13172,
+        "endodermal cell": 13132,
+        "inflammatory macrophage": 13130,
+        "erythroid lineage cell": 13128,
+        "professional antigen presenting cell": 13125,
+        "sensory neuron of dorsal root ganglion": 13077,
+        "decidual cell": 12959,
+        "mature astrocyte": 12945,
+        "diffuse bipolar 6 cell": 12939,
+        "OFFx cell": 12837,
+        "starburst amacrine cell": 12695,
+        "monocyte-derived dendritic cell": 12490,
+        "photoreceptor cell": 12472,
+        "gut endothelial cell": 12416,
+        "Schwann cell": 12400,
+        "kidney loop of Henle epithelial cell": 12356,
+        "kidney loop of Henle thin ascending limb epithelial cell": 12266,
+        "pro-T cell": 12182,
+        "cerebellar granule cell precursor": 12117,
+        "bladder urothelial cell": 12115,
+        "type 5 cone bipolar cell (sensu Mus)": 12059,
+        "lung secretory cell": 12019,
+        "embryonic fibroblast": 11955,
+        "adventitial cell": 11747,
+        "megakaryocyte-erythroid progenitor cell": 11632,
+        "activated type II NK T cell": 11568,
+        "epithelial cell of amnion": 11509,
+        "type 3b cone bipolar cell": 11417,
+        "adipocyte of breast": 11415,
+        "IgG plasma cell": 11385,
+        "cerebral cortex neuron": 11279,
+        "intestine goblet cell": 10997,
+        "type I NK T cell": 10949,
+        "pancreatic endocrine cell": 10861,
+        "hematopoietic multipotent progenitor cell": 10777,
+        "hepatic stellate cell": 10640,
+        "medium spiny neuron": 10543,
+        "cone retinal bipolar cell": 10510,
+        "myeloid leukocyte": 10459,
+        "lung pericyte": 10307,
+        "tonsil germinal center B cell": 10188,
+        "acinar cell of salivary gland": 10147,
+        "ovarian surface epithelial cell": 10143,
+        "intrahepatic cholangiocyte": 9857,
+        "forebrain neuroblast": 9696,
+        "embryonic blood vessel endothelial progenitor cell": 9693,
+        "type 5b cone bipolar cell": 9576,
+        "lung ciliated cell": 9543,
+        "CD8-alpha-alpha-positive, alpha-beta intraepithelial T cell": 9527,
+        "cortical thymic epithelial cell": 9411,
+        "common lymphoid progenitor": 9390,
+        "lymphoid lineage restricted progenitor cell": 9380,
+        "fibroblast of breast": 9377,
+        "hepatic pit cell": 9320,
+        "ciliated epithelial cell": 9310,
+        "activated CD4-positive, alpha-beta T cell, human": 9266,
+        "tanycyte": 9109,
+        "basal epithelial cell of tracheobronchial tree": 9070,
+        "mucous neck cell": 8982,
+        "mature microglial cell": 8839,
+        "urethra urothelial cell": 8802,
+        "vascular lymphangioblast": 8796,
+        "renal interstitial pericyte": 8667,
+        "pituitary gland cell": 8413,
+        "parasympathetic neuron": 8353,
+        "cardiac neuron": 8248,
+        "endocrine cell": 8217,
+        "conjunctival epithelial cell": 8181,
+        "type 3a cone bipolar cell": 8114,
+        "granulocytopoietic cell": 8082,
+        "taste receptor cell": 8032,
+        "intermediate monocyte": 7994,
+        "spiral ganglion neuron": 7844,
+        "surface ectodermal cell": 7768,
+        "epithelial cell of urethra": 7702,
+        "germinal center B cell": 7610,
+        "fraction A pre-pro B cell": 7586,
+        "brain vascular cell": 7528,
+        "pancreatic PP cell": 7517,
+        "cord blood hematopoietic stem cell": 7449,
+        "kidney loop of Henle ascending limb epithelial cell": 7411,
+        "CD8-positive, alpha-beta thymocyte": 7404,
+        "medullary thymic epithelial cell": 7359,
+        "H1 horizontal cell": 7297,
+        "basal epithelial cell of prostatic duct": 7295,
+        "hematopoietic precursor cell": 7224,
+        "thyroid follicular cell": 7222,
+        "notochordal cell": 7099,
+        "group 3 innate lymphoid cell": 7049,
+        "hemangioblast": 7043,
+        "perineuronal satellite cell": 6916,
+        "enteric neuron": 6907,
+        "lens epithelial cell": 6881,
+        "parietal epithelial cell": 6812,
+        "retinal pigment epithelial cell": 6765,
+        "mesenchymal stem cell of adipose tissue": 6626,
+        "activated CD4-negative, CD8-negative type I NK T cell": 6621,
+        "unswitched memory B cell": 6580,
+        "kidney proximal straight tubule epithelial cell": 6554,
+        "memory T cell": 6507,
+        "corneal endothelial cell": 6468,
+        "enterocyte of epithelium of large intestine": 6431,
+        "dopaminergic neuron": 6364,
+        "ectodermal cell": 6330,
+        "peptic cell": 6317,
+        "proerythroblast": 6304,
+        "ureteric bud cell": 6251,
+        "indirect pathway medium spiny neuron": 6172,
+        "anterior lens cell": 6160,
+        "endothelial stalk cell": 6142,
+        "granulocyte monocyte progenitor cell": 6114,
+        "primordial germ cell": 6114,
+        "epithelial cell of proximal tubule segment 1": 6017,
+        "kidney interstitial cell": 6006,
+        "endothelial cell of coronary artery": 5987,
+        "skeletal muscle fibroblast": 5913,
+        "CD4-positive, CD25-positive, alpha-beta regulatory T cell": 5855,
+        "diffuse bipolar 3a cell": 5787,
+        "enteroendocrine cell": 5717,
+        "intraepithelial lymphocyte": 5655,
+        "microvascular endothelial cell": 5624,
+        "hair follicular keratinocyte": 5540,
+        "renal alpha-intercalated cell": 5538,
+        "kidney interstitial alternatively activated macrophage": 5525,
+        "respiratory hillock cell": 5517,
+        "radial glial cell": 5512,
+        "pneumocyte": 5440,
+        "intestinal crypt stem cell of colon": 5402,
+        "direct pathway medium spiny neuron": 5385,
+        "non-pigmented ciliary epithelial cell": 5330,
+        "epicardial adipocyte": 5324,
+        "lung endothelial cell": 5308,
+        "bronchial smooth muscle cell": 5230,
+        "serous secreting cell of bronchus submucosal gland": 5180,
+        "double negative T regulatory cell": 5147,
+        "epithelial cell of exocrine pancreas": 5124,
+        "white adipocyte": 5089,
+        "brush cell": 5087,
+        "contractile cell": 5078,
+        "unipolar brush cell": 5055,
+        "plasmacytoid dendritic cell, human": 5030,
+        "IgM plasma cell": 5011,
+        "B-1 B cell": 5001,
+        "paneth cell": 4978,
+        "renal intercalated cell": 4967,
+        "skeletal muscle satellite stem cell": 4831,
+        "neural crest cell": 4821,
+        "endothelial cell of periportal hepatic sinusoid": 4688,
+        "osteoclast": 4657,
+        "aortic smooth muscle cell": 4631,
+        "collagen secreting cell": 4600,
+        "epithelial cell of prostate": 4587,
+        "myelocyte": 4455,
+        "myeloid dendritic cell": 4445,
+        "smooth muscle cell of prostate": 4443,
+        "IgG-negative class switched memory B cell": 4344,
+        "renal beta-intercalated cell": 4191,
+        "adipose macrophage": 4190,
+        "smooth muscle myoblast": 4157,
+        "brain pericyte": 4101,
+        "T-helper 17 cell": 4085,
+        "theca cell": 4079,
+        "intestinal crypt stem cell": 4047,
+        "bladder cell": 4015,
+        "obsolete somatic cell": 3996,
+        "cerebellar Golgi cell": 3989,
+        "L4 intratelencephalic projecting glutamatergic neuron": 3978,
+        "seminal vesicle glandular cell": 3955,
+        "olfactory ensheathing cell": 3947,
+        "dendritic cell, human": 3924,
+        "promyelocyte": 3919,
+        "lung resident memory CD8-positive, alpha-beta T cell": 3877,
+        "smooth muscle cell of the pulmonary artery": 3873,
+        "common myeloid progenitor": 3835,
+        "kidney loop of Henle medullary thick ascending limb epithelial cell": 3828,
+        "fibroblast of connective tissue of nonglandular part of prostate": 3827,
+        "DN4 thymocyte": 3788,
+        "fast muscle cell": 3707,
+        "S cone cell": 3598,
+        "kidney loop of Henle cortical thick ascending limb epithelial cell": 3597,
+        "epithelial cell of nephron": 3587,
+        "renal principal cell": 3540,
+        "neuron associated cell": 3456,
+        "large pre-B-II cell": 3374,
+        "T-helper 1 cell": 3318,
+        "Leydig cell": 3255,
+        "natural T-regulatory cell": 3209,
+        "pulmonary ionocyte": 3131,
+        "duct epithelial cell": 3129,
+        "ventricular cardiac muscle cell": 3120,
+        "small pre-B-II cell": 3096,
+        "keratinocyte stem cell": 3057,
+        "type I cell of adrenal cortex": 3048,
+        "mucus secreting cell": 3000,
+        "differentiation-committed oligodendrocyte precursor": 2995,
+        "H2 horizontal cell": 2950,
+        "gingival epithelial cell": 2918,
+        "type 8 cone bipolar cell (sensu Mus)": 2862,
+        "type 9 cone bipolar cell (sensu Mus)": 2811,
+        "epithelial cell of thymus": 2810,
+        "efferent neuron": 2807,
+        "cholangiocyte": 2799,
+        "brainstem motor neuron": 2796,
+        "CNS interneuron": 2765,
+        "immature NK T cell": 2713,
+        "melanocyte of skin": 2686,
+        "epidermal cell": 2673,
+        "early lymphoid progenitor": 2669,
+        "neuronal receptor cell": 2634,
+        "group 3 innate lymphoid cell, human": 2511,
+        "serous secreting cell": 2473,
+        "leptomeningeal cell": 2404,
+        "hypendymal cell": 2389,
+        "medial ganglionic eminence derived interneuron": 2386,
+        "tracheobronchial serous cell": 2368,
+        "sst chodl GABAergic cortical interneuron": 2326,
+        "bronchial goblet cell": 2305,
+        "type EC enteroendocrine cell": 2289,
+        "oogonial cell": 2272,
+        "ionocyte": 2270,
+        "CD34-positive, CD38-negative hematopoietic stem cell": 2238,
+        "tissue-resident macrophage": 2223,
+        "common dendritic progenitor": 2199,
+        "subcutaneous adipocyte": 2152,
+        "large intestine goblet cell": 2130,
+        "slow muscle cell": 2109,
+        "naive regulatory T cell": 2056,
+        "IgG memory B cell": 2048,
+        "kidney granular cell": 2040,
+        "anterior visceral endoderm cell": 1994,
+        "mesothelial cell of epicardium": 1992,
+        "fibroblast of connective tissue of prostate": 1988,
+        "colon goblet cell": 1967,
+        "CD141-positive myeloid dendritic cell": 1966,
+        "late pro-B cell": 1938,
+        "DN3 thymocyte": 1934,
+        "epithelial cell of large intestine": 1933,
+        "kidney capillary endothelial cell": 1928,
+        "kidney cell": 1921,
+        "lung goblet cell": 1916,
+        "respiratory suprabasal cell": 1916,
+        "suprabasal keratinocyte": 1901,
+        "reticular cell": 1893,
+        "caudal ganglionic eminence derived interneuron": 1888,
+        "inflammatory cell": 1884,
+        "myeloid lineage restricted progenitor cell": 1878,
+        "valve interstitial cell": 1876,
+        "lung resident memory CD4-positive, alpha-beta T cell": 1858,
+        "ON-blue cone bipolar cell": 1849,
+        "centroblast": 1806,
+        "type 1 cone bipolar cell (sensu Mus)": 1795,
+        "immature T cell": 1784,
+        "secondary lens fiber": 1677,
+        "interstitial cell of Cajal": 1671,
+        "extraembryonic cell": 1660,
+        "intestinal enteroendocrine cell": 1656,
+        "embryonic stem cell": 1642,
+        "paneth cell of colon": 1630,
+        "CD8-alpha alpha positive, gamma-delta intraepithelial T cell": 1620,
+        "sensory neuron": 1605,
+        "basophil": 1583,
+        "epithelial cell of thyroid gland": 1578,
+        "fibroblast of connective tissue of glandular part of prostate": 1553,
+        "parasol ganglion cell of retina": 1507,
+        "CD8-positive, alpha-beta cytokine secreting effector T cell": 1493,
+        "type G enteroendocrine cell": 1412,
+        "Tc1 cell": 1408,
+        "muscle cell": 1407,
+        "MHC-II-positive classical monocyte": 1360,
+        "stem cell of epidermis": 1358,
+        "immature neutrophil": 1327,
+        "epithelial cell of pancreas": 1323,
+        "fetal cardiomyocyte": 1310,
+        "male germ cell": 1302,
+        "eurydendroid cell": 1296,
+        "fenestrated cell": 1295,
+        "ganglion interneuron": 1291,
+        "smooth muscle cell of sphincter of pupil": 1286,
+        "cardiac pacemaker cell of sinoatrial node": 1270,
+        "liver dendritic cell": 1270,
+        "conjunctiva goblet cell": 1244,
+        "memory regulatory T cell": 1212,
+        "GABAergic interneuron": 1202,
+        "type L enteroendocrine cell": 1199,
+        "cell": 1192,
+        "L5/6 near-projecting glutamatergic neuron": 1186,
+        "tracheobronchial goblet cell": 1185,
+        "airway submucosal gland duct basal cell": 1184,
+        "meningeal macrophage": 1183,
+        "erythroid progenitor cell, mammalian": 1182,
+        "P/D1 enteroendocrine cell": 1179,
+        "respiratory goblet cell": 1170,
+        "immature astrocyte": 1166,
+        "Merkel cell": 1159,
+        "small bistratified retinal ganglion cell": 1133,
+        "retinal blood vessel endothelial cell": 1130,
+        "enucleate erythrocyte": 1130,
+        "glandular cell of esophagus": 1108,
+        "IgG plasmablast": 1107,
+        "enterocyte of epithelium of small intestine": 1100,
+        "intestinal tuft cell": 1091,
+        "CD8-alpha-beta-positive, alpha-beta intraepithelial T cell": 1063,
+        "lens fiber cell": 1001,
+        "type A enteroendocrine cell": 998,
+        "macula densa epithelial cell": 989,
+        "epithelial cell of proximal tubule segment 3": 989,
+        "DN1 thymic pro-T cell": 985,
+        "early T lineage precursor": 965,
+        "IgA plasmablast": 955,
+        "female germ cell": 891,
+        "eye photoreceptor cell": 891,
+        "eosinophil": 890,
+        "trophoblast giant cell": 861,
+        "kidney cortex tubule cell": 810,
+        "enterocyte of epithelium proper of ileum": 809,
+        "vasa recta ascending limb cell": 797,
+        "bipolar neuron": 797,
+        "mononuclear cell": 781,
+        "ILC1, human": 776,
+        "M cell of gut": 772,
+        "PP cell": 761,
+        "epithelial cell of stratum germinativum of esophagus": 754,
+        "brush cell of tracheobronchial tree": 749,
+        "lung neuroendocrine cell": 742,
+        "preosteoblast": 736,
+        "iris pigment epithelial cell": 725,
+        "valve endothelial cell": 718,
+        "type 2 cone bipolar cell (sensu Mus)": 705,
+        "mesothelial cell of visceral pleura": 699,
+        "vasa recta descending limb cell": 695,
+        "bronchial epithelial cell": 693,
+        "paneth cell of epithelium of small intestine": 681,
+        "myoepithelial cell": 635,
+        "NKp44-negative group 3 innate lymphoid cell, human": 634,
+        "adipocyte of epicardial fat of left ventricle": 629,
+        "cochlea auditory hair cell": 625,
+        "connective tissue cell": 612,
+        "transit amplifying cell of small intestine": 602,
+        "centrocyte": 598,
+        "keratocyte": 595,
+        "endothelial cell of sinusoid": 592,
+        "lymphocyte of B lineage": 585,
+        "NKp44-positive group 3 innate lymphoid cell, human": 584,
+        "precursor cell": 567,
+        "pinealocyte": 540,
+        "kidney collecting duct epithelial cell": 529,
+        "visceromotor neuron": 514,
+        "dermis microvascular lymphatic vessel endothelial cell": 508,
+        "motor neuron": 499,
+        "plasmatocyte": 496,
+        "chandelier cell": 490,
+        "lung microvascular endothelial cell": 485,
+        "type 4 cone bipolar cell (sensu Mus)": 480,
+        "activated CD8-positive, alpha-beta T cell, human": 470,
+        "myocyte of sinoatrial node": 468,
+        "aortic endothelial cell": 467,
+        "group 2 innate lymphoid cell": 459,
+        "epithelial cell of parathyroid gland": 433,
+        "parietal cell": 428,
+        "T follicular regulatory cell": 415,
+        "epithelial fate stem cell": 411,
+        "lung perichondrial fibroblast": 411,
+        "metallothionein-positive alveolar macrophage": 410,
+        "kidney cortex artery cell": 381,
+        "late promyelocyte": 380,
+        "retinal astrocyte": 373,
+        "early promyelocyte": 369,
+        "mesenchymal lymphangioblast": 360,
+        "immature alpha-beta T cell": 341,
+        "lung interstitial macrophage": 333,
+        "sebum secreting cell": 318,
+        "papillary tips cell": 315,
+        "cardiac mesenchymal cell": 315,
+        "stromal cell of endometrium": 312,
+        "pulmonary interstitial fibroblast": 307,
+        "brush cell of bronchus": 306,
+        "enucleated reticulocyte": 304,
+        "epithelial cell of sweat gland": 301,
+        "small intestine goblet cell": 300,
+        "inhibitory motor neuron": 289,
+        "basophil mast progenitor cell": 287,
+        "colon macrophage": 268,
+        "vascular leptomeningeal cell (Mmus)": 268,
+        "fibroblast of lymphatic vessel": 267,
+        "CD34-positive, CD56-positive, CD117-positive common innate lymphoid precursor, human": 261,
+        "smooth muscle cell of trachea": 252,
+        "kidney efferent arteriole endothelial cell": 242,
+        "intestinal crypt stem cell of large intestine": 240,
+        "glomerular capillary endothelial cell": 235,
+        "granular cell of epidermis": 235,
+        "tendon cell": 234,
+        "sebaceous gland cell": 233,
+        "mesothelial fibroblast": 232,
+        "ileal goblet cell": 230,
+        "noradrenergic cell": 229,
+        "pancreatic epsilon cell": 204,
+        "chorionic trophoblast cell": 204,
+        "myometrial cell": 199,
+        "epithelial cell of uterus": 194,
+        "megakaryocyte progenitor cell": 181,
+        "macrophage dendritic cell progenitor": 179,
+        "follicular dendritic cell": 177,
+        "brush cell of epithelium proper of large intestine": 175,
+        "myeloid dendritic cell, human": 171,
+        "neutrophil progenitor cell": 162,
+        "kidney connecting tubule principal cell": 160,
+        "neuroepithelial stem cell": 151,
+        "meis2 expressing cortical GABAergic cell": 150,
+        "type D enteroendocrine cell": 139,
+        "peripheral blood mononuclear cell": 131,
+        "columnar/cuboidal epithelial cell": 129,
+        "pre-conventional dendritic cell": 129,
+        "kidney collecting duct cell": 125,
+        "gut absorptive cell": 118,
+        "enteroendocrine cell of colon": 117,
+        "kidney glomerular epithelial cell": 117,
+        "non-myelinating Schwann cell": 112,
+        "neural stem cell": 97,
+        "intestinal crypt stem cell of small intestine": 94,
+        "group 2 innate lymphoid cell, human": 93,
+        "migratory enteric neural crest cell": 87,
+        "kidney resident macrophage": 87,
+        "primary cultured cell": 80,
+        "type I enteroendocrine cell": 71,
+        "deuterosomal cell": 71,
+        "immature natural killer cell": 70,
+        "GIP cell": 64,
+        "prostate stromal cell": 63,
+        "brush cell of trachea": 61,
+        "tongue muscle cell": 60,
+        "primary sensory neuron (sensu Teleostei)": 59,
+        "T-helper 2 cell": 57,
+        "endosteal cell": 54,
+        "smooth muscle fiber of ileum": 54,
+        "epithelial cell of lacrimal sac": 52,
+        "kidney pelvis urothelial cell": 51,
+        "epidermal Langerhans cell": 48,
+        "respiratory epithelial cell": 46,
+        "salivary gland cell": 45,
+        "urothelial cell": 45,
+        "fibrocyte": 44,
+        "duodenum glandular cell": 44,
+        "serous cell of epithelium of trachea": 41,
+        "progenitor cell of endocrine pancreas": 40,
+        "atrioventricular bundle cell": 38,
+        "kidney afferent arteriole endothelial cell": 36,
+        "mesothelial cell of pleura": 29,
+        "enteroendocrine cell of small intestine": 18,
+        "mature conventional dendritic cell": 17,
+        "serous cell of epithelium of bronchus": 15,
+        "oocyte": 13,
+        "pre-natural killer cell": 11,
+        "sperm": 11,
+        "type N enteroendocrine cell": 10,
+        "kidney inner medulla collecting duct epithelial cell": 1
+      },
+      "ontology_ids_by_label": {
+        "unknown": [
+          "unknown"
+        ],
+        "neuron": [
+          "CL:0000540"
+        ],
+        "glutamatergic neuron": [
+          "CL:0000679"
+        ],
+        "neural cell": [
+          "CL:0002319"
+        ],
+        "L2/3-6 intratelencephalic projecting glutamatergic neuron": [
+          "CL:4023040"
+        ],
+        "fibroblast": [
+          "CL:0000057"
+        ],
+        "mesodermal cell": [
+          "CL:0000222"
+        ],
+        "CD4-positive, alpha-beta T cell": [
+          "CL:0000624"
+        ],
+        "oligodendrocyte": [
+          "CL:0000128"
+        ],
+        "CD8-positive, alpha-beta T cell": [
+          "CL:0000625"
+        ],
+        "B cell": [
+          "CL:0000236"
+        ],
+        "erythroid progenitor cell": [
+          "CL:0000038"
+        ],
+        "classical monocyte": [
+          "CL:0000860"
+        ],
+        "macrophage": [
+          "CL:0000235"
+        ],
+        "natural killer cell": [
+          "CL:0000623"
+        ],
+        "GABAergic neuron": [
+          "CL:0000617"
+        ],
+        "endothelial cell": [
+          "CL:0000115"
+        ],
+        "astrocyte": [
+          "CL:0000127"
+        ],
+        "retinal rod cell": [
+          "CL:0000604"
+        ],
+        "lateral mesodermal cell": [
+          "CL:0011010"
+        ],
+        "naive thymus-derived CD4-positive, alpha-beta T cell": [
+          "CL:0000895"
+        ],
+        "central memory CD4-positive, alpha-beta T cell": [
+          "CL:0000904"
+        ],
+        "malignant cell": [
+          "CL:0001064"
+        ],
+        "cerebral cortex GABAergic interneuron": [
+          "CL:0010011"
+        ],
+        "cultured cell": [
+          "CL:0000010"
+        ],
+        "CD14-positive monocyte": [
+          "CL:0001054"
+        ],
+        "cerebellar granule cell": [
+          "CL:0001031"
+        ],
+        "T cell": [
+          "CL:0000084"
+        ],
+        "microglial cell": [
+          "CL:0000129"
+        ],
+        "stromal cell": [
+          "CL:0000499"
+        ],
+        "epithelial cell": [
+          "CL:0000066"
+        ],
+        "Purkinje cell": [
+          "CL:0000121"
+        ],
+        "alveolar macrophage": [
+          "CL:0000583"
+        ],
+        "kidney proximal convoluted tubule epithelial cell": [
+          "CL:1000838"
+        ],
+        "oligodendrocyte precursor cell": [
+          "CL:0002453"
+        ],
+        "monocyte": [
+          "CL:0000576"
+        ],
+        "naive B cell": [
+          "CL:0000788"
+        ],
+        "L4/5 intratelencephalic projecting glutamatergic neuron of the primary motor cortex": [
+          "CL:4023048"
+        ],
+        "plasma cell": [
+          "CL:0000786"
+        ],
+        "hepatocyte": [
+          "CL:0000182"
+        ],
+        "vip GABAergic cortical interneuron": [
+          "CL:4023016"
+        ],
+        "naive thymus-derived CD8-positive, alpha-beta T cell": [
+          "CL:0000900"
+        ],
+        "pvalb GABAergic cortical interneuron": [
+          "CL:4023018"
+        ],
+        "epithelial cell of proximal tubule": [
+          "CL:0002306"
+        ],
+        "CD16-positive, CD56-dim natural killer cell, human": [
+          "CL:0000939"
+        ],
+        "kidney loop of Henle thick ascending limb epithelial cell": [
+          "CL:1001106"
+        ],
+        "chondrocyte": [
+          "CL:0000138"
+        ],
+        "luminal adaptive secretory precursor cell of mammary gland": [
+          "CL:4033057"
+        ],
+        "effector memory CD8-positive, alpha-beta T cell": [
+          "CL:0000913"
+        ],
+        "keratinocyte": [
+          "CL:0000312"
+        ],
+        "fibroblast of mammary gland": [
+          "CL:0002555"
+        ],
+        "cardiac muscle cell": [
+          "CL:0000746"
+        ],
+        "mesenchymal cell": [
+          "CL:0008019"
+        ],
+        "sst GABAergic cortical interneuron": [
+          "CL:4023017"
+        ],
+        "CD14-positive, CD16-negative classical monocyte": [
+          "CL:0002057"
+        ],
+        "mature alpha-beta T cell": [
+          "CL:0000791"
+        ],
+        "cortical cell of adrenal gland": [
+          "CL:0002097"
+        ],
+        "pericyte": [
+          "CL:0000669"
+        ],
+        "type II pneumocyte": [
+          "CL:0002063"
+        ],
+        "myeloid cell": [
+          "CL:0000763"
+        ],
+        "regular ventricular cardiac myocyte": [
+          "CL:0002131"
+        ],
+        "fibroblast of cardiac tissue": [
+          "CL:0002548"
+        ],
+        "GABAergic amacrine cell": [
+          "CL:4030027"
+        ],
+        "lamp5 GABAergic cortical interneuron": [
+          "CL:4023011"
+        ],
+        "regulatory T cell": [
+          "CL:0000815"
+        ],
+        "basal cell": [
+          "CL:0000646"
+        ],
+        "luminal hormone-sensing cell of mammary gland": [
+          "CL:4033058"
+        ],
+        "vein endothelial cell": [
+          "CL:0002543"
+        ],
+        "neural progenitor cell": [
+          "CL:0011020"
+        ],
+        "inhibitory interneuron": [
+          "CL:0000498"
+        ],
+        "luminal epithelial cell of mammary gland": [
+          "CL:0002326"
+        ],
+        "myoblast": [
+          "CL:0000056"
+        ],
+        "enterocyte": [
+          "CL:0000584"
+        ],
+        "capillary endothelial cell": [
+          "CL:0002144"
+        ],
+        "memory B cell": [
+          "CL:0000787"
+        ],
+        "non-classical monocyte": [
+          "CL:0000875"
+        ],
+        "astrocyte of the cerebral cortex": [
+          "CL:0002605"
+        ],
+        "Mueller cell": [
+          "CL:0000636"
+        ],
+        "mural cell": [
+          "CL:0008034"
+        ],
+        "blood vessel endothelial cell": [
+          "CL:0000071"
+        ],
+        "skin fibroblast": [
+          "CL:0002620"
+        ],
+        "central nervous system macrophage": [
+          "CL:0000878"
+        ],
+        "CD8-positive, alpha-beta memory T cell": [
+          "CL:0000909"
+        ],
+        "L6 corticothalamic-projecting glutamatergic cortical neuron": [
+          "CL:4023042"
+        ],
+        "leukocyte": [
+          "CL:0000738"
+        ],
+        "perivascular cell": [
+          "CL:4033054"
+        ],
+        "retinal ganglion cell": [
+          "CL:0000740"
+        ],
+        "erythrocyte": [
+          "CL:0000232"
+        ],
+        "basal-myoepithelial cell of mammary gland": [
+          "CL:0002324"
+        ],
+        "kidney collecting duct principal cell": [
+          "CL:1001431"
+        ],
+        "osteoblast": [
+          "CL:0000062"
+        ],
+        "double-positive, alpha-beta thymocyte": [
+          "CL:0000809"
+        ],
+        "amacrine cell": [
+          "CL:0000561"
+        ],
+        "gamma-delta T cell": [
+          "CL:0000798"
+        ],
+        "type B pancreatic cell": [
+          "CL:0000169"
+        ],
+        "mature NK T cell": [
+          "CL:0000814"
+        ],
+        "adipocyte": [
+          "CL:0000136"
+        ],
+        "endothelial cell of lymphatic vessel": [
+          "CL:0002138"
+        ],
+        "preadipocyte": [
+          "CL:0002334"
+        ],
+        "neutrophil": [
+          "CL:0000775"
+        ],
+        "endothelial cell of vascular tree": [
+          "CL:0002139"
+        ],
+        "CD4-positive, alpha-beta memory T cell": [
+          "CL:0000897"
+        ],
+        "cell in vitro": [
+          "CL:0001034"
+        ],
+        "respiratory basal cell": [
+          "CL:0002633"
+        ],
+        "mast cell": [
+          "CL:0000097"
+        ],
+        "retinal bipolar neuron": [
+          "CL:0000748"
+        ],
+        "myofibroblast cell": [
+          "CL:0000186"
+        ],
+        "retinal progenitor cell": [
+          "CL:0002672"
+        ],
+        "primitive erythroid progenitor": [
+          "CL:0002361"
+        ],
+        "mucosal invariant T cell": [
+          "CL:0000940"
+        ],
+        "dendritic cell": [
+          "CL:0000451"
+        ],
+        "ciliated columnar cell of tracheobronchial tree": [
+          "CL:0002145"
+        ],
+        "endo-epithelial cell": [
+          "CL:0002076"
+        ],
+        "cardiac muscle myoblast": [
+          "CL:0000513"
+        ],
+        "conventional dendritic cell": [
+          "CL:0000990"
+        ],
+        "mature T cell": [
+          "CL:0002419"
+        ],
+        "effector memory CD4-positive, alpha-beta T cell": [
+          "CL:0000905"
+        ],
+        "corticothalamic-projecting glutamatergic cortical neuron": [
+          "CL:4023013"
+        ],
+        "placental villous trophoblast": [
+          "CL:2000060"
+        ],
+        "CD8-positive, alpha-beta cytotoxic T cell": [
+          "CL:0000794"
+        ],
+        "rod bipolar cell": [
+          "CL:0000751"
+        ],
+        "mesothelial cell": [
+          "CL:0000077"
+        ],
+        "club cell": [
+          "CL:0000158"
+        ],
+        "granulosa cell": [
+          "CL:0000501"
+        ],
+        "progenitor cell": [
+          "CL:0011026"
+        ],
+        "retinal cone cell": [
+          "CL:0000573"
+        ],
+        "double negative thymocyte": [
+          "CL:0002489"
+        ],
+        "L6b glutamatergic cortical neuron": [
+          "CL:4023038"
+        ],
+        "CD4-positive helper T cell": [
+          "CL:0000492"
+        ],
+        "endothelial cell of artery": [
+          "CL:1000413"
+        ],
+        "epithelial cell of lower respiratory tract": [
+          "CL:0002632"
+        ],
+        "kidney distal convoluted tubule epithelial cell": [
+          "CL:1000849"
+        ],
+        "midbrain dopaminergic neuron": [
+          "CL:2000097"
+        ],
+        "periportal region hepatocyte": [
+          "CL:0019026"
+        ],
+        "L6 intratelencephalic projecting glutamatergic neuron of the primary motor cortex": [
+          "CL:4023050"
+        ],
+        "smooth muscle cell": [
+          "CL:0000192"
+        ],
+        "CD14-low, CD16-positive monocyte": [
+          "CL:0002396"
+        ],
+        "intestinal epithelial cell": [
+          "CL:0002563"
+        ],
+        "glycinergic amacrine cell": [
+          "CL:4030028"
+        ],
+        "granule cell": [
+          "CL:0000120"
+        ],
+        "regular atrial cardiac myocyte": [
+          "CL:0002129"
+        ],
+        "glial cell": [
+          "CL:0000125"
+        ],
+        "Cajal-Retzius cell": [
+          "CL:0000695"
+        ],
+        "brown adipocyte": [
+          "CL:0000449"
+        ],
+        "premigratory neural crest cell": [
+          "CL:0007004"
+        ],
+        "thalamic excitatory neuron": [
+          "CL:4023068"
+        ],
+        "elicited macrophage": [
+          "CL:0000861"
+        ],
+        "hematopoietic stem cell": [
+          "CL:0000037"
+        ],
+        "secretory cell": [
+          "CL:0000151"
+        ],
+        "epithelial cell of lung": [
+          "CL:0000082"
+        ],
+        "mesenchymal stem cell": [
+          "CL:0000134"
+        ],
+        "nasal mucosa goblet cell": [
+          "CL:0002480"
+        ],
+        "vascular associated smooth muscle cell": [
+          "CL:0000359"
+        ],
+        "midget ganglion cell of retina": [
+          "CL:4023188"
+        ],
+        "flat midget bipolar cell": [
+          "CL:4033033"
+        ],
+        "macroglial cell": [
+          "CL:0000126"
+        ],
+        "CD1c-positive myeloid dendritic cell": [
+          "CL:0002399"
+        ],
+        "sncg GABAergic cortical interneuron": [
+          "CL:4023015"
+        ],
+        "Schwann cell precursor": [
+          "CL:0002375"
+        ],
+        "tracheal goblet cell": [
+          "CL:1000329"
+        ],
+        "effector CD8-positive, alpha-beta T cell": [
+          "CL:0001050"
+        ],
+        "cardiac valve cell": [
+          "CL:1000147"
+        ],
+        "thymocyte": [
+          "CL:0000893"
+        ],
+        "hypothalamus cell": [
+          "CL:2000030"
+        ],
+        "goblet cell": [
+          "CL:0000160"
+        ],
+        "pancreatic A cell": [
+          "CL:0000171"
+        ],
+        "stem cell": [
+          "CL:0000034"
+        ],
+        "neoplastic cell": [
+          "CL:0001063"
+        ],
+        "hippocampal neuron": [
+          "CL:0002608"
+        ],
+        "absorptive cell": [
+          "CL:0000212"
+        ],
+        "mammary gland epithelial cell": [
+          "CL:0002327"
+        ],
+        "type I pneumocyte": [
+          "CL:0002062"
+        ],
+        "ciliated cell": [
+          "CL:0000064"
+        ],
+        "endothelial cell of umbilical vein": [
+          "CL:0002618"
+        ],
+        "plasmacytoid dendritic cell": [
+          "CL:0000784"
+        ],
+        "peripheral nervous system neuron": [
+          "CL:2000032"
+        ],
+        "stratified epithelial cell": [
+          "CL:0000079"
+        ],
+        "Kupffer cell": [
+          "CL:0000091"
+        ],
+        "kidney collecting duct intercalated cell": [
+          "CL:1001432"
+        ],
+        "neuron associated cell (sensu Vertebrata)": [
+          "CL:0000123"
+        ],
+        "stellate neuron": [
+          "CL:0000122"
+        ],
+        "blood cell": [
+          "CL:0000081"
+        ],
+        "endothelial tip cell": [
+          "CL:0000704"
+        ],
+        "lymphocyte": [
+          "CL:0000542"
+        ],
+        "primitive red blood cell": [
+          "CL:0002355"
+        ],
+        "near-projecting glutamatergic cortical neuron": [
+          "CL:4023012"
+        ],
+        "Hofbauer cell": [
+          "CL:3000001"
+        ],
+        "platelet": [
+          "CL:0000233"
+        ],
+        "helper T cell": [
+          "CL:0000912"
+        ],
+        "IgA plasma cell": [
+          "CL:0000987"
+        ],
+        "obsolete native cell": [
+          "CL:0000003"
+        ],
+        "kidney interstitial fibroblast": [
+          "CL:1000692"
+        ],
+        "cardiac endothelial cell": [
+          "CL:0010008"
+        ],
+        "megakaryocyte": [
+          "CL:0000556"
+        ],
+        "forebrain radial glial cell": [
+          "CL:0013000"
+        ],
+        "basal cell of epidermis": [
+          "CL:0002187"
+        ],
+        "splanchnic mesodermal cell": [
+          "CL:0017001"
+        ],
+        "CD16-negative, CD56-bright natural killer cell, human": [
+          "CL:0000938"
+        ],
+        "central memory CD8-positive, alpha-beta T cell": [
+          "CL:0000907"
+        ],
+        "basal cell of prostate epithelium": [
+          "CL:0002341"
+        ],
+        "abnormal cell": [
+          "CL:0001061"
+        ],
+        "spinal cord interneuron": [
+          "CL:0005000"
+        ],
+        "plasmablast": [
+          "CL:0000980"
+        ],
+        "extravillous trophoblast": [
+          "CL:0008036"
+        ],
+        "centrilobular region hepatocyte": [
+          "CL:0019029"
+        ],
+        "T follicular helper cell": [
+          "CL:0002038"
+        ],
+        "hematopoietic cell": [
+          "CL:0000988"
+        ],
+        "syncytiotrophoblast cell": [
+          "CL:0000525"
+        ],
+        "hepatoblast": [
+          "CL:0005026"
+        ],
+        "precursor B cell": [
+          "CL:0000817"
+        ],
+        "erythroblast": [
+          "CL:0000765"
+        ],
+        "stromal cell of ovary": [
+          "CL:0002132"
+        ],
+        "myotube": [
+          "CL:0002372"
+        ],
+        "transit amplifying cell": [
+          "CL:0009010"
+        ],
+        "innate lymphoid cell": [
+          "CL:0001065"
+        ],
+        "myelinating Schwann cell": [
+          "CL:0000218"
+        ],
+        "CD4-positive, alpha-beta cytotoxic T cell": [
+          "CL:0000934"
+        ],
+        "mesangial cell": [
+          "CL:0000650"
+        ],
+        "L2/3 intratelencephalic projecting glutamatergic neuron": [
+          "CL:4030059"
+        ],
+        "olfactory epithelial cell": [
+          "CL:0002167"
+        ],
+        "neuronal brush cell": [
+          "CL:0000555"
+        ],
+        "choroid plexus epithelial cell": [
+          "CL:0000706"
+        ],
+        "myeloid suppressor cell": [
+          "CL:0000889"
+        ],
+        "olfactory receptor cell": [
+          "CL:0000207"
+        ],
+        "interstitial cell of ovary": [
+          "CL:0002094"
+        ],
+        "L5/6 near-projecting glutamatergic neuron of the primary motor cortex": [
+          "CL:4023043"
+        ],
+        "paraxial cell": [
+          "CL:0011007"
+        ],
+        "L5 extratelencephalic projecting glutamatergic cortical neuron": [
+          "CL:4023041"
+        ],
+        "luminal cell of prostate epithelium": [
+          "CL:0002340"
+        ],
+        "decidual natural killer cell, human": [
+          "CL:0002343"
+        ],
+        "diffuse bipolar 2 cell": [
+          "CL:4033028"
+        ],
+        "Sertoli cell": [
+          "CL:0000216"
+        ],
+        "immature innate lymphoid cell": [
+          "CL:0001082"
+        ],
+        "interneuron": [
+          "CL:0000099"
+        ],
+        "ependymal cell": [
+          "CL:0000065"
+        ],
+        "melanocyte": [
+          "CL:0000148"
+        ],
+        "pancreatic acinar cell": [
+          "CL:0002064"
+        ],
+        "mononuclear phagocyte": [
+          "CL:0000113"
+        ],
+        "kidney loop of Henle thin descending limb epithelial cell": [
+          "CL:1001111"
+        ],
+        "alpha-beta T cell": [
+          "CL:0000789"
+        ],
+        "uterine smooth muscle cell": [
+          "CL:0002601"
+        ],
+        "endothelial cell of hepatic sinusoid": [
+          "CL:1000398"
+        ],
+        "chandelier pvalb GABAergic cortical interneuron": [
+          "CL:4023036"
+        ],
+        "glioblast": [
+          "CL:0000030"
+        ],
+        "basal cell of epithelium of trachea": [
+          "CL:1000348"
+        ],
+        "early pro-B cell": [
+          "CL:0002046"
+        ],
+        "transitional stage B cell": [
+          "CL:0000818"
+        ],
+        "muscle precursor cell": [
+          "CL:0000680"
+        ],
+        "invaginating midget bipolar cell": [
+          "CL:4033034"
+        ],
+        "fibro/adipogenic progenitor cell": [
+          "CL:0009099"
+        ],
+        "foveolar cell of stomach": [
+          "CL:0002179"
+        ],
+        "spinal cord motor neuron": [
+          "CL:0011001"
+        ],
+        "Bergmann glial cell": [
+          "CL:0000644"
+        ],
+        "kidney epithelial cell": [
+          "CL:0002518"
+        ],
+        "supporting cell": [
+          "CL:0000630"
+        ],
+        "pancreatic D cell": [
+          "CL:0000173"
+        ],
+        "basal cell of epithelium of bronchus": [
+          "CL:1000349"
+        ],
+        "auditory epithelial cell": [
+          "CL:0002491"
+        ],
+        "diffuse bipolar 1 cell": [
+          "CL:4033027"
+        ],
+        "alveolar type 1 fibroblast cell": [
+          "CL:4028004"
+        ],
+        "pancreatic ductal cell": [
+          "CL:0002079"
+        ],
+        "enteric smooth muscle cell": [
+          "CL:0002504"
+        ],
+        "epithelial cell of esophagus": [
+          "CL:0002252"
+        ],
+        "endocardial cell": [
+          "CL:0002350"
+        ],
+        "pyramidal neuron": [
+          "CL:0000598"
+        ],
+        "kidney connecting tubule epithelial cell": [
+          "CL:1000768"
+        ],
+        "corneal epithelial cell": [
+          "CL:0000575"
+        ],
+        "neuroplacodal cell": [
+          "CL:0000032"
+        ],
+        "metanephric mesenchyme stem cell": [
+          "CL:0000324"
+        ],
+        "granulocyte": [
+          "CL:0000094"
+        ],
+        "cortical interneuron": [
+          "CL:0008031"
+        ],
+        "prickle cell": [
+          "CL:0000649"
+        ],
+        "germ cell": [
+          "CL:0000586"
+        ],
+        "pancreatic stellate cell": [
+          "CL:0002410"
+        ],
+        "brown preadipocyte": [
+          "CL:0002335"
+        ],
+        "ciliated cell of the bronchus": [
+          "CL:0002332"
+        ],
+        "enterocyte of colon": [
+          "CL:1000347"
+        ],
+        "pro-B cell": [
+          "CL:0000826"
+        ],
+        "pigmented epithelial cell": [
+          "CL:0000529"
+        ],
+        "endothelial cell of placenta": [
+          "CL:0009092"
+        ],
+        "naive T cell": [
+          "CL:0000898"
+        ],
+        "lung macrophage": [
+          "CL:1001603"
+        ],
+        "cranial motor neuron": [
+          "CL:0015000"
+        ],
+        "epithelial cell of alveolus of lung": [
+          "CL:0010003"
+        ],
+        "diffuse bipolar 4 cell": [
+          "CL:4033031"
+        ],
+        "skeletal muscle fiber": [
+          "CL:0008002"
+        ],
+        "CD8-positive, alpha-beta memory T cell, CD45RO-positive": [
+          "CL:0001203"
+        ],
+        "caudal ganglionic eminence derived GABAergic cortical interneuron": [
+          "CL:4023070"
+        ],
+        "activated CD8-positive, alpha-beta T cell": [
+          "CL:0000906"
+        ],
+        "neuroblast (sensu Vertebrata)": [
+          "CL:0000031"
+        ],
+        "ON-bipolar cell": [
+          "CL:0000749"
+        ],
+        "effector CD4-positive, alpha-beta T cell": [
+          "CL:0001044"
+        ],
+        "sympathetic neuron": [
+          "CL:0011103"
+        ],
+        "podocyte": [
+          "CL:0000653"
+        ],
+        "glomerular endothelial cell": [
+          "CL:0002188"
+        ],
+        "midzonal region hepatocyte": [
+          "CL:0019028"
+        ],
+        "cerebral cortex endothelial cell": [
+          "CL:1001602"
+        ],
+        "effector memory CD8-positive, alpha-beta T cell, terminally differentiated": [
+          "CL:0001062"
+        ],
+        "alveolar type 2 fibroblast cell": [
+          "CL:4028006"
+        ],
+        "type 6 cone bipolar cell (sensu Mus)": [
+          "CL:0000758"
+        ],
+        "diffuse bipolar 3b cell": [
+          "CL:4033030"
+        ],
+        "blood vessel smooth muscle cell": [
+          "CL:0019018"
+        ],
+        "CD14-positive, CD16-positive monocyte": [
+          "CL:0002397"
+        ],
+        "retina horizontal cell": [
+          "CL:0000745"
+        ],
+        "CD4-positive, alpha-beta thymocyte": [
+          "CL:0000810"
+        ],
+        "mature B cell": [
+          "CL:0000785"
+        ],
+        "follicular B cell": [
+          "CL:0000843"
+        ],
+        "activated CD4-positive, alpha-beta T cell": [
+          "CL:0000896"
+        ],
+        "type 5a cone bipolar cell": [
+          "CL:0004215"
+        ],
+        "ciliary muscle cell": [
+          "CL:1000443"
+        ],
+        "T-helper 22 cell": [
+          "CL:0001042"
+        ],
+        "class switched memory B cell": [
+          "CL:0000972"
+        ],
+        "transit amplifying cell of colon": [
+          "CL:0009011"
+        ],
+        "fibroblast of lung": [
+          "CL:0002553"
+        ],
+        "immature B cell": [
+          "CL:0000816"
+        ],
+        "multi-ciliated epithelial cell": [
+          "CL:0005012"
+        ],
+        "chromaffin cell": [
+          "CL:0000166"
+        ],
+        "OFF-bipolar cell": [
+          "CL:0000750"
+        ],
+        "astrocyte of the cerebellum": [
+          "CL:0002603"
+        ],
+        "B-2 B cell": [
+          "CL:0000822"
+        ],
+        "acinar cell": [
+          "CL:0000622"
+        ],
+        "mature gamma-delta T cell": [
+          "CL:0000800"
+        ],
+        "alternatively activated macrophage": [
+          "CL:0000890"
+        ],
+        "lactocyte": [
+          "CL:0002325"
+        ],
+        "type 7 cone bipolar cell (sensu Mus)": [
+          "CL:0000759"
+        ],
+        "endothelial cell of venule": [
+          "CL:1000414"
+        ],
+        "endothelial cell of pericentral hepatic sinusoid": [
+          "CL:0019022"
+        ],
+        "cytotoxic T cell": [
+          "CL:0000910"
+        ],
+        "tracheobronchial smooth muscle cell": [
+          "CL:0019019"
+        ],
+        "pigmented ciliary epithelial cell": [
+          "CL:0002303"
+        ],
+        "pulmonary artery endothelial cell": [
+          "CL:1001568"
+        ],
+        "skeletal muscle satellite cell": [
+          "CL:0000594"
+        ],
+        "neuroendocrine cell": [
+          "CL:0000165"
+        ],
+        "neurectodermal cell": [
+          "CL:0000133"
+        ],
+        "giant bipolar cell": [
+          "CL:4033035"
+        ],
+        "endothelial cell of uterus": [
+          "CL:0009095"
+        ],
+        "bronchus fibroblast of lung": [
+          "CL:2000093"
+        ],
+        "cell of skeletal muscle": [
+          "CL:0000188"
+        ],
+        "promonocyte": [
+          "CL:0000559"
+        ],
+        "vascular leptomeningeal cell": [
+          "CL:4023051"
+        ],
+        "exhausted T cell": [
+          "CL:0011025"
+        ],
+        "glandular epithelial cell": [
+          "CL:0000150"
+        ],
+        "squamous epithelial cell": [
+          "CL:0000076"
+        ],
+        "L2/3 intratelencephalic projecting glutamatergic neuron of the primary motor cortex": [
+          "CL:4023047"
+        ],
+        "prostate gland microvascular endothelial cell": [
+          "CL:2000059"
+        ],
+        "colon epithelial cell": [
+          "CL:0011108"
+        ],
+        "progenitor cell of mammary luminal epithelium": [
+          "CL:0009116"
+        ],
+        "Langerhans cell": [
+          "CL:0000453"
+        ],
+        "intermediate mesodermal cell": [
+          "CL:0011011"
+        ],
+        "endodermal cell": [
+          "CL:0000223"
+        ],
+        "inflammatory macrophage": [
+          "CL:0000863"
+        ],
+        "erythroid lineage cell": [
+          "CL:0000764"
+        ],
+        "professional antigen presenting cell": [
+          "CL:0000145"
+        ],
+        "sensory neuron of dorsal root ganglion": [
+          "CL:1001451"
+        ],
+        "decidual cell": [
+          "CL:2000002"
+        ],
+        "mature astrocyte": [
+          "CL:0002627"
+        ],
+        "diffuse bipolar 6 cell": [
+          "CL:4033032"
+        ],
+        "OFFx cell": [
+          "CL:4033036"
+        ],
+        "starburst amacrine cell": [
+          "CL:0004232"
+        ],
+        "monocyte-derived dendritic cell": [
+          "CL:0011031"
+        ],
+        "photoreceptor cell": [
+          "CL:0000210"
+        ],
+        "gut endothelial cell": [
+          "CL:0000131"
+        ],
+        "Schwann cell": [
+          "CL:0002573"
+        ],
+        "kidney loop of Henle epithelial cell": [
+          "CL:1000909"
+        ],
+        "kidney loop of Henle thin ascending limb epithelial cell": [
+          "CL:1001107"
+        ],
+        "pro-T cell": [
+          "CL:0000827"
+        ],
+        "cerebellar granule cell precursor": [
+          "CL:0002362"
+        ],
+        "bladder urothelial cell": [
+          "CL:1001428"
+        ],
+        "type 5 cone bipolar cell (sensu Mus)": [
+          "CL:0000757"
+        ],
+        "lung secretory cell": [
+          "CL:1000272"
+        ],
+        "embryonic fibroblast": [
+          "CL:2000042"
+        ],
+        "adventitial cell": [
+          "CL:0002503"
+        ],
+        "megakaryocyte-erythroid progenitor cell": [
+          "CL:0000050"
+        ],
+        "activated type II NK T cell": [
+          "CL:0000931"
+        ],
+        "epithelial cell of amnion": [
+          "CL:0002536"
+        ],
+        "type 3b cone bipolar cell": [
+          "CL:0004214"
+        ],
+        "adipocyte of breast": [
+          "CL:0002617"
+        ],
+        "IgG plasma cell": [
+          "CL:0000985"
+        ],
+        "cerebral cortex neuron": [
+          "CL:0010012"
+        ],
+        "intestine goblet cell": [
+          "CL:0019031"
+        ],
+        "type I NK T cell": [
+          "CL:0000921"
+        ],
+        "pancreatic endocrine cell": [
+          "CL:0008024"
+        ],
+        "hematopoietic multipotent progenitor cell": [
+          "CL:0000837"
+        ],
+        "hepatic stellate cell": [
+          "CL:0000632"
+        ],
+        "medium spiny neuron": [
+          "CL:1001474"
+        ],
+        "cone retinal bipolar cell": [
+          "CL:0000752"
+        ],
+        "myeloid leukocyte": [
+          "CL:0000766"
+        ],
+        "lung pericyte": [
+          "CL:0009089"
+        ],
+        "tonsil germinal center B cell": [
+          "CL:2000006"
+        ],
+        "acinar cell of salivary gland": [
+          "CL:0002623"
+        ],
+        "ovarian surface epithelial cell": [
+          "CL:2000064"
+        ],
+        "intrahepatic cholangiocyte": [
+          "CL:0002538"
+        ],
+        "forebrain neuroblast": [
+          "CL:1000042"
+        ],
+        "embryonic blood vessel endothelial progenitor cell": [
+          "CL:0002546"
+        ],
+        "type 5b cone bipolar cell": [
+          "CL:0004216"
+        ],
+        "lung ciliated cell": [
+          "CL:1000271"
+        ],
+        "CD8-alpha-alpha-positive, alpha-beta intraepithelial T cell": [
+          "CL:0000915"
+        ],
+        "cortical thymic epithelial cell": [
+          "CL:0002364"
+        ],
+        "common lymphoid progenitor": [
+          "CL:0000051"
+        ],
+        "lymphoid lineage restricted progenitor cell": [
+          "CL:0000838"
+        ],
+        "fibroblast of breast": [
+          "CL:4006000"
+        ],
+        "hepatic pit cell": [
+          "CL:2000054"
+        ],
+        "ciliated epithelial cell": [
+          "CL:0000067"
+        ],
+        "activated CD4-positive, alpha-beta T cell, human": [
+          "CL:0001043"
+        ],
+        "tanycyte": [
+          "CL:0002085"
+        ],
+        "basal epithelial cell of tracheobronchial tree": [
+          "CL:0002329"
+        ],
+        "mucous neck cell": [
+          "CL:0000651"
+        ],
+        "mature microglial cell": [
+          "CL:0002629"
+        ],
+        "urethra urothelial cell": [
+          "CL:1001430"
+        ],
+        "vascular lymphangioblast": [
+          "CL:0005022"
+        ],
+        "renal interstitial pericyte": [
+          "CL:1001318"
+        ],
+        "pituitary gland cell": [
+          "CL:2000004"
+        ],
+        "parasympathetic neuron": [
+          "CL:0011102"
+        ],
+        "cardiac neuron": [
+          "CL:0010022"
+        ],
+        "endocrine cell": [
+          "CL:0000163"
+        ],
+        "conjunctival epithelial cell": [
+          "CL:1000432"
+        ],
+        "type 3a cone bipolar cell": [
+          "CL:0004213"
+        ],
+        "granulocytopoietic cell": [
+          "CL:0002191"
+        ],
+        "taste receptor cell": [
+          "CL:0000209"
+        ],
+        "intermediate monocyte": [
+          "CL:0002393"
+        ],
+        "spiral ganglion neuron": [
+          "CL:0011113"
+        ],
+        "surface ectodermal cell": [
+          "CL:0000114"
+        ],
+        "epithelial cell of urethra": [
+          "CL:1000296"
+        ],
+        "germinal center B cell": [
+          "CL:0000844"
+        ],
+        "fraction A pre-pro B cell": [
+          "CL:0002045"
+        ],
+        "brain vascular cell": [
+          "CL:4023072"
+        ],
+        "pancreatic PP cell": [
+          "CL:0002275"
+        ],
+        "cord blood hematopoietic stem cell": [
+          "CL:2000095"
+        ],
+        "kidney loop of Henle ascending limb epithelial cell": [
+          "CL:1001016"
+        ],
+        "CD8-positive, alpha-beta thymocyte": [
+          "CL:0000811"
+        ],
+        "medullary thymic epithelial cell": [
+          "CL:0002365"
+        ],
+        "H1 horizontal cell": [
+          "CL:0004217"
+        ],
+        "basal epithelial cell of prostatic duct": [
+          "CL:0002236"
+        ],
+        "hematopoietic precursor cell": [
+          "CL:0008001"
+        ],
+        "thyroid follicular cell": [
+          "CL:0002258"
+        ],
+        "notochordal cell": [
+          "CL:0007005"
+        ],
+        "group 3 innate lymphoid cell": [
+          "CL:0001071"
+        ],
+        "hemangioblast": [
+          "CL:0002418"
+        ],
+        "perineuronal satellite cell": [
+          "CL:0000516"
+        ],
+        "enteric neuron": [
+          "CL:0007011"
+        ],
+        "lens epithelial cell": [
+          "CL:0002224"
+        ],
+        "parietal epithelial cell": [
+          "CL:1000452"
+        ],
+        "retinal pigment epithelial cell": [
+          "CL:0002586"
+        ],
+        "mesenchymal stem cell of adipose tissue": [
+          "CL:0002570"
+        ],
+        "activated CD4-negative, CD8-negative type I NK T cell": [
+          "CL:0000928"
+        ],
+        "unswitched memory B cell": [
+          "CL:0000970"
+        ],
+        "kidney proximal straight tubule epithelial cell": [
+          "CL:1000839"
+        ],
+        "memory T cell": [
+          "CL:0000813"
+        ],
+        "corneal endothelial cell": [
+          "CL:0000132"
+        ],
+        "enterocyte of epithelium of large intestine": [
+          "CL:0002071"
+        ],
+        "dopaminergic neuron": [
+          "CL:0000700"
+        ],
+        "ectodermal cell": [
+          "CL:0000221"
+        ],
+        "peptic cell": [
+          "CL:0000155"
+        ],
+        "proerythroblast": [
+          "CL:0000547"
+        ],
+        "ureteric bud cell": [
+          "CL:4030066"
+        ],
+        "indirect pathway medium spiny neuron": [
+          "CL:4023029"
+        ],
+        "anterior lens cell": [
+          "CL:0002223"
+        ],
+        "endothelial stalk cell": [
+          "CL:0002671"
+        ],
+        "granulocyte monocyte progenitor cell": [
+          "CL:0000557"
+        ],
+        "primordial germ cell": [
+          "CL:0000670"
+        ],
+        "epithelial cell of proximal tubule segment 1": [
+          "CL:4030009"
+        ],
+        "kidney interstitial cell": [
+          "CL:1000500"
+        ],
+        "endothelial cell of coronary artery": [
+          "CL:2000018"
+        ],
+        "skeletal muscle fibroblast": [
+          "CL:0011027"
+        ],
+        "CD4-positive, CD25-positive, alpha-beta regulatory T cell": [
+          "CL:0000792"
+        ],
+        "diffuse bipolar 3a cell": [
+          "CL:4033029"
+        ],
+        "enteroendocrine cell": [
+          "CL:0000164"
+        ],
+        "intraepithelial lymphocyte": [
+          "CL:0002496"
+        ],
+        "microvascular endothelial cell": [
+          "CL:2000008"
+        ],
+        "hair follicular keratinocyte": [
+          "CL:2000092"
+        ],
+        "renal alpha-intercalated cell": [
+          "CL:0005011"
+        ],
+        "kidney interstitial alternatively activated macrophage": [
+          "CL:1000695"
+        ],
+        "respiratory hillock cell": [
+          "CL:4030023"
+        ],
+        "radial glial cell": [
+          "CL:0000681"
+        ],
+        "pneumocyte": [
+          "CL:0000322"
+        ],
+        "intestinal crypt stem cell of colon": [
+          "CL:0009043"
+        ],
+        "direct pathway medium spiny neuron": [
+          "CL:4023026"
+        ],
+        "non-pigmented ciliary epithelial cell": [
+          "CL:0002304"
+        ],
+        "epicardial adipocyte": [
+          "CL:1000309"
+        ],
+        "lung endothelial cell": [
+          "CL:1001567"
+        ],
+        "bronchial smooth muscle cell": [
+          "CL:0002598"
+        ],
+        "serous secreting cell of bronchus submucosal gland": [
+          "CL:4033005"
+        ],
+        "double negative T regulatory cell": [
+          "CL:0011024"
+        ],
+        "epithelial cell of exocrine pancreas": [
+          "CL:1001433"
+        ],
+        "white adipocyte": [
+          "CL:0000448"
+        ],
+        "brush cell": [
+          "CL:0002204"
+        ],
+        "contractile cell": [
+          "CL:0000183"
+        ],
+        "unipolar brush cell": [
+          "CL:4023161"
+        ],
+        "plasmacytoid dendritic cell, human": [
+          "CL:0001058"
+        ],
+        "IgM plasma cell": [
+          "CL:0000986"
+        ],
+        "B-1 B cell": [
+          "CL:0000819"
+        ],
+        "paneth cell": [
+          "CL:0000510"
+        ],
+        "renal intercalated cell": [
+          "CL:0005010"
+        ],
+        "skeletal muscle satellite stem cell": [
+          "CL:0008011"
+        ],
+        "neural crest cell": [
+          "CL:0011012"
+        ],
+        "endothelial cell of periportal hepatic sinusoid": [
+          "CL:0019021"
+        ],
+        "osteoclast": [
+          "CL:0000092"
+        ],
+        "aortic smooth muscle cell": [
+          "CL:0002539"
+        ],
+        "collagen secreting cell": [
+          "CL:0000667"
+        ],
+        "epithelial cell of prostate": [
+          "CL:0002231"
+        ],
+        "myelocyte": [
+          "CL:0002193"
+        ],
+        "myeloid dendritic cell": [
+          "CL:0000782"
+        ],
+        "smooth muscle cell of prostate": [
+          "CL:1000487"
+        ],
+        "IgG-negative class switched memory B cell": [
+          "CL:0002117"
+        ],
+        "renal beta-intercalated cell": [
+          "CL:0002201"
+        ],
+        "adipose macrophage": [
+          "CL:0002477"
+        ],
+        "smooth muscle myoblast": [
+          "CL:0000514"
+        ],
+        "brain pericyte": [
+          "CL:2000043"
+        ],
+        "T-helper 17 cell": [
+          "CL:0000899"
+        ],
+        "theca cell": [
+          "CL:0000503"
+        ],
+        "intestinal crypt stem cell": [
+          "CL:0002250"
+        ],
+        "bladder cell": [
+          "CL:1001319"
+        ],
+        "obsolete somatic cell": [
+          "CL:0002371"
+        ],
+        "cerebellar Golgi cell": [
+          "CL:0000119"
+        ],
+        "L4 intratelencephalic projecting glutamatergic neuron": [
+          "CL:4030063"
+        ],
+        "seminal vesicle glandular cell": [
+          "CL:1001597"
+        ],
+        "olfactory ensheathing cell": [
+          "CL:0011028"
+        ],
+        "dendritic cell, human": [
+          "CL:0001056"
+        ],
+        "promyelocyte": [
+          "CL:0000836"
+        ],
+        "lung resident memory CD8-positive, alpha-beta T cell": [
+          "CL:4033039"
+        ],
+        "smooth muscle cell of the pulmonary artery": [
+          "CL:0002591"
+        ],
+        "common myeloid progenitor": [
+          "CL:0000049"
+        ],
+        "kidney loop of Henle medullary thick ascending limb epithelial cell": [
+          "CL:1001108"
+        ],
+        "fibroblast of connective tissue of nonglandular part of prostate": [
+          "CL:1000304"
+        ],
+        "DN4 thymocyte": [
+          "CL:0000808"
+        ],
+        "fast muscle cell": [
+          "CL:0000190"
+        ],
+        "S cone cell": [
+          "CL:0003050"
+        ],
+        "kidney loop of Henle cortical thick ascending limb epithelial cell": [
+          "CL:1001109"
+        ],
+        "epithelial cell of nephron": [
+          "CL:1000449"
+        ],
+        "renal principal cell": [
+          "CL:0005009"
+        ],
+        "neuron associated cell": [
+          "CL:0000095"
+        ],
+        "large pre-B-II cell": [
+          "CL:0000957"
+        ],
+        "T-helper 1 cell": [
+          "CL:0000545"
+        ],
+        "Leydig cell": [
+          "CL:0000178"
+        ],
+        "natural T-regulatory cell": [
+          "CL:0000903"
+        ],
+        "pulmonary ionocyte": [
+          "CL:0017000"
+        ],
+        "duct epithelial cell": [
+          "CL:0000068"
+        ],
+        "ventricular cardiac muscle cell": [
+          "CL:2000046"
+        ],
+        "small pre-B-II cell": [
+          "CL:0000954"
+        ],
+        "keratinocyte stem cell": [
+          "CL:0002337"
+        ],
+        "type I cell of adrenal cortex": [
+          "CL:0002099"
+        ],
+        "mucus secreting cell": [
+          "CL:0000319"
+        ],
+        "differentiation-committed oligodendrocyte precursor": [
+          "CL:4023059"
+        ],
+        "H2 horizontal cell": [
+          "CL:0004218"
+        ],
+        "gingival epithelial cell": [
+          "CL:0002621"
+        ],
+        "type 8 cone bipolar cell (sensu Mus)": [
+          "CL:0000760"
+        ],
+        "type 9 cone bipolar cell (sensu Mus)": [
+          "CL:0000761"
+        ],
+        "epithelial cell of thymus": [
+          "CL:0002293"
+        ],
+        "efferent neuron": [
+          "CL:0000527"
+        ],
+        "cholangiocyte": [
+          "CL:1000488"
+        ],
+        "brainstem motor neuron": [
+          "CL:2000047"
+        ],
+        "CNS interneuron": [
+          "CL:0000402"
+        ],
+        "immature NK T cell": [
+          "CL:0000914"
+        ],
+        "melanocyte of skin": [
+          "CL:1000458"
+        ],
+        "epidermal cell": [
+          "CL:0000362"
+        ],
+        "early lymphoid progenitor": [
+          "CL:0000936"
+        ],
+        "neuronal receptor cell": [
+          "CL:0000006"
+        ],
+        "group 3 innate lymphoid cell, human": [
+          "CL:0001078"
+        ],
+        "serous secreting cell": [
+          "CL:0000313"
+        ],
+        "leptomeningeal cell": [
+          "CL:0000708"
+        ],
+        "hypendymal cell": [
+          "CL:4023181"
+        ],
+        "medial ganglionic eminence derived interneuron": [
+          "CL:4023063"
+        ],
+        "tracheobronchial serous cell": [
+          "CL:0019001"
+        ],
+        "sst chodl GABAergic cortical interneuron": [
+          "CL:4023121"
+        ],
+        "bronchial goblet cell": [
+          "CL:1000312"
+        ],
+        "type EC enteroendocrine cell": [
+          "CL:0000577"
+        ],
+        "oogonial cell": [
+          "CL:0000024"
+        ],
+        "ionocyte": [
+          "CL:0005006"
+        ],
+        "CD34-positive, CD38-negative hematopoietic stem cell": [
+          "CL:0001024"
+        ],
+        "tissue-resident macrophage": [
+          "CL:0000864"
+        ],
+        "common dendritic progenitor": [
+          "CL:0001029"
+        ],
+        "subcutaneous adipocyte": [
+          "CL:0002521"
+        ],
+        "large intestine goblet cell": [
+          "CL:1000320"
+        ],
+        "slow muscle cell": [
+          "CL:0000189"
+        ],
+        "naive regulatory T cell": [
+          "CL:0002677"
+        ],
+        "IgG memory B cell": [
+          "CL:0000979"
+        ],
+        "kidney granular cell": [
+          "CL:0000648"
+        ],
+        "anterior visceral endoderm cell": [
+          "CL:2000075"
+        ],
+        "mesothelial cell of epicardium": [
+          "CL:0011019"
+        ],
+        "fibroblast of connective tissue of prostate": [
+          "CL:1000299"
+        ],
+        "colon goblet cell": [
+          "CL:0009039"
+        ],
+        "CD141-positive myeloid dendritic cell": [
+          "CL:0002394"
+        ],
+        "late pro-B cell": [
+          "CL:0002048"
+        ],
+        "DN3 thymocyte": [
+          "CL:0000807"
+        ],
+        "epithelial cell of large intestine": [
+          "CL:0002253"
+        ],
+        "kidney capillary endothelial cell": [
+          "CL:1000892"
+        ],
+        "kidney cell": [
+          "CL:1000497"
+        ],
+        "lung goblet cell": [
+          "CL:1000143"
+        ],
+        "respiratory suprabasal cell": [
+          "CL:4033048"
+        ],
+        "suprabasal keratinocyte": [
+          "CL:4033013"
+        ],
+        "reticular cell": [
+          "CL:0000432"
+        ],
+        "caudal ganglionic eminence derived interneuron": [
+          "CL:4023064"
+        ],
+        "inflammatory cell": [
+          "CL:0009002"
+        ],
+        "myeloid lineage restricted progenitor cell": [
+          "CL:0000839"
+        ],
+        "valve interstitial cell": [
+          "CL:4030032"
+        ],
+        "lung resident memory CD4-positive, alpha-beta T cell": [
+          "CL:4033038"
+        ],
+        "ON-blue cone bipolar cell": [
+          "CL:4033019"
+        ],
+        "centroblast": [
+          "CL:0009112"
+        ],
+        "type 1 cone bipolar cell (sensu Mus)": [
+          "CL:0000753"
+        ],
+        "immature T cell": [
+          "CL:0002420"
+        ],
+        "secondary lens fiber": [
+          "CL:0002225"
+        ],
+        "interstitial cell of Cajal": [
+          "CL:0002088"
+        ],
+        "extraembryonic cell": [
+          "CL:0000349"
+        ],
+        "intestinal enteroendocrine cell": [
+          "CL:1001516"
+        ],
+        "embryonic stem cell": [
+          "CL:0002322"
+        ],
+        "paneth cell of colon": [
+          "CL:0009009"
+        ],
+        "CD8-alpha alpha positive, gamma-delta intraepithelial T cell": [
+          "CL:0000802"
+        ],
+        "sensory neuron": [
+          "CL:0000101"
+        ],
+        "basophil": [
+          "CL:0000767"
+        ],
+        "epithelial cell of thyroid gland": [
+          "CL:0002257"
+        ],
+        "fibroblast of connective tissue of glandular part of prostate": [
+          "CL:1000305"
+        ],
+        "parasol ganglion cell of retina": [
+          "CL:4023189"
+        ],
+        "CD8-positive, alpha-beta cytokine secreting effector T cell": [
+          "CL:0000908"
+        ],
+        "type G enteroendocrine cell": [
+          "CL:0000508"
+        ],
+        "Tc1 cell": [
+          "CL:0000917"
+        ],
+        "muscle cell": [
+          "CL:0000187"
+        ],
+        "MHC-II-positive classical monocyte": [
+          "CL:0002470"
+        ],
+        "stem cell of epidermis": [
+          "CL:1000428"
+        ],
+        "immature neutrophil": [
+          "CL:0000776"
+        ],
+        "epithelial cell of pancreas": [
+          "CL:0000083"
+        ],
+        "fetal cardiomyocyte": [
+          "CL:0002495"
+        ],
+        "male germ cell": [
+          "CL:0000015"
+        ],
+        "eurydendroid cell": [
+          "CL:0000253"
+        ],
+        "fenestrated cell": [
+          "CL:0000666"
+        ],
+        "ganglion interneuron": [
+          "CL:0000397"
+        ],
+        "smooth muscle cell of sphincter of pupil": [
+          "CL:0002243"
+        ],
+        "cardiac pacemaker cell of sinoatrial node": [
+          "CL:1000477"
+        ],
+        "liver dendritic cell": [
+          "CL:2000055"
+        ],
+        "conjunctiva goblet cell": [
+          "CL:2000084"
+        ],
+        "memory regulatory T cell": [
+          "CL:0002678"
+        ],
+        "GABAergic interneuron": [
+          "CL:0011005"
+        ],
+        "type L enteroendocrine cell": [
+          "CL:0002279"
+        ],
+        "cell": [
+          "CL:0000000"
+        ],
+        "L5/6 near-projecting glutamatergic neuron": [
+          "CL:4030067"
+        ],
+        "tracheobronchial goblet cell": [
+          "CL:0019003"
+        ],
+        "airway submucosal gland duct basal cell": [
+          "CL:4033024"
+        ],
+        "meningeal macrophage": [
+          "CL:0000879"
+        ],
+        "erythroid progenitor cell, mammalian": [
+          "CL:0001066"
+        ],
+        "P/D1 enteroendocrine cell": [
+          "CL:0002268"
+        ],
+        "respiratory goblet cell": [
+          "CL:0002370"
+        ],
+        "immature astrocyte": [
+          "CL:0002626"
+        ],
+        "Merkel cell": [
+          "CL:0000242"
+        ],
+        "small bistratified retinal ganglion cell": [
+          "CL:4033053"
+        ],
+        "retinal blood vessel endothelial cell": [
+          "CL:0002585"
+        ],
+        "enucleate erythrocyte": [
+          "CL:0000595"
+        ],
+        "glandular cell of esophagus": [
+          "CL:0002657"
+        ],
+        "IgG plasmablast": [
+          "CL:0000982"
+        ],
+        "enterocyte of epithelium of small intestine": [
+          "CL:1000334"
+        ],
+        "intestinal tuft cell": [
+          "CL:0019032"
+        ],
+        "CD8-alpha-beta-positive, alpha-beta intraepithelial T cell": [
+          "CL:0000796"
+        ],
+        "lens fiber cell": [
+          "CL:0011004"
+        ],
+        "type A enteroendocrine cell": [
+          "CL:0002067"
+        ],
+        "macula densa epithelial cell": [
+          "CL:1000850"
+        ],
+        "epithelial cell of proximal tubule segment 3": [
+          "CL:4030011"
+        ],
+        "DN1 thymic pro-T cell": [
+          "CL:0000894"
+        ],
+        "early T lineage precursor": [
+          "CL:0002425"
+        ],
+        "IgA plasmablast": [
+          "CL:0000984"
+        ],
+        "female germ cell": [
+          "CL:0000021"
+        ],
+        "eye photoreceptor cell": [
+          "CL:0000287"
+        ],
+        "eosinophil": [
+          "CL:0000771"
+        ],
+        "trophoblast giant cell": [
+          "CL:0002488"
+        ],
+        "kidney cortex tubule cell": [
+          "CL:1000615"
+        ],
+        "enterocyte of epithelium proper of ileum": [
+          "CL:1000342"
+        ],
+        "vasa recta ascending limb cell": [
+          "CL:1001131"
+        ],
+        "bipolar neuron": [
+          "CL:0000103"
+        ],
+        "mononuclear cell": [
+          "CL:0000842"
+        ],
+        "ILC1, human": [
+          "CL:0001077"
+        ],
+        "M cell of gut": [
+          "CL:0000682"
+        ],
+        "PP cell": [
+          "CL:0000696"
+        ],
+        "epithelial cell of stratum germinativum of esophagus": [
+          "CL:1000447"
+        ],
+        "brush cell of tracheobronchial tree": [
+          "CL:0002075"
+        ],
+        "lung neuroendocrine cell": [
+          "CL:1000223"
+        ],
+        "preosteoblast": [
+          "CL:0007010"
+        ],
+        "iris pigment epithelial cell": [
+          "CL:0002565"
+        ],
+        "valve endothelial cell": [
+          "CL:4030033"
+        ],
+        "type 2 cone bipolar cell (sensu Mus)": [
+          "CL:0000754"
+        ],
+        "mesothelial cell of visceral pleura": [
+          "CL:1000493"
+        ],
+        "vasa recta descending limb cell": [
+          "CL:1001285"
+        ],
+        "bronchial epithelial cell": [
+          "CL:0002328"
+        ],
+        "paneth cell of epithelium of small intestine": [
+          "CL:1000343"
+        ],
+        "myoepithelial cell": [
+          "CL:0000185"
+        ],
+        "NKp44-negative group 3 innate lymphoid cell, human": [
+          "CL:0001080"
+        ],
+        "adipocyte of epicardial fat of left ventricle": [
+          "CL:1000311"
+        ],
+        "cochlea auditory hair cell": [
+          "CL:4023120"
+        ],
+        "connective tissue cell": [
+          "CL:0002320"
+        ],
+        "transit amplifying cell of small intestine": [
+          "CL:0009012"
+        ],
+        "centrocyte": [
+          "CL:0009111"
+        ],
+        "keratocyte": [
+          "CL:0002363"
+        ],
+        "endothelial cell of sinusoid": [
+          "CL:0002262"
+        ],
+        "lymphocyte of B lineage": [
+          "CL:0000945"
+        ],
+        "NKp44-positive group 3 innate lymphoid cell, human": [
+          "CL:0001079"
+        ],
+        "precursor cell": [
+          "CL:0011115"
+        ],
+        "pinealocyte": [
+          "CL:0000652"
+        ],
+        "kidney collecting duct epithelial cell": [
+          "CL:1000454"
+        ],
+        "visceromotor neuron": [
+          "CL:0005025"
+        ],
+        "dermis microvascular lymphatic vessel endothelial cell": [
+          "CL:2000041"
+        ],
+        "motor neuron": [
+          "CL:0000100"
+        ],
+        "plasmatocyte": [
+          "CL:0000394"
+        ],
+        "chandelier cell": [
+          "CL:4023083"
+        ],
+        "lung microvascular endothelial cell": [
+          "CL:2000016"
+        ],
+        "type 4 cone bipolar cell (sensu Mus)": [
+          "CL:0000756"
+        ],
+        "activated CD8-positive, alpha-beta T cell, human": [
+          "CL:0001049"
+        ],
+        "myocyte of sinoatrial node": [
+          "CL:1000409"
+        ],
+        "aortic endothelial cell": [
+          "CL:0002544"
+        ],
+        "group 2 innate lymphoid cell": [
+          "CL:0001069"
+        ],
+        "epithelial cell of parathyroid gland": [
+          "CL:0002260"
+        ],
+        "parietal cell": [
+          "CL:0000162"
+        ],
+        "T follicular regulatory cell": [
+          "CL:0009113"
+        ],
+        "epithelial fate stem cell": [
+          "CL:0000036"
+        ],
+        "lung perichondrial fibroblast": [
+          "CL:4033026"
+        ],
+        "metallothionein-positive alveolar macrophage": [
+          "CL:4033042"
+        ],
+        "kidney cortex artery cell": [
+          "CL:1001045"
+        ],
+        "late promyelocyte": [
+          "CL:0002151"
+        ],
+        "retinal astrocyte": [
+          "CL:4033015"
+        ],
+        "early promyelocyte": [
+          "CL:0002154"
+        ],
+        "mesenchymal lymphangioblast": [
+          "CL:0005021"
+        ],
+        "immature alpha-beta T cell": [
+          "CL:0000790"
+        ],
+        "lung interstitial macrophage": [
+          "CL:4033043"
+        ],
+        "sebum secreting cell": [
+          "CL:0000317"
+        ],
+        "papillary tips cell": [
+          "CL:1000597"
+        ],
+        "cardiac mesenchymal cell": [
+          "CL:0000569"
+        ],
+        "stromal cell of endometrium": [
+          "CL:0002255"
+        ],
+        "pulmonary interstitial fibroblast": [
+          "CL:0002241"
+        ],
+        "brush cell of bronchus": [
+          "CL:0002208"
+        ],
+        "enucleated reticulocyte": [
+          "CL:0002422"
+        ],
+        "epithelial cell of sweat gland": [
+          "CL:1000448"
+        ],
+        "small intestine goblet cell": [
+          "CL:1000495"
+        ],
+        "inhibitory motor neuron": [
+          "CL:0008015"
+        ],
+        "basophil mast progenitor cell": [
+          "CL:0002028"
+        ],
+        "colon macrophage": [
+          "CL:0009038"
+        ],
+        "vascular leptomeningeal cell (Mmus)": [
+          "CL:4023056"
+        ],
+        "fibroblast of lymphatic vessel": [
+          "CL:0002554"
+        ],
+        "CD34-positive, CD56-positive, CD117-positive common innate lymphoid precursor, human": [
+          "CL:0001074"
+        ],
+        "smooth muscle cell of trachea": [
+          "CL:0002600"
+        ],
+        "kidney efferent arteriole endothelial cell": [
+          "CL:1001099"
+        ],
+        "intestinal crypt stem cell of large intestine": [
+          "CL:0009016"
+        ],
+        "glomerular capillary endothelial cell": [
+          "CL:1001005"
+        ],
+        "granular cell of epidermis": [
+          "CL:0002189"
+        ],
+        "tendon cell": [
+          "CL:0000388"
+        ],
+        "sebaceous gland cell": [
+          "CL:2000021"
+        ],
+        "mesothelial fibroblast": [
+          "CL:4023054"
+        ],
+        "ileal goblet cell": [
+          "CL:1000326"
+        ],
+        "noradrenergic cell": [
+          "CL:0000459"
+        ],
+        "pancreatic epsilon cell": [
+          "CL:0005019"
+        ],
+        "chorionic trophoblast cell": [
+          "CL:0011101"
+        ],
+        "myometrial cell": [
+          "CL:0002366"
+        ],
+        "epithelial cell of uterus": [
+          "CL:0002149"
+        ],
+        "megakaryocyte progenitor cell": [
+          "CL:0000553"
+        ],
+        "macrophage dendritic cell progenitor": [
+          "CL:0002009"
+        ],
+        "follicular dendritic cell": [
+          "CL:0000442"
+        ],
+        "brush cell of epithelium proper of large intestine": [
+          "CL:0002203"
+        ],
+        "myeloid dendritic cell, human": [
+          "CL:0001057"
+        ],
+        "neutrophil progenitor cell": [
+          "CL:0000834"
+        ],
+        "kidney connecting tubule principal cell": [
+          "CL:4030018"
+        ],
+        "neuroepithelial stem cell": [
+          "CL:0002259"
+        ],
+        "meis2 expressing cortical GABAergic cell": [
+          "CL:4023065"
+        ],
+        "type D enteroendocrine cell": [
+          "CL:0000502"
+        ],
+        "peripheral blood mononuclear cell": [
+          "CL:2000001"
+        ],
+        "columnar/cuboidal epithelial cell": [
+          "CL:0000075"
+        ],
+        "pre-conventional dendritic cell": [
+          "CL:0002010"
+        ],
+        "kidney collecting duct cell": [
+          "CL:1001225"
+        ],
+        "gut absorptive cell": [
+          "CL:0000677"
+        ],
+        "enteroendocrine cell of colon": [
+          "CL:0009042"
+        ],
+        "kidney glomerular epithelial cell": [
+          "CL:1000510"
+        ],
+        "non-myelinating Schwann cell": [
+          "CL:0002376"
+        ],
+        "neural stem cell": [
+          "CL:0000047"
+        ],
+        "intestinal crypt stem cell of small intestine": [
+          "CL:0009017"
+        ],
+        "group 2 innate lymphoid cell, human": [
+          "CL:0001081"
+        ],
+        "migratory enteric neural crest cell": [
+          "CL:0002607"
+        ],
+        "kidney resident macrophage": [
+          "CL:1000698"
+        ],
+        "primary cultured cell": [
+          "CL:0000001"
+        ],
+        "type I enteroendocrine cell": [
+          "CL:0002277"
+        ],
+        "deuterosomal cell": [
+          "CL:4033044"
+        ],
+        "immature natural killer cell": [
+          "CL:0000823"
+        ],
+        "GIP cell": [
+          "CL:0002278"
+        ],
+        "prostate stromal cell": [
+          "CL:0002622"
+        ],
+        "brush cell of trachea": [
+          "CL:0002207"
+        ],
+        "tongue muscle cell": [
+          "CL:0002673"
+        ],
+        "primary sensory neuron (sensu Teleostei)": [
+          "CL:0000531"
+        ],
+        "T-helper 2 cell": [
+          "CL:0000546"
+        ],
+        "endosteal cell": [
+          "CL:0002157"
+        ],
+        "smooth muscle fiber of ileum": [
+          "CL:1000278"
+        ],
+        "epithelial cell of lacrimal sac": [
+          "CL:1000436"
+        ],
+        "kidney pelvis urothelial cell": [
+          "CL:1000703"
+        ],
+        "epidermal Langerhans cell": [
+          "CL:0002457"
+        ],
+        "respiratory epithelial cell": [
+          "CL:0002368"
+        ],
+        "salivary gland cell": [
+          "CL:0009005"
+        ],
+        "urothelial cell": [
+          "CL:0000731"
+        ],
+        "fibrocyte": [
+          "CL:0000135"
+        ],
+        "duodenum glandular cell": [
+          "CL:1001589"
+        ],
+        "serous cell of epithelium of trachea": [
+          "CL:1000330"
+        ],
+        "progenitor cell of endocrine pancreas": [
+          "CL:0002351"
+        ],
+        "atrioventricular bundle cell": [
+          "CL:0010005"
+        ],
+        "kidney afferent arteriole endothelial cell": [
+          "CL:1001096"
+        ],
+        "mesothelial cell of pleura": [
+          "CL:1000491"
+        ],
+        "enteroendocrine cell of small intestine": [
+          "CL:0009006"
+        ],
+        "mature conventional dendritic cell": [
+          "CL:0000841"
+        ],
+        "serous cell of epithelium of bronchus": [
+          "CL:1000331"
+        ],
+        "oocyte": [
+          "CL:0000023"
+        ],
+        "pre-natural killer cell": [
+          "CL:0000937"
+        ],
+        "sperm": [
+          "CL:0000019"
+        ],
+        "type N enteroendocrine cell": [
+          "CL:0002280"
+        ],
+        "kidney inner medulla collecting duct epithelial cell": [
+          "CL:1000547"
+        ]
+      }
+    },
+    "tissue": {
+      "source_column": "tissue_ontology_term_id",
+      "category_count": 326,
+      "resolved_category_count": 326,
+      "unresolved_ontology_ids": [],
+      "counts": {
+        "lung": 42868831,
+        "blood": 34179961,
+        "brain": 29530595,
+        "colon": 25830811,
+        "unknown": 23810521,
+        "pancreas": 21597602,
+        "embryo": 16976623,
+        "skin of body": 12513695,
+        "liver": 10683313,
+        "breast": 10539762,
+        "bone marrow": 9543512,
+        "kidney": 8213043,
+        "heart": 4800567,
+        "immune system": 4687291,
+        "eye": 4677504,
+        "spleen": 4559701,
+        "lymph node": 4314740,
+        "stomach": 4244624,
+        "endometrium": 3485757,
+        "vasculature": 3350893,
+        "small intestine": 3226581,
+        "urinary bladder": 2961628,
+        "skeletal system": 2823653,
+        "respiratory system": 2588530,
+        "cerebellum": 2101623,
+        "musculature": 1920181,
+        "uterus": 1864451,
+        "adipose tissue": 1853702,
+        "central nervous system": 1818861,
+        "spinal cord": 1704269,
+        "dorsolateral prefrontal cortex": 1631471,
+        "uterine cervix": 1596082,
+        "telencephalon": 1565863,
+        "cortex": 1513857,
+        "middle temporal gyrus": 1317262,
+        "prostate gland": 1301074,
+        "adrenal gland": 1279963,
+        "cerebral cortex": 1248850,
+        "peripheral region of retina": 1195809,
+        "intestine": 1156931,
+        "placenta": 1127465,
+        "esophagus": 1015278,
+        "sensory system": 1011915,
+        "ovary": 948464,
+        "peripheral nervous system": 897312,
+        "testis": 838235,
+        "endocrine gland": 814761,
+        "heart left ventricle": 761793,
+        "frontal cortex": 730928,
+        "mucosa": 655220,
+        "primary motor cortex": 625538,
+        "hippocampal formation": 578257,
+        "retina": 546456,
+        "cortex of kidney": 522195,
+        "gonad": 507126,
+        "ileum": 503783,
+        "cerebral nuclei": 494325,
+        "hypothalamus": 483451,
+        "reproductive system": 440483,
+        "thymus": 405221,
+        "primary visual cortex": 399661,
+        "substantia nigra pars compacta": 387483,
+        "islet of Langerhans": 362898,
+        "respiratory airway": 358584,
+        "thalamic complex": 343320,
+        "forelimb": 335470,
+        "lung parenchyma": 334444,
+        "macula lutea": 310875,
+        "primary somatosensory cortex": 310653,
+        "caudate lobe of liver": 308212,
+        "digestive system": 307511,
+        "large intestine": 288232,
+        "heart right ventricle": 286423,
+        "interventricular septum": 284283,
+        "renal medulla": 283305,
+        "exocrine gland": 282382,
+        "hindlimb": 264447,
+        "midbrain": 249305,
+        "diencephalon": 249065,
+        "visual cortex": 236082,
+        "entorhinal cortex": 221808,
+        "prefrontal cortex": 219655,
+        "body of stomach": 214938,
+        "lamina propria": 207230,
+        "anterior cingulate cortex": 206197,
+        "pons": 204168,
+        "nasal cavity": 198868,
+        "temporal cortex": 192147,
+        "decidua": 189973,
+        "occipital cortex": 187526,
+        "pleura": 185185,
+        "milk": 183332,
+        "fovea centralis": 179309,
+        "primary auditory cortex": 145757,
+        "yolk sac": 144260,
+        "parietal cortex": 141537,
+        "lamina propria of small intestine": 136529,
+        "fallopian tube": 132985,
+        "decidua basalis": 125672,
+        "tongue": 125523,
+        "apex of heart": 120306,
+        "frontal lobe": 118039,
+        "nose": 114936,
+        "angular gyrus": 110752,
+        "medial orbital frontal cortex": 110671,
+        "sinoatrial node": 107573,
+        "gingiva": 105079,
+        "skin epidermis": 104237,
+        "dermis": 100247,
+        "subcutaneous adipose tissue": 99711,
+        "myelencephalon": 99110,
+        "left frontal lobe": 98536,
+        "temporal lobe": 97537,
+        "omentum": 92733,
+        "inguinal fat pad": 91248,
+        "scalp": 90975,
+        "pleural effusion": 90741,
+        "epithelium of esophagus": 87947,
+        "macula lutea proper": 87214,
+        "forebrain": 86604,
+        "visceral abdominal adipose tissue": 86134,
+        "right frontal lobe": 85525,
+        "left cardiac atrium": 82676,
+        "omental fat pad": 80085,
+        "trachea": 79986,
+        "cingulate cortex": 75807,
+        "ileal epithelium": 73634,
+        "atrioventricular node": 73045,
+        "transition zone of prostate": 72957,
+        "auditory cortex": 72549,
+        "epididymal fat pad": 71752,
+        "sigmoid colon": 69025,
+        "retrosplenial granular cortex": 65710,
+        "right cardiac atrium": 64486,
+        "esophagogastric junction": 64093,
+        "left temporal lobe": 63227,
+        "thoracic lymph node": 62647,
+        "fimbria of fallopian tube": 61264,
+        "bronchus": 59377,
+        "abdomen": 59001,
+        "transverse colon": 58736,
+        "subcutaneous abdominal adipose tissue": 58536,
+        "superior frontal gyrus": 58226,
+        "caudate nucleus": 57571,
+        "iris": 57422,
+        "duodenum": 57248,
+        "lower lobe of left lung": 56919,
+        "tonsil": 56899,
+        "mesenteric lymph node": 55694,
+        "colonic epithelium": 55666,
+        "subicular complex": 54666,
+        "alveolus of lung": 54085,
+        "agranular insular cortex": 53956,
+        "parietal lobe": 53269,
+        "ascending colon": 52989,
+        "lamina propria of mucosa of colon": 49990,
+        "caudal ganglionic eminence": 48185,
+        "ampulla of fallopian tube": 48068,
+        "muscle organ": 47291,
+        "right parietal lobe": 47176,
+        "isthmus of fallopian tube": 45130,
+        "skin of cheek": 43943,
+        "neural tube": 43485,
+        "skin of forehead": 42323,
+        "dura mater": 42319,
+        "putamen": 41277,
+        "cornea": 40990,
+        "lamina propria of large intestine": 40231,
+        "anterior wall of left ventricle": 36574,
+        "lingula of left lung": 35284,
+        "periovarian fat pad": 34687,
+        "esophagus muscularis mucosa": 34173,
+        "insular cortex": 34153,
+        "ciliary body": 34132,
+        "bladder organ": 33610,
+        "limb muscle": 32722,
+        "skin of forearm": 32138,
+        "upper outer quadrant of breast": 31696,
+        "nasopharynx": 31325,
+        "gastrocnemius": 30877,
+        "upper lobe of left lung": 29895,
+        "mesonephros": 29606,
+        "medial ganglionic eminence": 29064,
+        "posterior parietal association areas": 28873,
+        "ganglionic eminence": 28857,
+        "lower esophagus": 28621,
+        "perifoveal part of retina": 28367,
+        "eye trabecular meshwork": 27736,
+        "umbilical cord blood": 27154,
+        "choroid plexus": 27092,
+        "jejunal epithelium": 27087,
+        "mammary gland": 26952,
+        "trophoblast": 26853,
+        "caecum": 25865,
+        "skin of prepuce of penis": 24982,
+        "skin of trunk": 24807,
+        "urethra": 24700,
+        "corneo-scleral junction": 24573,
+        "right temporal lobe": 24445,
+        "right colon": 23110,
+        "right occipital lobe": 22796,
+        "meningeal dura mater": 22652,
+        "descending colon": 22550,
+        "skin of external ear": 21633,
+        "duodeno-jejunal junction": 21592,
+        "parotid gland": 21003,
+        "brain white matter": 20212,
+        "gallbladder": 19880,
+        "cervical spinal cord white matter": 19650,
+        "skin of scalp": 19408,
+        "lateral visual area": 18814,
+        "basal zone of heart": 18775,
+        "cardia of stomach": 18404,
+        "ureter": 18354,
+        "renal papilla": 17958,
+        "left colon": 17831,
+        "venous blood": 17625,
+        "rectum": 16913,
+        "hepatic cecum": 16607,
+        "bronchopulmonary lymph node": 16527,
+        "white matter of cerebellum": 15963,
+        "hemisphere part of cerebellar posterior lobe": 15580,
+        "skin of temple": 15307,
+        "zone of skin": 15215,
+        "coronal suture": 15127,
+        "saliva": 14502,
+        "cortical plate": 14336,
+        "peripheral zone of prostate": 14090,
+        "dentate nucleus": 13953,
+        "lens of camera-type eye": 13900,
+        "jejunum": 13150,
+        "barrel cortex": 12330,
+        "exocrine pancreas": 11977,
+        "adrenal tissue": 11937,
+        "rectus abdominis muscle": 11898,
+        "thyroid gland": 11840,
+        "pleural fluid": 11702,
+        "bladder lumen": 11377,
+        "mesenteric artery": 11243,
+        "tendon of semitendinosus": 10533,
+        "Brodmann (1909) area 4": 9915,
+        "chorionic villus": 9898,
+        "skin of pes": 9887,
+        "autopod skin": 9816,
+        "skin of back": 9773,
+        "anterolateral visual area": 9667,
+        "nose skin": 9656,
+        "artery": 9652,
+        "cerebellar cortex": 9649,
+        "posterior part of tongue": 9467,
+        "aorta": 9290,
+        "skin of leg": 9288,
+        "submucosa of ileum": 9195,
+        "chest wall": 9097,
+        "basal ganglion": 9000,
+        "skin of chest": 8799,
+        "occipital lobe": 8799,
+        "inguinal lymph node": 8683,
+        "cardiac atrium": 8279,
+        "cerebellum vermis lobule": 8033,
+        "muscle of pelvic diaphragm": 7825,
+        "epithelium of trachea": 7228,
+        "submucosa of ascending colon": 7133,
+        "brain gray matter": 6670,
+        "arm skin": 6529,
+        "lateral ganglionic eminence": 6448,
+        "axilla": 6348,
+        "anterior cingulate gyrus": 6279,
+        "sublingual gland": 6196,
+        "muscle of abdomen": 6142,
+        "orbitofrontal cortex": 5874,
+        "rib": 5725,
+        "peripheral lymph node": 5625,
+        "vermiform appendix": 5515,
+        "hindgut": 5420,
+        "anterior part of tongue": 5367,
+        "vault of skull": 4969,
+        "muscle tissue": 4881,
+        "coronary artery": 4867,
+        "skin of abdomen": 4808,
+        "vein": 4395,
+        "cervical lymph node": 4355,
+        "pyloric antrum": 4028,
+        "submucosal esophageal gland": 3997,
+        "epithelium of small intestine": 3883,
+        "hindlimb skin": 3443,
+        "gonadal fat pad": 3406,
+        "cardiac ventricle": 3226,
+        "myometrium": 3025,
+        "mesenteric fat pad": 3014,
+        "renal glomerulus": 3011,
+        "cerebellar hemisphere": 2971,
+        "outer medulla of kidney": 2693,
+        "pigment epithelium of eye": 2348,
+        "brain meninx": 2344,
+        "hepatic flexure of colon": 2333,
+        "skin of hip": 2272,
+        "brown adipose tissue": 2223,
+        "perirenal fat": 2121,
+        "conjunctiva": 2084,
+        "retrosplenial region": 2055,
+        "secondary somatosensory cortex": 1866,
+        "diaphragm": 1858,
+        "caecum epithelium": 1651,
+        "lateral entorhinal cortex": 1594,
+        "medial entorhinal cortex": 1564,
+        "endocrine pancreas": 1520,
+        "gustatory cortex": 1482,
+        "lower leg skin": 1475,
+        "sclera": 1431,
+        "bone spine": 1150,
+        "temporoparietal junction": 1143,
+        "inner medulla of kidney": 849,
+        "skeletal muscle tissue": 835,
+        "retinal neural layer": 675,
+        "renal pelvis": 569,
+        "gonad primordium": 399,
+        "lacrimal gland": 248,
+        "left parietal lobe": 163,
+        "optic cup": 146,
+        "mesoderm": 139,
+        "subdural space": 82,
+        "kidney blood vessel": 48,
+        "skin of shoulder": 37,
+        "skin of face": 37,
+        "claustrum of brain": 1
+      },
+      "ontology_ids_by_label": {
+        "lung": [
+          "UBERON:0002048"
+        ],
+        "blood": [
+          "UBERON:0000178"
+        ],
+        "brain": [
+          "UBERON:0000955"
+        ],
+        "colon": [
+          "UBERON:0001155"
+        ],
+        "unknown": [
+          "unknown"
+        ],
+        "pancreas": [
+          "UBERON:0001264"
+        ],
+        "embryo": [
+          "UBERON:0000922"
+        ],
+        "skin of body": [
+          "UBERON:0002097"
+        ],
+        "liver": [
+          "UBERON:0002107"
+        ],
+        "breast": [
+          "UBERON:0000310"
+        ],
+        "bone marrow": [
+          "UBERON:0002371"
+        ],
+        "kidney": [
+          "UBERON:0002113"
+        ],
+        "heart": [
+          "UBERON:0000948"
+        ],
+        "immune system": [
+          "UBERON:0002405"
+        ],
+        "eye": [
+          "UBERON:0000970"
+        ],
+        "spleen": [
+          "UBERON:0002106"
+        ],
+        "lymph node": [
+          "UBERON:0000029"
+        ],
+        "stomach": [
+          "UBERON:0000945"
+        ],
+        "endometrium": [
+          "UBERON:0001295"
+        ],
+        "vasculature": [
+          "UBERON:0002049"
+        ],
+        "small intestine": [
+          "UBERON:0002108"
+        ],
+        "urinary bladder": [
+          "UBERON:0001255"
+        ],
+        "skeletal system": [
+          "UBERON:0001434"
+        ],
+        "respiratory system": [
+          "UBERON:0001004"
+        ],
+        "cerebellum": [
+          "UBERON:0002037"
+        ],
+        "musculature": [
+          "UBERON:0001015"
+        ],
+        "uterus": [
+          "UBERON:0000995"
+        ],
+        "adipose tissue": [
+          "UBERON:0001013"
+        ],
+        "central nervous system": [
+          "UBERON:0001017"
+        ],
+        "spinal cord": [
+          "UBERON:0002240"
+        ],
+        "dorsolateral prefrontal cortex": [
+          "UBERON:0009834"
+        ],
+        "uterine cervix": [
+          "UBERON:0000002"
+        ],
+        "telencephalon": [
+          "UBERON:0001893"
+        ],
+        "cortex": [
+          "UBERON:0001851"
+        ],
+        "middle temporal gyrus": [
+          "UBERON:0002771"
+        ],
+        "prostate gland": [
+          "UBERON:0002367"
+        ],
+        "adrenal gland": [
+          "UBERON:0002369"
+        ],
+        "cerebral cortex": [
+          "UBERON:0000956"
+        ],
+        "peripheral region of retina": [
+          "UBERON:0013682"
+        ],
+        "intestine": [
+          "UBERON:0000160"
+        ],
+        "placenta": [
+          "UBERON:0001987"
+        ],
+        "esophagus": [
+          "UBERON:0001043"
+        ],
+        "sensory system": [
+          "UBERON:0001032"
+        ],
+        "ovary": [
+          "UBERON:0000992"
+        ],
+        "peripheral nervous system": [
+          "UBERON:0000010"
+        ],
+        "testis": [
+          "UBERON:0000473"
+        ],
+        "endocrine gland": [
+          "UBERON:0002368"
+        ],
+        "heart left ventricle": [
+          "UBERON:0002084"
+        ],
+        "frontal cortex": [
+          "UBERON:0001870"
+        ],
+        "mucosa": [
+          "UBERON:0000344"
+        ],
+        "primary motor cortex": [
+          "UBERON:0001384"
+        ],
+        "hippocampal formation": [
+          "UBERON:0002421"
+        ],
+        "retina": [
+          "UBERON:0000966"
+        ],
+        "cortex of kidney": [
+          "UBERON:0001225"
+        ],
+        "gonad": [
+          "UBERON:0000991"
+        ],
+        "ileum": [
+          "UBERON:0002116"
+        ],
+        "cerebral nuclei": [
+          "UBERON:8440012"
+        ],
+        "hypothalamus": [
+          "UBERON:0001898"
+        ],
+        "reproductive system": [
+          "UBERON:0000990"
+        ],
+        "thymus": [
+          "UBERON:0002370"
+        ],
+        "primary visual cortex": [
+          "UBERON:0002436"
+        ],
+        "substantia nigra pars compacta": [
+          "UBERON:0001965"
+        ],
+        "islet of Langerhans": [
+          "UBERON:0000006"
+        ],
+        "respiratory airway": [
+          "UBERON:0001005"
+        ],
+        "thalamic complex": [
+          "UBERON:0010225"
+        ],
+        "forelimb": [
+          "UBERON:0002102"
+        ],
+        "lung parenchyma": [
+          "UBERON:0008946"
+        ],
+        "macula lutea": [
+          "UBERON:0000053"
+        ],
+        "primary somatosensory cortex": [
+          "UBERON:0008933"
+        ],
+        "caudate lobe of liver": [
+          "UBERON:0001117"
+        ],
+        "digestive system": [
+          "UBERON:0001007"
+        ],
+        "large intestine": [
+          "UBERON:0000059"
+        ],
+        "heart right ventricle": [
+          "UBERON:0002080"
+        ],
+        "interventricular septum": [
+          "UBERON:0002094"
+        ],
+        "renal medulla": [
+          "UBERON:0000362"
+        ],
+        "exocrine gland": [
+          "UBERON:0002365"
+        ],
+        "hindlimb": [
+          "UBERON:0002103"
+        ],
+        "midbrain": [
+          "UBERON:0001891"
+        ],
+        "diencephalon": [
+          "UBERON:0001894"
+        ],
+        "visual cortex": [
+          "UBERON:0000411"
+        ],
+        "entorhinal cortex": [
+          "UBERON:0002728"
+        ],
+        "prefrontal cortex": [
+          "UBERON:0000451"
+        ],
+        "body of stomach": [
+          "UBERON:0001161"
+        ],
+        "lamina propria": [
+          "UBERON:0000030"
+        ],
+        "anterior cingulate cortex": [
+          "UBERON:0009835"
+        ],
+        "pons": [
+          "UBERON:0000988"
+        ],
+        "nasal cavity": [
+          "UBERON:0001707"
+        ],
+        "temporal cortex": [
+          "UBERON:0016538"
+        ],
+        "decidua": [
+          "UBERON:0002450"
+        ],
+        "occipital cortex": [
+          "UBERON:0016540"
+        ],
+        "pleura": [
+          "UBERON:0000977"
+        ],
+        "milk": [
+          "UBERON:0001913"
+        ],
+        "fovea centralis": [
+          "UBERON:0001786"
+        ],
+        "primary auditory cortex": [
+          "UBERON:0034751"
+        ],
+        "yolk sac": [
+          "UBERON:0001040"
+        ],
+        "parietal cortex": [
+          "UBERON:0016530"
+        ],
+        "lamina propria of small intestine": [
+          "UBERON:0001238"
+        ],
+        "fallopian tube": [
+          "UBERON:0003889"
+        ],
+        "decidua basalis": [
+          "UBERON:0000453"
+        ],
+        "tongue": [
+          "UBERON:0001723"
+        ],
+        "apex of heart": [
+          "UBERON:0002098"
+        ],
+        "frontal lobe": [
+          "UBERON:0016525"
+        ],
+        "nose": [
+          "UBERON:0000004"
+        ],
+        "angular gyrus": [
+          "UBERON:0002686"
+        ],
+        "medial orbital frontal cortex": [
+          "UBERON:0022352"
+        ],
+        "sinoatrial node": [
+          "UBERON:0002351"
+        ],
+        "gingiva": [
+          "UBERON:0001828"
+        ],
+        "skin epidermis": [
+          "UBERON:0001003"
+        ],
+        "dermis": [
+          "UBERON:0002067"
+        ],
+        "subcutaneous adipose tissue": [
+          "UBERON:0002190"
+        ],
+        "myelencephalon": [
+          "UBERON:0005290"
+        ],
+        "left frontal lobe": [
+          "UBERON:0002811"
+        ],
+        "temporal lobe": [
+          "UBERON:0001871"
+        ],
+        "omentum": [
+          "UBERON:0003688"
+        ],
+        "inguinal fat pad": [
+          "UBERON:0010410"
+        ],
+        "scalp": [
+          "UBERON:0000403"
+        ],
+        "pleural effusion": [
+          "UBERON:0000175"
+        ],
+        "epithelium of esophagus": [
+          "UBERON:0001976"
+        ],
+        "macula lutea proper": [
+          "UBERON:0002822"
+        ],
+        "forebrain": [
+          "UBERON:0001890"
+        ],
+        "visceral abdominal adipose tissue": [
+          "UBERON:0014454"
+        ],
+        "right frontal lobe": [
+          "UBERON:0002810"
+        ],
+        "left cardiac atrium": [
+          "UBERON:0002079"
+        ],
+        "omental fat pad": [
+          "UBERON:0010414"
+        ],
+        "trachea": [
+          "UBERON:0003126"
+        ],
+        "cingulate cortex": [
+          "UBERON:0003027"
+        ],
+        "ileal epithelium": [
+          "UBERON:0008345"
+        ],
+        "atrioventricular node": [
+          "UBERON:0002352"
+        ],
+        "transition zone of prostate": [
+          "UBERON:8410025"
+        ],
+        "auditory cortex": [
+          "UBERON:0001393"
+        ],
+        "epididymal fat pad": [
+          "UBERON:0010412"
+        ],
+        "sigmoid colon": [
+          "UBERON:0001159"
+        ],
+        "retrosplenial granular cortex": [
+          "UBERON:0014918"
+        ],
+        "right cardiac atrium": [
+          "UBERON:0002078"
+        ],
+        "esophagogastric junction": [
+          "UBERON:0007650"
+        ],
+        "left temporal lobe": [
+          "UBERON:0002808"
+        ],
+        "thoracic lymph node": [
+          "UBERON:0007644"
+        ],
+        "fimbria of fallopian tube": [
+          "UBERON:8410010"
+        ],
+        "bronchus": [
+          "UBERON:0002185"
+        ],
+        "abdomen": [
+          "UBERON:0000916"
+        ],
+        "transverse colon": [
+          "UBERON:0001157"
+        ],
+        "subcutaneous abdominal adipose tissue": [
+          "UBERON:0014455"
+        ],
+        "superior frontal gyrus": [
+          "UBERON:0002661"
+        ],
+        "caudate nucleus": [
+          "UBERON:0001873"
+        ],
+        "iris": [
+          "UBERON:0001769"
+        ],
+        "duodenum": [
+          "UBERON:0002114"
+        ],
+        "lower lobe of left lung": [
+          "UBERON:0008953"
+        ],
+        "tonsil": [
+          "UBERON:0002372"
+        ],
+        "mesenteric lymph node": [
+          "UBERON:0002509"
+        ],
+        "colonic epithelium": [
+          "UBERON:0000397"
+        ],
+        "subicular complex": [
+          "UBERON:0023787"
+        ],
+        "alveolus of lung": [
+          "UBERON:0002299"
+        ],
+        "agranular insular cortex": [
+          "UBERON:0034893"
+        ],
+        "parietal lobe": [
+          "UBERON:0001872"
+        ],
+        "ascending colon": [
+          "UBERON:0001156"
+        ],
+        "lamina propria of mucosa of colon": [
+          "UBERON:0007177"
+        ],
+        "caudal ganglionic eminence": [
+          "UBERON:0004026"
+        ],
+        "ampulla of fallopian tube": [
+          "UBERON:0012648"
+        ],
+        "muscle organ": [
+          "UBERON:0001630"
+        ],
+        "right parietal lobe": [
+          "UBERON:0002803"
+        ],
+        "isthmus of fallopian tube": [
+          "UBERON:0016632"
+        ],
+        "skin of cheek": [
+          "UBERON:0008803"
+        ],
+        "neural tube": [
+          "UBERON:0001049"
+        ],
+        "skin of forehead": [
+          "UBERON:0016475"
+        ],
+        "dura mater": [
+          "UBERON:0002363"
+        ],
+        "putamen": [
+          "UBERON:0001874"
+        ],
+        "cornea": [
+          "UBERON:0000964"
+        ],
+        "lamina propria of large intestine": [
+          "UBERON:0011189"
+        ],
+        "anterior wall of left ventricle": [
+          "UBERON:0036288"
+        ],
+        "lingula of left lung": [
+          "UBERON:0008954"
+        ],
+        "periovarian fat pad": [
+          "UBERON:0018131"
+        ],
+        "esophagus muscularis mucosa": [
+          "UBERON:0004648"
+        ],
+        "insular cortex": [
+          "UBERON:0034891"
+        ],
+        "ciliary body": [
+          "UBERON:0001775"
+        ],
+        "bladder organ": [
+          "UBERON:0018707"
+        ],
+        "limb muscle": [
+          "UBERON:0003661"
+        ],
+        "skin of forearm": [
+          "UBERON:0003403"
+        ],
+        "upper outer quadrant of breast": [
+          "UBERON:0035328"
+        ],
+        "nasopharynx": [
+          "UBERON:0001728"
+        ],
+        "gastrocnemius": [
+          "UBERON:0001388"
+        ],
+        "upper lobe of left lung": [
+          "UBERON:0008952"
+        ],
+        "mesonephros": [
+          "UBERON:0000080"
+        ],
+        "medial ganglionic eminence": [
+          "UBERON:0004024"
+        ],
+        "posterior parietal association areas": [
+          "UBERON:0035886"
+        ],
+        "ganglionic eminence": [
+          "UBERON:0004023"
+        ],
+        "lower esophagus": [
+          "UBERON:0013473"
+        ],
+        "perifoveal part of retina": [
+          "UBERON:0018105"
+        ],
+        "eye trabecular meshwork": [
+          "UBERON:0005969"
+        ],
+        "umbilical cord blood": [
+          "UBERON:0012168"
+        ],
+        "choroid plexus": [
+          "UBERON:0001886"
+        ],
+        "jejunal epithelium": [
+          "UBERON:0000400"
+        ],
+        "mammary gland": [
+          "UBERON:0001911"
+        ],
+        "trophoblast": [
+          "UBERON:0000088"
+        ],
+        "caecum": [
+          "UBERON:0001153"
+        ],
+        "skin of prepuce of penis": [
+          "UBERON:0001471"
+        ],
+        "skin of trunk": [
+          "UBERON:0001085"
+        ],
+        "urethra": [
+          "UBERON:0000057"
+        ],
+        "corneo-scleral junction": [
+          "UBERON:0006761"
+        ],
+        "right temporal lobe": [
+          "UBERON:0002809"
+        ],
+        "right colon": [
+          "UBERON:0008972"
+        ],
+        "right occipital lobe": [
+          "UBERON:0002807"
+        ],
+        "meningeal dura mater": [
+          "UBERON:0010506"
+        ],
+        "descending colon": [
+          "UBERON:0001158"
+        ],
+        "skin of external ear": [
+          "UBERON:0001459"
+        ],
+        "duodeno-jejunal junction": [
+          "UBERON:8410000"
+        ],
+        "parotid gland": [
+          "UBERON:0001831"
+        ],
+        "brain white matter": [
+          "UBERON:0003544"
+        ],
+        "gallbladder": [
+          "UBERON:0002110"
+        ],
+        "cervical spinal cord white matter": [
+          "UBERON:0014614"
+        ],
+        "skin of scalp": [
+          "UBERON:8300000"
+        ],
+        "lateral visual area": [
+          "UBERON:0035895"
+        ],
+        "basal zone of heart": [
+          "UBERON:0035213"
+        ],
+        "cardia of stomach": [
+          "UBERON:0001162"
+        ],
+        "ureter": [
+          "UBERON:0000056"
+        ],
+        "renal papilla": [
+          "UBERON:0001228"
+        ],
+        "left colon": [
+          "UBERON:0008971"
+        ],
+        "venous blood": [
+          "UBERON:0013756"
+        ],
+        "rectum": [
+          "UBERON:0001052"
+        ],
+        "hepatic cecum": [
+          "UBERON:0012474"
+        ],
+        "bronchopulmonary lymph node": [
+          "UBERON:0039167"
+        ],
+        "white matter of cerebellum": [
+          "UBERON:0002317"
+        ],
+        "hemisphere part of cerebellar posterior lobe": [
+          "UBERON:0014648"
+        ],
+        "skin of temple": [
+          "UBERON:8480028"
+        ],
+        "zone of skin": [
+          "UBERON:0000014"
+        ],
+        "coronal suture": [
+          "UBERON:0002489"
+        ],
+        "saliva": [
+          "UBERON:0001836"
+        ],
+        "cortical plate": [
+          "UBERON:0005343"
+        ],
+        "peripheral zone of prostate": [
+          "UBERON:8410026"
+        ],
+        "dentate nucleus": [
+          "UBERON:0002132"
+        ],
+        "lens of camera-type eye": [
+          "UBERON:0000965"
+        ],
+        "jejunum": [
+          "UBERON:0002115"
+        ],
+        "barrel cortex": [
+          "UBERON:0010415"
+        ],
+        "exocrine pancreas": [
+          "UBERON:0000017"
+        ],
+        "adrenal tissue": [
+          "UBERON:0018303"
+        ],
+        "rectus abdominis muscle": [
+          "UBERON:0002382"
+        ],
+        "thyroid gland": [
+          "UBERON:0002046"
+        ],
+        "pleural fluid": [
+          "UBERON:0001087"
+        ],
+        "bladder lumen": [
+          "UBERON:0009958"
+        ],
+        "mesenteric artery": [
+          "UBERON:0005616"
+        ],
+        "tendon of semitendinosus": [
+          "UBERON:8480009"
+        ],
+        "Brodmann (1909) area 4": [
+          "UBERON:0013535"
+        ],
+        "chorionic villus": [
+          "UBERON:0007106"
+        ],
+        "skin of pes": [
+          "UBERON:0001513"
+        ],
+        "autopod skin": [
+          "UBERON:0015790"
+        ],
+        "skin of back": [
+          "UBERON:0001068"
+        ],
+        "anterolateral visual area": [
+          "UBERON:0035894"
+        ],
+        "nose skin": [
+          "UBERON:0015476"
+        ],
+        "artery": [
+          "UBERON:0001637"
+        ],
+        "cerebellar cortex": [
+          "UBERON:0002129"
+        ],
+        "posterior part of tongue": [
+          "UBERON:0010033"
+        ],
+        "aorta": [
+          "UBERON:0000947"
+        ],
+        "skin of leg": [
+          "UBERON:0001511"
+        ],
+        "submucosa of ileum": [
+          "UBERON:0004946"
+        ],
+        "chest wall": [
+          "UBERON:0016435"
+        ],
+        "basal ganglion": [
+          "UBERON:0002420"
+        ],
+        "skin of chest": [
+          "UBERON:0001868"
+        ],
+        "occipital lobe": [
+          "UBERON:0002021"
+        ],
+        "inguinal lymph node": [
+          "UBERON:0001542"
+        ],
+        "cardiac atrium": [
+          "UBERON:0002081"
+        ],
+        "cerebellum vermis lobule": [
+          "UBERON:0004070"
+        ],
+        "muscle of pelvic diaphragm": [
+          "UBERON:0008612"
+        ],
+        "epithelium of trachea": [
+          "UBERON:0001901"
+        ],
+        "submucosa of ascending colon": [
+          "UBERON:0004929"
+        ],
+        "brain gray matter": [
+          "UBERON:0003528"
+        ],
+        "arm skin": [
+          "UBERON:0002427"
+        ],
+        "lateral ganglionic eminence": [
+          "UBERON:0004025"
+        ],
+        "axilla": [
+          "UBERON:0009472"
+        ],
+        "anterior cingulate gyrus": [
+          "UBERON:0002756"
+        ],
+        "sublingual gland": [
+          "UBERON:0001832"
+        ],
+        "muscle of abdomen": [
+          "UBERON:0002378"
+        ],
+        "orbitofrontal cortex": [
+          "UBERON:0004167"
+        ],
+        "rib": [
+          "UBERON:0002228"
+        ],
+        "peripheral lymph node": [
+          "UBERON:0003968"
+        ],
+        "vermiform appendix": [
+          "UBERON:0001154"
+        ],
+        "hindgut": [
+          "UBERON:0001046"
+        ],
+        "anterior part of tongue": [
+          "UBERON:0010032"
+        ],
+        "vault of skull": [
+          "UBERON:0004339"
+        ],
+        "muscle tissue": [
+          "UBERON:0002385"
+        ],
+        "coronary artery": [
+          "UBERON:0001621"
+        ],
+        "skin of abdomen": [
+          "UBERON:0001416"
+        ],
+        "vein": [
+          "UBERON:0001638"
+        ],
+        "cervical lymph node": [
+          "UBERON:0002429"
+        ],
+        "pyloric antrum": [
+          "UBERON:0001165"
+        ],
+        "submucosal esophageal gland": [
+          "UBERON:0008989"
+        ],
+        "epithelium of small intestine": [
+          "UBERON:0001902"
+        ],
+        "hindlimb skin": [
+          "UBERON:0003532"
+        ],
+        "gonadal fat pad": [
+          "UBERON:0003428"
+        ],
+        "cardiac ventricle": [
+          "UBERON:0002082"
+        ],
+        "myometrium": [
+          "UBERON:0001296"
+        ],
+        "mesenteric fat pad": [
+          "UBERON:0015143"
+        ],
+        "renal glomerulus": [
+          "UBERON:0000074"
+        ],
+        "cerebellar hemisphere": [
+          "UBERON:0002245"
+        ],
+        "outer medulla of kidney": [
+          "UBERON:0001293"
+        ],
+        "pigment epithelium of eye": [
+          "UBERON:0007625"
+        ],
+        "brain meninx": [
+          "UBERON:0003547"
+        ],
+        "hepatic flexure of colon": [
+          "UBERON:0022277"
+        ],
+        "skin of hip": [
+          "UBERON:0001554"
+        ],
+        "brown adipose tissue": [
+          "UBERON:0001348"
+        ],
+        "perirenal fat": [
+          "UBERON:0005406"
+        ],
+        "conjunctiva": [
+          "UBERON:0001811"
+        ],
+        "retrosplenial region": [
+          "UBERON:0013531"
+        ],
+        "secondary somatosensory cortex": [
+          "UBERON:0008934"
+        ],
+        "diaphragm": [
+          "UBERON:0001103"
+        ],
+        "caecum epithelium": [
+          "UBERON:0005636"
+        ],
+        "lateral entorhinal cortex": [
+          "UBERON:0007225"
+        ],
+        "medial entorhinal cortex": [
+          "UBERON:0007224"
+        ],
+        "endocrine pancreas": [
+          "UBERON:0000016"
+        ],
+        "gustatory cortex": [
+          "UBERON:8440075"
+        ],
+        "lower leg skin": [
+          "UBERON:0004264"
+        ],
+        "sclera": [
+          "UBERON:0001773"
+        ],
+        "bone spine": [
+          "UBERON:0013706"
+        ],
+        "temporoparietal junction": [
+          "UBERON:0023852"
+        ],
+        "inner medulla of kidney": [
+          "UBERON:0001294"
+        ],
+        "skeletal muscle tissue": [
+          "UBERON:0001134"
+        ],
+        "retinal neural layer": [
+          "UBERON:0003902"
+        ],
+        "renal pelvis": [
+          "UBERON:0001224"
+        ],
+        "gonad primordium": [
+          "UBERON:0005564"
+        ],
+        "lacrimal gland": [
+          "UBERON:0001817"
+        ],
+        "left parietal lobe": [
+          "UBERON:0002802"
+        ],
+        "optic cup": [
+          "UBERON:0003072"
+        ],
+        "mesoderm": [
+          "UBERON:0000926"
+        ],
+        "subdural space": [
+          "UBERON:0000416"
+        ],
+        "kidney blood vessel": [
+          "UBERON:0003517"
+        ],
+        "skin of shoulder": [
+          "UBERON:0001483"
+        ],
+        "skin of face": [
+          "UBERON:1000021"
+        ],
+        "claustrum of brain": [
+          "UBERON:0002023"
+        ]
+      }
+    },
+    "ethnicity": {
+      "source_column": "self_reported_ethnicity_ontology_term_id",
+      "category_count": 31,
+      "resolved_category_count": 31,
+      "unresolved_ontology_ids": [],
+      "counts": {
+        "unknown": 232103344,
+        "European": 103169011,
+        "East Asian": 5224564,
+        "African": 2076086,
+        "Asian": 1057707,
+        "African American": 849525,
+        "Hispanic or Latin American": 686359,
+        "Han Chinese": 580297,
+        "Korean": 366741,
+        "Japanese": 286809,
+        "British": 273803,
+        "African American or Afro-Caribbean": 157253,
+        "Singaporean Chinese": 124371,
+        "Singaporean Indian": 106923,
+        "South Asian": 102555,
+        "Singaporean Malay": 100626,
+        "European American": 64872,
+        "American": 52617,
+        "Native American,Hispanic or Latin American": 38208,
+        "Oceanian": 31780,
+        "Bangladeshi": 19464,
+        "Iraqi": 18518,
+        "Irish": 14330,
+        "European,Asian": 11725,
+        "Chinese": 9290,
+        "Jewish Israeli": 8616,
+        "South East Asian": 7482,
+        "Greater Middle Eastern  (Middle Eastern or North African or Persian)": 6479,
+        "Finnish": 4355,
+        "Pacific Islander": 2232,
+        "Native American": 1986
+      },
+      "ontology_ids_by_label": {
+        "unknown": [
+          "unknown"
+        ],
+        "European": [
+          "HANCESTRO:0005"
+        ],
+        "East Asian": [
+          "HANCESTRO:0009"
+        ],
+        "African": [
+          "HANCESTRO:0010"
+        ],
+        "Asian": [
+          "HANCESTRO:0008"
+        ],
+        "African American": [
+          "HANCESTRO:0568"
+        ],
+        "Hispanic or Latin American": [
+          "HANCESTRO:0014"
+        ],
+        "Han Chinese": [
+          "HANCESTRO:0027"
+        ],
+        "Korean": [
+          "HANCESTRO:0022"
+        ],
+        "Japanese": [
+          "HANCESTRO:0019"
+        ],
+        "British": [
+          "HANCESTRO:0462"
+        ],
+        "African American or Afro-Caribbean": [
+          "HANCESTRO:0016"
+        ],
+        "Singaporean Chinese": [
+          "HANCESTRO:0025"
+        ],
+        "Singaporean Indian": [
+          "HANCESTRO:0598"
+        ],
+        "South Asian": [
+          "HANCESTRO:0006"
+        ],
+        "Singaporean Malay": [
+          "HANCESTRO:0597"
+        ],
+        "European American": [
+          "HANCESTRO:0590"
+        ],
+        "American": [
+          "HANCESTRO:0463"
+        ],
+        "Native American,Hispanic or Latin American": [
+          "HANCESTRO:0013,HANCESTRO:0014"
+        ],
+        "Oceanian": [
+          "HANCESTRO:0017"
+        ],
+        "Bangladeshi": [
+          "HANCESTRO:0485"
+        ],
+        "Iraqi": [
+          "HANCESTRO:0439"
+        ],
+        "Irish": [
+          "HANCESTRO:0383"
+        ],
+        "European,Asian": [
+          "HANCESTRO:0005,HANCESTRO:0008"
+        ],
+        "Chinese": [
+          "HANCESTRO:0021"
+        ],
+        "Jewish Israeli": [
+          "HANCESTRO:0588"
+        ],
+        "South East Asian": [
+          "HANCESTRO:0007"
+        ],
+        "Greater Middle Eastern  (Middle Eastern or North African or Persian)": [
+          "HANCESTRO:0015"
+        ],
+        "Finnish": [
+          "HANCESTRO:0321"
+        ],
+        "Pacific Islander": [
+          "HANCESTRO:0574"
+        ],
+        "Native American": [
+          "HANCESTRO:0013"
+        ]
+      }
+    },
+    "disease": {
+      "source_column": "disease_ontology_term_id",
+      "category_count": 434,
+      "resolved_category_count": 434,
+      "unresolved_ontology_ids": [],
+      "counts": {
+        "unknown": 138300318,
+        "normal": 55942291,
+        "adenocarcinoma": 36356863,
+        "carcinoma": 11976298,
+        "breast ductal adenocarcinoma": 9080575,
+        "non-small cell lung carcinoma": 8480880,
+        "melanoma": 7076568,
+        "large cell carcinoma": 6037420,
+        "COVID-19": 5533607,
+        "glioblastoma": 4319817,
+        "squamous cell carcinoma": 3405829,
+        "small cell carcinoma": 2649419,
+        "transitional cell carcinoma": 2379769,
+        "signet ring cell carcinoma": 2316061,
+        "hepatocellular carcinoma": 1891954,
+        "lung adenocarcinoma": 1792958,
+        "plasma cell myeloma": 1654168,
+        "breast cancer": 1587851,
+        "Alzheimer disease": 1472570,
+        "hepatoblastoma": 1434605,
+        "invasive carcinoma": 1314515,
+        "astrocytoma (excluding glioblastoma)": 1229754,
+        "dementia": 1135641,
+        "Crohn disease": 1053257,
+        "neuroblastoma": 989863,
+        "acute myeloid leukemia": 931243,
+        "systemic lupus erythematosus": 891958,
+        "myocardial infarction": 885100,
+        "colorectal cancer": 883678,
+        "malignant pancreatic neoplasm": 703800,
+        "type 2 diabetes mellitus": 700722,
+        "squamous cell lung carcinoma": 618124,
+        "long COVID-19": 589579,
+        "prostate cancer": 577845,
+        "Parkinson disease": 568832,
+        "cancer": 564104,
+        "pancreatic ductal adenocarcinoma": 531299,
+        "dilated cardiomyopathy": 523039,
+        "atherosclerosis": 502542,
+        "B-cell non-Hodgkin lymphoma": 476913,
+        "chronic kidney disease": 392534,
+        "coronary artery disorder": 381916,
+        "diabetic kidney disease": 380044,
+        "osteoarthritis": 379259,
+        "influenza": 368995,
+        "triple-negative breast carcinoma": 344005,
+        "Down syndrome": 340303,
+        "pulmonary fibrosis": 331696,
+        "urinary bladder cancer": 330563,
+        "endometrial carcinoma": 319643,
+        "type 1 diabetes mellitus": 309477,
+        "Huntington disease": 307952,
+        "acute kidney failure": 307441,
+        "lung cancer": 280193,
+        "RET fusion positive cancer": 278232,
+        "chronic obstructive pulmonary disease": 274834,
+        "neoplasm": 273748,
+        "multiple sclerosis": 271241,
+        "ovarian cancer": 262949,
+        "autosomal dominant polycystic kidney disease": 254343,
+        "congenital heart disease": 253062,
+        "meningioma": 252438,
+        "chronic myelogenous leukemia, BCR-ABL1 positive": 251727,
+        "follicular lymphoma": 250925,
+        "tonsillitis": 248132,
+        "renal cell carcinoma": 240962,
+        "clear cell renal carcinoma": 232980,
+        "ankylosing spondylitis": 228207,
+        "interstitial lung disease 2": 227808,
+        "gastric cancer": 226793,
+        "chronic hepatitis B virus infection": 218621,
+        "spinal cord injury": 218080,
+        "spinocerebellar ataxia type 1": 215869,
+        "amyotrophic lateral sclerosis": 215140,
+        "nonpapillary renal cell carcinoma": 214873,
+        "obstructive sleep apnea syndrome": 213315,
+        "osteosarcoma": 210425,
+        "arthritic joint disease": 209964,
+        "chronic myelomonocytic leukemia": 207878,
+        "obsolete vascular headache": 206302,
+        "stroke disorder": 199173,
+        "vascular dementia": 194384,
+        "traumatic brain injury": 186638,
+        "glaucoma": 173157,
+        "primary sclerosing cholangitis": 171579,
+        "small cell lung carcinoma": 170038,
+        "cystic fibrosis": 168856,
+        "epilepsy": 166353,
+        "myelodysplastic syndrome with ring sideroblasts": 165645,
+        "pleural mesothelioma": 157504,
+        "adrenal cortex neoplasm": 152331,
+        "obesity disorder": 151816,
+        "obsolete asymptomatic COVID-19 infection": 151652,
+        "keloid": 151499,
+        "alopecia areata": 149188,
+        "obesity due to prohormone convertase I deficiency": 148567,
+        "acquired monoclonal Ig light chain-associated Fanconi syndrome": 144034,
+        "Zika virus infectious disease": 142226,
+        "pneumonitis": 141508,
+        "psoriasis": 136356,
+        "schizophrenia": 135148,
+        "chromosome 15q13.3 microdeletion syndrome": 132519,
+        "heart failure": 131053,
+        "age-related macular degeneration": 129977,
+        "frontotemporal dementia": 129143,
+        "lissencephaly spectrum disorders": 128685,
+        "C1Q deficiency": 128654,
+        "B-cell acute lymphoblastic leukemia": 128588,
+        "pediatric arterial ischemic stroke": 128092,
+        "diabetes mellitus": 122162,
+        "breast carcinoma": 121820,
+        "invasive breast carcinoma": 120048,
+        "VEXAS syndrome": 118867,
+        "leukemia": 118336,
+        "acoustic neuroma": 116577,
+        "Alagille syndrome": 112243,
+        "herpes simplex infectious disease": 111387,
+        "metastatic melanoma": 111228,
+        "polycystic kidney disease": 110445,
+        "rheumatoid arthritis": 109408,
+        "attenuated familial adenomatous polyposis": 109183,
+        "classic Hodgkin lymphoma": 105016,
+        "arrhythmogenic right ventricular cardiomyopathy": 104496,
+        "Netherton syndrome": 104371,
+        "schwannoma": 104191,
+        "sickle cell anemia": 103240,
+        "atopic eczema": 102391,
+        "basal cell carcinoma": 100865,
+        "malignant glioma": 100610,
+        "benign prostatic hyperplasia": 100575,
+        "lung cancer susceptibility 1": 100543,
+        "diabetic peripheral angiopathy": 99967,
+        "autism spectrum disorder": 99588,
+        "dedifferentiated liposarcoma": 99172,
+        "eosinophilic esophagitis": 98221,
+        "post-COVID-19 disorder": 97224,
+        "scleroderma": 96202,
+        "respiratory system disorder": 94987,
+        "SYNGAP1-related developmental and epileptic encephalopathy": 94690,
+        "stage IVb bladder cancer": 93910,
+        "opiate dependence": 92228,
+        "Alexander disease": 91840,
+        "myelofibrosis": 90133,
+        "endometriosis": 89673,
+        "digestive system disorder": 89431,
+        "malignant colon neoplasm": 86715,
+        "obsolete pulmonary arterial hypertension associated with HIV infection": 85683,
+        "colitis": 82227,
+        "interstitial lung disease": 82078,
+        "obsolete hematopoietic stem cell kinetics, control of": 81129,
+        "pericardial tuberculosis": 78436,
+        "myocarditis": 75655,
+        "cholangiocarcinoma": 74513,
+        "cervical cancer": 74061,
+        "amyotrophic lateral sclerosis 26 with or without frontotemporal dementia": 73797,
+        "BARD1-related cancer predisposition": 73733,
+        "glioma": 72008,
+        "psoriatic arthritis": 70943,
+        "lichen planus": 70496,
+        "hepatitis B virus infection": 70400,
+        "mycosis fungoides": 69527,
+        "nasopharyngeal carcinoma": 67831,
+        "Blau syndrome": 67471,
+        "Lewy body dementia": 67466,
+        "complex sleep apnea": 65742,
+        "Noonan syndrome": 65729,
+        "common variable immunodeficiency": 64759,
+        "small intestine adenocarcinoma": 64252,
+        "wet macular degeneration": 63466,
+        "ulcerative colitis": 63020,
+        "metabolic dysfunction-associated steatohepatitis": 62275,
+        "Sezary syndrome": 61813,
+        "celiac disease": 61715,
+        "retinal macular dystrophy type 2": 61569,
+        "colonic neoplasm": 60436,
+        "aortic aneurysm": 60196,
+        "primary progressive multiple sclerosis": 58904,
+        "skin squamous cell carcinoma": 58308,
+        "blastoma": 57445,
+        "ectopic pregnancy": 57319,
+        "low grade glioma": 57080,
+        "pancreatitis": 56658,
+        "allergic rhinitis": 56279,
+        "malaria": 56098,
+        "obsolete rare lichen planus": 56049,
+        "dengue disease": 56016,
+        "brain neoplasm": 55954,
+        "COVID-19\u2013associated multisystem inflammatory syndrome in children": 55780,
+        "neurofibromatosis-Noonan syndrome": 54320,
+        "bronchopulmonary dysplasia": 53916,
+        "Hodgkins lymphoma": 53655,
+        "uveitis": 52374,
+        "Rett syndrome": 52227,
+        "cystic fibrosis associated meconium ileus": 52043,
+        "classic complement early component deficiency": 51737,
+        "CHARGE syndrome": 51528,
+        "systemic sclerosis": 51256,
+        "pneumonia": 50884,
+        "retinitis pigmentosa": 50379,
+        "juvenile idiopathic arthritis": 50271,
+        "chronic lymphocytic leukemia/small lymphocytic lymphoma with immunoglobulin heavy chain variable-region gene somatic hypermutation": 49954,
+        "pulmonary venoocclusive disease 2": 49571,
+        "Hirschsprung disease": 49532,
+        "coronary aneurysm": 49055,
+        "sarcoma": 48161,
+        "retinopathy of prematurity": 48132,
+        "hypoplastic left heart syndrome": 48019,
+        "premalignant hematological system disease": 47354,
+        "sarcoidosis": 47290,
+        "benign paroxysmal tonic upgaze of childhood with ataxia": 46025,
+        "pancreatic neoplasm": 45657,
+        "microcephaly-congenital cataract-psoriasiform dermatitis syndrome": 45213,
+        "colorectal carcinoma": 44958,
+        "fibrous dysplasia": 44572,
+        "methicillin-resistant staphylococcus aureus infectious disease": 44251,
+        "splenic marginal zone lymphoma": 44153,
+        "liver disorder": 44100,
+        "pulmonary hypertension": 43139,
+        "non-distal monosomy 10q": 42862,
+        "lung neoplasm": 42436,
+        "gastric adenocarcinoma": 41942,
+        "vitiligo": 41551,
+        "respiratory system benign neoplasm": 41451,
+        "acute liver failure": 41420,
+        "choroid plexus neoplasm": 41250,
+        "medulloblastoma": 41173,
+        "Caplan syndrome": 40446,
+        "cytomegalovirus infection": 40006,
+        "primary biliary cholangitis": 39994,
+        "head and neck squamous cell carcinoma": 39947,
+        "prurigo nodularis": 39590,
+        "estrogen-receptor positive breast cancer": 39095,
+        "leiomyosarcoma": 39043,
+        "osteogenesis imperfecta": 39013,
+        "acute tonsillitis": 38612,
+        "periodontitis": 37862,
+        "multifocal lymphangioendotheliomatosis-thrombocytopenia syndrome": 37477,
+        "non-small cell squamous lung carcinoma": 37044,
+        "parapsoriasis": 37020,
+        "pleomorphic adenoma": 36890,
+        "noninfectious dermatoses of eyelid": 36768,
+        "prediabetes syndrome": 36384,
+        "obsolete hyperuricemia": 35827,
+        "tonsil carcinoma": 35773,
+        "toxoplasmosis": 35657,
+        "gout": 35465,
+        "esophageal adenocarcinoma": 35305,
+        "severe acute respiratory syndrome": 35231,
+        "myelodysplastic syndrome": 35023,
+        "Barrett esophagus": 34963,
+        "fetal iodine syndrome": 34960,
+        "Richter syndrome": 34870,
+        "clonal hematopoiesis": 34827,
+        "cholestasis": 34764,
+        "breast neoplasm": 34745,
+        "thyroid gland carcinoma": 34596,
+        "experimental autoimmune encephalomyelitis": 34584,
+        "tuberculosis": 34316,
+        "bacterial meningitis": 34306,
+        "pilocytic astrocytoma": 34291,
+        "alcoholic liver diseases": 34240,
+        "mesothelioma": 34189,
+        "Duchenne muscular dystrophy": 33937,
+        "canine oral squamous cell carcinoma": 33698,
+        "coronary atherosclerosis": 33577,
+        "bacterial infectious disease with sepsis": 33124,
+        "undifferentiated pleomorphic sarcoma": 33105,
+        "colon adenocarcinoma": 32975,
+        "tongue squamous cell carcinoma": 32625,
+        "Crohn ileitis": 32457,
+        "localized scleroderma": 32302,
+        "interstitial cystitis": 32287,
+        "primary cutaneous T-cell non-Hodgkin lymphoma": 32213,
+        "proliferative glomerulonephritis": 32034,
+        "Brooke-Spiegler syndrome": 31996,
+        "Diamond-Blackfan anemia": 31974,
+        "pulmonary emphysema": 31792,
+        "papillary renal cell carcinoma": 31757,
+        "thyroid cancer": 31601,
+        "gestational diabetes": 31279,
+        "relapsing-remitting multiple sclerosis": 30922,
+        "liver and intrahepatic bile duct neoplasm": 30869,
+        "lichen planus, oral": 30673,
+        "gastroesophageal reflux disease": 30594,
+        "adenosquamous carcinoma": 30217,
+        "skin carcinoma": 30096,
+        "biliary tract cancer": 30058,
+        "thyroid gland papillary carcinoma": 29970,
+        "prostate adenocarcinoma": 29768,
+        "bilateral striopallidodentate calcinosis": 29500,
+        "chronic rhinitis": 29137,
+        "Marfan syndrome": 28747,
+        "lupus nephritis": 28545,
+        "luminal B breast carcinoma": 28534,
+        "lymphoplasmacytic lymphoma": 28444,
+        "obsolete severe COVID-19 infection": 28266,
+        "listeriosis": 28237,
+        "non-Hodgkin lymphoma": 28177,
+        "myoclonic epilepsy, congenital deafness, macular dystrophy, and psychiatric disorders": 28176,
+        "anterior cutaneous nerve entrapment syndrome": 28112,
+        "obesity-hypoventilation syndrome": 28092,
+        "cranio-osteoarthropathy": 28058,
+        "depressive disorder": 28051,
+        "Plasmodium malariae malaria": 27958,
+        "inflammatory bowel disease": 27692,
+        "hemolytic anemia": 27563,
+        "endocrine pancreas disorder": 27527,
+        "thyroid gland undifferentiated (anaplastic) carcinoma": 27397,
+        "tauopathy": 27366,
+        "tubular adenoma": 27270,
+        "gastric intestinal metaplasia": 27135,
+        "gastritis": 26591,
+        "tetralogy of fallot": 26348,
+        "mantle cell lymphoma": 26311,
+        "Balo concentric sclerosis": 26265,
+        "Helicobacter pylori infection, susceptibility to": 25902,
+        "endometrioid stromal and related neoplasms of the cervix": 25743,
+        "pulmonary arterial hypertension": 25092,
+        "Kimura disease": 25041,
+        "metabolic dysfunction-associated steatotic liver disease": 24926,
+        "large B-cell lymphoma": 24659,
+        "Loeys-Dietz syndrome": 24615,
+        "acute pancreatitis": 24587,
+        "pulmonary interstitial glycogenosis": 24584,
+        "allergic disease": 24013,
+        "sickle cell-hemoglobin c disease syndrome": 23959,
+        "B-cell chronic lymphocytic leukemia": 23725,
+        "Wolfram syndrome": 23180,
+        "Fanconi anemia complementation group D1": 22529,
+        "systemic lupus erythematosus with nephritis, susceptibility to, 1": 22276,
+        "lymphoma": 22182,
+        "asthma, nasal polyps, and aspirin intolerance": 21964,
+        "intrahepatic cholangiocarcinoma": 21956,
+        "autoimmune thrombocytopenia": 21807,
+        "congenital diaphragmatic hernia": 21772,
+        "paraquat poisoning": 21708,
+        "14q32 duplication syndrome": 21552,
+        "idiopathic pulmonary arterial hypertension": 21466,
+        "lung large cell carcinoma": 21167,
+        "semantic dementia": 20534,
+        "cutaneous neuroendocrine carcinoma": 20484,
+        "ACTH-dependent Cushing syndrome": 20391,
+        "pancreatic adenocarcinoma": 19885,
+        "primary systemic amyloidosis": 19853,
+        "liver cancer": 19563,
+        "classic familial adenomatous polyposis": 19408,
+        "rhabdomyosarcoma": 18806,
+        "chronic thromboembolic pulmonary hypertension": 18512,
+        "chronic progressive multiple sclerosis": 18355,
+        "hidradenitis suppurativa": 18146,
+        "hydrosalpinx": 17798,
+        "obsessive-compulsive disorder": 17670,
+        "gallbladder carcinoma": 17617,
+        "lung carcinoma": 17613,
+        "primary ciliary dyskinesia": 17545,
+        "staphylococcus aureus infection": 16916,
+        "progeria": 16654,
+        "chondrocalcinosis 2": 16609,
+        "MELAS syndrome": 16489,
+        "MPI-congenital disorder of glycosylation": 16405,
+        "HIV infectious disease": 16275,
+        "cognitive impairment with or without cerebellar ataxia": 16032,
+        "sclerosing cholangitis": 14957,
+        "acute lung injury": 14914,
+        "salmonellosis": 14846,
+        "obsolete brown shrimp allergy": 14733,
+        "colon sessile serrated adenoma/polyp": 14573,
+        "acute myocardial infarction": 14337,
+        "myasthenia gravis": 14295,
+        "acute coronary syndrome": 14117,
+        "trisomy 18": 13273,
+        "olfactory neuroblastoma": 13040,
+        "taeniasis": 12916,
+        "testicular cancer": 12896,
+        "endometrial cancer": 12888,
+        "kidney oncocytoma": 12610,
+        "lymphangioleiomyomatosis": 12374,
+        "exocrine pancreatic carcinoma": 12282,
+        "atopic conjunctivitis": 12113,
+        "central pontine myelinolysis": 12032,
+        "combined small cell lung carcinoma": 11956,
+        "preeclampsia": 11771,
+        "non-compaction cardiomyopathy": 11632,
+        "dysgerminoma": 11576,
+        "Anemia, congenital dyserythropoietic, type IIIb, autosomal recessive": 11495,
+        "benign neoplasm of large intestine": 11158,
+        "breast fibrocystic disease": 11006,
+        "polycystic ovary syndrome": 10919,
+        "pleomorphic carcinoma": 10765,
+        "parathyroid gland adenoma": 10544,
+        "periodontal disorder": 10393,
+        "hypersensitivity pneumonitis": 10379,
+        "injury": 10231,
+        "retinal degeneration": 10221,
+        "graft versus host disease": 10220,
+        "luminal A breast carcinoma": 10219,
+        "aspiration pneumonia": 10204,
+        "kidney neoplasm": 9755,
+        "arrhythmogenic cardiomyopathy with wooly hair and keratoderma": 9522,
+        "idiopathic gastroparesis": 8836,
+        "non-specific interstitial pneumonia": 8597,
+        "hyperplastic polyp": 8359,
+        "Uhl anomaly": 8113,
+        "bipolar disorder": 7868,
+        "pantothenate kinase-associated neurodegeneration": 7545,
+        "tubulovillous adenoma": 7216,
+        "lip and oral cavity carcinoma": 6995,
+        "obsolete sudden infant death syndrome": 6688,
+        "gingivitis": 6587,
+        "polyp": 6487,
+        "abdominal aortic aneurysm": 6474,
+        "fetal minoxidil syndrome": 6272,
+        "anencephaly": 5499,
+        "epidermolysis bullosa": 5199,
+        "pulmonary sarcoidosis": 4886,
+        "macular degeneration": 3922,
+        "congenital pseudoarthrosis of the tibia": 3758,
+        "cataract": 3620,
+        "respiratory failure": 3241,
+        "tongue carcinoma": 3023,
+        "tongue cancer": 2992,
+        "pemphigus": 2813,
+        "autoimmune disease of ear, nose and throat": 2659,
+        "neuroendocrine carcinoma": 2623,
+        "chromophobe renal cell carcinoma": 2576,
+        "diffuse cutaneous systemic sclerosis": 2261,
+        "temporal lobe epilepsy": 2096,
+        "heart disorder": 1957,
+        "age related macular degeneration 7": 1701,
+        "colorectal neoplasm": 1608,
+        "lymphadenitis": 1373,
+        "cardiomyopathy": 1285,
+        "susceptibility to HIV infection": 122,
+        "kidney benign neoplasm": 57
+      },
+      "ontology_ids_by_label": {
+        "unknown": [
+          "unknown"
+        ],
+        "normal": [
+          "PATO:0000461"
+        ],
+        "adenocarcinoma": [
+          "MONDO:0004970"
+        ],
+        "carcinoma": [
+          "MONDO:0004993"
+        ],
+        "breast ductal adenocarcinoma": [
+          "MONDO:0005590"
+        ],
+        "non-small cell lung carcinoma": [
+          "MONDO:0005233"
+        ],
+        "melanoma": [
+          "MONDO:0005105"
+        ],
+        "large cell carcinoma": [
+          "MONDO:0005232"
+        ],
+        "COVID-19": [
+          "MONDO:0100096"
+        ],
+        "glioblastoma": [
+          "MONDO:0018177"
+        ],
+        "squamous cell carcinoma": [
+          "MONDO:0005096"
+        ],
+        "small cell carcinoma": [
+          "MONDO:0000402"
+        ],
+        "transitional cell carcinoma": [
+          "MONDO:0006474"
+        ],
+        "signet ring cell carcinoma": [
+          "MONDO:0005092"
+        ],
+        "hepatocellular carcinoma": [
+          "MONDO:0007256"
+        ],
+        "lung adenocarcinoma": [
+          "MONDO:0005061"
+        ],
+        "plasma cell myeloma": [
+          "MONDO:0009693"
+        ],
+        "breast cancer": [
+          "MONDO:0007254"
+        ],
+        "Alzheimer disease": [
+          "MONDO:0004975"
+        ],
+        "hepatoblastoma": [
+          "MONDO:0018666"
+        ],
+        "invasive carcinoma": [
+          "MONDO:0040677"
+        ],
+        "astrocytoma (excluding glioblastoma)": [
+          "MONDO:0019781"
+        ],
+        "dementia": [
+          "MONDO:0001627"
+        ],
+        "Crohn disease": [
+          "MONDO:0005011"
+        ],
+        "neuroblastoma": [
+          "MONDO:0005072"
+        ],
+        "acute myeloid leukemia": [
+          "MONDO:0018874"
+        ],
+        "systemic lupus erythematosus": [
+          "MONDO:0007915"
+        ],
+        "myocardial infarction": [
+          "MONDO:0005068"
+        ],
+        "colorectal cancer": [
+          "MONDO:0005575"
+        ],
+        "malignant pancreatic neoplasm": [
+          "MONDO:0009831"
+        ],
+        "type 2 diabetes mellitus": [
+          "MONDO:0005148"
+        ],
+        "squamous cell lung carcinoma": [
+          "MONDO:0005097"
+        ],
+        "long COVID-19": [
+          "MONDO:0100233"
+        ],
+        "prostate cancer": [
+          "MONDO:0008315"
+        ],
+        "Parkinson disease": [
+          "MONDO:0005180"
+        ],
+        "cancer": [
+          "MONDO:0004992"
+        ],
+        "pancreatic ductal adenocarcinoma": [
+          "MONDO:0005184"
+        ],
+        "dilated cardiomyopathy": [
+          "MONDO:0005021"
+        ],
+        "atherosclerosis": [
+          "MONDO:0005311"
+        ],
+        "B-cell non-Hodgkin lymphoma": [
+          "MONDO:0015759"
+        ],
+        "chronic kidney disease": [
+          "MONDO:0005300"
+        ],
+        "coronary artery disorder": [
+          "MONDO:0005010"
+        ],
+        "diabetic kidney disease": [
+          "MONDO:0005016"
+        ],
+        "osteoarthritis": [
+          "MONDO:0005178"
+        ],
+        "influenza": [
+          "MONDO:0005812"
+        ],
+        "triple-negative breast carcinoma": [
+          "MONDO:0005494"
+        ],
+        "Down syndrome": [
+          "MONDO:0008608"
+        ],
+        "pulmonary fibrosis": [
+          "MONDO:0002771"
+        ],
+        "urinary bladder cancer": [
+          "MONDO:0001187"
+        ],
+        "endometrial carcinoma": [
+          "MONDO:0002447"
+        ],
+        "type 1 diabetes mellitus": [
+          "MONDO:0005147"
+        ],
+        "Huntington disease": [
+          "MONDO:0007739"
+        ],
+        "acute kidney failure": [
+          "MONDO:0002492"
+        ],
+        "lung cancer": [
+          "MONDO:0008903"
+        ],
+        "RET fusion positive cancer": [
+          "MONDO:0700216"
+        ],
+        "chronic obstructive pulmonary disease": [
+          "MONDO:0005002"
+        ],
+        "neoplasm": [
+          "MONDO:0005070"
+        ],
+        "multiple sclerosis": [
+          "MONDO:0005301"
+        ],
+        "ovarian cancer": [
+          "MONDO:0008170"
+        ],
+        "autosomal dominant polycystic kidney disease": [
+          "MONDO:0004691"
+        ],
+        "congenital heart disease": [
+          "MONDO:0005453"
+        ],
+        "meningioma": [
+          "MONDO:0016642"
+        ],
+        "chronic myelogenous leukemia, BCR-ABL1 positive": [
+          "MONDO:0011996"
+        ],
+        "follicular lymphoma": [
+          "MONDO:0018906"
+        ],
+        "tonsillitis": [
+          "MONDO:0001039"
+        ],
+        "renal cell carcinoma": [
+          "MONDO:0005086"
+        ],
+        "clear cell renal carcinoma": [
+          "MONDO:0005005"
+        ],
+        "ankylosing spondylitis": [
+          "MONDO:0005306"
+        ],
+        "interstitial lung disease 2": [
+          "MONDO:0800029"
+        ],
+        "gastric cancer": [
+          "MONDO:0001056"
+        ],
+        "chronic hepatitis B virus infection": [
+          "MONDO:0005366"
+        ],
+        "spinal cord injury": [
+          "MONDO:0043797"
+        ],
+        "spinocerebellar ataxia type 1": [
+          "MONDO:0008119"
+        ],
+        "amyotrophic lateral sclerosis": [
+          "MONDO:0004976"
+        ],
+        "nonpapillary renal cell carcinoma": [
+          "MONDO:0007763"
+        ],
+        "obstructive sleep apnea syndrome": [
+          "MONDO:0007147"
+        ],
+        "osteosarcoma": [
+          "MONDO:0009807"
+        ],
+        "arthritic joint disease": [
+          "MONDO:0005578"
+        ],
+        "chronic myelomonocytic leukemia": [
+          "MONDO:0020311"
+        ],
+        "obsolete vascular headache": [
+          "MONDO:0040797"
+        ],
+        "stroke disorder": [
+          "MONDO:0005098"
+        ],
+        "vascular dementia": [
+          "MONDO:0004648"
+        ],
+        "traumatic brain injury": [
+          "MONDO:0858950"
+        ],
+        "glaucoma": [
+          "MONDO:0005041"
+        ],
+        "primary sclerosing cholangitis": [
+          "MONDO:0013433"
+        ],
+        "small cell lung carcinoma": [
+          "MONDO:0008433"
+        ],
+        "cystic fibrosis": [
+          "MONDO:0009061"
+        ],
+        "epilepsy": [
+          "MONDO:0005027"
+        ],
+        "myelodysplastic syndrome with ring sideroblasts": [
+          "MONDO:0019157"
+        ],
+        "pleural mesothelioma": [
+          "MONDO:0003308"
+        ],
+        "adrenal cortex neoplasm": [
+          "MONDO:0036591"
+        ],
+        "obesity disorder": [
+          "MONDO:0011122"
+        ],
+        "obsolete asymptomatic COVID-19 infection": [
+          "MONDO:0100139"
+        ],
+        "keloid": [
+          "MONDO:0005348"
+        ],
+        "alopecia areata": [
+          "MONDO:0005340"
+        ],
+        "obesity due to prohormone convertase I deficiency": [
+          "MONDO:0010961"
+        ],
+        "acquired monoclonal Ig light chain-associated Fanconi syndrome": [
+          "MONDO:0019604"
+        ],
+        "Zika virus infectious disease": [
+          "MONDO:0018661"
+        ],
+        "pneumonitis": [
+          "MONDO:0043905"
+        ],
+        "psoriasis": [
+          "MONDO:0005083"
+        ],
+        "schizophrenia": [
+          "MONDO:0005090"
+        ],
+        "chromosome 15q13.3 microdeletion syndrome": [
+          "MONDO:0012774"
+        ],
+        "heart failure": [
+          "MONDO:0005252"
+        ],
+        "age-related macular degeneration": [
+          "MONDO:0005150"
+        ],
+        "frontotemporal dementia": [
+          "MONDO:0017276"
+        ],
+        "lissencephaly spectrum disorders": [
+          "MONDO:0018838"
+        ],
+        "C1Q deficiency": [
+          "MONDO:0013343"
+        ],
+        "B-cell acute lymphoblastic leukemia": [
+          "MONDO:0004947"
+        ],
+        "pediatric arterial ischemic stroke": [
+          "MONDO:0018585"
+        ],
+        "diabetes mellitus": [
+          "MONDO:0005015"
+        ],
+        "breast carcinoma": [
+          "MONDO:0004989"
+        ],
+        "invasive breast carcinoma": [
+          "MONDO:0006256"
+        ],
+        "VEXAS syndrome": [
+          "MONDO:0026777"
+        ],
+        "leukemia": [
+          "MONDO:0005059"
+        ],
+        "acoustic neuroma": [
+          "MONDO:0001569"
+        ],
+        "Alagille syndrome": [
+          "MONDO:0007318"
+        ],
+        "herpes simplex infectious disease": [
+          "MONDO:0004609"
+        ],
+        "metastatic melanoma": [
+          "MONDO:0005191"
+        ],
+        "polycystic kidney disease": [
+          "MONDO:0020642"
+        ],
+        "rheumatoid arthritis": [
+          "MONDO:0008383"
+        ],
+        "attenuated familial adenomatous polyposis": [
+          "MONDO:0016362"
+        ],
+        "classic Hodgkin lymphoma": [
+          "MONDO:0009348"
+        ],
+        "arrhythmogenic right ventricular cardiomyopathy": [
+          "MONDO:0016587"
+        ],
+        "Netherton syndrome": [
+          "MONDO:0009735"
+        ],
+        "schwannoma": [
+          "MONDO:0002546"
+        ],
+        "sickle cell anemia": [
+          "MONDO:0011382"
+        ],
+        "atopic eczema": [
+          "MONDO:0004980"
+        ],
+        "basal cell carcinoma": [
+          "MONDO:0020804"
+        ],
+        "malignant glioma": [
+          "MONDO:0100342"
+        ],
+        "benign prostatic hyperplasia": [
+          "MONDO:0010811"
+        ],
+        "lung cancer susceptibility 1": [
+          "MONDO:0012159"
+        ],
+        "diabetic peripheral angiopathy": [
+          "MONDO:0000960"
+        ],
+        "autism spectrum disorder": [
+          "MONDO:0005258"
+        ],
+        "dedifferentiated liposarcoma": [
+          "MONDO:0020563"
+        ],
+        "eosinophilic esophagitis": [
+          "MONDO:0005361"
+        ],
+        "post-COVID-19 disorder": [
+          "MONDO:0100320"
+        ],
+        "scleroderma": [
+          "MONDO:0019340"
+        ],
+        "respiratory system disorder": [
+          "MONDO:0005087"
+        ],
+        "SYNGAP1-related developmental and epileptic encephalopathy": [
+          "MONDO:0034099"
+        ],
+        "stage IVb bladder cancer": [
+          "MONDO:0004182"
+        ],
+        "opiate dependence": [
+          "MONDO:0005530"
+        ],
+        "Alexander disease": [
+          "MONDO:0008752"
+        ],
+        "myelofibrosis": [
+          "MONDO:0044903"
+        ],
+        "endometriosis": [
+          "MONDO:0005133"
+        ],
+        "digestive system disorder": [
+          "MONDO:0004335"
+        ],
+        "malignant colon neoplasm": [
+          "MONDO:0021063"
+        ],
+        "obsolete pulmonary arterial hypertension associated with HIV infection": [
+          "MONDO:0017153"
+        ],
+        "colitis": [
+          "MONDO:0005292"
+        ],
+        "interstitial lung disease": [
+          "MONDO:0015925"
+        ],
+        "obsolete hematopoietic stem cell kinetics, control of": [
+          "MONDO:0010254"
+        ],
+        "pericardial tuberculosis": [
+          "MONDO:0005903"
+        ],
+        "myocarditis": [
+          "MONDO:0004496"
+        ],
+        "cholangiocarcinoma": [
+          "MONDO:0019087"
+        ],
+        "cervical cancer": [
+          "MONDO:0002974"
+        ],
+        "amyotrophic lateral sclerosis 26 with or without frontotemporal dementia": [
+          "MONDO:0030885"
+        ],
+        "BARD1-related cancer predisposition": [
+          "MONDO:0700267"
+        ],
+        "glioma": [
+          "MONDO:0021042"
+        ],
+        "psoriatic arthritis": [
+          "MONDO:0011849"
+        ],
+        "lichen planus": [
+          "MONDO:0006572"
+        ],
+        "hepatitis B virus infection": [
+          "MONDO:0005344"
+        ],
+        "mycosis fungoides": [
+          "MONDO:0009691"
+        ],
+        "nasopharyngeal carcinoma": [
+          "MONDO:0015459"
+        ],
+        "Blau syndrome": [
+          "MONDO:0008523"
+        ],
+        "Lewy body dementia": [
+          "MONDO:0007488"
+        ],
+        "complex sleep apnea": [
+          "MONDO:0024358"
+        ],
+        "Noonan syndrome": [
+          "MONDO:0018997"
+        ],
+        "common variable immunodeficiency": [
+          "MONDO:0015517"
+        ],
+        "small intestine adenocarcinoma": [
+          "MONDO:0003198"
+        ],
+        "wet macular degeneration": [
+          "MONDO:0005417"
+        ],
+        "ulcerative colitis": [
+          "MONDO:0005101"
+        ],
+        "metabolic dysfunction-associated steatohepatitis": [
+          "MONDO:0007027"
+        ],
+        "Sezary syndrome": [
+          "MONDO:0017844"
+        ],
+        "celiac disease": [
+          "MONDO:0005130"
+        ],
+        "retinal macular dystrophy type 2": [
+          "MONDO:0011957"
+        ],
+        "colonic neoplasm": [
+          "MONDO:0005401"
+        ],
+        "aortic aneurysm": [
+          "MONDO:0005160"
+        ],
+        "primary progressive multiple sclerosis": [
+          "MONDO:0000451"
+        ],
+        "skin squamous cell carcinoma": [
+          "MONDO:0002529"
+        ],
+        "blastoma": [
+          "MONDO:0005565"
+        ],
+        "ectopic pregnancy": [
+          "MONDO:0000755"
+        ],
+        "low grade glioma": [
+          "MONDO:0021637"
+        ],
+        "pancreatitis": [
+          "MONDO:0004982"
+        ],
+        "allergic rhinitis": [
+          "MONDO:0011786"
+        ],
+        "malaria": [
+          "MONDO:0005136"
+        ],
+        "obsolete rare lichen planus": [
+          "MONDO:0016766"
+        ],
+        "dengue disease": [
+          "MONDO:0005502"
+        ],
+        "brain neoplasm": [
+          "MONDO:0021211"
+        ],
+        "COVID-19\u2013associated multisystem inflammatory syndrome in children": [
+          "MONDO:0100163"
+        ],
+        "neurofibromatosis-Noonan syndrome": [
+          "MONDO:0011035"
+        ],
+        "bronchopulmonary dysplasia": [
+          "MONDO:0019091"
+        ],
+        "Hodgkins lymphoma": [
+          "MONDO:0004952"
+        ],
+        "uveitis": [
+          "MONDO:0020283"
+        ],
+        "Rett syndrome": [
+          "MONDO:0010726"
+        ],
+        "cystic fibrosis associated meconium ileus": [
+          "MONDO:0005413"
+        ],
+        "classic complement early component deficiency": [
+          "MONDO:0000015"
+        ],
+        "CHARGE syndrome": [
+          "MONDO:0008965"
+        ],
+        "systemic sclerosis": [
+          "MONDO:0005100"
+        ],
+        "pneumonia": [
+          "MONDO:0005249"
+        ],
+        "retinitis pigmentosa": [
+          "MONDO:0019200"
+        ],
+        "juvenile idiopathic arthritis": [
+          "MONDO:0011429"
+        ],
+        "chronic lymphocytic leukemia/small lymphocytic lymphoma with immunoglobulin heavy chain variable-region gene somatic hypermutation": [
+          "MONDO:0004152"
+        ],
+        "pulmonary venoocclusive disease 2": [
+          "MONDO:0009329"
+        ],
+        "Hirschsprung disease": [
+          "MONDO:0018309"
+        ],
+        "coronary aneurysm": [
+          "MONDO:0006714"
+        ],
+        "sarcoma": [
+          "MONDO:0005089"
+        ],
+        "retinopathy of prematurity": [
+          "MONDO:0006952"
+        ],
+        "hypoplastic left heart syndrome": [
+          "MONDO:0004933"
+        ],
+        "premalignant hematological system disease": [
+          "MONDO:0060782"
+        ],
+        "sarcoidosis": [
+          "MONDO:0019338"
+        ],
+        "benign paroxysmal tonic upgaze of childhood with ataxia": [
+          "MONDO:0008206"
+        ],
+        "pancreatic neoplasm": [
+          "MONDO:0021040"
+        ],
+        "microcephaly-congenital cataract-psoriasiform dermatitis syndrome": [
+          "MONDO:0014793"
+        ],
+        "colorectal carcinoma": [
+          "MONDO:0024331"
+        ],
+        "fibrous dysplasia": [
+          "MONDO:0000845"
+        ],
+        "methicillin-resistant staphylococcus aureus infectious disease": [
+          "MONDO:0100073"
+        ],
+        "splenic marginal zone lymphoma": [
+          "MONDO:0019462"
+        ],
+        "liver disorder": [
+          "MONDO:0005154"
+        ],
+        "pulmonary hypertension": [
+          "MONDO:0005149"
+        ],
+        "non-distal monosomy 10q": [
+          "MONDO:0015546"
+        ],
+        "lung neoplasm": [
+          "MONDO:0021117"
+        ],
+        "gastric adenocarcinoma": [
+          "MONDO:0005036"
+        ],
+        "vitiligo": [
+          "MONDO:0008661"
+        ],
+        "respiratory system benign neoplasm": [
+          "MONDO:0000382"
+        ],
+        "acute liver failure": [
+          "MONDO:0019542"
+        ],
+        "choroid plexus neoplasm": [
+          "MONDO:0016717"
+        ],
+        "medulloblastoma": [
+          "MONDO:0007959"
+        ],
+        "Caplan syndrome": [
+          "MONDO:0005690"
+        ],
+        "cytomegalovirus infection": [
+          "MONDO:0005132"
+        ],
+        "primary biliary cholangitis": [
+          "MONDO:0005388"
+        ],
+        "head and neck squamous cell carcinoma": [
+          "MONDO:0010150"
+        ],
+        "prurigo nodularis": [
+          "MONDO:0026045"
+        ],
+        "estrogen-receptor positive breast cancer": [
+          "MONDO:0006512"
+        ],
+        "leiomyosarcoma": [
+          "MONDO:0005058"
+        ],
+        "osteogenesis imperfecta": [
+          "MONDO:0019019"
+        ],
+        "acute tonsillitis": [
+          "MONDO:0020686"
+        ],
+        "periodontitis": [
+          "MONDO:0005076"
+        ],
+        "multifocal lymphangioendotheliomatosis-thrombocytopenia syndrome": [
+          "MONDO:0018735"
+        ],
+        "non-small cell squamous lung carcinoma": [
+          "MONDO:0056806"
+        ],
+        "parapsoriasis": [
+          "MONDO:0006592"
+        ],
+        "pleomorphic adenoma": [
+          "MONDO:0008401"
+        ],
+        "noninfectious dermatoses of eyelid": [
+          "MONDO:0002137"
+        ],
+        "prediabetes syndrome": [
+          "MONDO:0006920"
+        ],
+        "obsolete hyperuricemia": [
+          "MONDO:0002144"
+        ],
+        "tonsil carcinoma": [
+          "MONDO:0021337"
+        ],
+        "toxoplasmosis": [
+          "MONDO:0005989"
+        ],
+        "gout": [
+          "MONDO:0005393"
+        ],
+        "esophageal adenocarcinoma": [
+          "MONDO:0005028"
+        ],
+        "severe acute respiratory syndrome": [
+          "MONDO:0005091"
+        ],
+        "myelodysplastic syndrome": [
+          "MONDO:0018881"
+        ],
+        "Barrett esophagus": [
+          "MONDO:0013662"
+        ],
+        "fetal iodine syndrome": [
+          "MONDO:0009224"
+        ],
+        "Richter syndrome": [
+          "MONDO:0002083"
+        ],
+        "clonal hematopoiesis": [
+          "MONDO:0100542"
+        ],
+        "cholestasis": [
+          "MONDO:0001751"
+        ],
+        "breast neoplasm": [
+          "MONDO:0021100"
+        ],
+        "thyroid gland carcinoma": [
+          "MONDO:0015075"
+        ],
+        "experimental autoimmune encephalomyelitis": [
+          "MONDO:0005134"
+        ],
+        "tuberculosis": [
+          "MONDO:0018076"
+        ],
+        "bacterial meningitis": [
+          "MONDO:0006670"
+        ],
+        "pilocytic astrocytoma": [
+          "MONDO:0016691"
+        ],
+        "alcoholic liver diseases": [
+          "MONDO:0043693"
+        ],
+        "mesothelioma": [
+          "MONDO:0005065"
+        ],
+        "Duchenne muscular dystrophy": [
+          "MONDO:0010679"
+        ],
+        "canine oral squamous cell carcinoma": [
+          "MONDO:0700157"
+        ],
+        "coronary atherosclerosis": [
+          "MONDO:0021661"
+        ],
+        "bacterial infectious disease with sepsis": [
+          "MONDO:0005229"
+        ],
+        "undifferentiated pleomorphic sarcoma": [
+          "MONDO:0002142"
+        ],
+        "colon adenocarcinoma": [
+          "MONDO:0002271"
+        ],
+        "tongue squamous cell carcinoma": [
+          "MONDO:0000500"
+        ],
+        "Crohn ileitis": [
+          "MONDO:0000709"
+        ],
+        "localized scleroderma": [
+          "MONDO:0019562"
+        ],
+        "interstitial cystitis": [
+          "MONDO:0018301"
+        ],
+        "primary cutaneous T-cell non-Hodgkin lymphoma": [
+          "MONDO:0000607"
+        ],
+        "proliferative glomerulonephritis": [
+          "MONDO:0003134"
+        ],
+        "Brooke-Spiegler syndrome": [
+          "MONDO:0011512"
+        ],
+        "Diamond-Blackfan anemia": [
+          "MONDO:0015253"
+        ],
+        "pulmonary emphysema": [
+          "MONDO:0004849"
+        ],
+        "papillary renal cell carcinoma": [
+          "MONDO:0017884"
+        ],
+        "thyroid cancer": [
+          "MONDO:0002108"
+        ],
+        "gestational diabetes": [
+          "MONDO:0005406"
+        ],
+        "relapsing-remitting multiple sclerosis": [
+          "MONDO:0005314"
+        ],
+        "liver and intrahepatic bile duct neoplasm": [
+          "MONDO:0024477"
+        ],
+        "lichen planus, oral": [
+          "MONDO:0043923"
+        ],
+        "gastroesophageal reflux disease": [
+          "MONDO:0007186"
+        ],
+        "adenosquamous carcinoma": [
+          "MONDO:0006074"
+        ],
+        "skin carcinoma": [
+          "MONDO:0002656"
+        ],
+        "biliary tract cancer": [
+          "MONDO:0003060"
+        ],
+        "thyroid gland papillary carcinoma": [
+          "MONDO:0005075"
+        ],
+        "prostate adenocarcinoma": [
+          "MONDO:0005082"
+        ],
+        "bilateral striopallidodentate calcinosis": [
+          "MONDO:0008947"
+        ],
+        "chronic rhinitis": [
+          "MONDO:0004514"
+        ],
+        "Marfan syndrome": [
+          "MONDO:0007947"
+        ],
+        "lupus nephritis": [
+          "MONDO:0005556"
+        ],
+        "luminal B breast carcinoma": [
+          "MONDO:0021115"
+        ],
+        "lymphoplasmacytic lymphoma": [
+          "MONDO:0000432"
+        ],
+        "obsolete severe COVID-19 infection": [
+          "MONDO:0100142"
+        ],
+        "listeriosis": [
+          "MONDO:0005828"
+        ],
+        "non-Hodgkin lymphoma": [
+          "MONDO:0018908"
+        ],
+        "myoclonic epilepsy, congenital deafness, macular dystrophy, and psychiatric disorders": [
+          "MONDO:0011446"
+        ],
+        "anterior cutaneous nerve entrapment syndrome": [
+          "MONDO:0018873"
+        ],
+        "obesity-hypoventilation syndrome": [
+          "MONDO:0009763"
+        ],
+        "cranio-osteoarthropathy": [
+          "MONDO:0015466"
+        ],
+        "depressive disorder": [
+          "MONDO:0002050"
+        ],
+        "Plasmodium malariae malaria": [
+          "MONDO:0001943"
+        ],
+        "inflammatory bowel disease": [
+          "MONDO:0005265"
+        ],
+        "hemolytic anemia": [
+          "MONDO:0003664"
+        ],
+        "endocrine pancreas disorder": [
+          "MONDO:0001933"
+        ],
+        "thyroid gland undifferentiated (anaplastic) carcinoma": [
+          "MONDO:0006468"
+        ],
+        "tauopathy": [
+          "MONDO:0005574"
+        ],
+        "tubular adenoma": [
+          "MONDO:0024660"
+        ],
+        "gastric intestinal metaplasia": [
+          "MONDO:0100190"
+        ],
+        "gastritis": [
+          "MONDO:0004966"
+        ],
+        "tetralogy of fallot": [
+          "MONDO:0008542"
+        ],
+        "mantle cell lymphoma": [
+          "MONDO:0018876"
+        ],
+        "Balo concentric sclerosis": [
+          "MONDO:0016430"
+        ],
+        "Helicobacter pylori infection, susceptibility to": [
+          "MONDO:0010853"
+        ],
+        "endometrioid stromal and related neoplasms of the cervix": [
+          "MONDO:0003031"
+        ],
+        "pulmonary arterial hypertension": [
+          "MONDO:0015924"
+        ],
+        "Kimura disease": [
+          "MONDO:0018830"
+        ],
+        "metabolic dysfunction-associated steatotic liver disease": [
+          "MONDO:0013209"
+        ],
+        "large B-cell lymphoma": [
+          "MONDO:0968974"
+        ],
+        "Loeys-Dietz syndrome": [
+          "MONDO:0018954"
+        ],
+        "acute pancreatitis": [
+          "MONDO:0006515"
+        ],
+        "pulmonary interstitial glycogenosis": [
+          "MONDO:0016321"
+        ],
+        "allergic disease": [
+          "MONDO:0005271"
+        ],
+        "sickle cell-hemoglobin c disease syndrome": [
+          "MONDO:0016669"
+        ],
+        "B-cell chronic lymphocytic leukemia": [
+          "MONDO:0004948"
+        ],
+        "Wolfram syndrome": [
+          "MONDO:0018105"
+        ],
+        "Fanconi anemia complementation group D1": [
+          "MONDO:0011584"
+        ],
+        "systemic lupus erythematosus with nephritis, susceptibility to, 1": [
+          "MONDO:0011942"
+        ],
+        "lymphoma": [
+          "MONDO:0005062"
+        ],
+        "asthma, nasal polyps, and aspirin intolerance": [
+          "MONDO:0008834"
+        ],
+        "intrahepatic cholangiocarcinoma": [
+          "MONDO:0003210"
+        ],
+        "autoimmune thrombocytopenia": [
+          "MONDO:0019098"
+        ],
+        "congenital diaphragmatic hernia": [
+          "MONDO:0005711"
+        ],
+        "paraquat poisoning": [
+          "MONDO:0017862"
+        ],
+        "14q32 duplication syndrome": [
+          "MONDO:0014707"
+        ],
+        "idiopathic pulmonary arterial hypertension": [
+          "MONDO:0017147"
+        ],
+        "lung large cell carcinoma": [
+          "MONDO:0003050"
+        ],
+        "semantic dementia": [
+          "MONDO:0010857"
+        ],
+        "cutaneous neuroendocrine carcinoma": [
+          "MONDO:0019210"
+        ],
+        "ACTH-dependent Cushing syndrome": [
+          "MONDO:0020528"
+        ],
+        "pancreatic adenocarcinoma": [
+          "MONDO:0006047"
+        ],
+        "primary systemic amyloidosis": [
+          "MONDO:0017816"
+        ],
+        "liver cancer": [
+          "MONDO:0002691"
+        ],
+        "classic familial adenomatous polyposis": [
+          "MONDO:0021055"
+        ],
+        "rhabdomyosarcoma": [
+          "MONDO:0005212"
+        ],
+        "chronic thromboembolic pulmonary hypertension": [
+          "MONDO:0013024"
+        ],
+        "chronic progressive multiple sclerosis": [
+          "MONDO:0005284"
+        ],
+        "hidradenitis suppurativa": [
+          "MONDO:0006559"
+        ],
+        "hydrosalpinx": [
+          "MONDO:0600025"
+        ],
+        "obsessive-compulsive disorder": [
+          "MONDO:0008114"
+        ],
+        "gallbladder carcinoma": [
+          "MONDO:0003220"
+        ],
+        "lung carcinoma": [
+          "MONDO:0005138"
+        ],
+        "primary ciliary dyskinesia": [
+          "MONDO:0016575"
+        ],
+        "staphylococcus aureus infection": [
+          "MONDO:0005545"
+        ],
+        "progeria": [
+          "MONDO:0020732"
+        ],
+        "chondrocalcinosis 2": [
+          "MONDO:0007319"
+        ],
+        "MELAS syndrome": [
+          "MONDO:0010789"
+        ],
+        "MPI-congenital disorder of glycosylation": [
+          "MONDO:0011257"
+        ],
+        "HIV infectious disease": [
+          "MONDO:0005109"
+        ],
+        "cognitive impairment with or without cerebellar ataxia": [
+          "MONDO:0013680"
+        ],
+        "sclerosing cholangitis": [
+          "MONDO:0018646"
+        ],
+        "acute lung injury": [
+          "MONDO:0015796"
+        ],
+        "salmonellosis": [
+          "MONDO:0000827"
+        ],
+        "obsolete brown shrimp allergy": [
+          "MONDO:0000800"
+        ],
+        "colon sessile serrated adenoma/polyp": [
+          "MONDO:0006156"
+        ],
+        "acute myocardial infarction": [
+          "MONDO:0004781"
+        ],
+        "myasthenia gravis": [
+          "MONDO:0009688"
+        ],
+        "acute coronary syndrome": [
+          "MONDO:0005542"
+        ],
+        "trisomy 18": [
+          "MONDO:0018071"
+        ],
+        "olfactory neuroblastoma": [
+          "MONDO:0006329"
+        ],
+        "taeniasis": [
+          "MONDO:0000367"
+        ],
+        "testicular cancer": [
+          "MONDO:0005447"
+        ],
+        "endometrial cancer": [
+          "MONDO:0011962"
+        ],
+        "kidney oncocytoma": [
+          "MONDO:0003825"
+        ],
+        "lymphangioleiomyomatosis": [
+          "MONDO:0011705"
+        ],
+        "exocrine pancreatic carcinoma": [
+          "MONDO:0005192"
+        ],
+        "atopic conjunctivitis": [
+          "MONDO:0005642"
+        ],
+        "central pontine myelinolysis": [
+          "MONDO:0006692"
+        ],
+        "combined small cell lung carcinoma": [
+          "MONDO:0003438"
+        ],
+        "preeclampsia": [
+          "MONDO:0005081"
+        ],
+        "non-compaction cardiomyopathy": [
+          "MONDO:0005418"
+        ],
+        "dysgerminoma": [
+          "MONDO:0003002"
+        ],
+        "Anemia, congenital dyserythropoietic, type IIIb, autosomal recessive": [
+          "MONDO:0030711"
+        ],
+        "benign neoplasm of large intestine": [
+          "MONDO:0021444"
+        ],
+        "breast fibrocystic disease": [
+          "MONDO:0005219"
+        ],
+        "polycystic ovary syndrome": [
+          "MONDO:0008487"
+        ],
+        "pleomorphic carcinoma": [
+          "MONDO:0003573"
+        ],
+        "parathyroid gland adenoma": [
+          "MONDO:0006890"
+        ],
+        "periodontal disorder": [
+          "MONDO:0002635"
+        ],
+        "hypersensitivity pneumonitis": [
+          "MONDO:0017853"
+        ],
+        "injury": [
+          "MONDO:0021178"
+        ],
+        "retinal degeneration": [
+          "MONDO:0004580"
+        ],
+        "graft versus host disease": [
+          "MONDO:0013730"
+        ],
+        "luminal A breast carcinoma": [
+          "MONDO:0021116"
+        ],
+        "aspiration pneumonia": [
+          "MONDO:0000265"
+        ],
+        "kidney neoplasm": [
+          "MONDO:0021163"
+        ],
+        "arrhythmogenic cardiomyopathy with wooly hair and keratoderma": [
+          "MONDO:0011581"
+        ],
+        "idiopathic gastroparesis": [
+          "MONDO:0034150"
+        ],
+        "non-specific interstitial pneumonia": [
+          "MONDO:0019622"
+        ],
+        "hyperplastic polyp": [
+          "MONDO:0006249"
+        ],
+        "Uhl anomaly": [
+          "MONDO:0018084"
+        ],
+        "bipolar disorder": [
+          "MONDO:0004985"
+        ],
+        "pantothenate kinase-associated neurodegeneration": [
+          "MONDO:0009319"
+        ],
+        "tubulovillous adenoma": [
+          "MONDO:0024661"
+        ],
+        "lip and oral cavity carcinoma": [
+          "MONDO:0023644"
+        ],
+        "obsolete sudden infant death syndrome": [
+          "MONDO:0010086"
+        ],
+        "gingivitis": [
+          "MONDO:0002508"
+        ],
+        "polyp": [
+          "MONDO:0005079"
+        ],
+        "abdominal aortic aneurysm": [
+          "MONDO:0005350"
+        ],
+        "fetal minoxidil syndrome": [
+          "MONDO:0016014"
+        ],
+        "anencephaly": [
+          "MONDO:0000819"
+        ],
+        "epidermolysis bullosa": [
+          "MONDO:0006541"
+        ],
+        "pulmonary sarcoidosis": [
+          "MONDO:0001708"
+        ],
+        "macular degeneration": [
+          "MONDO:0003004"
+        ],
+        "congenital pseudoarthrosis of the tibia": [
+          "MONDO:0017462"
+        ],
+        "cataract": [
+          "MONDO:0005129"
+        ],
+        "respiratory failure": [
+          "MONDO:0021113"
+        ],
+        "tongue carcinoma": [
+          "MONDO:0850154"
+        ],
+        "tongue cancer": [
+          "MONDO:0004631"
+        ],
+        "pemphigus": [
+          "MONDO:0006594"
+        ],
+        "autoimmune disease of ear, nose and throat": [
+          "MONDO:0000587"
+        ],
+        "neuroendocrine carcinoma": [
+          "MONDO:0002120"
+        ],
+        "chromophobe renal cell carcinoma": [
+          "MONDO:0017885"
+        ],
+        "diffuse cutaneous systemic sclerosis": [
+          "MONDO:0016356"
+        ],
+        "temporal lobe epilepsy": [
+          "MONDO:0005115"
+        ],
+        "heart disorder": [
+          "MONDO:0005267"
+        ],
+        "age related macular degeneration 7": [
+          "MONDO:0012419"
+        ],
+        "colorectal neoplasm": [
+          "MONDO:0005335"
+        ],
+        "lymphadenitis": [
+          "MONDO:0002052"
+        ],
+        "cardiomyopathy": [
+          "MONDO:0004994"
+        ],
+        "susceptibility to HIV infection": [
+          "MONDO:0004951"
+        ],
+        "kidney benign neoplasm": [
+          "MONDO:0002513"
+        ]
+      }
+    },
+    "simplified_age": {
+      "source_column": "age_group",
+      "category_count": 23,
+      "resolved_category_count": 20,
+      "unresolved_ontology_ids": [],
+      "counts": {
+        "unknown": 195100156,
+        "adult stage": 65403174,
+        "60-79 year-old stage": 34649390,
+        "young adult stage": 12011423,
+        "fetal stage": 9596980,
+        "organogenesis stage": 7570516,
+        "middle aged stage": 6619942,
+        "late adult stage": 5115316,
+        "juvenile stage (5-14 yo)": 4064903,
+        "80 year-old and over stage": 2638406,
+        "newborn stage (0-28 days)": 2521044,
+        "child stage (1-4 yo)": 1125927,
+        "nursing stage (0-11 months)": 591424,
+        "embryonic stage": 383951,
+        "early adulthood stage": 70501,
+        "postnatal stage": 38067,
+        "late adulthood stage": 28910,
+        "newborn stage": 12963,
+        "65-79 year-old stage": 11739,
+        "1-month-old stage": 3196
+      },
+      "ontology_ids_by_label": {
+        "unknown": [
+          "unknown"
+        ],
+        "adult stage": [
+          "HsapDv:0000087",
+          "HsapDv:0000258"
+        ],
+        "60-79 year-old stage": [
+          "HsapDv:0000272"
+        ],
+        "young adult stage": [
+          "HsapDv:0000089",
+          "HsapDv:0000266"
+        ],
+        "fetal stage": [
+          "HsapDv:0000037"
+        ],
+        "organogenesis stage": [
+          "HsapDv:0000015"
+        ],
+        "middle aged stage": [
+          "HsapDv:0000092",
+          "HsapDv:0000267"
+        ],
+        "late adult stage": [
+          "HsapDv:0000227"
+        ],
+        "juvenile stage (5-14 yo)": [
+          "HsapDv:0000271"
+        ],
+        "80 year-old and over stage": [
+          "HsapDv:0000095"
+        ],
+        "newborn stage (0-28 days)": [
+          "HsapDv:0000262"
+        ],
+        "child stage (1-4 yo)": [
+          "HsapDv:0000265"
+        ],
+        "nursing stage (0-11 months)": [
+          "HsapDv:0000260"
+        ],
+        "embryonic stage": [
+          "HsapDv:0000002"
+        ],
+        "early adulthood stage": [
+          "HsapDv:0000088"
+        ],
+        "postnatal stage": [
+          "HsapDv:0010000"
+        ],
+        "late adulthood stage": [
+          "HsapDv:0000091"
+        ],
+        "newborn stage": [
+          "HsapDv:0000082"
+        ],
+        "65-79 year-old stage": [
+          "HsapDv:0000094"
+        ],
+        "1-month-old stage": [
+          "HsapDv:0000174"
+        ]
+      }
+    },
+    "assay": {
+      "source_column": "assay_ontology_term_id",
+      "category_count": 32,
+      "resolved_category_count": 32,
+      "unresolved_ontology_ids": [],
+      "counts": {
+        "10x 3' transcription profiling": 146909525,
+        "10x 3' v3": 121220624,
+        "10x 5' transcription profiling": 28919386,
+        "sci-RNA-seq": 14924076,
+        "10x 3' v2": 12021763,
+        "10x multiome": 6890747,
+        "10x 5' v1": 4705177,
+        "10x 5' v2": 3104399,
+        "Slide-seqV2": 1867286,
+        "10x immune profiling": 1620181,
+        "10x feature profiling": 1580477,
+        "ScaleBio single cell RNA sequencing": 685024,
+        "microwell-seq": 599459,
+        "sci-Plex": 581480,
+        "Drop-seq": 517799,
+        "Visium Spatial Gene Expression": 286087,
+        "Smart-seq2": 179120,
+        "BD Rhapsody Whole Transcriptome Analysis": 146278,
+        "TruDrop": 133430,
+        "Smart-seq v4": 128855,
+        "10x scATAC-seq": 105584,
+        "Seq-Well": 87181,
+        "10x 3' v1": 76022,
+        "MARS-seq": 68645,
+        "SPLiT-seq": 68544,
+        "GEXSCOPE technology": 58981,
+        "Seq-Well S3": 31775,
+        "inDrop": 25652,
+        "CEL-seq2": 5231,
+        "STRT-seq": 4693,
+        "DroNc-seq": 2768,
+        "Smart-seq": 1679
+      },
+      "ontology_ids_by_label": {
+        "10x 3' transcription profiling": [
+          "EFO:0030003"
+        ],
+        "10x 3' v3": [
+          "EFO:0009922"
+        ],
+        "10x 5' transcription profiling": [
+          "EFO:0030004"
+        ],
+        "sci-RNA-seq": [
+          "EFO:0010550"
+        ],
+        "10x 3' v2": [
+          "EFO:0009899"
+        ],
+        "10x multiome": [
+          "EFO:0030059"
+        ],
+        "10x 5' v1": [
+          "EFO:0011025"
+        ],
+        "10x 5' v2": [
+          "EFO:0009900"
+        ],
+        "Slide-seqV2": [
+          "EFO:0030062"
+        ],
+        "10x immune profiling": [
+          "EFO:0010713"
+        ],
+        "10x feature profiling": [
+          "EFO:0030010"
+        ],
+        "ScaleBio single cell RNA sequencing": [
+          "EFO:0022490"
+        ],
+        "microwell-seq": [
+          "EFO:0030002"
+        ],
+        "sci-Plex": [
+          "EFO:0030026"
+        ],
+        "Drop-seq": [
+          "EFO:0008722"
+        ],
+        "Visium Spatial Gene Expression": [
+          "EFO:0010961"
+        ],
+        "Smart-seq2": [
+          "EFO:0008931"
+        ],
+        "BD Rhapsody Whole Transcriptome Analysis": [
+          "EFO:0700003"
+        ],
+        "TruDrop": [
+          "EFO:0700010"
+        ],
+        "Smart-seq v4": [
+          "EFO:0700016"
+        ],
+        "10x scATAC-seq": [
+          "EFO:0030007"
+        ],
+        "Seq-Well": [
+          "EFO:0008919"
+        ],
+        "10x 3' v1": [
+          "EFO:0009901"
+        ],
+        "MARS-seq": [
+          "EFO:0008796"
+        ],
+        "SPLiT-seq": [
+          "EFO:0009919"
+        ],
+        "GEXSCOPE technology": [
+          "EFO:0700011"
+        ],
+        "Seq-Well S3": [
+          "EFO:0030019"
+        ],
+        "inDrop": [
+          "EFO:0008780"
+        ],
+        "CEL-seq2": [
+          "EFO:0010010"
+        ],
+        "STRT-seq": [
+          "EFO:0008953"
+        ],
+        "DroNc-seq": [
+          "EFO:0008720"
+        ],
+        "Smart-seq": [
+          "EFO:0008930"
+        ]
+      }
+    },
+    "organism": {
+      "source_column": "organism_ontology_term_id",
+      "category_count": 16,
+      "resolved_category_count": 16,
+      "unresolved_ontology_ids": [],
+      "counts": {
+        "human": 230724984,
+        "mouse": 102753838,
+        "macaque": 3161179,
+        "zebrafish": 3117237,
+        "pig": 1641179,
+        "arabidopsis thaliana": 1564711,
+        "drosophila melanogaster (fruit fly)": 1564460,
+        "chicken": 606680,
+        "naked mole-rat female": 441042,
+        "rabbit": 417091,
+        "cow": 390675,
+        "zea mays": 336166,
+        "chimpanzee": 293472,
+        "caenorhabditis elegans (nematode, n2)": 251759,
+        "sheep (texel)": 177871,
+        "white-tufted-ear marmoset": 115584
+      },
+      "ontology_ids_by_label": {
+        "human": [
+          "NCBITaxon:9606"
+        ],
+        "mouse": [
+          "NCBITaxon:10090"
+        ],
+        "macaque": [
+          "NCBITaxon:9544"
+        ],
+        "zebrafish": [
+          "NCBITaxon:7955"
+        ],
+        "pig": [
+          "NCBITaxon:9823"
+        ],
+        "arabidopsis thaliana": [
+          "NCBITaxon:3702"
+        ],
+        "drosophila melanogaster (fruit fly)": [
+          "NCBITaxon:7227"
+        ],
+        "chicken": [
+          "NCBITaxon:9031"
+        ],
+        "naked mole-rat female": [
+          "NCBITaxon:10181"
+        ],
+        "rabbit": [
+          "NCBITaxon:9986"
+        ],
+        "cow": [
+          "NCBITaxon:9913"
+        ],
+        "zea mays": [
+          "NCBITaxon:4577"
+        ],
+        "chimpanzee": [
+          "NCBITaxon:9598"
+        ],
+        "caenorhabditis elegans (nematode, n2)": [
+          "NCBITaxon:6239"
+        ],
+        "sheep (texel)": [
+          "NCBITaxon:9940"
+        ],
+        "white-tufted-ear marmoset": [
+          "NCBITaxon:9483"
+        ]
+      }
+    }
+  }
+}

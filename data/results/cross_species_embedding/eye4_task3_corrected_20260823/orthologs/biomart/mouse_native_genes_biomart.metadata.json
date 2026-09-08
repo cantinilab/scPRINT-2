@@ -1,0 +1,11 @@
+{
+  "created_at": "2026-08-23T21:43:21.007449+00:00",
+  "feature_species_proxy": null,
+  "query": "<Query virtualSchemaName=\"default\" formatter=\"TSV\" header=\"0\" uniqueRows=\"1\" datasetConfigVersion=\"0.6\"><Dataset name=\"mmusculus_gene_ensembl\" interface=\"default\"><Attribute name=\"external_gene_name\"/><Attribute name=\"ensembl_gene_id\"/></Dataset></Query>",
+  "rows": 77797,
+  "sha256": "d1e7d8f24de245e6f034d0d8df6d28aef951770755959511c790e01810b4ba08",
+  "source_ensembl_gene_ids": 77797,
+  "source_gene_symbols": 77494,
+  "species": "mouse",
+  "url": "https://useast.ensembl.org/biomart/martservice"
+}

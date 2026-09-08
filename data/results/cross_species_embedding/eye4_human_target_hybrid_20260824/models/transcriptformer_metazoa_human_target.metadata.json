@@ -1,0 +1,24 @@
+{
+  "mode": "transcriptformer",
+  "notebook_provenance": "eye4 human-target union: Human/Macaque/Pig HGNC-like symbols mapped directly to human ENSG, Mouse mapped by high-confidence orthology; no cross-species gene intersection",
+  "input": "/lustre/fswork/projects/rech/xeg/uat95fg/data/eye_cross_species/eye4_human_target_hybrid_20260824/eye4_human_ensembl_small_v2.h5ad",
+  "output": "/lustre/fswork/projects/rech/xeg/uat95fg/data/eye_cross_species/eye4_human_target_hybrid_20260824/embeddings/transcriptformer_metazoa_human_target.h5ad",
+  "embedding_key": "model_emb",
+  "checkpoint": "/lustre/fswork/projects/rech/xeg/uat95fg/models/transcriptformer/tf_metazoa",
+  "checkpoint_name": "tf_metazoa",
+  "seed": 42,
+  "batch_key": "species",
+  "cell_type_key": "cell_type_ontology_term_id",
+  "settings": {
+    "batch_size": 32,
+    "num_workers": 8,
+    "embed_how": "random expr",
+    "embed_max_len": 2200,
+    "use_knn": false,
+    "rebuild_knn_graph_requested": false,
+    "legacy_detached_mmd": false,
+    "restore_best_model": true,
+    "knn_graph_rebuilt": false,
+    "align_checkpoint_genes": false
+  }
+}

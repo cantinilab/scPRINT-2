@@ -1,0 +1,11 @@
+{
+  "run_id": "task3_fresh_transcriptformer_metazoa_scib113_20260817",
+  "source": {"path": "/lustre/fswork/projects/rech/xeg/uat95fg/scPRINT/notebooks/scPRINT-2-repro-notebooks/data/task_3_embed.h5ad", "sha256": "2b592f96409bb16ad32d03c6cfba1bd9edda46aea2b0420b5900c59e15007d68"},
+  "checkpoint": {
+    "path": "/lustre/fswork/projects/rech/xeg/uat95fg/models/transcriptformer/tf_metazoa",
+    "config_sha256": "84042c79ba1b452bc64ad78c6a39831b60e0b533c222dad4cddf0704a4c4d80f",
+    "model_weights_sha256": "16eb858e39ed69d6e07d5a0a5a4edd8d885951493ffd218097fc4db0c8b29c29",
+    "mouse_vocab_sha256": "e6e1334c0c6cf33acbe0a39971e3aca5c970bc7b3f25f99032a0a2e7660d8ecc"
+  },
+  "embedding": {"path": "/lustre/fswork/projects/rech/xeg/uat95fg/scPRINT/data/results/cross_species_embedding/task3_fresh_transcriptformer_metazoa_scib113_20260817/transcriptformer_metazoa_fresh.h5ad", "key": "model_emb", "sha256": "d569599d4c413dda86b3b047eb02157a4ef3b68c785b7317576528a3bfe5da35"}
+}

@@ -1,0 +1,224 @@
+{
+  "batch_key": "species",
+  "batch_metrics": [
+    "ASW_label/batch",
+    "PCR_batch",
+    "graph_conn",
+    "kBET",
+    "iLISI"
+  ],
+  "batches": 4,
+  "bio_metrics": [
+    "NMI_cluster/label",
+    "ARI_cluster/label",
+    "ASW_label",
+    "cLISI",
+    "hvg_overlap",
+    "trajectory"
+  ],
+  "cells": 29568,
+  "embeddings": {
+    "PCA": {
+      "connectivities_sha256_after_scib": "2d5d15e31e316ad9dc10ad3d80289d46260b5f98b3bec538de0bfe0ed97f5fdb",
+      "connectivities_sha256_before_scib": "2d5d15e31e316ad9dc10ad3d80289d46260b5f98b3bec538de0bfe0ed97f5fdb",
+      "embedding": "/lustre/fswork/projects/rech/xeg/uat95fg/data/eye_cross_species/eye4_human_target_20260824/embeddings/expression_pca50_random_seed42.h5ad",
+      "embedding_dimension": 50,
+      "embedding_key": "X_pca",
+      "embedding_sha256": "1f4497e91db07e02bcf647f2605c8593c01ba56c22d9fba93c5aa4aeeac494ca",
+      "neighbors_params": {
+        "method": "umap",
+        "metric": "euclidean",
+        "n_neighbors": 15,
+        "random_state": 0,
+        "use_rep": "X_scib_embedding"
+      },
+      "precomputed_graph": "/lustre/fswork/projects/rech/xeg/uat95fg/data/eye_cross_species/eye4_human_target_20260824/scib113/precomputed_graphs/PCA.h5ad",
+      "precomputed_graph_sha256": "ef22f1536511366099dfcc56a6a8ad0c326eb3ff8409b0af3a4df033baa8c829"
+    },
+    "Random-seed42": {
+      "connectivities_sha256_after_scib": "f2055f51dc084b1be722b1105d344be8b01e37efea2de215834df08040d65f78",
+      "connectivities_sha256_before_scib": "f2055f51dc084b1be722b1105d344be8b01e37efea2de215834df08040d65f78",
+      "embedding": "/lustre/fswork/projects/rech/xeg/uat95fg/data/eye_cross_species/eye4_human_target_20260824/embeddings/expression_pca50_random_seed42.h5ad",
+      "embedding_dimension": 50,
+      "embedding_key": "random",
+      "embedding_sha256": "1f4497e91db07e02bcf647f2605c8593c01ba56c22d9fba93c5aa4aeeac494ca",
+      "neighbors_params": {
+        "method": "umap",
+        "metric": "euclidean",
+        "n_neighbors": 15,
+        "random_state": 0,
+        "use_rep": "X_scib_embedding"
+      },
+      "precomputed_graph": "/lustre/fswork/projects/rech/xeg/uat95fg/data/eye_cross_species/eye4_human_target_20260824/scib113/precomputed_graphs/Random-seed42.h5ad",
+      "precomputed_graph_sha256": "50b6a372468855bdc35f6c8bc294d68bb019f90eb95798982109d2cca61b0696"
+    },
+    "TranscriptFormer-Metazoa-human-target": {
+      "connectivities_sha256_after_scib": "a3c119d9beb6412743ea544e3263f80abbcb3c0b52afe0b4767cf8267462cfd6",
+      "connectivities_sha256_before_scib": "a3c119d9beb6412743ea544e3263f80abbcb3c0b52afe0b4767cf8267462cfd6",
+      "embedding": "/lustre/fswork/projects/rech/xeg/uat95fg/data/eye_cross_species/eye4_human_target_20260824/embeddings/transcriptformer_metazoa_human_target.h5ad",
+      "embedding_dimension": 2048,
+      "embedding_key": "model_emb",
+      "embedding_sha256": "74f60815185e4c5735a57d7e6055ad7326ab0f9032acde2af8a110d1fc781a48",
+      "neighbors_params": {
+        "method": "umap",
+        "metric": "euclidean",
+        "n_neighbors": 15,
+        "random_state": 0,
+        "use_rep": "X_scib_embedding"
+      },
+      "precomputed_graph": "/lustre/fswork/projects/rech/xeg/uat95fg/data/eye_cross_species/eye4_human_target_20260824/scib113/precomputed_graphs/TranscriptFormer-Metazoa-human-target.h5ad",
+      "precomputed_graph_sha256": "2726ca8baf8f8e79f510d5b48844e2910d92d198196fa4862e561796673a73f2"
+    },
+    "scPRINT-2-FT-human-target-cell-token-MMD003": {
+      "connectivities_sha256_after_scib": "cf824c52c8e283c6ca066645ace1b491dbf7f135b794a80779f4bf8a3691f8fa",
+      "connectivities_sha256_before_scib": "cf824c52c8e283c6ca066645ace1b491dbf7f135b794a80779f4bf8a3691f8fa",
+      "embedding": "/lustre/fswork/projects/rech/xeg/uat95fg/data/eye_cross_species/eye4_human_target_20260824/embeddings/scprint2_ft_small_v2_human_target_mmd003_knn.h5ad",
+      "embedding_dimension": 64,
+      "embedding_key": "scprint_emb_cell_type_ontology_term_id",
+      "embedding_sha256": "6abaad9a581e65fb370ceed4e2e15ba0730ea21d5ab5707df8602b8af531d2fe",
+      "neighbors_params": {
+        "method": "umap",
+        "metric": "euclidean",
+        "n_neighbors": 15,
+        "random_state": 0,
+        "use_rep": "X_scib_embedding"
+      },
+      "precomputed_graph": "/lustre/fswork/projects/rech/xeg/uat95fg/data/eye_cross_species/eye4_human_target_20260824/scib113/precomputed_graphs/scPRINT-2-FT-human-target-cell-token-MMD003.h5ad",
+      "precomputed_graph_sha256": "eb1b28fe1de9dfa45c33c31f98e47f2c33731859a8524514539490a83c5f58ed"
+    },
+    "scPRINT-2-ZS-human-target-cell-token": {
+      "connectivities_sha256_after_scib": "acebb983f98b32b11ec8cb1abd86ed5e144f5f92a913338e9aea3fdd892540ce",
+      "connectivities_sha256_before_scib": "acebb983f98b32b11ec8cb1abd86ed5e144f5f92a913338e9aea3fdd892540ce",
+      "embedding": "/lustre/fswork/projects/rech/xeg/uat95fg/data/eye_cross_species/eye4_human_target_20260824/embeddings/scprint2_zero_shot_small_v2_human_target_knn.h5ad",
+      "embedding_dimension": 64,
+      "embedding_key": "scprint_emb_cell_type_ontology_term_id",
+      "embedding_sha256": "81199310b3de790c1d2ec70579ebf5768af22459eac585a597d45b7c2210fb39",
+      "neighbors_params": {
+        "method": "umap",
+        "metric": "euclidean",
+        "n_neighbors": 15,
+        "random_state": 0,
+        "use_rep": "X_scib_embedding"
+      },
+      "precomputed_graph": "/lustre/fswork/projects/rech/xeg/uat95fg/data/eye_cross_species/eye4_human_target_20260824/scib113/precomputed_graphs/scPRINT-2-ZS-human-target-cell-token.h5ad",
+      "precomputed_graph_sha256": "407480634e4b686058add79c7100fc9ef9e0977741e79c36c2bcb2e4431fc30f"
+    }
+  },
+  "expression_connectivities_sha256": "a32c8474f3c3cc7f75f47f2b39c0dba6bba132c8add871271b131d6fb16e3565",
+  "expression_preprocessing": [
+    "normalize_total(target_sum=1e4)",
+    "log1p",
+    "per-batch highly_variable_genes",
+    "per-batch pca",
+    "per-batch neighbors(use_rep='X_pca')",
+    "per-batch diffmap and dpt(root_position=0)",
+    "pca",
+    "neighbors(use_rep='X_pca')"
+  ],
+  "integration_graph": {
+    "neighbors_use_rep": "X_scib_embedding",
+    "precomputed_before_scib": true,
+    "scib_type": "knn"
+  },
+  "label_key": "celltype",
+  "labels": 13,
+  "method_order": [
+    "PCA",
+    "Random-seed42",
+    "scPRINT-2-ZS-human-target-cell-token",
+    "scPRINT-2-FT-human-target-cell-token-MMD003",
+    "TranscriptFormer-Metazoa-human-target"
+  ],
+  "obs_name_replace": null,
+  "protocol": "scib 1.1.3 with caller-precomputed PCA and kNN graphs",
+  "source": "/lustre/fswork/projects/rech/xeg/uat95fg/data/eye_cross_species/eye4_human_target_20260824/eye4_human_ensembl_small_v2.h5ad",
+  "source_sha256": "67856ffa79e4ceba182cb17ca0e5fd2f8b12c8cf0bdc251f97ed3d9b18b43784",
+  "total_formula": "0.4 * Batch correction + 0.6 * Bio conservation",
+  "trajectory_reference": {
+    "batches": {
+      "human": {
+        "cells": 16177,
+        "finite_pseudotime_cells": 16177,
+        "genes": 20004,
+        "highly_variable_genes": 2400,
+        "missing_pseudotime_cells": 0,
+        "root_position": 0
+      },
+      "macaque_fascicularis": {
+        "cells": 8682,
+        "finite_pseudotime_cells": 8682,
+        "genes": 20004,
+        "highly_variable_genes": 3039,
+        "missing_pseudotime_cells": 0,
+        "root_position": 0
+      },
+      "mouse": {
+        "cells": 1613,
+        "finite_pseudotime_cells": 1561,
+        "genes": 20004,
+        "highly_variable_genes": 2155,
+        "missing_pseudotime_cells": 52,
+        "root_position": 0
+      },
+      "pig": {
+        "cells": 3096,
+        "finite_pseudotime_cells": 3096,
+        "genes": 20004,
+        "highly_variable_genes": 2088,
+        "missing_pseudotime_cells": 0,
+        "root_position": 0
+      }
+    },
+    "pseudotime_key": "dpt_pseudotime"
+  },
+  "validated_individual_artifacts": [
+    {
+      "complete": "/lustre/fswork/projects/rech/xeg/uat95fg/data/eye_cross_species/eye4_human_target_20260824/scib113/by_method/PCA/PCA.COMPLETE",
+      "metadata": "/lustre/fswork/projects/rech/xeg/uat95fg/data/eye_cross_species/eye4_human_target_20260824/scib113/by_method/PCA/PCA.metadata.json",
+      "metadata_sha256": "eb29684fd0323e0141c1560c65f9b3fd17c7fa702182ed8695aea9f15e970d7d",
+      "method": "PCA",
+      "score": "/lustre/fswork/projects/rech/xeg/uat95fg/data/eye_cross_species/eye4_human_target_20260824/scib113/by_method/PCA/PCA.csv",
+      "score_sha256": "913798b225e645a7a2a368eb2a1122171a4f2e049c3df0f569dbeafc1abcdbde"
+    },
+    {
+      "complete": "/lustre/fswork/projects/rech/xeg/uat95fg/data/eye_cross_species/eye4_human_target_20260824/scib113/by_method/Random-seed42/Random-seed42.COMPLETE",
+      "metadata": "/lustre/fswork/projects/rech/xeg/uat95fg/data/eye_cross_species/eye4_human_target_20260824/scib113/by_method/Random-seed42/Random-seed42.metadata.json",
+      "metadata_sha256": "0f244da01e4d88303017fd27d58219d7be8aa7de67aaf4731a0dec88b214f469",
+      "method": "Random-seed42",
+      "score": "/lustre/fswork/projects/rech/xeg/uat95fg/data/eye_cross_species/eye4_human_target_20260824/scib113/by_method/Random-seed42/Random-seed42.csv",
+      "score_sha256": "b1432d198f26cbd08e510b2681ec625368291c325f9bbfff20be5d14724d0db9"
+    },
+    {
+      "complete": "/lustre/fswork/projects/rech/xeg/uat95fg/data/eye_cross_species/eye4_human_target_20260824/scib113/by_method/scPRINT-2-ZS-human-target-cell-token/scPRINT-2-ZS-human-target-cell-token.COMPLETE",
+      "metadata": "/lustre/fswork/projects/rech/xeg/uat95fg/data/eye_cross_species/eye4_human_target_20260824/scib113/by_method/scPRINT-2-ZS-human-target-cell-token/scPRINT-2-ZS-human-target-cell-token.metadata.json",
+      "metadata_sha256": "7bd4382db3c80565524aab0c1f81dfda0680bafd90f58295be0be1969a500589",
+      "method": "scPRINT-2-ZS-human-target-cell-token",
+      "score": "/lustre/fswork/projects/rech/xeg/uat95fg/data/eye_cross_species/eye4_human_target_20260824/scib113/by_method/scPRINT-2-ZS-human-target-cell-token/scPRINT-2-ZS-human-target-cell-token.csv",
+      "score_sha256": "bd19fb5a380135224326bc9c26e45cc5294c0375ea0ee5817e073eebf62e4eea"
+    },
+    {
+      "complete": "/lustre/fswork/projects/rech/xeg/uat95fg/data/eye_cross_species/eye4_human_target_20260824/scib113/by_method/scPRINT-2-FT-human-target-cell-token-MMD003/scPRINT-2-FT-human-target-cell-token-MMD003.COMPLETE",
+      "metadata": "/lustre/fswork/projects/rech/xeg/uat95fg/data/eye_cross_species/eye4_human_target_20260824/scib113/by_method/scPRINT-2-FT-human-target-cell-token-MMD003/scPRINT-2-FT-human-target-cell-token-MMD003.metadata.json",
+      "metadata_sha256": "f8df32dd1d992dfbfc699952f36c1f448753fecb3320b67c8f7bfba891c7a4ee",
+      "method": "scPRINT-2-FT-human-target-cell-token-MMD003",
+      "score": "/lustre/fswork/projects/rech/xeg/uat95fg/data/eye_cross_species/eye4_human_target_20260824/scib113/by_method/scPRINT-2-FT-human-target-cell-token-MMD003/scPRINT-2-FT-human-target-cell-token-MMD003.csv",
+      "score_sha256": "04363869f3af6c8c14bf5b1eb18a176202921850c8f7a9d668f9df82e38e34cd"
+    },
+    {
+      "complete": "/lustre/fswork/projects/rech/xeg/uat95fg/data/eye_cross_species/eye4_human_target_20260824/scib113/by_method/TranscriptFormer-Metazoa-human-target/TranscriptFormer-Metazoa-human-target.COMPLETE",
+      "metadata": "/lustre/fswork/projects/rech/xeg/uat95fg/data/eye_cross_species/eye4_human_target_20260824/scib113/by_method/TranscriptFormer-Metazoa-human-target/TranscriptFormer-Metazoa-human-target.metadata.json",
+      "metadata_sha256": "9d437ec55bfa5e4cb73067fd29db9471e6eb9e0dac506b6900426869df5375a3",
+      "method": "TranscriptFormer-Metazoa-human-target",
+      "score": "/lustre/fswork/projects/rech/xeg/uat95fg/data/eye_cross_species/eye4_human_target_20260824/scib113/by_method/TranscriptFormer-Metazoa-human-target/TranscriptFormer-Metazoa-human-target.csv",
+      "score_sha256": "a2c3ab12a65a3906dd8d7f8f29387aae50f9c8865f2a072d149535e3d84c71e2"
+    }
+  ],
+  "versions": {
+    "anndata": "0.8.0",
+    "numpy": "1.21.6",
+    "pandas": "1.3.5",
+    "scanpy": "1.9.1",
+    "scib": "1.1.3",
+    "scikit-learn": "1.0.2"
+  }
+}

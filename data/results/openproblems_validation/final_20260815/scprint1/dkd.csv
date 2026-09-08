@@ -1,0 +1,2 @@
+method,ari,asw_batch,asw_label,cell_cycle_conservation,clisi,graph_connectivity,hvg_overlap,ilisi,isolated_label_asw,isolated_label_f1,kbet,nmi,pcr
+scPRINT-1 corrected cell_type PCA50,0.193545416261226,0.8860234618186951,0.5146765010431409,0.5563035151652022,0.9111531306315065,0.9091328980940594,,0.21652911455952023,,,0.21136913143763414,0.32572123223774313,0.0

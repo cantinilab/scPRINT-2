@@ -1,0 +1,99 @@
+{
+  "human": {
+    "native": {
+      "created_at": "2026-08-23T21:43:06.927017+00:00",
+      "feature_species_proxy": null,
+      "query": "<Query virtualSchemaName=\"default\" formatter=\"TSV\" header=\"0\" uniqueRows=\"1\" datasetConfigVersion=\"0.6\"><Dataset name=\"hsapiens_gene_ensembl\" interface=\"default\"><Attribute name=\"external_gene_name\"/><Attribute name=\"ensembl_gene_id\"/></Dataset></Query>",
+      "rows": 49131,
+      "sha256": "8867dc809a6bc166f60a7270cf1363f50fd002e87f8b95d1d8032a4edf93ff00",
+      "source_ensembl_gene_ids": 49131,
+      "source_gene_symbols": 41859,
+      "species": "human",
+      "url": "https://useast.ensembl.org/biomart/martservice"
+    },
+    "orthologs": {
+      "created_at": "2026-08-23T21:43:11.690521+00:00",
+      "homology_types": {
+        "ortholog_many2many": 635,
+        "ortholog_one2many": 968,
+        "ortholog_one2one": 16032
+      },
+      "mouse_gene_symbols": 17106,
+      "query": "<Query virtualSchemaName=\"default\" formatter=\"TSV\" header=\"0\" uniqueRows=\"1\" datasetConfigVersion=\"0.6\"><Dataset name=\"mmusculus_gene_ensembl\" interface=\"default\"><Attribute name=\"external_gene_name\"/><Attribute name=\"ensembl_gene_id\"/><Attribute name=\"hsapiens_homolog_associated_gene_name\"/><Attribute name=\"hsapiens_homolog_ensembl_gene\"/><Attribute name=\"hsapiens_homolog_orthology_type\"/><Attribute name=\"hsapiens_homolog_orthology_confidence\"/><Attribute name=\"hsapiens_homolog_perc_id\"/></Dataset></Query>",
+      "rows": 17635,
+      "sha256": "631e3f7d935770458b792a0919f5c3d6a6b0c44a690b0f79d45abdf6dc49e8c8",
+      "source_gene_symbols": 16959,
+      "species": "human",
+      "url": "https://useast.ensembl.org/biomart/martservice"
+    }
+  },
+  "macaque_fascicularis": {
+    "native": {
+      "created_at": "2026-08-23T21:43:13.250736+00:00",
+      "feature_species_proxy": "macaque_rhesus",
+      "query": "<Query virtualSchemaName=\"default\" formatter=\"TSV\" header=\"0\" uniqueRows=\"1\" datasetConfigVersion=\"0.6\"><Dataset name=\"mmulatta_gene_ensembl\" interface=\"default\"><Attribute name=\"external_gene_name\"/><Attribute name=\"ensembl_gene_id\"/></Dataset></Query>",
+      "rows": 25213,
+      "sha256": "88541250a4603833c3187b3ce76aafae4f36534ea15fda09143b41977518a6a6",
+      "source_ensembl_gene_ids": 25213,
+      "source_gene_symbols": 17894,
+      "species": "macaque_fascicularis",
+      "url": "https://useast.ensembl.org/biomart/martservice"
+    },
+    "orthologs": {
+      "created_at": "2026-08-23T21:43:18.390928+00:00",
+      "homology_types": {
+        "ortholog_many2many": 162,
+        "ortholog_one2many": 598,
+        "ortholog_one2one": 13149
+      },
+      "mouse_gene_symbols": 13851,
+      "query": "<Query virtualSchemaName=\"default\" formatter=\"TSV\" header=\"0\" uniqueRows=\"1\" datasetConfigVersion=\"0.6\"><Dataset name=\"mmusculus_gene_ensembl\" interface=\"default\"><Attribute name=\"external_gene_name\"/><Attribute name=\"ensembl_gene_id\"/><Attribute name=\"mmulatta_homolog_associated_gene_name\"/><Attribute name=\"mmulatta_homolog_ensembl_gene\"/><Attribute name=\"mmulatta_homolog_orthology_type\"/><Attribute name=\"mmulatta_homolog_orthology_confidence\"/><Attribute name=\"mmulatta_homolog_perc_id\"/></Dataset></Query>",
+      "rows": 13909,
+      "sha256": "85c85bc96035deab655ad81f98f2d8fe380831b358c800a0e4efdf23f0033df8",
+      "source_gene_symbols": 13643,
+      "species": "macaque_fascicularis",
+      "url": "https://useast.ensembl.org/biomart/martservice"
+    }
+  },
+  "mouse": {
+    "native": {
+      "created_at": "2026-08-23T21:43:21.007449+00:00",
+      "feature_species_proxy": null,
+      "query": "<Query virtualSchemaName=\"default\" formatter=\"TSV\" header=\"0\" uniqueRows=\"1\" datasetConfigVersion=\"0.6\"><Dataset name=\"mmusculus_gene_ensembl\" interface=\"default\"><Attribute name=\"external_gene_name\"/><Attribute name=\"ensembl_gene_id\"/></Dataset></Query>",
+      "rows": 77797,
+      "sha256": "d1e7d8f24de245e6f034d0d8df6d28aef951770755959511c790e01810b4ba08",
+      "source_ensembl_gene_ids": 77797,
+      "source_gene_symbols": 77494,
+      "species": "mouse",
+      "url": "https://useast.ensembl.org/biomart/martservice"
+    }
+  },
+  "pig": {
+    "native": {
+      "created_at": "2026-08-23T21:43:22.532633+00:00",
+      "feature_species_proxy": null,
+      "query": "<Query virtualSchemaName=\"default\" formatter=\"TSV\" header=\"0\" uniqueRows=\"1\" datasetConfigVersion=\"0.6\"><Dataset name=\"sscrofa_gene_ensembl\" interface=\"default\"><Attribute name=\"external_gene_name\"/><Attribute name=\"ensembl_gene_id\"/></Dataset></Query>",
+      "rows": 17984,
+      "sha256": "ae297ab101fd7e34733d9451d1197057411ee9535e21811d6f3d806f78ce1173",
+      "source_ensembl_gene_ids": 17984,
+      "source_gene_symbols": 16432,
+      "species": "pig",
+      "url": "https://useast.ensembl.org/biomart/martservice"
+    },
+    "orthologs": {
+      "created_at": "2026-08-23T21:43:28.427540+00:00",
+      "homology_types": {
+        "ortholog_many2many": 67,
+        "ortholog_one2many": 307,
+        "ortholog_one2one": 13468
+      },
+      "mouse_gene_symbols": 13833,
+      "query": "<Query virtualSchemaName=\"default\" formatter=\"TSV\" header=\"0\" uniqueRows=\"1\" datasetConfigVersion=\"0.6\"><Dataset name=\"mmusculus_gene_ensembl\" interface=\"default\"><Attribute name=\"external_gene_name\"/><Attribute name=\"ensembl_gene_id\"/><Attribute name=\"sscrofa_homolog_associated_gene_name\"/><Attribute name=\"sscrofa_homolog_ensembl_gene\"/><Attribute name=\"sscrofa_homolog_orthology_type\"/><Attribute name=\"sscrofa_homolog_orthology_confidence\"/><Attribute name=\"sscrofa_homolog_perc_id\"/></Dataset></Query>",
+      "rows": 13842,
+      "sha256": "02b6376dc56f642e6919aec36948254d6a2091d3ef999365dbbec618ad396487",
+      "source_gene_symbols": 13695,
+      "species": "pig",
+      "url": "https://useast.ensembl.org/biomart/martservice"
+    }
+  }
+}

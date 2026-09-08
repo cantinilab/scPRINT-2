@@ -1,0 +1,74 @@
+{
+  "methods": {
+    "PCA": {
+      "graph": "/lustre/fswork/projects/rech/xeg/uat95fg/data/eye_cross_species/eye4_task3_corrected_20260823/scib113/precomputed_graphs/PCA.h5ad",
+      "neighbors": {
+        "method": "umap",
+        "metric": "euclidean",
+        "n_neighbors": 15,
+        "random_state": 0,
+        "use_rep": "X_scib_embedding"
+      },
+      "sha256": "0015c8875c60493315e2db3064f3c5cf56f8174dde1250aef3d1824ada221ef2"
+    },
+    "Random": {
+      "graph": "/lustre/fswork/projects/rech/xeg/uat95fg/data/eye_cross_species/eye4_task3_corrected_20260823/scib113/precomputed_graphs/Random-seed42.h5ad",
+      "neighbors": {
+        "method": "umap",
+        "metric": "euclidean",
+        "n_neighbors": 15,
+        "random_state": 0,
+        "use_rep": "X_scib_embedding"
+      },
+      "sha256": "434c7afe450b75da9772b6dfb7cd84d8ef81748d3a5411cbf8ecbb06cfdec1cd"
+    },
+    "TranscriptFormer": {
+      "graph": "/lustre/fswork/projects/rech/xeg/uat95fg/data/eye_cross_species/eye4_task3_corrected_20260823/scib113/precomputed_graphs/TranscriptFormer-Metazoa-mouse-ortholog.h5ad",
+      "neighbors": {
+        "method": "umap",
+        "metric": "euclidean",
+        "n_neighbors": 15,
+        "random_state": 0,
+        "use_rep": "X_scib_embedding"
+      },
+      "sha256": "7430f6562cf392e497da012bb94d4b34a6d614d212aae61ed8312bc4f3ea5ff2"
+    },
+    "scPRINT-2 FT": {
+      "graph": "/lustre/fswork/projects/rech/xeg/uat95fg/data/eye_cross_species/eye4_task3_corrected_20260823/scib113/precomputed_graphs/scPRINT-2-FT-native-cell-token-MMD003.h5ad",
+      "neighbors": {
+        "method": "umap",
+        "metric": "euclidean",
+        "n_neighbors": 15,
+        "random_state": 0,
+        "use_rep": "X_scib_embedding"
+      },
+      "sha256": "c802765265c416a0da1136a8b1d426b75a51f235704d38c3468156e96c50f23c"
+    },
+    "scPRINT-2 ZS": {
+      "graph": "/lustre/fswork/projects/rech/xeg/uat95fg/data/eye_cross_species/eye4_task3_corrected_20260823/scib113/precomputed_graphs/scPRINT-2-ZS-native-cell-token.h5ad",
+      "neighbors": {
+        "method": "umap",
+        "metric": "euclidean",
+        "n_neighbors": 15,
+        "random_state": 0,
+        "use_rep": "X_scib_embedding"
+      },
+      "sha256": "96fd6984592b53f06628809a7a818b6dc998798718cf5264aeb702f48fce5fb1"
+    }
+  },
+  "protocol": "UMAP from exact precomputed KNN graphs persisted by the scib 1.1.3 run; neighbors not recomputed",
+  "umap": {
+    "init_pos": "spectral",
+    "min_dist": 0.5,
+    "random_state": 42,
+    "spread": 1.0
+  },
+  "versions": {
+    "anndata": "0.11.4",
+    "matplotlib": "3.9.3",
+    "numpy": "1.26.4",
+    "pandas": "2.3.1",
+    "scanpy": "1.11.4",
+    "umap-learn": "0.5.9.post2"
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "created_at": "2026-08-14T14:51:12.238114+00:00",
+  "expression": "/lustre/fswork/projects/rech/xeg/uat95fg/data/pandora_lung/pandora_lung_human_one2one.h5ad",
+  "embedding": "/lustre/fswork/projects/rech/xeg/uat95fg/data/pandora_lung/pandora_lung_scprint1.h5ad",
+  "embedding_key": "scprint_emb",
+  "batch_key": "species",
+  "label_key": "cell_type",
+  "excluded_labels": [
+    "mix",
+    "unknown",
+    "unmapped"
+  ],
+  "source_cells": 114015,
+  "scored_cells": 93423,
+  "genes": 15041,
+  "batches": 11,
+  "labels": 17,
+  "methods": [
+    "scprint_emb",
+    "X_pca"
+  ],
+  "min_max_scale": false,
+  "seed": 42,
+  "versions": {
+    "anndata": "0.11.4",
+    "scanpy": "1.11.4",
+    "scib-metrics": "0.5.6",
+    "scprint": "2.3.5"
+  }
+}

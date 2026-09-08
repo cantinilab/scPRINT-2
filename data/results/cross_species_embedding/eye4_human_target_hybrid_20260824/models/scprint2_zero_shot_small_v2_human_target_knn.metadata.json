@@ -1,0 +1,44 @@
+{
+  "mode": "scprint2-zero-shot",
+  "notebook_provenance": "eye4 human-target ENSG union; all cells declared human feature space; small-v2 zero-shot cell-type token; multi-cell kNN",
+  "input": "/lustre/fswork/projects/rech/xeg/uat95fg/data/eye_cross_species/eye4_human_target_hybrid_20260824/eye4_human_ensembl_small_v2.h5ad",
+  "output": "/lustre/fswork/projects/rech/xeg/uat95fg/data/eye_cross_species/eye4_human_target_hybrid_20260824/embeddings/scprint2_zero_shot_small_v2_human_target_knn.h5ad",
+  "embedding_key": "scprint_emb",
+  "checkpoint": "/lustre/fswork/projects/rech/xeg/uat95fg/models/small-v2.ckpt",
+  "checkpoint_name": "small-v2.ckpt",
+  "seed": 42,
+  "batch_key": "species",
+  "cell_type_key": "cell_type_ontology_term_id",
+  "settings": {
+    "batch_size": 32,
+    "num_workers": 4,
+    "embed_how": "random expr",
+    "embed_max_len": 2800,
+    "use_knn": true,
+    "rebuild_knn_graph_requested": true,
+    "legacy_detached_mmd": false,
+    "restore_best_model": true,
+    "knn_graph_rebuilt": true,
+    "align_checkpoint_genes": true
+  },
+  "cells": 29568,
+  "genes": 20004,
+  "checkpoint_gene_alignment": {
+    "organism": "NCBITaxon:9606",
+    "input_genes": 20004,
+    "overlap_genes": 20004,
+    "checkpoint_genes": 20004,
+    "missing_genes_zero_filled": 0
+  },
+  "knn_cells_preprocessing": {
+    "source": "expression.X_before_checkpoint_alignment",
+    "normalization": "normalize_total_target_sum_10000_then_log1p",
+    "pca_dimension": 50,
+    "pca_svd_solver": "arpack",
+    "use_highly_variable": false,
+    "neighbors_use_rep": "X_pca",
+    "knn_cell_selector": "six_nearest_stored_scanpy_distance_edges_within_split",
+    "seed": 42,
+    "forced_rebuild": true
+  }
+}

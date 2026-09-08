@@ -1,0 +1,85 @@
+{
+  "methods": {
+    "PCA": {
+      "graph": "/lustre/fswork/projects/rech/xeg/uat95fg/data/eye_cross_species/eye4_human_target_hybrid_20260824/scib113_all_tokens_except_organism/precomputed_graphs/PCA.h5ad",
+      "neighbors": {
+        "method": "umap",
+        "metric": "euclidean",
+        "n_neighbors": 15,
+        "random_state": 0,
+        "use_rep": "X_scib_embedding"
+      },
+      "sha256": "dbca36d78f2546db9a1e114dec133afda94ad4880b57494bebb062dec1884033"
+    },
+    "Random": {
+      "graph": "/lustre/fswork/projects/rech/xeg/uat95fg/data/eye_cross_species/eye4_human_target_hybrid_20260824/scib113_all_tokens_except_organism/precomputed_graphs/Random-seed42.h5ad",
+      "neighbors": {
+        "method": "umap",
+        "metric": "euclidean",
+        "n_neighbors": 15,
+        "random_state": 0,
+        "use_rep": "X_scib_embedding"
+      },
+      "sha256": "118066b79df92119caa9430008ad3126357ab6310bb08f90181fde6febaef6f8"
+    },
+    "TranscriptFormer": {
+      "graph": "/lustre/fswork/projects/rech/xeg/uat95fg/data/eye_cross_species/eye4_human_target_hybrid_20260824/scib113_all_tokens_except_organism/precomputed_graphs/TranscriptFormer-Metazoa-human-target.h5ad",
+      "neighbors": {
+        "method": "umap",
+        "metric": "euclidean",
+        "n_neighbors": 15,
+        "random_state": 0,
+        "use_rep": "X_scib_embedding"
+      },
+      "sha256": "70654175fe5003bc5a622a20865a3d783d1a4ba2c9b0a58c0a20fceed225074f"
+    },
+    "scPRINT-2 FT": {
+      "graph": "/lustre/fswork/projects/rech/xeg/uat95fg/data/eye_cross_species/eye4_human_target_hybrid_20260824/scib113_all_tokens_except_organism/precomputed_graphs/scPRINT-2-FT-human-target-cell-token-MMD003.h5ad",
+      "neighbors": {
+        "method": "umap",
+        "metric": "euclidean",
+        "n_neighbors": 15,
+        "random_state": 0,
+        "use_rep": "X_scib_embedding"
+      },
+      "sha256": "5d781fb1e65fb0eb8edfb0283e8bd5140c2c644fe65554e3557ee8e9de3741ca"
+    },
+    "scPRINT-2 ZS": {
+      "graph": "/lustre/fswork/projects/rech/xeg/uat95fg/data/eye_cross_species/eye4_human_target_hybrid_20260824/scib113_all_tokens_except_organism/precomputed_graphs/scPRINT-2-ZS-human-target-cell-token.h5ad",
+      "neighbors": {
+        "method": "umap",
+        "metric": "euclidean",
+        "n_neighbors": 15,
+        "random_state": 0,
+        "use_rep": "X_scib_embedding"
+      },
+      "sha256": "25bea32196021009e8684393402c8b425a0db2b11d0ef62227f63d4c1c8d2274"
+    },
+    "scPRINT-2 ZS all-except-organism": {
+      "graph": "/lustre/fswork/projects/rech/xeg/uat95fg/data/eye_cross_species/eye4_human_target_hybrid_20260824/scib113_all_tokens_except_organism/precomputed_graphs/scPRINT-2-ZS-human-target-all-tokens-except-organism-PCA50.h5ad",
+      "neighbors": {
+        "method": "umap",
+        "metric": "euclidean",
+        "n_neighbors": 15,
+        "random_state": 0,
+        "use_rep": "X_scib_embedding"
+      },
+      "sha256": "9700a18dc260e36eb9e6cecaa2337d8ebdfc86721143a7e6b2091b5b0ee307ed"
+    }
+  },
+  "protocol": "UMAP from exact precomputed KNN graphs persisted by the scib 1.1.3 run; neighbors not recomputed",
+  "umap": {
+    "init_pos": "spectral",
+    "min_dist": 0.5,
+    "random_state": 42,
+    "spread": 1.0
+  },
+  "versions": {
+    "anndata": "0.11.4",
+    "matplotlib": "3.9.3",
+    "numpy": "1.26.4",
+    "pandas": "2.3.1",
+    "scanpy": "1.11.4",
+    "umap-learn": "0.5.9.post2"
+  }
+}

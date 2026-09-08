@@ -1,0 +1,9 @@
+{
+  "status": "complete",
+  "output": "/lustre/fswork/projects/rech/xeg/uat95fg/data/eye_cross_species/eye4_task3_corrected_20260823/eye4_mouse_ortholog_scprint_preprocessed.h5ad",
+  "manifest": "/lustre/fswork/projects/rech/xeg/uat95fg/data/eye_cross_species/eye4_task3_corrected_20260823/eye4_ortholog_preparation_manifest.json",
+  "shape": [
+    29568,
+    57066
+  ]
+}

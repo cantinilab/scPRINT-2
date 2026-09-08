@@ -1,0 +1,28 @@
+{
+  "mode": "scprint2-zero-shot",
+  "notebook_provenance": "notebooks/scPRINT-2-repro-notebooks/cross-species-embedding-pandora-lung.ipynb",
+  "input": "/lustre/fswork/projects/rech/xeg/uat95fg/data/pandora_lung/pandora_lung_mouse_homolog_ensmusg.h5ad",
+  "output": "/lustre/fswork/projects/rech/xeg/uat95fg/data/pandora_lung/pandora_lung_mouse_space_scprint2_small_v2.h5ad",
+  "embedding_key": "scprint_emb",
+  "checkpoint": "/lustre/fswork/projects/rech/xeg/uat95fg/models/small-v2.ckpt",
+  "checkpoint_name": "small-v2.ckpt",
+  "seed": 42,
+  "batch_key": "species",
+  "cell_type_key": "cell_type_ontology_term_id",
+  "settings": {
+    "batch_size": 32,
+    "num_workers": 4,
+    "embed_how": "random expr",
+    "embed_max_len": 2200,
+    "align_checkpoint_genes": true
+  },
+  "cells": 114015,
+  "genes": 21550,
+  "checkpoint_gene_alignment": {
+    "organism": "NCBITaxon:10090",
+    "input_genes": 25400,
+    "overlap_genes": 18096,
+    "checkpoint_genes": 21550,
+    "missing_genes_zero_filled": 3454
+  }
+}

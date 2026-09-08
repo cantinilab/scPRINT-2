@@ -1,0 +1,24 @@
+{
+  "formulas": {
+    "Batch.ARI": "1 - max(ari_batch, 0)",
+    "Batch.NMI": "1 - nmi_value_batch",
+    "Trajectory.conservation": "scib trajectory"
+  },
+  "input_sha256": {
+    "ari": "fa60474970fdddf1fb18417acb6dc93523e5d5fff400abc4aa21ce4117f63c38",
+    "nmi": "b8aef2d89920620d7acb2175d551d949608efda7e464aa876dfdba50041f3710",
+    "run_metadata": "5cfd82ad6c9c9b4c0e9373f3ae051729cc458476119641619f6473ca02c7957e",
+    "scib": "b2b15efe033f79e9a4efccaf3ca06c9cf4bc719611e558913a007f470f4330c0"
+  },
+  "label_key": "cell_type_ontology_term_id",
+  "paper_root": "/lustre/fswork/projects/rech/xeg/uat95fg/scPRINT/data/results/cross_species_embedding/paper_scib_1.1.3/TranscriptFormer-Metazoa-fresh-scib113-complete",
+  "protocol": "NAR gkae1316 Figshare 50760384 targeted missing metrics",
+  "source_metadata": "/lustre/fswork/projects/rech/xeg/uat95fg/scPRINT/data/results/cross_species_embedding/paper_scib_1.1.3/TranscriptFormer-Metazoa-fresh-scib113-complete/run_metadata.json",
+  "versions": {
+    "anndata": "0.8.0",
+    "numpy": "1.21.6",
+    "pandas": "1.3.5",
+    "scanpy": "1.9.1",
+    "scib": "1.1.3"
+  }
+}

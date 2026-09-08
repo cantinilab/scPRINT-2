@@ -1,0 +1,2 @@
+method,ari,asw_batch,asw_label,cell_cycle_conservation,clisi,graph_connectivity,hvg_overlap,ilisi,isolated_label_asw,isolated_label_f1,kbet,nmi,pcr
+scPRINT-2 small-v2 finetune cell_type raw,0.8305739282134252,0.8733126521110535,0.7284067720174789,0.8521292332545563,0.9999999999999999,0.969583207550702,,0.2572425119337335,,,0.27806854730105246,0.8389588490442764,0.5328174895014143

@@ -1,0 +1,44 @@
+{
+  "created_at": "2026-08-14T23:59:11.248286+00:00",
+  "expression": "/lustre/fswork/projects/rech/xeg/uat95fg/data/pandora_lung/pandora_lung_mouse_homolog_ensmusg.h5ad",
+  "embeddings": {
+    "scprint2_small_v2": {
+      "path": "/lustre/fswork/projects/rech/xeg/uat95fg/data/pandora_lung/pandora_lung_mouse_space_scprint2_small_v2.h5ad",
+      "key": "scprint_emb"
+    },
+    "scprint2_small_v2_ft": {
+      "path": "/lustre/fswork/projects/rech/xeg/uat95fg/data/pandora_lung/pandora_lung_mouse_space_scprint2_small_v2_ft.h5ad",
+      "key": "scprint_emb"
+    }
+  },
+  "batch_key": "species",
+  "label_key": "cell_type_ontology_term_id",
+  "excluded_labels": [
+    "mix",
+    "unknown",
+    "unmapped"
+  ],
+  "source_cells": 114015,
+  "scored_cells": 93423,
+  "genes": 25400,
+  "batches": 11,
+  "labels": 16,
+  "methods": [
+    "scprint2_small_v2",
+    "scprint2_small_v2_ft",
+    "X_pca"
+  ],
+  "pca": {
+    "source": "expression.X",
+    "normalization": "normalize_total_target_sum_10000_then_log1p",
+    "uses_embeddings": false
+  },
+  "min_max_scale": false,
+  "seed": 42,
+  "versions": {
+    "anndata": "0.11.4",
+    "scanpy": "1.11.4",
+    "scib-metrics": "0.5.6",
+    "scprint": "2.3.5"
+  }
+}

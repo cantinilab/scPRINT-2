@@ -1,0 +1,336 @@
+{
+  "comparison": "/lustre/fswork/projects/rech/xeg/uat95fg/data/pandora_lung/pandora_lung_filtered_93423_scib113_five_methods_vs_modern.tsv",
+  "legacy_scores": "/lustre/fswork/projects/rech/xeg/uat95fg/data/pandora_lung/pandora_lung_filtered_93423_scib113_five_methods.tsv",
+  "methods": {
+    "TranscriptFormer": {
+      "batch_key": "species",
+      "batch_metrics": [
+        "ASW_label/batch",
+        "PCR_batch",
+        "graph_conn",
+        "kBET",
+        "iLISI"
+      ],
+      "batches": 11,
+      "bio_metrics": [
+        "NMI_cluster/label",
+        "ARI_cluster/label",
+        "ASW_label",
+        "isolated_label_F1",
+        "isolated_label_silhouette",
+        "cLISI"
+      ],
+      "cells": 93423,
+      "embeddings": {
+        "TranscriptFormer": {
+          "connectivities_sha256_after_scib": "644a3ad37e73413065e7c5c02cd2476f398d3b96e774aa9b8cf56eac48b644f1",
+          "connectivities_sha256_before_scib": "644a3ad37e73413065e7c5c02cd2476f398d3b96e774aa9b8cf56eac48b644f1",
+          "embedding": "/lustre/fswork/projects/rech/xeg/uat95fg/data/pandora_lung/pandora_lung_transcriptformer.h5ad",
+          "embedding_dimension": 2048,
+          "embedding_key": "model_emb",
+          "embedding_sha256": "4245d8c86727cd31c02245bf407c06bfa49ccfd43d061b332b251c79f771affe",
+          "neighbors_params": {
+            "method": "umap",
+            "metric": "euclidean",
+            "n_neighbors": 15,
+            "random_state": 0,
+            "use_rep": "X_scib_embedding"
+          },
+          "precomputed_graph": "/lustre/fswork/projects/rech/xeg/uat95fg/data/pandora_lung/precomputed_graphs/TranscriptFormer.h5ad",
+          "precomputed_graph_sha256": "e720912ca941378f45a45e62c93c23333de1e5bfc9f51b7d76f4904832314888"
+        }
+      },
+      "expression_connectivities_sha256": "dc5a9f3fdc6f2fbc2b23908ef318f77bc21121d99d05000a8814787f2bd05aad",
+      "expression_preprocessing": [
+        "normalize_total(target_sum=1e4)",
+        "log1p",
+        "pca",
+        "neighbors(use_rep='X_pca')"
+      ],
+      "integration_graph": {
+        "neighbors_use_rep": "X_scib_embedding",
+        "precomputed_before_scib": true,
+        "scib_type": "knn"
+      },
+      "label_key": "cell_type_ontology_term_id",
+      "labels": 16,
+      "obs_name_replace": [
+        ".mouse_homolog_ensmusg",
+        ".human_one2one"
+      ],
+      "protocol": "scib 1.1.3 with caller-precomputed PCA and kNN graphs",
+      "source": "/lustre/fswork/projects/rech/xeg/uat95fg/data/pandora_lung/pandora_lung_mouse_homolog_ensmusg_filtered_93423.h5ad",
+      "source_sha256": "ee2b62489c131e6b298a21668206239117560cf87223cf126621c8bb1b89440b",
+      "total_formula": "0.4 * Batch correction + 0.6 * Bio conservation",
+      "versions": {
+        "anndata": "0.8.0",
+        "numpy": "1.21.6",
+        "pandas": "1.3.5",
+        "scanpy": "1.9.1",
+        "scib": "1.1.3",
+        "scikit-learn": "1.0.2"
+      }
+    },
+    "scPRINT-2-FT-all-tokens-mmd003-no-organism-classification-knn": {
+      "batch_key": "species",
+      "batch_metrics": [
+        "ASW_label/batch",
+        "PCR_batch",
+        "graph_conn",
+        "kBET",
+        "iLISI"
+      ],
+      "batches": 11,
+      "bio_metrics": [
+        "NMI_cluster/label",
+        "ARI_cluster/label",
+        "ASW_label",
+        "isolated_label_F1",
+        "isolated_label_silhouette",
+        "cLISI"
+      ],
+      "cells": 93423,
+      "embeddings": {
+        "scPRINT-2-FT-all-tokens-mmd003-no-organism-classification-knn": {
+          "connectivities_sha256_after_scib": "92c484a25c9f7457f87ff534519d67b108186a812f6c6ff087f18b73610c3327",
+          "connectivities_sha256_before_scib": "92c484a25c9f7457f87ff534519d67b108186a812f6c6ff087f18b73610c3327",
+          "embedding": "/lustre/fswork/projects/rech/xeg/uat95fg/data/pandora_lung/pandora_lung_filtered_93423_small_v2_ft_mmd003_no_org_cls_knn_token_concat_pca50.h5ad",
+          "embedding_dimension": 50,
+          "embedding_key": "token_concat_pca50",
+          "embedding_sha256": "1a443af08ee1eeae31f27922af3e5618778bc178b81ec8cb86dfeb3e88d40f11",
+          "neighbors_params": {
+            "method": "umap",
+            "metric": "euclidean",
+            "n_neighbors": 15,
+            "random_state": 0,
+            "use_rep": "X_scib_embedding"
+          },
+          "precomputed_graph": "/lustre/fswork/projects/rech/xeg/uat95fg/data/pandora_lung/precomputed_graphs/scPRINT-2-FT-all-tokens-mmd003-no-organism-classification-knn.h5ad",
+          "precomputed_graph_sha256": "311138b42e250ee03c205a213aba17399bc15692b5219dffab958985ae44fc5d"
+        }
+      },
+      "expression_connectivities_sha256": "dc5a9f3fdc6f2fbc2b23908ef318f77bc21121d99d05000a8814787f2bd05aad",
+      "expression_preprocessing": [
+        "normalize_total(target_sum=1e4)",
+        "log1p",
+        "pca",
+        "neighbors(use_rep='X_pca')"
+      ],
+      "integration_graph": {
+        "neighbors_use_rep": "X_scib_embedding",
+        "precomputed_before_scib": true,
+        "scib_type": "knn"
+      },
+      "label_key": "cell_type_ontology_term_id",
+      "labels": 16,
+      "protocol": "scib 1.1.3 with caller-precomputed PCA and kNN graphs",
+      "source": "/lustre/fswork/projects/rech/xeg/uat95fg/data/pandora_lung/pandora_lung_mouse_homolog_ensmusg_filtered_93423.h5ad",
+      "source_sha256": "ee2b62489c131e6b298a21668206239117560cf87223cf126621c8bb1b89440b",
+      "total_formula": "0.4 * Batch correction + 0.6 * Bio conservation",
+      "versions": {
+        "anndata": "0.8.0",
+        "numpy": "1.21.6",
+        "pandas": "1.3.5",
+        "scanpy": "1.9.1",
+        "scib": "1.1.3",
+        "scikit-learn": "1.0.2"
+      }
+    },
+    "scPRINT-2-FT-cell-token-mmd003-no-organism-classification-knn": {
+      "batch_key": "species",
+      "batch_metrics": [
+        "ASW_label/batch",
+        "PCR_batch",
+        "graph_conn",
+        "kBET",
+        "iLISI"
+      ],
+      "batches": 11,
+      "bio_metrics": [
+        "NMI_cluster/label",
+        "ARI_cluster/label",
+        "ASW_label",
+        "isolated_label_F1",
+        "isolated_label_silhouette",
+        "cLISI"
+      ],
+      "cells": 93423,
+      "embeddings": {
+        "scPRINT-2-FT-cell-token-mmd003-no-organism-classification-knn": {
+          "connectivities_sha256_after_scib": "88885040b0b7ae879c4698a2545d79d1cebf166234a99005c0dfd1d70960a149",
+          "connectivities_sha256_before_scib": "88885040b0b7ae879c4698a2545d79d1cebf166234a99005c0dfd1d70960a149",
+          "embedding": "/lustre/fswork/projects/rech/xeg/uat95fg/data/pandora_lung/pandora_lung_mouse_space_filtered_93423_scprint2_small_v2_ft_mmd003_no_org_cls_knn.h5ad",
+          "embedding_dimension": 64,
+          "embedding_key": "scprint_emb_cell_type_ontology_term_id",
+          "embedding_sha256": "d5e63ef9b53d8afd47e7b4ce0d4bba843094701f5fa3c7a36659fa2d0cbf2437",
+          "neighbors_params": {
+            "method": "umap",
+            "metric": "euclidean",
+            "n_neighbors": 15,
+            "random_state": 0,
+            "use_rep": "X_scib_embedding"
+          },
+          "precomputed_graph": "/lustre/fswork/projects/rech/xeg/uat95fg/data/pandora_lung/precomputed_graphs/scPRINT-2-FT-cell-token-mmd003-no-organism-classification-knn.h5ad",
+          "precomputed_graph_sha256": "c930041329a3eb7ff4f26640bb7c5a4f412a6f92b2a01235b38cd2c23e651b23"
+        }
+      },
+      "expression_connectivities_sha256": "dc5a9f3fdc6f2fbc2b23908ef318f77bc21121d99d05000a8814787f2bd05aad",
+      "expression_preprocessing": [
+        "normalize_total(target_sum=1e4)",
+        "log1p",
+        "pca",
+        "neighbors(use_rep='X_pca')"
+      ],
+      "integration_graph": {
+        "neighbors_use_rep": "X_scib_embedding",
+        "precomputed_before_scib": true,
+        "scib_type": "knn"
+      },
+      "label_key": "cell_type_ontology_term_id",
+      "labels": 16,
+      "protocol": "scib 1.1.3 with caller-precomputed PCA and kNN graphs",
+      "source": "/lustre/fswork/projects/rech/xeg/uat95fg/data/pandora_lung/pandora_lung_mouse_homolog_ensmusg_filtered_93423.h5ad",
+      "source_sha256": "ee2b62489c131e6b298a21668206239117560cf87223cf126621c8bb1b89440b",
+      "total_formula": "0.4 * Batch correction + 0.6 * Bio conservation",
+      "versions": {
+        "anndata": "0.8.0",
+        "numpy": "1.21.6",
+        "pandas": "1.3.5",
+        "scanpy": "1.9.1",
+        "scib": "1.1.3",
+        "scikit-learn": "1.0.2"
+      }
+    },
+    "scPRINT-2-ZS-all-tokens-pca50": {
+      "batch_key": "species",
+      "batch_metrics": [
+        "ASW_label/batch",
+        "PCR_batch",
+        "graph_conn",
+        "kBET",
+        "iLISI"
+      ],
+      "batches": 11,
+      "bio_metrics": [
+        "NMI_cluster/label",
+        "ARI_cluster/label",
+        "ASW_label",
+        "isolated_label_F1",
+        "isolated_label_silhouette",
+        "cLISI"
+      ],
+      "cells": 93423,
+      "embeddings": {
+        "scPRINT-2-ZS-all-tokens-pca50": {
+          "connectivities_sha256_after_scib": "38e1781b632004f02c18322d051f7718257048be92df972bd1f9bb5e496665da",
+          "connectivities_sha256_before_scib": "38e1781b632004f02c18322d051f7718257048be92df972bd1f9bb5e496665da",
+          "embedding": "/lustre/fswork/projects/rech/xeg/uat95fg/data/pandora_lung/pandora_lung_filtered_93423_small_v2_zs_knn_fixed_token_concat_pca50.h5ad",
+          "embedding_dimension": 50,
+          "embedding_key": "token_concat_pca50",
+          "embedding_sha256": "ad616952832adb7d779a0784ae53959cef653569f5b6eead075f8747d1294adb",
+          "neighbors_params": {
+            "method": "umap",
+            "metric": "euclidean",
+            "n_neighbors": 15,
+            "random_state": 0,
+            "use_rep": "X_scib_embedding"
+          },
+          "precomputed_graph": "/lustre/fswork/projects/rech/xeg/uat95fg/data/pandora_lung/precomputed_graphs/scPRINT-2-ZS-all-tokens-pca50.h5ad",
+          "precomputed_graph_sha256": "9c924701605ae78e7ef9f80962b20480de55b2b53b8cb528859db2ce51af9e64"
+        }
+      },
+      "expression_connectivities_sha256": "dc5a9f3fdc6f2fbc2b23908ef318f77bc21121d99d05000a8814787f2bd05aad",
+      "expression_preprocessing": [
+        "normalize_total(target_sum=1e4)",
+        "log1p",
+        "pca",
+        "neighbors(use_rep='X_pca')"
+      ],
+      "integration_graph": {
+        "neighbors_use_rep": "X_scib_embedding",
+        "precomputed_before_scib": true,
+        "scib_type": "knn"
+      },
+      "label_key": "cell_type_ontology_term_id",
+      "labels": 16,
+      "protocol": "scib 1.1.3 with caller-precomputed PCA and kNN graphs",
+      "source": "/lustre/fswork/projects/rech/xeg/uat95fg/data/pandora_lung/pandora_lung_mouse_homolog_ensmusg_filtered_93423.h5ad",
+      "source_sha256": "ee2b62489c131e6b298a21668206239117560cf87223cf126621c8bb1b89440b",
+      "total_formula": "0.4 * Batch correction + 0.6 * Bio conservation",
+      "versions": {
+        "anndata": "0.8.0",
+        "numpy": "1.21.6",
+        "pandas": "1.3.5",
+        "scanpy": "1.9.1",
+        "scib": "1.1.3",
+        "scikit-learn": "1.0.2"
+      }
+    },
+    "scPRINT-2-ZS-cell-token-knn": {
+      "batch_key": "species",
+      "batch_metrics": [
+        "ASW_label/batch",
+        "PCR_batch",
+        "graph_conn",
+        "kBET",
+        "iLISI"
+      ],
+      "batches": 11,
+      "bio_metrics": [
+        "NMI_cluster/label",
+        "ARI_cluster/label",
+        "ASW_label",
+        "isolated_label_F1",
+        "isolated_label_silhouette",
+        "cLISI"
+      ],
+      "cells": 93423,
+      "embeddings": {
+        "scPRINT-2-ZS-cell-token-knn": {
+          "connectivities_sha256_after_scib": "c02e558e1401f2e14a0dfdf21cb286ae4be909cf6a3d28c61362c16c069b75a2",
+          "connectivities_sha256_before_scib": "c02e558e1401f2e14a0dfdf21cb286ae4be909cf6a3d28c61362c16c069b75a2",
+          "embedding": "/lustre/fswork/projects/rech/xeg/uat95fg/data/pandora_lung/pandora_lung_mouse_space_filtered_93423_scprint2_small_v2_zs_knn_fixed.h5ad",
+          "embedding_dimension": 64,
+          "embedding_key": "scprint_emb_cell_type_ontology_term_id",
+          "embedding_sha256": "6de7a0567779fac168fb4fa43c2254f0b233f75ac82ac328c0c1a2803139974e",
+          "neighbors_params": {
+            "method": "umap",
+            "metric": "euclidean",
+            "n_neighbors": 15,
+            "random_state": 0,
+            "use_rep": "X_scib_embedding"
+          },
+          "precomputed_graph": "/lustre/fswork/projects/rech/xeg/uat95fg/data/pandora_lung/precomputed_graphs/scPRINT-2-ZS-cell-token-knn.h5ad",
+          "precomputed_graph_sha256": "d4976f5ace4238d9478234fc7315ec3b6ec56c72eeaf17f63c11fb114ad2b230"
+        }
+      },
+      "expression_connectivities_sha256": "dc5a9f3fdc6f2fbc2b23908ef318f77bc21121d99d05000a8814787f2bd05aad",
+      "expression_preprocessing": [
+        "normalize_total(target_sum=1e4)",
+        "log1p",
+        "pca",
+        "neighbors(use_rep='X_pca')"
+      ],
+      "integration_graph": {
+        "neighbors_use_rep": "X_scib_embedding",
+        "precomputed_before_scib": true,
+        "scib_type": "knn"
+      },
+      "label_key": "cell_type_ontology_term_id",
+      "labels": 16,
+      "protocol": "scib 1.1.3 with caller-precomputed PCA and kNN graphs",
+      "source": "/lustre/fswork/projects/rech/xeg/uat95fg/data/pandora_lung/pandora_lung_mouse_homolog_ensmusg_filtered_93423.h5ad",
+      "source_sha256": "ee2b62489c131e6b298a21668206239117560cf87223cf126621c8bb1b89440b",
+      "total_formula": "0.4 * Batch correction + 0.6 * Bio conservation",
+      "versions": {
+        "anndata": "0.8.0",
+        "numpy": "1.21.6",
+        "pandas": "1.3.5",
+        "scanpy": "1.9.1",
+        "scib": "1.1.3",
+        "scikit-learn": "1.0.2"
+      }
+    }
+  },
+  "modern_scores": "/lustre/fswork/projects/rech/xeg/uat95fg/data/pandora_lung/pandora_lung_filtered_93423_scib_mmd003_no_org_cls_knn.tsv"
+}

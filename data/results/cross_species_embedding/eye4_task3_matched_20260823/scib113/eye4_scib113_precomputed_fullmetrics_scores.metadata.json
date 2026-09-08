@@ -1,0 +1,167 @@
+{
+  "batch_key": "species",
+  "batch_metrics": [
+    "ASW_label/batch",
+    "PCR_batch",
+    "graph_conn",
+    "kBET",
+    "iLISI"
+  ],
+  "batches": 4,
+  "bio_metrics": [
+    "NMI_cluster/label",
+    "ARI_cluster/label",
+    "ASW_label",
+    "cLISI",
+    "hvg_overlap",
+    "trajectory"
+  ],
+  "cells": 16624,
+  "embeddings": {
+    "PCA": {
+      "connectivities_sha256_after_scib": "d1631d08345e8930e189d402f42d5d06886a4ca8ca69d63e9e13be84d0d2e8b5",
+      "connectivities_sha256_before_scib": "d1631d08345e8930e189d402f42d5d06886a4ca8ca69d63e9e13be84d0d2e8b5",
+      "embedding": "/lustre/fswork/projects/rech/xeg/uat95fg/data/eye_cross_species/eye4_task3_matched_20260823/embeddings/expression_pca50_random_seed42.h5ad",
+      "embedding_dimension": 50,
+      "embedding_key": "X_pca",
+      "embedding_sha256": "b17cdd8c5a0bd7c8a858a9bc534adf7d111bbc77033749b98f6cef7ec4319a4f",
+      "neighbors_params": {
+        "method": "umap",
+        "metric": "euclidean",
+        "n_neighbors": 15,
+        "random_state": 0,
+        "use_rep": "X_scib_embedding"
+      },
+      "precomputed_graph": "/lustre/fswork/projects/rech/xeg/uat95fg/data/eye_cross_species/eye4_task3_matched_20260823/scib113/precomputed_graphs/PCA.h5ad",
+      "precomputed_graph_sha256": "18704e37d2f7397cb480e95f9bd1e9456c65dda0f195100fc999da859acfc42f"
+    },
+    "Random-seed42": {
+      "connectivities_sha256_after_scib": "1cc90d0f95cb75db9f5e121439b7f2614529fdd5139d6953831a93982b4b25c1",
+      "connectivities_sha256_before_scib": "1cc90d0f95cb75db9f5e121439b7f2614529fdd5139d6953831a93982b4b25c1",
+      "embedding": "/lustre/fswork/projects/rech/xeg/uat95fg/data/eye_cross_species/eye4_task3_matched_20260823/embeddings/expression_pca50_random_seed42.h5ad",
+      "embedding_dimension": 50,
+      "embedding_key": "random",
+      "embedding_sha256": "b17cdd8c5a0bd7c8a858a9bc534adf7d111bbc77033749b98f6cef7ec4319a4f",
+      "neighbors_params": {
+        "method": "umap",
+        "metric": "euclidean",
+        "n_neighbors": 15,
+        "random_state": 0,
+        "use_rep": "X_scib_embedding"
+      },
+      "precomputed_graph": "/lustre/fswork/projects/rech/xeg/uat95fg/data/eye_cross_species/eye4_task3_matched_20260823/scib113/precomputed_graphs/Random-seed42.h5ad",
+      "precomputed_graph_sha256": "4b3c6db11824f757022badf142715334f526f851f7a17b14e082e54f6980d68d"
+    },
+    "TranscriptFormer-Metazoa": {
+      "connectivities_sha256_after_scib": "ef0a9afeae9b620b4911c62c6adc5370151ee435c4c9eaf1fe8b540694037d10",
+      "connectivities_sha256_before_scib": "ef0a9afeae9b620b4911c62c6adc5370151ee435c4c9eaf1fe8b540694037d10",
+      "embedding": "/lustre/fswork/projects/rech/xeg/uat95fg/data/eye_cross_species/eye4_task3_matched_20260823/embeddings/transcriptformer_metazoa.h5ad",
+      "embedding_dimension": 2048,
+      "embedding_key": "model_emb",
+      "embedding_sha256": "856bb0adb5117b3300ff22d324935a11b467efceaee8cbe0137654050c8693db",
+      "neighbors_params": {
+        "method": "umap",
+        "metric": "euclidean",
+        "n_neighbors": 15,
+        "random_state": 0,
+        "use_rep": "X_scib_embedding"
+      },
+      "precomputed_graph": "/lustre/fswork/projects/rech/xeg/uat95fg/data/eye_cross_species/eye4_task3_matched_20260823/scib113/precomputed_graphs/TranscriptFormer-Metazoa.h5ad",
+      "precomputed_graph_sha256": "5738c42b258efdda9191e7eb3cfb92250b19ee2934f59e98967f68e172d299b7"
+    },
+    "scPRINT-2-FT-cell-token-MMD003": {
+      "connectivities_sha256_after_scib": "fc62d4c1b12f555c386f804c2b8bae9d4b49e8f48afd2eece7286519cde5a685",
+      "connectivities_sha256_before_scib": "fc62d4c1b12f555c386f804c2b8bae9d4b49e8f48afd2eece7286519cde5a685",
+      "embedding": "/lustre/fswork/projects/rech/xeg/uat95fg/data/eye_cross_species/eye4_task3_matched_20260823/embeddings/scprint2_ft_small_v2_mmd003_knn.h5ad",
+      "embedding_dimension": 64,
+      "embedding_key": "scprint_emb_cell_type_ontology_term_id",
+      "embedding_sha256": "3ddf39e0f5ab83079850832cf0cec0f06f0e9d00d28e6a77d3993b799a826c04",
+      "neighbors_params": {
+        "method": "umap",
+        "metric": "euclidean",
+        "n_neighbors": 15,
+        "random_state": 0,
+        "use_rep": "X_scib_embedding"
+      },
+      "precomputed_graph": "/lustre/fswork/projects/rech/xeg/uat95fg/data/eye_cross_species/eye4_task3_matched_20260823/scib113/precomputed_graphs/scPRINT-2-FT-cell-token-MMD003.h5ad",
+      "precomputed_graph_sha256": "c3997f821d90d826816ef6fdc52b56f7ae4c50776017b1e991b8e7b63328a334"
+    },
+    "scPRINT-2-ZS-cell-token": {
+      "connectivities_sha256_after_scib": "f47d94eedb50eaa0bad171a3103ba6dba4c9d35d93fe55d910c05148c1d24c9e",
+      "connectivities_sha256_before_scib": "f47d94eedb50eaa0bad171a3103ba6dba4c9d35d93fe55d910c05148c1d24c9e",
+      "embedding": "/lustre/fswork/projects/rech/xeg/uat95fg/data/eye_cross_species/eye4_task3_matched_20260823/embeddings/scprint2_zero_shot_small_v2_knn.h5ad",
+      "embedding_dimension": 64,
+      "embedding_key": "scprint_emb_cell_type_ontology_term_id",
+      "embedding_sha256": "acc0ca484326e073d415b72a374599c7f80033db855bf41de4e1f02e14a08796",
+      "neighbors_params": {
+        "method": "umap",
+        "metric": "euclidean",
+        "n_neighbors": 15,
+        "random_state": 0,
+        "use_rep": "X_scib_embedding"
+      },
+      "precomputed_graph": "/lustre/fswork/projects/rech/xeg/uat95fg/data/eye_cross_species/eye4_task3_matched_20260823/scib113/precomputed_graphs/scPRINT-2-ZS-cell-token.h5ad",
+      "precomputed_graph_sha256": "defa74195c54425f0af4e519e1107764ee2ef267e916334eb41bdbac6a1fd186"
+    }
+  },
+  "expression_connectivities_sha256": "c194f46451d375f8e4d1812fde3c9a64f93c522b693144fc9a60e3f4dd3cf4fd",
+  "expression_preprocessing": [
+    "normalize_total(target_sum=1e4)",
+    "log1p",
+    "per-batch highly_variable_genes",
+    "per-batch pca",
+    "per-batch neighbors(use_rep='X_pca')",
+    "per-batch diffmap and dpt(root_position=0)",
+    "pca",
+    "neighbors(use_rep='X_pca')"
+  ],
+  "integration_graph": {
+    "neighbors_use_rep": "X_scib_embedding",
+    "precomputed_before_scib": true,
+    "scib_type": "knn"
+  },
+  "label_key": "celltype",
+  "labels": 13,
+  "obs_name_replace": null,
+  "protocol": "scib 1.1.3 with caller-precomputed PCA and kNN graphs",
+  "source": "/lustre/fswork/projects/rech/xeg/uat95fg/data/eye_cross_species/eye4_task3_matched_20260823/eye4_mouse_one2one_scprint_preprocessed.h5ad",
+  "source_sha256": "fb67a42b5be101c5132ab054afc397e1f778eb6b5646bfbf530e19edf5e7c265",
+  "total_formula": "0.4 * Batch correction + 0.6 * Bio conservation",
+  "trajectory_reference": {
+    "batches": {
+      "human": {
+        "cells": 9706,
+        "genes": 57066,
+        "highly_variable_genes": 226,
+        "root_position": 0
+      },
+      "macaque_fascicularis": {
+        "cells": 3494,
+        "genes": 57066,
+        "highly_variable_genes": 251,
+        "root_position": 0
+      },
+      "mouse": {
+        "cells": 1264,
+        "genes": 57066,
+        "highly_variable_genes": 244,
+        "root_position": 0
+      },
+      "pig": {
+        "cells": 2160,
+        "genes": 57066,
+        "highly_variable_genes": 205,
+        "root_position": 0
+      }
+    },
+    "pseudotime_key": "dpt_pseudotime"
+  },
+  "versions": {
+    "anndata": "0.8.0",
+    "numpy": "1.21.6",
+    "pandas": "1.3.5",
+    "scanpy": "1.9.1",
+    "scib": "1.1.3",
+    "scikit-learn": "1.0.2"
+  }
+}

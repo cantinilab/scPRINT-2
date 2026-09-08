@@ -1,0 +1,26 @@
+{
+  "method": "scprint2_small_v2_ft_cell_type_only_knn_all_tokens_pca50",
+  "input": "/lustre/fswork/projects/rech/xeg/uat95fg/data/pandora_lung/pandora_lung_mouse_space_filtered_93423_scprint2_small_v2_ft_cell_type_only_knn.h5ad",
+  "selected_tokens": [
+    "cell_type",
+    "disease",
+    "age",
+    "tissue"
+  ],
+  "selected_obsm_keys": [
+    "scprint_emb_cell_type_ontology_term_id",
+    "scprint_emb_disease_ontology_term_id",
+    "scprint_emb_age_group",
+    "scprint_emb_tissue_ontology_term_id"
+  ],
+  "input_dimensions": [
+    64,
+    32,
+    8,
+    32
+  ],
+  "concatenated_dimension": 136,
+  "pca_dimension": 50,
+  "explained_variance_ratio_sum": 0.9824153398359283,
+  "seed": 42
+}

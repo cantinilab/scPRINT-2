@@ -1,0 +1,36 @@
+{
+  "mode": "scprint2-zero-shot",
+  "notebook_provenance": "fresh task3 zero-shot; small-v2; ontology labels; forced normalize/log1p/PCA/neighbors; multi-cell kNN",
+  "input": "/lustre/fswork/projects/rech/xeg/uat95fg/scPRINT/notebooks/scPRINT-2-repro-notebooks/data/task_3_embed.h5ad",
+  "output": "/lustre/fswork/projects/rech/xeg/uat95fg/scPRINT/data/results/cross_species_embedding/task3_fresh_ontology_knn_mmd003_20260815/scprint2_zero_shot_small_v2_knn.h5ad",
+  "embedding_key": "scprint_emb",
+  "checkpoint": "/lustre/fswork/projects/rech/xeg/uat95fg/models/small-v2.ckpt",
+  "checkpoint_name": "small-v2.ckpt",
+  "seed": 42,
+  "batch_key": "orig.ident",
+  "cell_type_key": "cell_type_ontology_term_id",
+  "settings": {
+    "batch_size": 32,
+    "num_workers": 4,
+    "embed_how": "random expr",
+    "embed_max_len": 2800,
+    "use_knn": true,
+    "rebuild_knn_graph_requested": true,
+    "legacy_detached_mmd": false,
+    "restore_best_model": true,
+    "knn_graph_rebuilt": true,
+    "align_checkpoint_genes": false
+  },
+  "cells": 27200,
+  "genes": 57066,
+  "knn_cells_preprocessing": {
+    "source": "expression.X_before_checkpoint_alignment",
+    "normalization": "normalize_total_target_sum_10000_then_log1p",
+    "pca_dimension": 50,
+    "pca_svd_solver": "arpack",
+    "use_highly_variable": false,
+    "neighbors_use_rep": "X_pca",
+    "seed": 42,
+    "forced_rebuild": true
+  }
+}

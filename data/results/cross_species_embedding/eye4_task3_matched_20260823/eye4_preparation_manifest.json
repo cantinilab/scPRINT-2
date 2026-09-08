@@ -1,0 +1,77 @@
+{
+  "cell_types": {
+    "B cell": 2,
+    "Beam A": 2906,
+    "Ciliary muscle": 6842,
+    "Corneal endothelium": 301,
+    "Corneal epithelium": 3494,
+    "Fibroblast": 352,
+    "JCT": 173,
+    "Macrophage": 1084,
+    "Melanocyte": 1121,
+    "NK/T cell": 28,
+    "Pericyte": 197,
+    "SChlemm's Canal": 103,
+    "Schwann cell": 21
+  },
+  "count_sum": 16978727,
+  "integer_counts": true,
+  "obs_names_unique": true,
+  "provenance": {
+    "cells_by_species": {
+      "human": 16177,
+      "macaque_fascicularis": 8682,
+      "mouse": 1613,
+      "pig": 3096
+    },
+    "count_sum": 20056031,
+    "created_at": "2026-08-23T16:28:34.185712+00:00",
+    "feature_organism_ontology_term_id": "NCBITaxon:10090",
+    "integer_counts": true,
+    "scib_batch_key": "species",
+    "scib_label_key": "celltype",
+    "scprint_preprocessing": {
+      "ambiguous_reference_symbols_excluded": 148,
+      "input": {
+        "cells": 29568,
+        "count_sum": 20056031,
+        "mouse_gene_symbols": 1768
+      },
+      "min_nnz_genes": 200,
+      "min_valid_genes_id": 500,
+      "output": {
+        "cells": 16624,
+        "checkpoint_ordered_ensembl_genes": 57066,
+        "count_sum": 16978727
+      },
+      "pseudo_count_recovery": false,
+      "reference_gene_table": "/lustre/fswork/projects/rech/xeg/uat95fg/scPRINT/notebooks/scPRINT-2-repro-notebooks/data/task_3_embed.h5ad",
+      "registry_lookup": false,
+      "uniquely_mapped_input_symbols": 1762
+    },
+    "shared_mouse_gene_symbols": 1768,
+    "source_h5ads": [
+      "/lustre/fswork/projects/rech/xeg/uat95fg/data/eye_cross_species/eye4_task3_matched_20260823/species/mouse.h5ad",
+      "/lustre/fswork/projects/rech/xeg/uat95fg/data/eye_cross_species/eye4_task3_matched_20260823/species/human.h5ad",
+      "/lustre/fswork/projects/rech/xeg/uat95fg/data/eye_cross_species/eye4_task3_matched_20260823/species/macaque_fascicularis.h5ad",
+      "/lustre/fswork/projects/rech/xeg/uat95fg/data/eye_cross_species/eye4_task3_matched_20260823/species/pig.h5ad"
+    ],
+    "species": [
+      "human",
+      "macaque_fascicularis",
+      "mouse",
+      "pig"
+    ]
+  },
+  "shape": [
+    16624,
+    57066
+  ],
+  "species": {
+    "human": 9706,
+    "macaque_fascicularis": 3494,
+    "mouse": 1264,
+    "pig": 2160
+  },
+  "var_names_unique": true
+}

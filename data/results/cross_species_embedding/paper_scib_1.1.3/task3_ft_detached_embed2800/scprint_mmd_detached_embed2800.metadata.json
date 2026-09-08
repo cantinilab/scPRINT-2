@@ -1,0 +1,21 @@
+{
+  "mode": "scprint-zero-shot",
+  "notebook_provenance": "fine_tuning_cross_species_emb_mmd.ipynb detached-MMD checkpoint; inference max_len=2800",
+  "input": "/lustre/fswork/projects/rech/xeg/uat95fg/scPRINT/notebooks/scPRINT-2-repro-notebooks/data/task_3_embed.h5ad",
+  "output": "/lustre/fswork/projects/rech/xeg/uat95fg/scPRINT/data/results/cross_species_embedding/paper_scib_1.1.3/scprint_mmd_detached_embed2800.h5ad",
+  "embedding_key": "scprint_emb",
+  "checkpoint": "/lustre/fswork/projects/rech/xeg/uat95fg/scPRINT/data/results/cross_species_embedding/paper_scib_1.1.3/scprint_mmd_embeddings.ckpt",
+  "checkpoint_name": "scprint_mmd_embeddings.ckpt",
+  "seed": 42,
+  "batch_key": "orig.ident",
+  "cell_type_key": "cell_type_ontology_term_id",
+  "settings": {
+    "batch_size": 32,
+    "num_workers": 4,
+    "embed_how": "random expr",
+    "embed_max_len": 2800,
+    "align_checkpoint_genes": false
+  },
+  "cells": 27200,
+  "genes": 57066
+}

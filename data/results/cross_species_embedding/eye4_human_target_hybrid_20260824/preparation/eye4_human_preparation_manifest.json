@@ -1,0 +1,73 @@
+{
+  "cell_types": {
+    "B cell": 35,
+    "Beam A": 6046,
+    "Ciliary muscle": 9521,
+    "Corneal endothelium": 744,
+    "Corneal epithelium": 4478,
+    "Fibroblast": 831,
+    "JCT": 448,
+    "Macrophage": 3366,
+    "Melanocyte": 2203,
+    "NK/T cell": 684,
+    "Pericyte": 645,
+    "SChlemm's Canal": 241,
+    "Schwann cell": 326
+  },
+  "count_sum": 164694785,
+  "integer_counts": true,
+  "obs_names_unique": true,
+  "provenance": {
+    "cells_by_species": {
+      "human": 16177,
+      "macaque_fascicularis": 8682,
+      "mouse": 1613,
+      "pig": 3096
+    },
+    "combination_rule": "union_zero_fill_no_intersection_filter",
+    "common_target_genes_audit_only": 13546,
+    "count_sum": 172293088,
+    "created_at": "2026-08-24T14:25:43.835375+00:00",
+    "expressed_target_genes_by_species": {
+      "human": 17711,
+      "macaque_fascicularis": 14611,
+      "mouse": 13822,
+      "pig": 14274
+    },
+    "feature_organism_ontology_term_id": "NCBITaxon:9606",
+    "feature_space": "human_ensembl_union_direct_symbols_species_ortholog_fallback",
+    "integer_counts": true,
+    "mapped_target_genes_by_species": {
+      "human": 20790,
+      "macaque_fascicularis": 15720,
+      "mouse": 15367,
+      "pig": 16176
+    },
+    "scib_batch_key": "species",
+    "scib_label_key": "celltype",
+    "source_h5ads": [
+      "/lustre/fswork/projects/rech/xeg/uat95fg/data/eye_cross_species/eye4_human_target_hybrid_20260824/species/human_target/mouse.h5ad",
+      "/lustre/fswork/projects/rech/xeg/uat95fg/data/eye_cross_species/eye4_human_target_hybrid_20260824/species/human_target/human.h5ad",
+      "/lustre/fswork/projects/rech/xeg/uat95fg/data/eye_cross_species/eye4_human_target_hybrid_20260824/species/human_target/macaque_fascicularis.h5ad",
+      "/lustre/fswork/projects/rech/xeg/uat95fg/data/eye_cross_species/eye4_human_target_hybrid_20260824/species/human_target/pig.h5ad"
+    ],
+    "species": [
+      "human",
+      "macaque_fascicularis",
+      "mouse",
+      "pig"
+    ],
+    "union_target_genes": 21695
+  },
+  "shape": [
+    29568,
+    20004
+  ],
+  "species": {
+    "human": 16177,
+    "macaque_fascicularis": 8682,
+    "mouse": 1613,
+    "pig": 3096
+  },
+  "var_names_unique": true
+}

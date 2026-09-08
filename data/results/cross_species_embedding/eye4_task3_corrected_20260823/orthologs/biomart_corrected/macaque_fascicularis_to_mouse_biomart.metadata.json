@@ -1,0 +1,15 @@
+{
+  "created_at": "2026-08-23T22:01:13.602004+00:00",
+  "homology_types": {
+    "ortholog_many2many": 83,
+    "ortholog_one2many": 448,
+    "ortholog_one2one": 12003
+  },
+  "mouse_gene_symbols": 12507,
+  "query": "<Query virtualSchemaName=\"default\" formatter=\"TSV\" header=\"0\" uniqueRows=\"1\" datasetConfigVersion=\"0.6\"><Dataset name=\"mmusculus_gene_ensembl\" interface=\"default\"><Attribute name=\"external_gene_name\"/><Attribute name=\"ensembl_gene_id\"/><Attribute name=\"mfascicularis_homolog_associated_gene_name\"/><Attribute name=\"mfascicularis_homolog_ensembl_gene\"/><Attribute name=\"mfascicularis_homolog_orthology_type\"/><Attribute name=\"mfascicularis_homolog_orthology_confidence\"/><Attribute name=\"mfascicularis_homolog_perc_id\"/></Dataset></Query>",
+  "rows": 12534,
+  "sha256": "68ce993a87fe56a3b52236da18f957f92a61a80151ad0688c72daee3a849bdf4",
+  "source_gene_symbols": 12331,
+  "species": "macaque_fascicularis",
+  "url": "https://useast.ensembl.org/biomart/martservice"
+}

@@ -1,0 +1,179 @@
+{
+  "methods": {
+    "pca": {
+      "connectivities_nnz": 1975394,
+      "method": "pca",
+      "neighbors": {
+        "method": "umap",
+        "metric": "euclidean",
+        "n_neighbors": "15",
+        "random_state": "0",
+        "use_rep": "X_scib_embedding"
+      },
+      "obs_names_sha256": "88a59d93542dcd6df1bdacd86cb9518177d30ef0f43a7f4e5bc242b8152f2a72",
+      "prediction_categories": 0,
+      "prediction_source": null,
+      "representation_key": "X_scib_embedding",
+      "representation_shape": [
+        93423,
+        50
+      ],
+      "scored_graph": "/lustre/fswork/projects/rech/xeg/uat95fg/data/pandora_lung/pandora_task3_matched_20260817/scores/precomputed_graphs/PCA-expression-CP10K-log1p-task3-matched.h5ad",
+      "title": "Expression PCA50"
+    },
+    "scprint2": {
+      "connectivities_nnz": 2009264,
+      "method": "scprint2",
+      "neighbors": {
+        "method": "umap",
+        "metric": "euclidean",
+        "n_neighbors": "15",
+        "random_state": "0",
+        "use_rep": "X_scib_embedding"
+      },
+      "obs_names_sha256": "88a59d93542dcd6df1bdacd86cb9518177d30ef0f43a7f4e5bc242b8152f2a72",
+      "prediction_categories": 122,
+      "prediction_display": {
+        "kept_categories": [
+          "glomerular capillary endothelial cell",
+          "pulmonary alveolar type 2 cell",
+          "ileal goblet cell",
+          "kidney proximal straight tubule epithelial cell",
+          "chondrocyte",
+          "pulmonary alveolar type 1 cell",
+          "basal cell of epidermis",
+          "syncytiotrophoblast cell",
+          "Sertoli cell",
+          "basal cell of epithelium of bronchus",
+          "choroid plexus epithelial cell",
+          "endothelial cell of pericentral hepatic sinusoid",
+          "type EC enteroendocrine cell",
+          "kidney collecting duct principal cell",
+          "multiciliated epithelial cell of the bronchus",
+          "mature microglial cell",
+          "mast cell",
+          "MHC-II-positive classical monocyte",
+          "splanchnic mesodermal cell",
+          "dermis microvascular lymphatic vessel endothelial cell",
+          "club cell",
+          "kidney interstitial alternatively activated macrophage",
+          "enterocyte of epithelium proper of ileum",
+          "adipocyte of epicardial fat of left ventricle"
+        ],
+        "original_categories": 122,
+        "other_cells": 4704,
+        "other_label": "Other predictions (98 labels)"
+      },
+      "prediction_source": "/lustre/fswork/projects/rech/xeg/uat95fg/data/pandora_lung/pandora_task3_matched_20260817/scprint2_zero_shot_small_v2_knn.h5ad",
+      "representation_key": "X_scib_embedding",
+      "representation_shape": [
+        93423,
+        64
+      ],
+      "scored_graph": "/lustre/fswork/projects/rech/xeg/uat95fg/data/pandora_lung/pandora_task3_matched_20260817/scores/precomputed_graphs/scPRINT-2-ZS-cell-token-task3-matched.h5ad",
+      "title": "scPRINT-2 zero-shot \u2014 cell-type token"
+    },
+    "scprint2_ft": {
+      "connectivities_nnz": 1856318,
+      "method": "scprint2_ft",
+      "neighbors": {
+        "method": "umap",
+        "metric": "euclidean",
+        "n_neighbors": "15",
+        "random_state": "0",
+        "use_rep": "X_scib_embedding"
+      },
+      "obs_names_sha256": "88a59d93542dcd6df1bdacd86cb9518177d30ef0f43a7f4e5bc242b8152f2a72",
+      "prediction_categories": 25,
+      "prediction_display": {
+        "kept_categories": [
+          "pulmonary alveolar type 2 cell",
+          "glomerular capillary endothelial cell",
+          "vascular leptomeningeal cell (Mmus)",
+          "pulmonary alveolar type 1 cell",
+          "multiciliated epithelial cell of the bronchus",
+          "CD8-alpha alpha positive, gamma-delta intraepithelial T cell",
+          "kidney interstitial alternatively activated macrophage",
+          "tracheal goblet cell",
+          "mature microglial cell",
+          "MHC-II-positive classical monocyte",
+          "smooth muscle fiber of ileum",
+          "chondrocyte",
+          "Sertoli cell",
+          "kidney granular cell",
+          "podocyte",
+          "pancreatic D cell",
+          "kidney proximal straight tubule epithelial cell",
+          "smooth muscle cell of the pulmonary artery",
+          "type EC enteroendocrine cell",
+          "starburst amacrine cell",
+          "pulmonary neuroendocrine cell",
+          "L6 intratelencephalic projecting glutamatergic neuron of the primary motor cortex",
+          "type I cell of adrenal cortex",
+          "pvalb chandelier GABAergic interneuron"
+        ],
+        "original_categories": 25,
+        "other_cells": 1,
+        "other_label": "Other predictions (1 labels)"
+      },
+      "prediction_source": "/lustre/fswork/projects/rech/xeg/uat95fg/data/pandora_lung/pandora_task3_matched_20260817/scprint2_ft_small_v2_mmd003_knn_with_organism_classification.h5ad",
+      "representation_key": "X_scib_embedding",
+      "representation_shape": [
+        93423,
+        64
+      ],
+      "scored_graph": "/lustre/fswork/projects/rech/xeg/uat95fg/data/pandora_lung/pandora_task3_matched_20260817/scores/precomputed_graphs/scPRINT-2-FT-cell-token-mmd003-task3-matched.h5ad",
+      "title": "scPRINT-2 FT \u2014 cell-type token, MMD 0.03"
+    },
+    "transcriptformer": {
+      "connectivities_nnz": 2121212,
+      "method": "transcriptformer",
+      "neighbors": {
+        "method": "umap",
+        "metric": "euclidean",
+        "n_neighbors": "15",
+        "random_state": "0",
+        "use_rep": "X_scib_embedding"
+      },
+      "obs_names_sha256": "88a59d93542dcd6df1bdacd86cb9518177d30ef0f43a7f4e5bc242b8152f2a72",
+      "prediction_categories": 0,
+      "prediction_source": null,
+      "representation_key": "X_scib_embedding",
+      "representation_shape": [
+        93423,
+        2048
+      ],
+      "scored_graph": "/lustre/fswork/projects/rech/xeg/uat95fg/data/pandora_lung/pandora_task3_matched_20260817/scores/precomputed_graphs/TranscriptFormer-Metazoa-task3-matched.h5ad",
+      "title": "TranscriptFormer Metazoa"
+    }
+  },
+  "ontology_map": "/lustre/fswork/projects/rech/xeg/uat95fg/data/pandora_lung/pandora_task3_matched_20260817/cell_ontology_name_map_2025-12-17.json",
+  "outputs": {
+    "coordinate_file": "pandora_task3_matched_umaps.h5ad",
+    "n_cells": 93423,
+    "overview": "pandora_task3_matched_umap_overview.png",
+    "pdf_count": 14,
+    "png_count": 14
+  },
+  "protocol": {
+    "cell_type": "cell_type_ontology_term_id converted with Cell Ontology names",
+    "graph": "exact precomputed KNN graph persisted by the scIB 1.1.3 scoring run; neighbors not recomputed",
+    "organism": "species, identical to the scIB batch key; organism_ontology_term_id is constant after mouse-space alignment",
+    "predicted_cell_type": "pred_cell_type_ontology_term_id converted with Cell Ontology names",
+    "prediction_top_n": 24,
+    "umap": {
+      "init_pos": "spectral",
+      "min_dist": 0.5,
+      "random_state": 42,
+      "spread": 1.0
+    }
+  },
+  "versions": {
+    "anndata": "0.8.0",
+    "matplotlib": "3.5.2",
+    "numpy": "1.21.6",
+    "pandas": "1.3.5",
+    "scanpy": "1.9.1",
+    "umap-learn": "0.5.3"
+  }
+}

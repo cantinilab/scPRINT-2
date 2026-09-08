@@ -1,0 +1,77 @@
+{
+  "cell_types": {
+    "B cell": 35,
+    "Beam A": 6046,
+    "Ciliary muscle": 9521,
+    "Corneal endothelium": 744,
+    "Corneal epithelium": 4478,
+    "Fibroblast": 831,
+    "JCT": 448,
+    "Macrophage": 3366,
+    "Melanocyte": 2203,
+    "NK/T cell": 684,
+    "Pericyte": 645,
+    "SChlemm's Canal": 241,
+    "Schwann cell": 326
+  },
+  "count_sum": 155555306,
+  "integer_counts": true,
+  "obs_names_unique": true,
+  "provenance": {
+    "cells_by_species": {
+      "human": 16177,
+      "macaque_fascicularis": 8682,
+      "mouse": 1613,
+      "pig": 3096
+    },
+    "checkpoint": "/lustre/fswork/projects/rech/xeg/uat95fg/models/small-v2.ckpt",
+    "count_sum": 155555306,
+    "created_at": "2026-08-23T22:07:36.125600+00:00",
+    "expressed_genes_by_species": {
+      "human": 15132,
+      "macaque_fascicularis": 13237,
+      "mouse": 15280,
+      "pig": 13545
+    },
+    "feature_organism_ontology_term_ids": [
+      "NCBITaxon:10090",
+      "NCBITaxon:9544",
+      "NCBITaxon:9606",
+      "NCBITaxon:9823"
+    ],
+    "feature_space": "native_scprint_checkpoint_vocabularies",
+    "genes_by_species": {
+      "human": 20004,
+      "macaque_fascicularis": 21591,
+      "mouse": 21550,
+      "pig": 22002
+    },
+    "integer_counts": true,
+    "scib_batch_key": "species",
+    "scib_label_key": "celltype",
+    "source_h5ads": [
+      "/lustre/fswork/projects/rech/xeg/uat95fg/data/eye_cross_species/eye4_task3_corrected_20260823/species/checkpoint/mouse.h5ad",
+      "/lustre/fswork/projects/rech/xeg/uat95fg/data/eye_cross_species/eye4_task3_corrected_20260823/species/checkpoint/human.h5ad",
+      "/lustre/fswork/projects/rech/xeg/uat95fg/data/eye_cross_species/eye4_task3_corrected_20260823/species/checkpoint/macaque_fascicularis.h5ad",
+      "/lustre/fswork/projects/rech/xeg/uat95fg/data/eye_cross_species/eye4_task3_corrected_20260823/species/checkpoint/pig.h5ad"
+    ],
+    "species": [
+      "human",
+      "macaque_fascicularis",
+      "mouse",
+      "pig"
+    ],
+    "total_feature_columns": 85147
+  },
+  "shape": [
+    29568,
+    85147
+  ],
+  "species": {
+    "human": 16177,
+    "macaque_fascicularis": 8682,
+    "mouse": 1613,
+    "pig": 3096
+  },
+  "var_names_unique": true
+}

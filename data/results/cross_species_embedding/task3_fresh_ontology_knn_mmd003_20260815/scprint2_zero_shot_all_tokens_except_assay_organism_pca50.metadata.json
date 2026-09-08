@@ -1,0 +1,39 @@
+{
+  "method": "scPRINT-2 zero-shot all tokens except assay and organism PCA50",
+  "input": "/lustre/fswork/projects/rech/xeg/uat95fg/scPRINT/data/results/cross_species_embedding/task3_fresh_ontology_knn_mmd003_20260815/scprint2_zero_shot_small_v2_knn.h5ad",
+  "token_policy": "all-except-assay-organism",
+  "selected_tokens": [
+    "age_group",
+    "cell_culture",
+    "cell_type_ontology_term_id",
+    "disease_ontology_term_id",
+    "other",
+    "self_reported_ethnicity_ontology_term_id",
+    "sex_ontology_term_id",
+    "tissue_ontology_term_id"
+  ],
+  "selected_obsm_keys": [
+    "scprint_emb_age_group",
+    "scprint_emb_cell_culture",
+    "scprint_emb_cell_type_ontology_term_id",
+    "scprint_emb_disease_ontology_term_id",
+    "scprint_emb_other",
+    "scprint_emb_self_reported_ethnicity_ontology_term_id",
+    "scprint_emb_sex_ontology_term_id",
+    "scprint_emb_tissue_ontology_term_id"
+  ],
+  "input_dimensions": [
+    8,
+    2,
+    64,
+    32,
+    256,
+    8,
+    2,
+    32
+  ],
+  "concatenated_dimension": 404,
+  "pca_dimension": 50,
+  "explained_variance_ratio_sum": 0.7001206278800964,
+  "seed": 42
+}

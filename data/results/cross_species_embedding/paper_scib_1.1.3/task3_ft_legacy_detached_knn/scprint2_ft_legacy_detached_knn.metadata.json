@@ -1,0 +1,58 @@
+{
+  "mode": "scprint-mmd",
+  "notebook_provenance": "fine_tuning_cross_species_emb_mmd.ipynb legacy detached-MMD; train max_len=2200; inference max_len=2800; multi-cell kNN",
+  "input": "/lustre/fswork/projects/rech/xeg/uat95fg/scPRINT/notebooks/scPRINT-2-repro-notebooks/data/task_3_embed.h5ad",
+  "output": "/lustre/fswork/projects/rech/xeg/uat95fg/scPRINT/data/results/cross_species_embedding/paper_scib_1.1.3/scprint2_ft_legacy_detached_knn.h5ad",
+  "embedding_key": "scprint_emb",
+  "checkpoint": "/lustre/fswork/projects/rech/xeg/uat95fg/models/small-v2.ckpt",
+  "checkpoint_name": "small-v2.ckpt",
+  "seed": 42,
+  "batch_key": "orig.ident",
+  "cell_type_key": "cell_type_ontology_term_id",
+  "settings": {
+    "batch_size": 32,
+    "num_workers": 4,
+    "embed_how": "random expr",
+    "embed_max_len": 2800,
+    "use_knn": true,
+    "legacy_detached_mmd": true,
+    "restore_best_model": false,
+    "knn_graph_rebuilt": true,
+    "align_checkpoint_genes": false,
+    "finetune": {
+      "max_len": 2200,
+      "num_epochs": 8,
+      "objective": "reconstruction-mmd",
+      "learn_batches_on": "organism_ontology_term_id",
+      "do_mmd_on": "cell_type_ontology_term_id",
+      "mmd_target": "label",
+      "mmd_batch_key": "orig.ident",
+      "lr": 0.0002,
+      "ft_mode": "xpressor",
+      "frac_train": 0.8,
+      "loss_scalers": {
+        "expr": 1,
+        "class": 1,
+        "mmd": 3,
+        "kl": 0.5
+      },
+      "use_knn": true
+    }
+  },
+  "cells": 27200,
+  "genes": 57066,
+  "training_filter": {
+    "label_key": "cell_type_ontology_term_id",
+    "excluded_labels": [],
+    "source_cells": 27200,
+    "training_cells": 27200,
+    "excluded_cells": 0,
+    "embedding_cells_after_finetune": 27200,
+    "mmd_target": "label",
+    "mmd_batch_key": "orig.ident",
+    "finetune_objective": "reconstruction-mmd",
+    "do_mmd_on": "cell_type_ontology_term_id",
+    "best_validation_epoch": 7,
+    "best_validation_loss": 1.0952623293680304
+  }
+}

@@ -1,0 +1,2 @@
+Method,Batch correction,Bio conservation,Total,Batch metrics available,Bio metrics available,NMI_cluster/label,ARI_cluster/label,ASW_label,ASW_label/batch,PCR_batch,cell_cycle_conservation,isolated_label_F1,isolated_label_silhouette,graph_conn,kBET,iLISI,cLISI,hvg_overlap,trajectory
+PCA,0.24983194638558787,0.6051297571055411,0.4630106328175598,5,6,0.6691760487482521,0.37969089275880025,0.581911601126194,0.41745396096229037,0.0,,0.7448432383129712,0.64550078039368,0.6381279812841867,0.19357778968146222,0.0,1.0,1.0,0.0

@@ -1,0 +1,83 @@
+{
+  "created_at": "2026-08-15T21:05:36.259962+00:00",
+  "expression": "/lustre/fswork/projects/rech/xeg/uat95fg/data/pandora_lung/pandora_lung_mouse_homolog_ensmusg_filtered_93423.h5ad",
+  "embeddings": {
+    "FT MMD 0.03 cell type": {
+      "path": "/lustre/fswork/projects/rech/xeg/uat95fg/data/pandora_lung/pandora_lung_mouse_space_filtered_93423_scprint2_small_v2_ft_mmd003_knn.h5ad",
+      "key": "scprint_emb_cell_type_ontology_term_id"
+    },
+    "FT MMD 0.03 all": {
+      "path": "/lustre/fswork/projects/rech/xeg/uat95fg/data/pandora_lung/pandora_lung_filtered_93423_small_v2_ft_mmd003_knn_token_concat_pca50.h5ad",
+      "key": "token_concat_pca50",
+      "cell_alignment": "exact_obs_names"
+    },
+    "ZS cell type": {
+      "path": "/lustre/fswork/projects/rech/xeg/uat95fg/data/pandora_lung/pandora_lung_mouse_space_filtered_93423_scprint2_small_v2_knn.h5ad",
+      "key": "scprint_emb_cell_type_ontology_term_id",
+      "cell_alignment": "exact_obs_names"
+    },
+    "ZS all": {
+      "path": "/lustre/fswork/projects/rech/xeg/uat95fg/data/pandora_lung/pandora_lung_filtered_93423_small_v2_knn_token_concat_pca50.h5ad",
+      "key": "token_concat_pca50",
+      "cell_alignment": "exact_obs_names"
+    },
+    "TranscriptFormer": {
+      "path": "/lustre/fswork/projects/rech/xeg/uat95fg/data/pandora_lung/pandora_lung_transcriptformer.h5ad",
+      "key": "model_emb",
+      "cell_alignment": "_transcriptformer_input_obs_name:.human_one2one->.mouse_homolog_ensmusg"
+    }
+  },
+  "batch_key": "species",
+  "label_key": "cell_type_ontology_term_id",
+  "excluded_labels": [
+    "mix",
+    "unknown",
+    "unmapped"
+  ],
+  "source_cells": 93423,
+  "scored_cells": 93423,
+  "genes": 25400,
+  "batches": 11,
+  "labels": 16,
+  "methods": [
+    "FT MMD 0.03 cell type",
+    "FT MMD 0.03 all",
+    "ZS cell type",
+    "ZS all",
+    "TranscriptFormer",
+    "random",
+    "X_pca"
+  ],
+  "output_separator": "\t",
+  "random_baseline": {
+    "distribution": "uniform_0_1",
+    "dimension": 50,
+    "seed": 42
+  },
+  "pca": {
+    "source": "expression.X",
+    "normalization": "normalize_total_target_sum_10000_then_log1p",
+    "uses_embeddings": false
+  },
+  "min_max_scale": false,
+  "seed": 42,
+  "versions": {
+    "anndata": "0.11.4",
+    "scanpy": "1.11.4",
+    "scib-metrics": "0.5.6",
+    "scprint": "2.3.5"
+  },
+  "physical_filter": {
+    "excluded_cells": 20592,
+    "excluded_labels": [
+      "mix",
+      "unknown",
+      "unmapped"
+    ],
+    "filtered_cells": 93423,
+    "label_key": "cell_type_ontology_term_id",
+    "physical_filter": true,
+    "source": "/lustre/fswork/projects/rech/xeg/uat95fg/data/pandora_lung/pandora_lung_mouse_homolog_ensmusg_full.h5ad",
+    "source_cells": 114015
+  }
+}

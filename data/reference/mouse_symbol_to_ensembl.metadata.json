@@ -1,0 +1,11 @@
+{
+  "source": "https://useast.ensembl.org/biomart/martservice",
+  "retrieved_at": "2026-08-14T23:05:05.477641+00:00",
+  "source_dataset": "mmusculus_gene_ensembl",
+  "target_species": "Mus musculus",
+  "target_feature_space": "mouse_homolog",
+  "filters": {
+    "ambiguous_mouse_symbols": "excluded"
+  },
+  "rows": 77195
+}

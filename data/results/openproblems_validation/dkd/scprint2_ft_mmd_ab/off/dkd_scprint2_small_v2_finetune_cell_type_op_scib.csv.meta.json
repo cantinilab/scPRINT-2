@@ -1,0 +1,37 @@
+{
+  "errors": {},
+  "parameters": {
+    "batch_key": "donor_id",
+    "embedding_key": "scprint_emb",
+    "kbet_backend": "scib",
+    "label_key": "cell_type",
+    "lisi_neighbors": 90,
+    "neighbors": 15,
+    "resolutions": [
+      0.2,
+      0.3,
+      0.4,
+      0.5,
+      0.6,
+      0.7,
+      0.8
+    ],
+    "silhouette_backend": "jax",
+    "silhouette_chunk_size": 1024
+  },
+  "software_versions": {
+    "anndata": "0.11.4",
+    "igraph": "0.11.9",
+    "leidenalg": "0.10.2",
+    "numpy": "1.26.4",
+    "pandas": "2.3.1",
+    "pynndescent": "0.5.13",
+    "python": "3.12.11",
+    "scanpy": "1.11.4",
+    "scib": "1.1.7",
+    "scib-metrics": "0.5.6",
+    "scikit-learn": "1.6.0",
+    "scipy": "1.14.1",
+    "umap-learn": "0.5.9.post2"
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "openproblems_scvi_parameters": {
+    "batch_key": "batch",
+    "max_epochs": 400,
+    "n_hidden": 128,
+    "n_hvg": 2000,
+    "n_latent": 30,
+    "n_layers": 2,
+    "train_size": 1.0
+  },
+  "software_versions": {
+    "anndata": "0.11.4",
+    "scvi-tools": "1.5.0.post1",
+    "torch": "2.8.0"
+  }
+}

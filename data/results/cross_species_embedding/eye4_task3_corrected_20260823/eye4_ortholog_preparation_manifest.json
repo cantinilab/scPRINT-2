@@ -1,0 +1,85 @@
+{
+  "cell_types": {
+    "B cell": 35,
+    "Beam A": 6046,
+    "Ciliary muscle": 9521,
+    "Corneal endothelium": 744,
+    "Corneal epithelium": 4478,
+    "Fibroblast": 831,
+    "JCT": 448,
+    "Macrophage": 3366,
+    "Melanocyte": 2203,
+    "NK/T cell": 684,
+    "Pericyte": 645,
+    "SChlemm's Canal": 241,
+    "Schwann cell": 326
+  },
+  "count_sum": 138034728,
+  "integer_counts": true,
+  "obs_names_unique": true,
+  "provenance": {
+    "cells_by_species": {
+      "human": 16177,
+      "macaque_fascicularis": 8682,
+      "mouse": 1613,
+      "pig": 3096
+    },
+    "common_mouse_orthologs": 9408,
+    "count_sum": 138633189,
+    "created_at": "2026-08-23T22:06:28.405991+00:00",
+    "feature_organism_ontology_term_id": "NCBITaxon:10090",
+    "feature_space": "union_of_per_species_mouse_orthologs",
+    "integer_counts": true,
+    "mapped_mouse_orthologs_by_species": {
+      "human": 15406,
+      "macaque_fascicularis": 10555,
+      "mouse": 31053,
+      "pig": 13039
+    },
+    "scib_batch_key": "species",
+    "scib_label_key": "celltype",
+    "scprint_preprocessing": {
+      "ambiguous_reference_symbols_excluded": 148,
+      "input": {
+        "cells": 29568,
+        "count_sum": 138633189,
+        "mouse_gene_symbols": 31619
+      },
+      "min_nnz_genes": 200,
+      "min_valid_genes_id": 10000,
+      "output": {
+        "cells": 29568,
+        "checkpoint_ordered_ensembl_genes": 57066,
+        "count_sum": 138034728
+      },
+      "pseudo_count_recovery": false,
+      "reference_gene_table": "/lustre/fswork/projects/rech/xeg/uat95fg/scPRINT/notebooks/scPRINT-2-repro-notebooks/data/task_3_embed.h5ad",
+      "registry_lookup": false,
+      "uniquely_mapped_input_symbols": 28715
+    },
+    "source_h5ads": [
+      "/lustre/fswork/projects/rech/xeg/uat95fg/data/eye_cross_species/eye4_task3_corrected_20260823/species/ortholog/mouse.h5ad",
+      "/lustre/fswork/projects/rech/xeg/uat95fg/data/eye_cross_species/eye4_task3_corrected_20260823/species/ortholog/human.h5ad",
+      "/lustre/fswork/projects/rech/xeg/uat95fg/data/eye_cross_species/eye4_task3_corrected_20260823/species/ortholog/macaque_fascicularis.h5ad",
+      "/lustre/fswork/projects/rech/xeg/uat95fg/data/eye_cross_species/eye4_task3_corrected_20260823/species/ortholog/pig.h5ad"
+    ],
+    "species": [
+      "human",
+      "macaque_fascicularis",
+      "mouse",
+      "pig"
+    ],
+    "union_mouse_orthologs": 31619
+  },
+  "shape": [
+    29568,
+    57066
+  ],
+  "species": {
+    "human": 16177,
+    "macaque_fascicularis": 8682,
+    "mouse": 1613,
+    "pig": 3096
+  },
+  "var_names_unique": true
+}

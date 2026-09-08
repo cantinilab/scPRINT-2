@@ -1,0 +1,9 @@
+{
+  "mode": "scprint-zero-shot",
+  "notebook_provenance": "notebooks/scPRINT-2-repro-notebooks/cross-species-embedding-pandora-lung.ipynb",
+  "input": "/lustre/fswork/projects/rech/xeg/uat95fg/data/pandora_lung/pandora_lung_human_one2one.h5ad",
+  "output": "/lustre/fswork/projects/rech/xeg/uat95fg/data/pandora_lung/pandora_lung_scprint1.h5ad",
+  "embedding_key": "scprint_emb",
+  "checkpoint": "/lustre/fswork/projects/rech/xeg/uat95fg/models/ogvvg2z7-v1.ckpt",
+  "seed": 42
+}

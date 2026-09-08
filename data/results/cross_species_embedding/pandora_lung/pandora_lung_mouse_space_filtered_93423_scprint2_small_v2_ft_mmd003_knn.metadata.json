@@ -1,0 +1,91 @@
+{
+  "mode": "scprint2-ft",
+  "notebook_provenance": "notebooks/scPRINT-2-repro-notebooks/cross-species-embedding-pandora-lung.ipynb",
+  "input": "/lustre/fswork/projects/rech/xeg/uat95fg/data/pandora_lung/pandora_lung_mouse_homolog_ensmusg_filtered_93423.h5ad",
+  "output": "/lustre/fswork/projects/rech/xeg/uat95fg/data/pandora_lung/pandora_lung_mouse_space_filtered_93423_scprint2_small_v2_ft_mmd003_knn.h5ad",
+  "embedding_key": "scprint_emb",
+  "checkpoint": "/lustre/fswork/projects/rech/xeg/uat95fg/models/small-v2.ckpt",
+  "checkpoint_name": "small-v2.ckpt",
+  "seed": 42,
+  "batch_key": "species",
+  "cell_type_key": "cell_type_ontology_term_id",
+  "settings": {
+    "batch_size": 32,
+    "num_workers": 4,
+    "embed_how": "random expr",
+    "embed_max_len": 2200,
+    "use_knn": true,
+    "legacy_detached_mmd": false,
+    "restore_best_model": true,
+    "knn_graph_rebuilt": true,
+    "align_checkpoint_genes": true,
+    "finetune": {
+      "max_len": 2200,
+      "num_epochs": 8,
+      "objective": "reconstruction-mmd",
+      "learn_batches_on": "organism_ontology_term_id",
+      "do_mmd_on": "cell_type_ontology_term_id",
+      "mmd_target": "species",
+      "mmd_batch_key": "species",
+      "lr": 0.0002,
+      "ft_mode": "xpressor",
+      "frac_train": 0.8,
+      "loss_scalers": {
+        "expr": 1,
+        "class": 1,
+        "mmd": 0.03,
+        "kl": 0.5
+      },
+      "use_knn": true
+    }
+  },
+  "cells": 93423,
+  "genes": 21550,
+  "checkpoint_gene_alignment": {
+    "organism": "NCBITaxon:10090",
+    "input_genes": 25400,
+    "overlap_genes": 18096,
+    "checkpoint_genes": 21550,
+    "missing_genes_zero_filled": 3454
+  },
+  "physical_filter": {
+    "excluded_cells": 20592,
+    "excluded_labels": [
+      "mix",
+      "unknown",
+      "unmapped"
+    ],
+    "filtered_cells": 93423,
+    "label_key": "cell_type_ontology_term_id",
+    "physical_filter": true,
+    "source": "/lustre/fswork/projects/rech/xeg/uat95fg/data/pandora_lung/pandora_lung_mouse_homolog_ensmusg_full.h5ad",
+    "source_cells": 114015
+  },
+  "knn_cells_preprocessing": {
+    "source": "expression.X_before_checkpoint_alignment",
+    "normalization": "normalize_total_target_sum_10000_then_log1p",
+    "pca_dimension": 50,
+    "pca_svd_solver": "arpack",
+    "use_highly_variable": false,
+    "neighbors_use_rep": "X_pca",
+    "seed": 42
+  },
+  "training_filter": {
+    "label_key": "cell_type_ontology_term_id",
+    "excluded_labels": [
+      "mix",
+      "unknown",
+      "unmapped"
+    ],
+    "source_cells": 93423,
+    "training_cells": 93423,
+    "excluded_cells": 0,
+    "embedding_cells_after_finetune": 93423,
+    "mmd_target": "species",
+    "mmd_batch_key": "species",
+    "finetune_objective": "reconstruction-mmd",
+    "do_mmd_on": "cell_type_ontology_term_id",
+    "best_validation_epoch": 4,
+    "best_validation_loss": 0.8871244956573395
+  }
+}

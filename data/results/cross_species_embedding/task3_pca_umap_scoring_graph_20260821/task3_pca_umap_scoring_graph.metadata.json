@@ -1,0 +1,26 @@
+{
+  "n_cells": 27200,
+  "neighbors": {
+    "metric": "euclidean",
+    "n_neighbors": 15,
+    "random_state": 0,
+    "use_rep": "X_pca from paper-compatible PCA-50 baseline"
+  },
+  "obs_names_sha256": "e13d2ff4793333b2c46a4e645d014ba8bd17de7716e42410882ec29fdf26183a",
+  "output": "/lustre/fswork/projects/rech/xeg/uat95fg/scPRINT/data/results/cross_species_embedding/task3_pca_umap_scoring_graph_20260821/task3_pca_umap_scoring_graph.h5ad",
+  "pca_baseline": "/lustre/fswork/projects/rech/xeg/uat95fg/scPRINT/data/results/cross_species_embedding/paper_scib_1.1.3/task3_paper_baselines.h5ad",
+  "pca_shape": [
+    27200,
+    50
+  ],
+  "reference_coordinates": "/lustre/fswork/projects/rech/xeg/uat95fg/scPRINT/data/results/cross_species_embedding/task3_fresh_umaps_scoring_graph_20260818/plots/task3_fresh_scored_embeddings_umaps.h5ad",
+  "umap": {
+    "min_dist": 0.5,
+    "random_state": 42
+  },
+  "versions": {
+    "anndata": "0.8.0",
+    "numpy": "1.21.6",
+    "scanpy": "1.9.1"
+  }
+}

@@ -1,0 +1,109 @@
+species	cell_type	cells
+Cat	AT1	2402
+Cat	AT2	604
+Cat	B cells	15
+Cat	Ciliated cells	1633
+Cat	Dendrocytes	10
+Cat	Endothelial cells	696
+Cat	Fibroblasts	2218
+Cat	Macrophages	481
+Cat	Secretory cells	391
+Cat	T cells	141
+Deer	AT1	2000
+Deer	AT2	6722
+Deer	B cells	2419
+Deer	Ciliated cells	760
+Deer	Endothelial cells	3250
+Deer	Fibroblasts	2274
+Deer	Macrophages	1280
+Deer	Secretory cells	954
+Deer	T cells	3
+Dog	AT1	500
+Dog	AT2	884
+Dog	Ciliated cells	878
+Dog	Endothelial cells	92
+Dog	Fibroblasts	246
+Dog	Macrophages	51
+Dog	Secretory cells	287
+Dog	T cells	1102
+Duck	AT1	1263
+Duck	AT2	3047
+Duck	B cells	146
+Duck	Ciliated cells	976
+Duck	Endothelial cells	7287
+Duck	Fibroblasts	5807
+Duck	Macrophages	49
+Duck	Secretory cells	383
+Duck	T cells	19
+Goat	AT1	963
+Goat	AT2	994
+Goat	B cells	34
+Goat	Ciliated cells	417
+Goat	Dendritic cells	8
+Goat	Endothelial cells	671
+Goat	Fibroblasts	178
+Goat	Macrophages	695
+Goat	Mesothelial cells	13
+Goat	NK cells	11
+Goat	SMCs	443
+Goat	Secretory cells	193
+Goat	T cells	61
+Hamster	AT1	530
+Hamster	AT2	38
+Hamster	B cells	6
+Hamster	Ciliated cells	363
+Hamster	Endothelial cells	306
+Hamster	Fibroblasts	300
+Hamster	Macrophages	42
+Hamster	Mesothelial cells	87
+Hamster	Monocytes	3
+Hamster	NK cells	1
+Hamster	Secretory cells	2
+Hamster	T cells	3
+Lizard	AT1	63
+Lizard	AT2	570
+Lizard	B cells	33
+Lizard	Ciliated cells	471
+Lizard	Endothelial cells	193
+Lizard	Fibroblasts	187
+Lizard	Macrophages	63
+Lizard	SMCs	32
+Lizard	Secretory cells	42
+Lizard	T cells	48
+Pangolin	AT1	2350
+Pangolin	AT2	1173
+Pangolin	B cells	9
+Pangolin	Ciliated cells	3459
+Pangolin	Endothelial cells	4985
+Pangolin	Fibroblasts	1233
+Pangolin	Macrophages	462
+Pangolin	Secretory cells	26
+Pangolin	T cells	23
+Pigeon	AT1	145
+Pigeon	AT2	30
+Pigeon	B cells	23
+Pigeon	Ciliated cells	459
+Pigeon	Endothelial cells	1188
+Pigeon	Fibroblasts	367
+Pigeon	Immune cells	1467
+Pigeon	Macrophages	34
+Pigeon	SMCs	721
+Pigeon	Secretory cells	172
+Pigeon	T cells	939
+Rabbit	AT1	293
+Rabbit	AT2	47
+Rabbit	B cells	17
+Rabbit	Ciliated cells	84
+Rabbit	Endothelial cells	77
+Rabbit	Fibroblasts	52
+Rabbit	Macrophages	6
+Rabbit	Secretory cells	67
+Rabbit	T cells	22
+Tiger	AT1	2864
+Tiger	AT2	3501
+Tiger	Ciliated cells	493
+Tiger	Endothelial cells	1320
+Tiger	Fibroblasts	3966
+Tiger	Macrophages	558
+Tiger	Mast cells	63
+Tiger	Secretory cells	1394

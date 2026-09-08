@@ -1,0 +1,2 @@
+method,ari,asw_batch,asw_label,cell_cycle_conservation,clisi,graph_connectivity,hvg_overlap,ilisi,isolated_label_asw,isolated_label_f1,kbet,nmi,pcr
+scPRINT-2 small-v2 zeroshot full_no_assay raw,0.48532179651934176,0.9369917511940002,0.5335483402013779,0.7783096327150507,0.9969860540826608,0.9493324354730667,,0.10235793886233227,,,0.1229712241727976,0.657315146838261,0.0

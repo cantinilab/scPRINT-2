@@ -1,0 +1,2 @@
+method,ari,asw_batch,asw_label,cell_cycle_conservation,clisi,graph_connectivity,hvg_overlap,ilisi,isolated_label_asw,isolated_label_f1,kbet,nmi,pcr
+transcriptformer_metazoa,0.4972083636090454,0.8373509049415588,0.5943957045674324,0.8397313014565406,0.9996795305326674,0.9612690470095676,,0.15956379148663621,,,0.17360385095157538,0.7099509952091153,0.0

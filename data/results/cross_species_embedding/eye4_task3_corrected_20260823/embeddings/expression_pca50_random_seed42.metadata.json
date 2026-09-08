@@ -1,0 +1,11 @@
+{
+  "input": "/lustre/fswork/projects/rech/xeg/uat95fg/data/eye_cross_species/eye4_task3_corrected_20260823/eye4_mouse_ortholog_scprint_preprocessed.h5ad",
+  "output": "/lustre/fswork/projects/rech/xeg/uat95fg/data/eye_cross_species/eye4_task3_corrected_20260823/embeddings/expression_pca50_random_seed42.h5ad",
+  "cells": 29568,
+  "genes": 57066,
+  "normalization": "normalize_total_target_sum_10000_then_log1p",
+  "pca_implementation": "scanpy.pp.pca_default",
+  "pca_dimension": 50,
+  "random_distribution": "uniform_0_1",
+  "seed": 42
+}

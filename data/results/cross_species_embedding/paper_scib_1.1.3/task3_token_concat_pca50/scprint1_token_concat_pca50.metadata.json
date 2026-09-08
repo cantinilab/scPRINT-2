@@ -1,0 +1,30 @@
+{
+  "method": "scPRINT-1",
+  "input": "/lustre/fswork/projects/rech/xeg/uat95fg/scPRINT/data/results/cross_species_embedding/paper_scib_1.1.3/scprint1_embeddings.h5ad",
+  "selected_tokens": [
+    "cell_type",
+    "sex",
+    "other"
+  ],
+  "selected_obsm_keys": [
+    "scprint_emb_cell_type_ontology_term_id",
+    "scprint_emb_sex_ontology_term_id",
+    "scprint_emb_other"
+  ],
+  "missing_requested_tokens": [
+    "tissue"
+  ],
+  "excluded_tokens": [
+    "organism",
+    "assay"
+  ],
+  "input_dimensions": [
+    256,
+    256,
+    256
+  ],
+  "concatenated_dimension": 768,
+  "pca_dimension": 50,
+  "explained_variance_ratio_sum": 0.938709557056427,
+  "seed": 42
+}

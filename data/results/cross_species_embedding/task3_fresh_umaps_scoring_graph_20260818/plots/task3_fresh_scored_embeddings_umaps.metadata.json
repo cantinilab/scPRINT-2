@@ -1,0 +1,57 @@
+{
+  "methods": {
+    "scprint2": {
+      "embedding_key": "scprint_emb_cell_type_ontology_term_id",
+      "embedding_shape": [
+        27200,
+        64
+      ],
+      "input": "/lustre/fswork/projects/rech/xeg/uat95fg/scPRINT/data/results/cross_species_embedding/task3_fresh_ontology_knn_mmd003_20260815/scprint2_zero_shot_small_v2_knn.h5ad",
+      "method": "scprint2",
+      "obs_names_sha256": "e13d2ff4793333b2c46a4e645d014ba8bd17de7716e42410882ec29fdf26183a",
+      "title": "scPRINT-2"
+    },
+    "scprint2_ft": {
+      "embedding_key": "scprint_emb_cell_type_ontology_term_id",
+      "embedding_shape": [
+        27200,
+        64
+      ],
+      "input": "/lustre/fswork/projects/rech/xeg/uat95fg/scPRINT/data/results/cross_species_embedding/task3_fresh_ontology_knn_mmd003_20260815/scprint2_ft_small_v2_mmd003_knn.h5ad",
+      "method": "scprint2_ft",
+      "obs_names_sha256": "e13d2ff4793333b2c46a4e645d014ba8bd17de7716e42410882ec29fdf26183a",
+      "title": "scPRINT-2 FT (MMD 0.03)"
+    },
+    "transcriptformer": {
+      "embedding_key": "model_emb",
+      "embedding_shape": [
+        27200,
+        2048
+      ],
+      "input": "/lustre/fswork/projects/rech/xeg/uat95fg/scPRINT/data/results/cross_species_embedding/task3_fresh_transcriptformer_metazoa_scib113_20260817/transcriptformer_metazoa_fresh.h5ad",
+      "method": "transcriptformer",
+      "obs_names_sha256": "e13d2ff4793333b2c46a4e645d014ba8bd17de7716e42410882ec29fdf26183a",
+      "title": "TranscriptFormer Metazoa"
+    }
+  },
+  "outputs": {
+    "coordinate_file": "task3_fresh_scored_embeddings_umaps.h5ad",
+    "n_cells": 27200,
+    "overview": "task3_fresh_scored_embeddings_umap_overview.png",
+    "panels": 11
+  },
+  "protocol": {
+    "neighbors": {
+      "metric": "euclidean",
+      "n_neighbors": 15,
+      "random_state": 0,
+      "use_rep": "exact scored embedding, no PCA"
+    },
+    "ontology_source": "/lustre/fswork/projects/rech/xeg/uat95fg/scPRINT/data/results/cross_species_embedding/task3_fresh_umaps_scoring_graph_20260818/cell_ontology_names_2025-12-17.json",
+    "organism_column": "orig.ident",
+    "umap": {
+      "min_dist": 0.5,
+      "random_state": 42
+    }
+  }
+}

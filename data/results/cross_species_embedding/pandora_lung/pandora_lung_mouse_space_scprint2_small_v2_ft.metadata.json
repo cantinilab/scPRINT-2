@@ -1,0 +1,56 @@
+{
+  "mode": "scprint2-ft",
+  "notebook_provenance": "notebooks/scPRINT-2-repro-notebooks/cross-species-embedding-pandora-lung.ipynb",
+  "input": "/lustre/fswork/projects/rech/xeg/uat95fg/data/pandora_lung/pandora_lung_mouse_homolog_ensmusg.h5ad",
+  "output": "/lustre/fswork/projects/rech/xeg/uat95fg/data/pandora_lung/pandora_lung_mouse_space_scprint2_small_v2_ft.h5ad",
+  "embedding_key": "scprint_emb",
+  "checkpoint": "/lustre/fswork/projects/rech/xeg/uat95fg/models/small-v2.ckpt",
+  "checkpoint_name": "small-v2.ckpt",
+  "seed": 42,
+  "batch_key": "species",
+  "cell_type_key": "cell_type_ontology_term_id",
+  "settings": {
+    "batch_size": 32,
+    "num_workers": 4,
+    "embed_how": "random expr",
+    "embed_max_len": 2200,
+    "align_checkpoint_genes": true,
+    "finetune": {
+      "max_len": 2200,
+      "num_epochs": 8,
+      "learn_batches_on": "organism_ontology_term_id",
+      "do_mmd_on": "cell_type_ontology_term_id",
+      "lr": 0.0002,
+      "ft_mode": "xpressor",
+      "frac_train": 0.8,
+      "loss_scalers": {
+        "expr": 1,
+        "class": 1,
+        "mmd": 3,
+        "kl": 0.5
+      },
+      "use_knn": false
+    }
+  },
+  "cells": 114015,
+  "genes": 21550,
+  "checkpoint_gene_alignment": {
+    "organism": "NCBITaxon:10090",
+    "input_genes": 25400,
+    "overlap_genes": 18096,
+    "checkpoint_genes": 21550,
+    "missing_genes_zero_filled": 3454
+  },
+  "training_filter": {
+    "label_key": "cell_type_ontology_term_id",
+    "excluded_labels": [
+      "unknown"
+    ],
+    "source_cells": 114015,
+    "training_cells": 93423,
+    "excluded_cells": 20592,
+    "embedding_cells_after_finetune": 114015,
+    "best_validation_epoch": 2,
+    "best_validation_loss": 0.8931800244401579
+  }
+}

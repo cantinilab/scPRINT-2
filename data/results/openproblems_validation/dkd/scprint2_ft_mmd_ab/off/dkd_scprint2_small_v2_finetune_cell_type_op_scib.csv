@@ -1,0 +1,2 @@
+method,ari,asw_batch,asw_label,cell_cycle_conservation,clisi,graph_connectivity,hvg_overlap,ilisi,isolated_label_asw,isolated_label_f1,kbet,nmi,pcr
+scprint2_ft_mmd_off,0.8654055609152969,0.8702229261398315,0.7362166792154312,0.8377812333254514,1.0,0.9660480655261299,,0.24486700725170124,,,0.26070032442649627,0.8567653909357349,0.3661963778225134
