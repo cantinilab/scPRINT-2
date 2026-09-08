@@ -4,6 +4,7 @@ import sys
 import bionty as bt
 import lamindb as ln
 import pytest
+from lamindb_setup.errors import InstanceNotFoundError
 
 
 def pytest_sessionstart():
@@ -11,8 +12,11 @@ def pytest_sessionstart():
 
 
 def pytest_sessionfinish(session):
-    shutil.rmtree("./test-scprintdb")
-    ln.setup.delete("test-scprint", force=True)
+    shutil.rmtree("./test-scprintdb", ignore_errors=True)
+    try:
+        ln.setup.delete("test-scprint", force=True)
+    except InstanceNotFoundError:
+        pass
 
 
 # each test runs on cwd to its temp dir

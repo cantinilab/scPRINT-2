@@ -1,0 +1,12 @@
+{
+  "source": "https://useast.ensembl.org/biomart/martservice",
+  "retrieved_at": "2026-08-13T17:21:47.479329+00:00",
+  "source_dataset": "mmusculus_gene_ensembl",
+  "target_species": "Homo sapiens",
+  "filters": {
+    "human_homology_type": "ortholog_one2one",
+    "human_orthology_confidence": "1",
+    "ambiguous_mouse_symbols": "excluded"
+  },
+  "rows": 16073
+}

@@ -3,7 +3,7 @@ import numpy as np
 import pandas as pd
 import pytest
 
-from op_scib import (
+from scprint2.evaluation.openproblems_scib import (
     _align_solution,
     _scanpy_distances_as_neighbors,
     select_op_datasets,

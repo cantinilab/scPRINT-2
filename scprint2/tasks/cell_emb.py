@@ -11,7 +11,6 @@ import torch
 from anndata import AnnData, concat
 from django.db import OperationalError, ProgrammingError
 from scdataloader import Collator, Preprocessor
-from scdataloader.data import SimpleAnnDataset
 from scdataloader.utils import get_descendants, random_str
 from scib_metrics.benchmark import Benchmarker
 from scipy.stats import spearmanr
@@ -20,8 +19,10 @@ from sklearn.metrics import f1_score
 from torch.utils.data import DataLoader
 from tqdm import tqdm
 
+from scprint2.tasks._knn_cells import ScanpyNeighborAnnDataset
 from scprint2.tasks._model_genes import (
     active_model_organisms,
+    collator_for_organism_blocks,
     model_gene_dataframe,
     set_collator_organism_ids,
     validate_collator_gene_offsets,
@@ -150,7 +151,7 @@ class Embedder:
                 adata, flavor="seurat_v3", n_top_genes=self.max_len
             )
             self.genelist = adata.var.index[adata.var.highly_variable]
-        adataset = SimpleAnnDataset(
+        adataset = ScanpyNeighborAnnDataset(
             adata,
             obs_to_output=["organism_ontology_term_id"],
             get_knn_cells=model.expr_emb_style == "metacell" and self.use_knn,
@@ -168,9 +169,14 @@ class Embedder:
         )
         set_collator_organism_ids(col, active_organisms)
         validate_collator_gene_offsets(col, model, active_organisms)
+        collate_fn = collator_for_organism_blocks(
+            col,
+            adata.var,
+            active_organisms,
+        )
         dataloader = DataLoader(
             adataset,
-            collate_fn=col,
+            collate_fn=collate_fn,
             batch_size=self.batch_size,
             num_workers=self.num_workers,
             shuffle=False,

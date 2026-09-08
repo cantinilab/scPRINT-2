@@ -152,9 +152,9 @@ def make_adata(
             if doplot:
                 tr = translate(set(adata.obs["pred_" + clss]), clss)
                 if tr is not None:
-                    adata.obs["conv_pred_" + clss] = adata.obs[
-                        "pred_" + clss
-                    ].replace(tr)
+                    adata.obs["conv_pred_" + clss] = adata.obs["pred_" + clss].replace(
+                        tr
+                    )
             res = []
             if label_decoders is not None and gtclass is not None:
                 class_topred = label_decoders[clss].values()
@@ -342,7 +342,16 @@ def _init_weights(
                 )
 
 
-def downsample_profile(mat: Tensor, dropout: float, method="new", randsamp=False) -> Tensor:
+def _poisson_sample(rate: Tensor) -> Tensor:
+    """Sample Poisson noise, with a CPU fallback for unsupported MPS kernels."""
+    if rate.device.type == "mps":
+        return torch.poisson(rate.cpu()).to(rate.device)
+    return torch.poisson(rate)
+
+
+def downsample_profile(
+    mat: Tensor, dropout: float, method="new", randsamp=False
+) -> Tensor:
     """
     This function downsamples the expression profile of a given single cell RNA matrix.
 
@@ -380,7 +389,7 @@ def downsample_profile(mat: Tensor, dropout: float, method="new", randsamp=False
         ngenes = mat.shape[-1]
         tnoise = 1 - (1 - dropout) ** (1 / 2)
         # we model the sampling zeros (dropping 30% of the reads)
-        res = torch.poisson(
+        res = _poisson_sample(
             torch.rand(mat.shape, device=mat.device)
             * ((tnoise * totcounts.unsqueeze(-1)) / (0.5 * ngenes))
         ).int()
@@ -407,11 +416,11 @@ def downsample_profile(mat: Tensor, dropout: float, method="new", randsamp=False
         ).int()
         notdrop[mat == 0] = 0
         # apply the dropout after the poisson, right?
-        return notdrop * torch.poisson(mat * scaler)
+        return notdrop * _poisson_sample(mat * scaler)
     elif method == "new":
         dropout = dropout * 1.1
         # we model the sampling zeros (dropping 30% of the reads)
-        res = torch.poisson((mat * (dropout / 2))).int()
+        res = _poisson_sample(mat * (dropout / 2)).int()
         # we model the technical zeros (dropping 50% of the genes)
         notdrop = (torch.rand(mat.shape, device=mat.device) >= (dropout / 2)).int()
         mat = (mat - res) * notdrop
@@ -676,19 +685,15 @@ def test(
             {
                 "emb_" + dataset + "/scib": float(res["scib"]["Total"]),
                 "emb_" + dataset + "/scib_bio": float(res["scib"]["Bio conservation"]),
-                "emb_"
-                + dataset
-                + "/scib_batch": float(res["scib"]["Batch correction"]),
-                "emb_"
-                + dataset
-                + "/ct_class": float(
+                "emb_" + dataset + "/scib_batch": float(
+                    res["scib"]["Batch correction"]
+                ),
+                "emb_" + dataset + "/ct_class": float(
                     res["classif"].get("cell_type_ontology_term_id", {}).get("macro", 0)
                     if do_class
                     else 0
                 ),
-                "emb_"
-                + dataset
-                + "/ct_class_macro": float(
+                "emb_" + dataset + "/ct_class_macro": float(
                     res["classif"].get("cell_type_ontology_term_id", {}).get("macro", 0)
                     if do_class
                     else 0
@@ -702,9 +707,7 @@ def test(
         tot["denoise_" + dataset] = res
         metrics.update(
             {
-                "denoise_"
-                + dataset
-                + "/reco2full_vs_noisy2full": float(
+                "denoise_" + dataset + "/reco2full_vs_noisy2full": float(
                     res["reco2full"] - res["noisy2full"]
                 ),
             }
@@ -747,19 +750,13 @@ def test(
         tot["grn_omni_" + dataset] = res
         metrics.update(
             {
-                "grn_omni_"
-                + dataset
-                + "/auprc_class": float(
+                "grn_omni_" + dataset + "/auprc_class": float(
                     np.mean([i["auprc"] for k, i in res.items() if "_class" in k])
                 ),
-                "grn_omni_"
-                + dataset
-                + "/or_class": float(
+                "grn_omni_" + dataset + "/or_class": float(
                     np.mean([i["odd_ratio"] for k, i in res.items() if "_class" in k])
                 ),
-                "grn_omni_"
-                + dataset
-                + "/tf_enr_class": float(
+                "grn_omni_" + dataset + "/tf_enr_class": float(
                     np.sum(
                         [
                             i.get("TF_enr", False)
@@ -768,9 +765,7 @@ def test(
                         ]
                     )
                 ),
-                "grn_omni_"
-                + dataset
-                + "/tf_targ_enr_class": float(
+                "grn_omni_" + dataset + "/tf_targ_enr_class": float(
                     np.mean(
                         [
                             i["significant_enriched_TFtargets"]
@@ -779,31 +774,21 @@ def test(
                         ]
                     )
                 ),
-                "grn_omni_"
-                + dataset
-                + "/auprc": float(
+                "grn_omni_" + dataset + "/auprc": float(
                     np.mean([i["auprc"] for k, i in res.items() if "_mean" in k])
                 ),
-                "grn_omni_"
-                + dataset
-                + "/epr": float(
+                "grn_omni_" + dataset + "/epr": float(
                     np.mean([i["epr"] for k, i in res.items() if "_mean" in k])
                 ),
-                "grn_omni_"
-                + dataset
-                + "/or": float(
+                "grn_omni_" + dataset + "/or": float(
                     np.mean([i["odd_ratio"] for k, i in res.items() if "_mean" in k])
                 ),
-                "grn_omni_"
-                + dataset
-                + "/tf_enr": float(
+                "grn_omni_" + dataset + "/tf_enr": float(
                     np.sum(
                         [i.get("TF_enr", False) for k, i in res.items() if "_mean" in k]
                     )
                 ),
-                "grn_omni_"
-                + dataset
-                + "/tf_targ_enr": float(
+                "grn_omni_" + dataset + "/tf_targ_enr": float(
                     np.mean(
                         [
                             i["significant_enriched_TFtargets"]

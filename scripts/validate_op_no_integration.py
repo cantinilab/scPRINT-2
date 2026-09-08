@@ -17,7 +17,7 @@ from pathlib import Path
 
 import anndata as ad
 
-from op_scib import (
+from scprint2.evaluation.openproblems_scib import (
     OP_NO_INTEGRATION_EXPECTED,
     compare_op_scores,
     compute_op_scib_metrics,

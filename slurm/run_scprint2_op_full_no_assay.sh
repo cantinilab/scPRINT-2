@@ -36,8 +36,20 @@ mkdir -p "${RUN_DIR}/data"
 export PYTHONPATH="${REPO_ROOT}${PYTHONPATH:+:${PYTHONPATH}}"
 cd "${RUN_DIR}"
 EXTRA_ARGS=()
+if [[ -n "${MMD_MODE:-}" ]]; then
+  EXTRA_ARGS+=(--mmd-mode "${MMD_MODE}")
+fi
+if [[ -n "${MMD_WEIGHT:-}" ]]; then
+  EXTRA_ARGS+=(--mmd-weight "${MMD_WEIGHT}")
+fi
+if [[ -n "${EMBEDDING_VIEW:-}" ]]; then
+  EXTRA_ARGS+=(--embedding-view "${EMBEDDING_VIEW}")
+fi
 if [[ "${CLASSIFICATION_ONLY:-0}" == "1" ]]; then
   EXTRA_ARGS+=(--classification-only)
+fi
+if [[ "${SCIB_ONLY:-0}" == "1" ]]; then
+  EXTRA_ARGS+=(--scib-only)
 fi
 exec "${REPO_ROOT}/.venv/bin/python" "${SCRIPT_PATH}" \
   --dataset "${DATASET}" \

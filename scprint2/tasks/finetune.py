@@ -11,7 +11,6 @@ import torch
 import torch.nn.functional as F
 from anndata import AnnData, concat
 from scdataloader import Collator, Preprocessor
-from scdataloader.data import SimpleAnnDataset
 from scdataloader.utils import get_descendants, random_str
 from scib_metrics.benchmark import Benchmarker
 from scipy.stats import spearmanr
@@ -21,8 +20,10 @@ from torch.utils.data import DataLoader
 from tqdm import tqdm
 
 from scprint2.model import loss
+from scprint2.tasks._knn_cells import ScanpyNeighborAnnDataset
 from scprint2.tasks._model_genes import (
     active_model_organisms,
+    collator_for_organism_blocks,
     model_gene_dataframe,
     set_collator_organism_ids,
     validate_collator_gene_offsets,
@@ -31,22 +32,61 @@ from scprint2.tasks._model_genes import (
 FILE_LOC = os.path.dirname(os.path.realpath(__file__))
 
 
+def _trainable_state_dict(module: torch.nn.Module) -> Dict[str, torch.Tensor]:
+    return {
+        name: param.detach().cpu().clone()
+        for name, param in module.named_parameters()
+        if param.requires_grad
+    }
+
+
+def _restore_trainable_state(
+    module: torch.nn.Module, state: Dict[str, torch.Tensor]
+) -> None:
+    with torch.no_grad():
+        for name, param in module.named_parameters():
+            if name in state:
+                param.copy_(state[name].to(device=param.device, dtype=param.dtype))
+
+
+def _optimizer_step(
+    total_loss: torch.Tensor,
+    optimizer: torch.optim.Optimizer,
+    model: torch.nn.Module,
+    scaler: torch.cuda.amp.GradScaler | None,
+) -> None:
+    """Backpropagate on both CUDA/AMP and CPU without assuming a scaler."""
+    if scaler is None:
+        total_loss.backward()
+        torch.nn.utils.clip_grad_norm_(model.parameters(), max_norm=1.0)
+        optimizer.step()
+        return
+    scaler.scale(total_loss).backward()
+    scaler.unscale_(optimizer)
+    torch.nn.utils.clip_grad_norm_(model.parameters(), max_norm=1.0)
+    scaler.step(optimizer)
+    scaler.update()
+
+
 class FinetuneBatchClass:
     def __init__(
         self,
         batch_key: str = "batch",
-        predict_keys: List[str] = ["cell_type_ontology_term_id"],
+        predict_keys: Optional[List[str]] = None,
         max_len: int = 5000,
         learn_batches_on: Optional[str] = None,
         num_workers: int = 8,
         batch_size: int = 16,
         num_epochs: int = 8,
-        do_mmd_on: Optional[str] = None,
+        do_mmd_on: Optional[str] = "cell_type_ontology_term_id",
         lr: float = 0.0002,
         ft_mode: str = "xpressor",
         frac_train: float = 0.8,
-        loss_scalers: dict = {},
+        loss_scalers: Optional[dict] = None,
         use_knn: bool = True,
+        legacy_detached_mmd: bool = False,
+        restore_best_model: bool = True,
+        train_organism_decoder: bool = False,
     ):
         """
         Embedder a class to embed and annotate cells using a model
@@ -58,9 +98,11 @@ class FinetuneBatchClass:
                 the goal is e.g. when having a new species, to learn an embedding for it during finetuning and replace
                 the "learn_batches_on" embedding in the model with it, in this case it should be "organism_ontology_term_id".
                 batch correction might indeed be better learnt with this additional argument in some cases.
-            do_mmd_on (str, optional):The key in adata.obs to learn batch embeddings on. Defaults to None.
-                this embedding should have less batch information in it, after finetuning.
-            predict_keys (List[str], optional): List of keys in adata.obs to predict during fine-tuning. Defaults to ["cell_type_ontology_term_id"].
+            do_mmd_on (str, optional): Model token whose representation should lose
+                information about the groups stored in ``batch_key``. Defaults to
+                ``"cell_type_ontology_term_id"``, so MMD is active by default.
+            predict_keys (List[str], optional): List of keys in adata.obs to predict
+                during fine-tuning. Defaults to ["cell_type_ontology_term_id"].
             batch_size (int, optional): The size of the batches to be used in the DataLoader. Defaults to 64.
             num_workers (int, optional): The number of worker processes to use for data loading. Defaults to 8.
             max_len (int, optional): The maximum length of the sequences to be processed. Defaults to 5000.
@@ -68,15 +110,30 @@ class FinetuneBatchClass:
             num_epochs (int, optional): The number of epochs to train the model. Defaults to 8.
             ft_mode (str, optional): The fine-tuning mode, either "xpressor" or "full". Defaults to "xpressor".
             frac_train (float, optional): The fraction of data to be used for training. Defaults to 0.8.
-            loss_scalers (dict, optional): A dictionary specifying the scaling factors for different loss components. Defaults to {}.
-                expr, class, mmd, kl, and any of the predict_keys can be specified.
+            loss_scalers (dict, optional): A dictionary specifying the scaling factors
+                for different loss components. ``mmd`` defaults to ``0.03``; expr,
+                class, kl, and any of the predict_keys can also be specified.
             use_knn (bool, optional): Whether to use k-nearest neighbors information. Defaults to True.
+            legacy_detached_mmd (bool, optional): Reproduce the historical MMD
+                bookkeeping bug: compute the legacy one-vs-rest energy statistic,
+                convert it to a Python float, and add it to the displayed loss
+                without contributing gradients. Defaults to False.
+            restore_best_model (bool, optional): Restore the trainable weights from
+                the lowest validation-loss epoch. Disable this to reproduce the
+                historical helper, which returned the final epoch. Defaults to True.
+            train_organism_decoder (bool, optional): Train the organism classifier
+                decoder when organism is an explicit prediction target. The fresh
+                task3 run added organism after selecting trainable decoders, so its
+                organism decoder remained frozen. Defaults to False for parity.
         """
         self.batch_size = batch_size
         self.num_workers = num_workers
         self.batch_key = batch_key
         self.learn_batches_on = learn_batches_on
-        self.predict_keys = predict_keys
+        # Keep supervision targets separate from metadata required by the
+        # collator.  In particular, organism_ontology_term_id is needed to map
+        # genes but must not silently become an additional classification loss.
+        self.predict_keys = list(predict_keys or ["cell_type_ontology_term_id"])
         self.max_len = max_len
         self.lr = lr
         self.num_epochs = num_epochs
@@ -85,8 +142,12 @@ class FinetuneBatchClass:
         self.batch_emb = None
         self.batch_encoder = {}
         self.do_mmd_on = do_mmd_on
-        self.loss_scalers = loss_scalers
+        self.loss_scalers = {"mmd": 0.03, **dict(loss_scalers or {})}
         self.use_knn = use_knn
+        self.legacy_detached_mmd = legacy_detached_mmd
+        self.restore_best_model = restore_best_model
+        self.train_organism_decoder = train_organism_decoder
+        self.batch_group_position: int | None = None
 
     def __call__(
         self,
@@ -126,13 +187,19 @@ class FinetuneBatchClass:
                 val.requires_grad = True
             for val in model.transformer.blocks[-1].parameters():
                 val.requires_grad = True
-            for i in model.transformer.blocks:
-                i.cross_attn.requires_grad = True
+            for block in model.transformer.blocks:
+                for parameter in block.cross_attn.parameters():
+                    parameter.requires_grad = True
             for val in model.compressor.parameters():
                 val.requires_grad = True
-            for val in self.predict_keys:
-                for val in model.cls_decoders[val].parameters():
-                    val.requires_grad = True
+            for class_name in self.predict_keys:
+                if (
+                    class_name == "organism_ontology_term_id"
+                    and not self.train_organism_decoder
+                ):
+                    continue
+                for parameter in model.cls_decoders[class_name].parameters():
+                    parameter.requires_grad = True
         elif self.ft_mode == "full":
             for val in model.parameters():
                 val.requires_grad = True
@@ -144,6 +211,12 @@ class FinetuneBatchClass:
             n_train = int(self.frac_train * len(adata))
             train_idx = np.random.choice(len(adata), n_train, replace=False)
             val_idx = np.setdiff1d(np.arange(len(adata)), train_idx)
+            if self.do_mmd_on is not None:
+                # The inputs can be concatenated in batch blocks. Keep a fixed
+                # randomized validation order so every
+                # validation batch can measure MMD across the user-defined
+                # ``batch_key`` groups instead of returning zero for one group.
+                np.random.shuffle(val_idx)
 
             train_data = adata[train_idx].copy()
             val_data = adata[val_idx].copy()
@@ -162,8 +235,52 @@ class FinetuneBatchClass:
                 train_data.obs[i] = train_data.obs[i].apply(
                     lambda x: x if x in mencoders[i] else "unknown"
                 )
-        if "organism_ontology_term_id" not in self.predict_keys:
-            self.predict_keys.append("organism_ontology_term_id")
+        organism_key = "organism_ontology_term_id"
+        required_obs = set(self.predict_keys + [self.batch_key, organism_key])
+        missing_obs = required_obs - set(train_data.obs)
+        if missing_obs:
+            raise KeyError(
+                "Fine-tuning data is missing required obs columns: "
+                + ", ".join(sorted(missing_obs))
+            )
+        dataset_obs_keys = list(
+            dict.fromkeys(self.predict_keys + [self.batch_key, organism_key])
+        )
+        class_names = list(dict.fromkeys(self.predict_keys + [self.batch_key]))
+        self.batch_group_position = class_names.index(self.batch_key)
+        if self.do_mmd_on is not None:
+            train_groups = train_data.obs[self.batch_key].nunique(dropna=True)
+            if train_groups < 2:
+                raise ValueError(
+                    "MMD requires at least two values in "
+                    f"obs[{self.batch_key!r}]; found {train_groups}"
+                )
+            if val_data is not None:
+                validation_groups = val_data.obs[self.batch_key].nunique(dropna=True)
+                if validation_groups < 2:
+                    raise ValueError(
+                        "MMD validation requires at least two values in "
+                        f"obs[{self.batch_key!r}]; found {validation_groups}"
+                    )
+        use_metacell_knn = model.expr_emb_style == "metacell" and self.use_knn
+        if use_metacell_knn:
+            import scanpy as sc
+
+            for split_data in (train_data, val_data):
+                if split_data is None:
+                    continue
+                if "X_pca" not in split_data.obsm:
+                    raise ValueError(
+                        "KNN fine-tuning requires adata.obsm['X_pca'] from the "
+                        "CP10K/log1p expression preprocessing"
+                    )
+                sc.pp.neighbors(
+                    split_data,
+                    n_neighbors=min(15, split_data.n_obs - 1),
+                    use_rep="X_pca",
+                    random_state=42,
+                )
+
         # create datasets
         self.batch_encoder = {
             i: n
@@ -172,19 +289,18 @@ class FinetuneBatchClass:
             )
         }
         mencoders[self.batch_key] = self.batch_encoder
-        train_dataset = SimpleAnnDataset(
+        train_dataset = ScanpyNeighborAnnDataset(
             train_data,
-            obs_to_output=self.predict_keys + [self.batch_key],
-            get_knn_cells=model.expr_emb_style == "metacell" and self.use_knn,
+            obs_to_output=dataset_obs_keys,
+            get_knn_cells=use_metacell_knn,
             encoder=mencoders,
         )
         if val_data is not None:
             for i in self.predict_keys:
-                if i != "organism_ontology_term_id":
-                    if len(set(val_data.obs[i]) - set(mencoders[i].keys())) > 0:
-                        val_data.obs[i] = val_data.obs[i].apply(
-                            lambda x: x if x in mencoders[i] else "unknown"
-                        )
+                if len(set(val_data.obs[i]) - set(mencoders[i].keys())) > 0:
+                    val_data.obs[i] = val_data.obs[i].apply(
+                        lambda x: x if x in mencoders[i] else "unknown"
+                    )
             self.batch_encoder.update(
                 {
                     i: n + len(self.batch_encoder)
@@ -195,10 +311,19 @@ class FinetuneBatchClass:
                 }
             )
             mencoders[self.batch_key] = self.batch_encoder
-            val_dataset = SimpleAnnDataset(
+            if self.learn_batches_on is not None:
+                unseen_validation_batches = set(val_data.obs[self.batch_key]) - set(
+                    train_data.obs[self.batch_key]
+                )
+                if unseen_validation_batches:
+                    raise ValueError(
+                        "Validation contains batch values absent from training: "
+                        + ", ".join(sorted(map(str, unseen_validation_batches)))
+                    )
+            val_dataset = ScanpyNeighborAnnDataset(
                 val_data,
-                obs_to_output=self.predict_keys + [self.batch_key],
-                get_knn_cells=model.expr_emb_style == "metacell" and self.use_knn,
+                obs_to_output=dataset_obs_keys,
+                get_knn_cells=use_metacell_knn,
                 encoder=mencoders,
             )
 
@@ -207,7 +332,7 @@ class FinetuneBatchClass:
         collator = Collator(
             organisms=active_organisms,
             valid_genes=model.genes,
-            class_names=self.predict_keys + [self.batch_key],
+            class_names=class_names,
             how="random expr",  # or "all expr" for full expression
             max_len=self.max_len,
             org_to_id=mencoders.get("organism_ontology_term_id", {}),
@@ -224,11 +349,17 @@ class FinetuneBatchClass:
             active_organisms,
             mencoders.get("organism_ontology_term_id", {}),
         )
+        collate_fn = collator_for_organism_blocks(
+            collator,
+            train_data.var,
+            active_organisms,
+            mencoders.get("organism_ontology_term_id", {}),
+        )
 
         # Create data loaders
         train_loader = DataLoader(
             train_dataset,
-            collate_fn=collator,
+            collate_fn=collate_fn,
             batch_size=self.batch_size,  # Adjust based on GPU memory
             num_workers=self.num_workers,
             shuffle=True,
@@ -236,7 +367,7 @@ class FinetuneBatchClass:
         if val_data is not None:
             val_loader = DataLoader(
                 val_dataset,
-                collate_fn=collator,
+                collate_fn=collate_fn,
                 batch_size=self.batch_size,
                 num_workers=self.num_workers,
                 shuffle=False,
@@ -249,12 +380,11 @@ class FinetuneBatchClass:
                 )
             self.batch_emb = torch.nn.Embedding(
                 num_embeddings=train_data.obs[self.batch_key].nunique(),
-                embedding_dim=(
-                    model.compressor[self.learn_batches_on].fc_mu.weight.shape[0]
-                    if hasattr(model, "compressor")
-                    else model.d_model
-                ),
-            )
+                # This embedding replaces output_cell_embs before compression,
+                # so it must use the transformer width rather than the latent
+                # compressor width (8 in small-v2 versus d_model=256).
+                embedding_dim=model.d_model,
+            ).to(model.device)
 
         ## PREPARING THE OPTIM
         all_params = (
@@ -288,6 +418,10 @@ class FinetuneBatchClass:
             model.mat_labels_hierarchy[k] = i.to(model.device)
 
         ## train
+        best_val_loss = None
+        best_epoch = None
+        best_model_state = None
+        best_batch_emb_state = None
         for epoch in range(self.num_epochs):
             print(f"\nEpoch {epoch + 1}/{self.num_epochs}")
             print(f"Current learning rate: {optimizer.param_groups[0]['lr']:.2e}")
@@ -306,12 +440,7 @@ class FinetuneBatchClass:
                 total_loss, cls_loss, mmd, loss_expr = self.batch_corr_pass(
                     batch, model
                 )
-                # Backward pass
-                scaler.scale(total_loss).backward()
-                scaler.unscale_(optimizer)
-                torch.nn.utils.clip_grad_norm_(model.parameters(), max_norm=1.0)
-                scaler.step(optimizer)
-                scaler.update()
+                _optimizer_step(total_loss, optimizer, model, scaler)
 
                 train_loss += total_loss.item()
                 train_steps += 1
@@ -367,6 +496,16 @@ class FinetuneBatchClass:
                 )
                 print(f"Train Loss: {avg_train_loss:.4f}, Val Loss: {avg_val_loss:.4f}")
 
+                if best_val_loss is None or avg_val_loss < best_val_loss:
+                    best_val_loss = avg_val_loss
+                    best_epoch = epoch + 1
+                    best_model_state = _trainable_state_dict(model)
+                    best_batch_emb_state = (
+                        _trainable_state_dict(self.batch_emb)
+                        if self.learn_batches_on is not None
+                        else None
+                    )
+
                 # Store LR before scheduler step for comparison
                 lr_before = optimizer.param_groups[0]["lr"]
 
@@ -387,6 +526,17 @@ class FinetuneBatchClass:
                     print("Early stopping due to overfitting")
                     break
 
+        if self.restore_best_model and best_model_state is not None:
+            _restore_trainable_state(model, best_model_state)
+            if best_batch_emb_state is not None:
+                _restore_trainable_state(self.batch_emb, best_batch_emb_state)
+            print(
+                "Restored best validation trainable weights "
+                f"(val loss: {best_val_loss:.4f})"
+            )
+        self.best_epoch = best_epoch
+        self.best_val_loss = best_val_loss
+
         print("Manual fine-tuning completed!")
         model.eval()
         return model
@@ -403,6 +553,16 @@ class FinetuneBatchClass:
             output = model.forward(
                 gene_pos,
                 expression,
+                neighbors=(
+                    batch["knn_cells"].to(model.device)
+                    if model.expr_emb_style == "metacell" and self.use_knn
+                    else None
+                ),
+                neighbors_info=(
+                    batch["knn_cells_info"].to(model.device)
+                    if model.expr_emb_style == "metacell" and self.use_knn
+                    else None
+                ),
                 req_depth=depth,
                 depth_mult=expression.sum(1),
                 do_class=True,
@@ -416,9 +576,11 @@ class FinetuneBatchClass:
             #    torch.cat([emb, class_elem[:, 1].unsqueeze(1).float()], dim=1)
             # )
             if self.learn_batches_on is not None:
+                if self.batch_group_position is None:
+                    raise RuntimeError("batch group position was not initialized")
                 batch_pos = model.classes.index(self.learn_batches_on) + 1
                 output["output_cell_embs"][:, batch_pos, :] = self.batch_emb(
-                    class_elem[:, -1]
+                    class_elem[:, self.batch_group_position]
                 )
 
             ## generate expr loss
@@ -462,7 +624,7 @@ class FinetuneBatchClass:
                     pred=cls_output,
                     cl=class_elem[:, self.predict_keys.index(clas)],
                     labels_hierarchy=(
-                        model.mat_labels_hierarchy.get(clas).to("cuda")
+                        model.mat_labels_hierarchy.get(clas).to(model.device)
                         if clas in model.mat_labels_hierarchy
                         else None
                     ),
@@ -477,105 +639,109 @@ class FinetuneBatchClass:
             #    target=class_elem[:, 1],
             # )
             total_loss += cls_loss * self.loss_scalers.get("class", 1)
-            tot_mmd = 0
+            tot_mmd_loss = output["output_cell_embs"].new_zeros(())
+            mmd_for_logging = 0.0
             if self.do_mmd_on is not None:
                 pos = model.classes.index(self.do_mmd_on) + 1
-                # Apply gradient reversal to the input embedding
+                # Minimize the positive pairwise distance directly. A gradient
+                # reversal here would optimize the MMD in the wrong direction.
                 selected_emb = (
                     output["compressed_cell_embs"][pos]
                     if model.compressor is not None
                     else output["input_cell_embs"][:, pos, :]
                 )
-                for i in set(class_elem[:, -1].cpu().numpy()):
-                    if (class_elem[:, -1] == i).sum() < 2:
-                        # need at least 2 samples to compute mmd
-                        class_elem[class_elem[:, -1] == i, 1] = (
-                            -1
-                        )  # assign to dummy class
-                    # compare each batch to all other batches
-                for i in set(class_elem[:, -1].cpu().numpy()):
-                    if i == -1:
-                        continue
-                    X, Y = (
-                        selected_emb[class_elem[:, -1] == i],
-                        selected_emb[class_elem[:, -1] != i],
+                if self.batch_group_position is None:
+                    raise RuntimeError("Batch group position was not initialized")
+                mmd_groups = class_elem[:, self.batch_group_position]
+                if self.legacy_detached_mmd:
+                    mmd_for_logging = _legacy_detached_one_vs_rest_mmd(
+                        selected_emb, mmd_groups
                     )
-                    mmd = mmd_loss(X, Y)
-                    if torch.isnan(mmd):
-                        print("mmd nan")
-                    tot_mmd += mmd.item() if not torch.isnan(mmd) else 0
-                # Add adversarial loss to total loss
-                total_loss += tot_mmd * self.loss_scalers.get("mmd", 3)
+                    total_loss += mmd_for_logging * self.loss_scalers.get("mmd", 0.03)
+                else:
+                    # Keep the MMD accumulator attached to the autograd graph.
+                    tot_mmd_loss = _balanced_group_pairwise_mmd(
+                        selected_emb, mmd_groups
+                    )
+                    total_loss += tot_mmd_loss * self.loss_scalers.get("mmd", 0.03)
+                    mmd_for_logging = tot_mmd_loss.detach().item()
             if "vae_kl_loss" in output:
                 total_loss += output["vae_kl_loss"] * self.loss_scalers.get("kl", 0.5)
-        return total_loss, cls_loss, tot_mmd, loss_expr
+        return total_loss, cls_loss, mmd_for_logging, loss_expr
+
+
+def _legacy_detached_one_vs_rest_mmd(
+    selected_emb: torch.Tensor, groups: torch.Tensor
+) -> float:
+    """Return the pre-fix MMD scalar, deliberately detached from autograd."""
+    total = 0.0
+    for group_id in torch.unique(groups):
+        in_group = groups == group_id
+        if in_group.sum() < 2 or (~in_group).sum() < 2:
+            continue
+        mmd = _legacy_unbiased_energy_mmd(
+            selected_emb[in_group], selected_emb[~in_group]
+        )
+        if torch.isnan(mmd):
+            print("mmd nan")
+        else:
+            total += mmd.detach().item()
+    return total
+
+
+def _legacy_unbiased_energy_mmd(
+    left: torch.Tensor, right: torch.Tensor
+) -> torch.Tensor:
+    """Historical unbiased energy-distance statistic used before the MMD fix."""
+    left_dist = -torch.cdist(left, left, p=2)
+    right_dist = -torch.cdist(right, right, p=2)
+    cross_dist = -torch.cdist(left, right, p=2)
+    n_left = left.shape[0]
+    n_right = right.shape[0]
+    left_term = left_dist.sum() / (n_left * (n_left - 1)) if n_left > 1 else 0.0
+    right_term = right_dist.sum() / (n_right * (n_right - 1)) if n_right > 1 else 0.0
+    return left_term + right_term - 2 * cross_dist.mean()
+
+
+def _balanced_group_pairwise_mmd(
+    selected_emb: torch.Tensor, groups: torch.Tensor
+) -> torch.Tensor:
+    group_ids = torch.unique(groups)
+    if group_ids.numel() < 2:
+        return selected_emb.new_zeros(())
+
+    valid_mmd_terms = []
+    for left_idx in range(group_ids.numel() - 1):
+        for right_idx in range(left_idx + 1, group_ids.numel()):
+            left_group = groups == group_ids[left_idx]
+            right_group = groups == group_ids[right_idx]
+            mmd = mmd_loss(selected_emb[left_group], selected_emb[right_group])
+            if torch.isnan(mmd):
+                print("mmd nan")
+            else:
+                valid_mmd_terms.append(mmd)
+
+    if valid_mmd_terms:
+        return torch.stack(valid_mmd_terms).mean()
+    return selected_emb.new_zeros(())
+
+
+# Compatibility alias for the short-lived task3-specific helper name.
+_balanced_species_pairwise_mmd = _balanced_group_pairwise_mmd
 
 
 def mmd_loss(X: torch.Tensor, Y: torch.Tensor) -> torch.Tensor:
     """
-    Compute Maximum Mean Discrepancy (MMD) loss between two 2D embedding matrices.
+    Compute the notebook's unbiased empirical energy-distance statistic.
 
     Args:
         X (torch.Tensor): Tensor of shape (n1, emb_dim) - first set of embeddings
         Y (torch.Tensor): Tensor of shape (n2, emb_dim) - second set of embeddings
 
     Returns:
-        torch.Tensor: MMD loss value (negative to encourage dissimilarity)
+        torch.Tensor: differentiable energy-distance estimate
     """
-
-    def rbf_kernel(x, y, sigma):
-        """Compute RBF kernel between two sets of vectors"""
-        distance = torch.cdist(x, y, p=2) ** 2
-        return torch.exp(-distance / (2 * sigma**2))
-
-    def energy_kernel(x, y):
-        """Compute Energy kernel between two sets of vectors"""
-        distance = torch.cdist(x, y, p=2)
-        return -distance
-
-    # Use multiple kernel bandwidths for better performance
-    sigmas = [0]  # [0.1, 1.0, 10.0]
-    mmd_loss = 0.0
-
-    for sigma in sigmas:
-        # K(X, X) - kernel matrix within first group (n1 x n1)
-        # k_xx = rbf_kernel(X, X, sigma)
-        k_xx = energy_kernel(X, X)
-        # K(Y, Y) - kernel matrix within second group (n2 x n2)
-        # k_yy = rbf_kernel(Y, Y, sigma)
-        k_yy = energy_kernel(Y, Y)
-        # K(X, Y) - kernel matrix between groups (n1 x n2)
-        # k_xy = rbf_kernel(X, Y, sigma)
-        k_xy = energy_kernel(X, Y)
-
-        # Unbiased MMD estimation
-        n1 = X.shape[0]
-        n2 = Y.shape[0]
-
-        # Remove diagonal elements for unbiased estimation of K(X,X) and K(Y,Y)
-        # For K(X,X): exclude diagonal
-        if n1 > 1:
-            mask_xx = 1 - torch.eye(n1, device=X.device)
-            k_xx_term = (k_xx * mask_xx).sum() / (n1 * (n1 - 1))
-        else:
-            k_xx_term = 0.0
-
-        # For K(Y,Y): exclude diagonal
-        if n2 > 1:
-            mask_yy = 1 - torch.eye(n2, device=Y.device)
-            k_yy_term = (k_yy * mask_yy).sum() / (n2 * (n2 - 1))
-        else:
-            k_yy_term = 0.0
-
-        # For K(X,Y): use all elements (no diagonal to exclude)
-        k_xy_term = k_xy.mean()
-
-        # MMD^2 = E[K(X,X)] + E[K(Y,Y)] - 2*E[K(X,Y)]
-        mmd_squared = k_xx_term + k_yy_term - 2 * k_xy_term
-        mmd_loss += mmd_squared
-
-    # Return negative MMD to encourage dissimilarity (higher MMD = more different)
-    return mmd_loss / len(sigmas)
+    return _legacy_unbiased_energy_mmd(X, Y)
 
 
 class FinetuneGRN:

@@ -2,7 +2,47 @@
 
 from typing import Any
 
+import numpy as np
 import pandas as pd
+
+
+class OrganismBlockCollator:
+    """Slice block-diagonal multi-organism expression before scDataLoader."""
+
+    def __init__(self, collator: Any, masks: dict[Any, np.ndarray]) -> None:
+        self.collator = collator
+        self.masks = masks
+
+    @staticmethod
+    def _array(value: Any) -> np.ndarray:
+        if hasattr(value, "toarray"):
+            return np.asarray(value.toarray()).squeeze()
+        return np.asarray(value)
+
+    def __call__(self, batch: list[dict[str, Any]]) -> Any:
+        sliced = []
+        for element in batch:
+            organism_id = element[self.collator.organism_name]
+            if organism_id not in self.masks:
+                sliced.append(element)
+                continue
+            mask = self.masks[organism_id]
+            current = dict(element)
+            expression = self._array(current["X"])
+            if expression.ndim != 1 or expression.shape[0] != len(mask):
+                raise ValueError(
+                    "Multi-organism expression does not match the input gene table"
+                )
+            current["X"] = expression[mask]
+            if "knn_cells" in current:
+                neighbors = self._array(current["knn_cells"])
+                if neighbors.ndim != 2 or neighbors.shape[1] != len(mask):
+                    raise ValueError(
+                        "Multi-organism KNN expression does not match the gene table"
+                    )
+                current["knn_cells"] = neighbors[:, mask]
+            sliced.append(current)
+        return self.collator(sliced)
 
 
 def active_model_organisms(model: Any, obs: pd.DataFrame) -> list[str]:
@@ -130,3 +170,27 @@ def validate_collator_gene_offsets(
                 f"{organism} starts at {actual}, expected {expected[organism]}. "
                 "Keep all checkpoint organisms in model order when building genedf."
             )
+
+
+def collator_for_organism_blocks(
+    collator: Any,
+    input_var: pd.DataFrame,
+    organisms: list[str],
+    org_to_id: dict[str, int] | None = None,
+) -> Any:
+    """Wrap a collator when AnnData stores native vocabularies in gene blocks."""
+    if "organism" not in input_var or len(organisms) < 2:
+        return collator
+    var_organisms = input_var["organism"].astype(str).to_numpy()
+    masks: dict[Any, np.ndarray] = {}
+    for organism in organisms:
+        key = org_to_id[organism] if org_to_id is not None else organism
+        mask = var_organisms == organism
+        expected_width = len(collator.accepted_genes[key])
+        if int(mask.sum()) != expected_width:
+            raise RuntimeError(
+                f"Input gene block for {organism} has {int(mask.sum())} genes; "
+                f"the collator expects {expected_width}"
+            )
+        masks[key] = mask
+    return OrganismBlockCollator(collator, masks)

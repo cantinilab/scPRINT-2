@@ -1,0 +1,4 @@
+species	file	cells	annotation_column	nonmissing_annotations	unique_labels	unknown_or_unmapped
+Rabbit	RT_NewCelltype_221007.rds	1018	celltype	1018	10	353
+Hamster	HR_NewCelltype_221007.rds	1695	celltype	1695	13	14
+Lizard	LD_NewCelltype_221007.rds	1858	celltype	1858	11	156

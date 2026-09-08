@@ -222,3 +222,12 @@ notebooks/data/results_batch.json
 data/main/gene_embs_esm2/
 .dca-env/
 .worktrees/
+
+# Local benchmark execution state and large reproducible intermediates
+.hermes/
+data/results/**/*.h5ad
+data/results/**/logs/
+data/results/**/geo/
+data/results/**/archive/
+data/results/**/species/
+data/results/**/precomputed_graphs/

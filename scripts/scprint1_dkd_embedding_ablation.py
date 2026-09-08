@@ -19,13 +19,13 @@ import numpy as np
 import scanpy as sc
 import torch
 
-from op_scib import (
+from scprint2 import scPRINT2
+from scprint2.evaluation.openproblems_scib import (
     compute_op_scib_metrics,
     load_op_solution,
     prepare_op_scib_environment,
     save_op_scib_result,
 )
-from scprint2 import scPRINT2
 from scprint2.tasks import Embedder
 
 DATASET_NAME = "cellxgene_census/dkd"

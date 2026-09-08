@@ -4,7 +4,7 @@ import numpy as np
 import pandas as pd
 from anndata import AnnData, read_h5ad
 
-from scripts.op_classification_output import save_classification_output
+from scprint2.evaluation import save_classification_output
 
 
 def test_save_classification_output_keeps_reusable_per_cell_data(tmp_path):
