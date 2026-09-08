@@ -1,0 +1,318 @@
+/lustre/fswork/projects/rech/xeg/uat95fg/venvs/task3-paper-scib-1.1.3/lib/python3.9/site-packages/scib/metrics/metrics.py:293: DeprecationWarning: Call to deprecated function (or staticmethod) opt_louvain.
+  res_max, nmi_max, nmi_all = opt_louvain(
+/lustre/fswork/projects/rech/xeg/uat95fg/venvs/task3-paper-scib-1.1.3/lib/python3.9/site-packages/anndata/compat/__init__.py:263: FutureWarning: During AnnData slicing, found matrix at .uns['neighbors']['diffusion_connectivities'] that happens to be dimensioned at n_obs×n_obs (27200×27200).
+
+These matrices should now be stored in the .obsp attribute.
+This slicing behavior will be removed in anndata 0.8.
+  warn(
+/lustre/fswork/projects/rech/xeg/uat95fg/venvs/task3-paper-scib-1.1.3/lib/python3.9/site-packages/anndata/compat/__init__.py:263: FutureWarning: During AnnData slicing, found matrix at .uns['neighbors']['diffusion_connectivities'] that happens to be dimensioned at n_obs×n_obs (2947×2947).
+
+These matrices should now be stored in the .obsp attribute.
+This slicing behavior will be removed in anndata 0.8.
+  warn(
+/lustre/fswork/projects/rech/xeg/uat95fg/venvs/task3-paper-scib-1.1.3/lib/python3.9/site-packages/rpy2/robjects/pandas2ri.py:261: DeprecationWarning: The global conversion available with activate() is deprecated and will be removed in the next major release. Use a local converter.
+  warnings.warn('The global conversion available with activate() '
+/lustre/fswork/projects/rech/xeg/uat95fg/venvs/task3-paper-scib-1.1.3/lib/python3.9/site-packages/rpy2/robjects/numpy2ri.py:185: DeprecationWarning: The global conversion available with activate() is deprecated and will be removed in the next major release. Use a local converter.
+  warnings.warn('The global conversion available with activate() '
+Clustering...
+resolution: 0.1, nmi: 0.7215902645451832
+resolution: 0.2, nmi: 0.7667456659272942
+resolution: 0.3, nmi: 0.7720446100118631
+resolution: 0.4, nmi: 0.758426356695762
+resolution: 0.5, nmi: 0.7617439487050756
+resolution: 0.6, nmi: 0.7596861643666786
+resolution: 0.7, nmi: 0.7559828504014892
+resolution: 0.8, nmi: 0.7549706890189734
+resolution: 0.9, nmi: 0.7507047857578183
+resolution: 1.0, nmi: 0.7422008627547412
+resolution: 1.1, nmi: 0.7378504211195198
+resolution: 1.2, nmi: 0.7341042928090018
+resolution: 1.3, nmi: 0.7349507241882786
+resolution: 1.4, nmi: 0.7365973371934433
+resolution: 1.5, nmi: 0.7325361203255343
+resolution: 1.6, nmi: 0.7267018177298206
+resolution: 1.7, nmi: 0.7350473851160344
+resolution: 1.8, nmi: 0.7280858271908541
+resolution: 1.9, nmi: 0.7220262256857074
+resolution: 2.0, nmi: 0.7158236428336542
+optimised clustering against cell_type_ontology_term_id
+optimal cluster resolution: 0.3
+optimal score: 0.7720446100118631
+NMI...
+ARI...
+Silhouette score...
+PC regression...
+covariate: orig.ident
+compute PCA n_comps: 50
+covariate: orig.ident
+Compute PCR on embedding n_comps: 50
+Isolated labels F1...
+Compute neighbors on rep X_scib_embedding
+Compute neighbors on rep X_scib_embedding
+Compute neighbors on rep X_scib_embedding
+Compute neighbors on rep X_scib_embedding
+Compute neighbors on rep X_scib_embedding
+Compute neighbors on rep X_scib_embedding
+Compute neighbors on rep X_scib_embedding
+Compute neighbors on rep X_scib_embedding
+Compute neighbors on rep X_scib_embedding
+Compute neighbors on rep X_scib_embedding
+Compute neighbors on rep X_scib_embedding
+Compute neighbors on rep X_scib_embedding
+Isolated labels ASW...
+Graph connectivity...
+kBET...
+Compute diffusion neighbours
+Adding diffusion to step 2
+Adding diffusion to step 3
+batch: orig.ident
+CL:0000066 consists of a single batch or is too small. Skip.
+CL:0005006 consists of a single batch or is too small. Skip.
+CL:0000064 consists of a single batch or is too small. Skip.
+CL:0000322 consists of a single batch or is too small. Skip.
+Use 70 nearest neighbors.
+Adding diffusion to step 4
+Adding diffusion to step 5
+importing expression matrix
+kBET estimation
+Number of kBET tests is set to 295.
+/lustre/fswork/projects/rech/xeg/uat95fg/venvs/task3-paper-scib-1.1.3/lib/python3.9/site-packages/anndata/compat/__init__.py:263: FutureWarning: During AnnData slicing, found matrix at .uns['neighbors']['diffusion_connectivities'] that happens to be dimensioned at n_obs×n_obs (27200×27200).
+
+These matrices should now be stored in the .obsp attribute.
+This slicing behavior will be removed in anndata 0.8.
+  warn(
+/lustre/fswork/projects/rech/xeg/uat95fg/venvs/task3-paper-scib-1.1.3/lib/python3.9/site-packages/anndata/compat/__init__.py:263: FutureWarning: During AnnData slicing, found matrix at .uns['neighbors']['diffusion_connectivities'] that happens to be dimensioned at n_obs×n_obs (1966×1966).
+
+These matrices should now be stored in the .obsp attribute.
+This slicing behavior will be removed in anndata 0.8.
+  warn(
+Use 70 nearest neighbors.
+importing expression matrix
+kBET estimation
+Number of kBET tests is set to 197.
+/lustre/fswork/projects/rech/xeg/uat95fg/venvs/task3-paper-scib-1.1.3/lib/python3.9/site-packages/scib/metrics/lisi.py:175: UserWarning: 'batch_key' is deprecated and will be ignore
+  warnings.warn("'batch_key' is deprecated and will be ignore")
+CL:0002204 consists of a single batch or is too small. Skip.
+CL:0000165 consists of a single batch or is too small. Skip.
+CL:0002063 consists of a single batch or is too small. Skip.
+CL:0000158 consists of a single batch or is too small. Skip.
+CL:0002062 consists of a single batch or is too small. Skip.
+CL:0008019 consists of a single batch or is too small. Skip.
+CL:0000669 consists of a single batch or is too small. Skip.
+CL:0000235 consists of a single batch or is too small. Skip.
+cLISI score...
+using precomputed kNN graph
+Convert nearest neighbor matrix and distances for LISI.
+Compute knn on shortest paths
+call /lustre/fswork/projects/rech/xeg/uat95fg/venvs/task3-paper-scib-1.1.3/lib/python3.9/site-packages/scib/knn_graph/knn_graph.o /tmp/lisi_sbhrdx75/graph_lisi_input.mtx /tmp/lisi_sbhrdx75/graph_lisi 90 32 50
+LISI score estimation
+32 processes started.
+iLISI score...
+using precomputed kNN graph
+Convert nearest neighbor matrix and distances for LISI.
+Compute knn on shortest paths
+call /lustre/fswork/projects/rech/xeg/uat95fg/venvs/task3-paper-scib-1.1.3/lib/python3.9/site-packages/scib/knn_graph/knn_graph.o /tmp/lisi_8dxuebrw/graph_lisi_input.mtx /tmp/lisi_8dxuebrw/graph_lisi 90 32 50
+LISI score estimation
+32 processes started.
+/lustre/fswork/projects/rech/xeg/uat95fg/venvs/task3-paper-scib-1.1.3/lib/python3.9/site-packages/scib/metrics/metrics.py:293: DeprecationWarning: Call to deprecated function (or staticmethod) opt_louvain.
+  res_max, nmi_max, nmi_all = opt_louvain(
+/lustre/fswork/projects/rech/xeg/uat95fg/venvs/task3-paper-scib-1.1.3/lib/python3.9/site-packages/anndata/compat/__init__.py:263: FutureWarning: During AnnData slicing, found matrix at .uns['neighbors']['diffusion_connectivities'] that happens to be dimensioned at n_obs×n_obs (27200×27200).
+
+These matrices should now be stored in the .obsp attribute.
+This slicing behavior will be removed in anndata 0.8.
+  warn(
+/lustre/fswork/projects/rech/xeg/uat95fg/venvs/task3-paper-scib-1.1.3/lib/python3.9/site-packages/rpy2/robjects/pandas2ri.py:261: DeprecationWarning: The global conversion available with activate() is deprecated and will be removed in the next major release. Use a local converter.
+  warnings.warn('The global conversion available with activate() '
+/lustre/fswork/projects/rech/xeg/uat95fg/venvs/task3-paper-scib-1.1.3/lib/python3.9/site-packages/rpy2/robjects/numpy2ri.py:185: DeprecationWarning: The global conversion available with activate() is deprecated and will be removed in the next major release. Use a local converter.
+  warnings.warn('The global conversion available with activate() '
+Clustering...
+resolution: 0.1, nmi: 0.38553532057771417
+resolution: 0.2, nmi: 0.4492401846892211
+resolution: 0.3, nmi: 0.496512176856087
+resolution: 0.4, nmi: 0.518236810865172
+resolution: 0.5, nmi: 0.5229780047570415
+resolution: 0.6, nmi: 0.5224706570754144
+resolution: 0.7, nmi: 0.5206085498318401
+resolution: 0.8, nmi: 0.5286816751486444
+resolution: 0.9, nmi: 0.5263397248349695
+resolution: 1.0, nmi: 0.5507225311900262
+resolution: 1.1, nmi: 0.5733828637495121
+resolution: 1.2, nmi: 0.5662575287023479
+resolution: 1.3, nmi: 0.567329217765477
+resolution: 1.4, nmi: 0.5551646607276352
+resolution: 1.5, nmi: 0.5360614468081749
+resolution: 1.6, nmi: 0.5423238616735215
+resolution: 1.7, nmi: 0.5454739453850223
+resolution: 1.8, nmi: 0.5521334999539526
+resolution: 1.9, nmi: 0.5555236127128282
+resolution: 2.0, nmi: 0.5482963669070523
+optimised clustering against cell_type_ontology_term_id
+optimal cluster resolution: 1.1
+optimal score: 0.5733828637495121
+NMI...
+ARI...
+Silhouette score...
+PC regression...
+covariate: orig.ident
+compute PCA n_comps: 50
+covariate: orig.ident
+Compute PCR on embedding n_comps: 50
+Isolated labels F1...
+Compute neighbors on rep X_scib_embedding
+Compute neighbors on rep X_scib_embedding
+Compute neighbors on rep X_scib_embedding
+Compute neighbors on rep X_scib_embedding
+Compute neighbors on rep X_scib_embedding
+Compute neighbors on rep X_scib_embedding
+Compute neighbors on rep X_scib_embedding
+Compute neighbors on rep X_scib_embedding
+Compute neighbors on rep X_scib_embedding
+Compute neighbors on rep X_scib_embedding
+Compute neighbors on rep X_scib_embedding
+Compute neighbors on rep X_scib_embedding
+Isolated labels ASW...
+Graph connectivity...
+kBET...
+Compute diffusion neighbours
+Adding diffusion to step 2
+Adding diffusion to step 3
+batch: orig.ident
+CL:0000066 consists of a single batch or is too small. Skip.
+CL:0005006 consists of a single batch or is too small. Skip.
+CL:0000064 consists of a single batch or is too small. Skip.
+CL:0000322 consists of a single batch or is too small. Skip.
+Use 70 nearest neighbors.
+importing expression matrix
+kBET estimation
+Number of kBET tests is set to 295.
+Use 70 nearest neighbors.
+importing expression matrix
+kBET estimation
+Number of kBET tests is set to 197.
+/lustre/fswork/projects/rech/xeg/uat95fg/venvs/task3-paper-scib-1.1.3/lib/python3.9/site-packages/scib/metrics/lisi.py:175: UserWarning: 'batch_key' is deprecated and will be ignore
+  warnings.warn("'batch_key' is deprecated and will be ignore")
+CL:0002204 consists of a single batch or is too small. Skip.
+CL:0000165 consists of a single batch or is too small. Skip.
+CL:0002063 consists of a single batch or is too small. Skip.
+CL:0000158 consists of a single batch or is too small. Skip.
+CL:0002062 consists of a single batch or is too small. Skip.
+CL:0008019 consists of a single batch or is too small. Skip.
+CL:0000669 consists of a single batch or is too small. Skip.
+CL:0000235 consists of a single batch or is too small. Skip.
+cLISI score...
+using precomputed kNN graph
+Convert nearest neighbor matrix and distances for LISI.
+Compute knn on shortest paths
+call /lustre/fswork/projects/rech/xeg/uat95fg/venvs/task3-paper-scib-1.1.3/lib/python3.9/site-packages/scib/knn_graph/knn_graph.o /tmp/lisi_vj_ivwbq/graph_lisi_input.mtx /tmp/lisi_vj_ivwbq/graph_lisi 90 32 50
+LISI score estimation
+32 processes started.
+iLISI score...
+using precomputed kNN graph
+Convert nearest neighbor matrix and distances for LISI.
+Compute knn on shortest paths
+call /lustre/fswork/projects/rech/xeg/uat95fg/venvs/task3-paper-scib-1.1.3/lib/python3.9/site-packages/scib/knn_graph/knn_graph.o /tmp/lisi_0k003gm2/graph_lisi_input.mtx /tmp/lisi_0k003gm2/graph_lisi 90 32 50
+LISI score estimation
+32 processes started.
+/lustre/fswork/projects/rech/xeg/uat95fg/venvs/task3-paper-scib-1.1.3/lib/python3.9/site-packages/scib/metrics/metrics.py:293: DeprecationWarning: Call to deprecated function (or staticmethod) opt_louvain.
+  res_max, nmi_max, nmi_all = opt_louvain(
+/lustre/fswork/projects/rech/xeg/uat95fg/venvs/task3-paper-scib-1.1.3/lib/python3.9/site-packages/anndata/compat/__init__.py:263: FutureWarning: During AnnData slicing, found matrix at .uns['neighbors']['diffusion_connectivities'] that happens to be dimensioned at n_obs×n_obs (27200×27200).
+
+These matrices should now be stored in the .obsp attribute.
+This slicing behavior will be removed in anndata 0.8.
+  warn(
+/lustre/fswork/projects/rech/xeg/uat95fg/venvs/task3-paper-scib-1.1.3/lib/python3.9/site-packages/rpy2/robjects/pandas2ri.py:261: DeprecationWarning: The global conversion available with activate() is deprecated and will be removed in the next major release. Use a local converter.
+  warnings.warn('The global conversion available with activate() '
+/lustre/fswork/projects/rech/xeg/uat95fg/venvs/task3-paper-scib-1.1.3/lib/python3.9/site-packages/rpy2/robjects/numpy2ri.py:185: DeprecationWarning: The global conversion available with activate() is deprecated and will be removed in the next major release. Use a local converter.
+  warnings.warn('The global conversion available with activate() '
+Clustering...
+resolution: 0.1, nmi: 0.59024520788239
+resolution: 0.2, nmi: 0.6362138255965017
+resolution: 0.3, nmi: 0.65256150762897
+resolution: 0.4, nmi: 0.6481071378704649
+resolution: 0.5, nmi: 0.6577057425779806
+resolution: 0.6, nmi: 0.663854274853341
+resolution: 0.7, nmi: 0.6555411099114699
+resolution: 0.8, nmi: 0.6648673948224868
+resolution: 0.9, nmi: 0.6551009031667778
+resolution: 1.0, nmi: 0.6623888455745436
+resolution: 1.1, nmi: 0.6608701166290936
+resolution: 1.2, nmi: 0.6549871458559191
+resolution: 1.3, nmi: 0.6662172175626799
+resolution: 1.4, nmi: 0.6633620071656744
+resolution: 1.5, nmi: 0.6623232739708633
+resolution: 1.6, nmi: 0.6562234720764644
+resolution: 1.7, nmi: 0.6578027734308044
+resolution: 1.8, nmi: 0.6598677563190243
+resolution: 1.9, nmi: 0.6539872683558654
+resolution: 2.0, nmi: 0.6510392119889461
+optimised clustering against cell_type_ontology_term_id
+optimal cluster resolution: 1.3
+optimal score: 0.6662172175626799
+NMI...
+ARI...
+Silhouette score...
+PC regression...
+covariate: orig.ident
+compute PCA n_comps: 50
+covariate: orig.ident
+Compute PCR on embedding n_comps: 50
+Isolated labels F1...
+Compute neighbors on rep X_scib_embedding
+Compute neighbors on rep X_scib_embedding
+Compute neighbors on rep X_scib_embedding
+Compute neighbors on rep X_scib_embedding
+Compute neighbors on rep X_scib_embedding
+Compute neighbors on rep X_scib_embedding
+Compute neighbors on rep X_scib_embedding
+Compute neighbors on rep X_scib_embedding
+Compute neighbors on rep X_scib_embedding
+Compute neighbors on rep X_scib_embedding
+Compute neighbors on rep X_scib_embedding
+Compute neighbors on rep X_scib_embedding
+Isolated labels ASW...
+Graph connectivity...
+kBET...
+Compute diffusion neighbours
+Adding diffusion to step 2
+Adding diffusion to step 3
+batch: orig.ident
+CL:0000066 consists of a single batch or is too small. Skip.
+CL:0005006 consists of a single batch or is too small. Skip.
+CL:0000064 consists of a single batch or is too small. Skip.
+CL:0000322 consists of a single batch or is too small. Skip.
+Use 70 nearest neighbors.
+importing expression matrix
+kBET estimation
+Number of kBET tests is set to 295.
+Use 70 nearest neighbors.
+importing expression matrix
+kBET estimation
+Number of kBET tests is set to 197.
+/lustre/fswork/projects/rech/xeg/uat95fg/venvs/task3-paper-scib-1.1.3/lib/python3.9/site-packages/scib/metrics/lisi.py:175: UserWarning: 'batch_key' is deprecated and will be ignore
+  warnings.warn("'batch_key' is deprecated and will be ignore")
+CL:0002204 consists of a single batch or is too small. Skip.
+CL:0000165 consists of a single batch or is too small. Skip.
+CL:0002063 consists of a single batch or is too small. Skip.
+CL:0000158 consists of a single batch or is too small. Skip.
+CL:0002062 consists of a single batch or is too small. Skip.
+CL:0008019 consists of a single batch or is too small. Skip.
+CL:0000669 consists of a single batch or is too small. Skip.
+CL:0000235 consists of a single batch or is too small. Skip.
+cLISI score...
+using precomputed kNN graph
+Convert nearest neighbor matrix and distances for LISI.
+Compute knn on shortest paths
+call /lustre/fswork/projects/rech/xeg/uat95fg/venvs/task3-paper-scib-1.1.3/lib/python3.9/site-packages/scib/knn_graph/knn_graph.o /tmp/lisi_4z5uc7i4/graph_lisi_input.mtx /tmp/lisi_4z5uc7i4/graph_lisi 90 32 50
+LISI score estimation
+32 processes started.
+iLISI score...
+using precomputed kNN graph
+Convert nearest neighbor matrix and distances for LISI.
+Compute knn on shortest paths
+call /lustre/fswork/projects/rech/xeg/uat95fg/venvs/task3-paper-scib-1.1.3/lib/python3.9/site-packages/scib/knn_graph/knn_graph.o /tmp/lisi_ejbtltyi/graph_lisi_input.mtx /tmp/lisi_ejbtltyi/graph_lisi 90 32 50
+LISI score estimation
+32 processes started.
+                                             Method  Batch correction  Bio conservation    Total  Batch metrics available  Bio metrics available  NMI_cluster/label  ARI_cluster/label  ASW_label  ASW_label/batch  PCR_batch  cell_cycle_conservation  isolated_label_F1  isolated_label_silhouette  graph_conn     kBET        iLISI    cLISI  hvg_overlap  trajectory
+                 scPRINT-2-FT-cell-token-mmd003-knn          0.524544          0.763302 0.667799                        5                      6           0.772045           0.714566   0.656094         0.809085   0.840418                      NaN           0.800745                   0.638791    0.949139 0.024077 2.220446e-16 0.997571          NaN         NaN
+scPRINT-2-ZS-all-tokens-except-assay-organism-pca50          0.419287          0.666912 0.567862                        5                      6           0.666217           0.524938   0.542482         0.796882   0.347062                      NaN           0.733614                   0.541965    0.951464 0.001025 0.000000e+00 0.992258          NaN         NaN
+                        scPRINT-2-ZS-cell-token-knn          0.506897          0.602559 0.564294                        5                      6           0.573383           0.488054   0.511764         0.860078   0.686476                      NaN           0.587226                   0.504811    0.929900 0.043230 1.479890e-02 0.950114          NaN         NaN

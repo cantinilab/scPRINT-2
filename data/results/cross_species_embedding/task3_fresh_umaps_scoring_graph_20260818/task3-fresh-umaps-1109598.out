@@ -1,0 +1,4 @@
+/lustre/fswork/projects/rech/xeg/uat95fg/scPRINT/scripts/plot_task3_fresh_umaps.py:265: UserWarning: constrained_layout not applied because axes sizes collapsed to zero.  Try making figure larger or axes decorations smaller.
+  fig.savefig(output_stem.with_suffix(".png"), dpi=240, bbox_inches="tight")
+/lustre/fswork/projects/rech/xeg/uat95fg/scPRINT/scripts/plot_task3_fresh_umaps.py:266: UserWarning: constrained_layout not applied because axes sizes collapsed to zero.  Try making figure larger or axes decorations smaller.
+  fig.savefig(output_stem.with_suffix(".pdf"), dpi=240, bbox_inches="tight")
