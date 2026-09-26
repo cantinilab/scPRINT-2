@@ -8,7 +8,7 @@
 [![Downloads](https://pepy.tech/badge/scprint2/week)](https://pepy.tech/project/scprint2)
 [![GitHub issues](https://img.shields.io/github/issues/cantinilab/scPRINT-2)](https://img.shields.io/github/issues/cantinilab/scPRINT-2)
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.14749466.svg)](https://doi.org/10.5281/zenodo.14749466)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.22979605.svg)](https://doi.org/10.5281/zenodo.22979605)
 [![hugging face](https://huggingface.co/datasets/huggingface/badges/resolve/main/model-on-hf-md.svg)](https://huggingface.co/jkobject/scPRINT)
 
 <img src="docs/fig.png" alt="logo" width="600" />
